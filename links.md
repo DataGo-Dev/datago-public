@@ -1,0 +1,1 @@
+https://datago-dev.github.io/datago-public/nitzap-version.json
