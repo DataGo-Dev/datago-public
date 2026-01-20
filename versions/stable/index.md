@@ -1,9 +1,9 @@
 ---
 layout: clean
 ---
-# 1.347
+# 1.348
 
-[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000M8N7)
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000M8dF)
 
 20, Jan 2026
 
