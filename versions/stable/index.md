@@ -10,8 +10,8 @@ layout: clean
 ## ⚠️ Correção de agendamentos
 
 ## Correção ortográfica com IA
-  ![Correção ortográfica com IA](image.png)
+  ![Correção ortográfica com IA](images/image.png)
 
 ## Audio para texto com IA
-  ![Audio para texto com IA](image2.png)
+  ![Audio para texto com IA](images/image2.png)
  
