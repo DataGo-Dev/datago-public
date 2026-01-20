@@ -4,8 +4,8 @@
 ⚠️ Correção de agendamentos
 
 - Correção ortográfica com IA
-  ![Texto alternativo](image.png)
+  ![Correção ortográfica com IA](image.png)
 
 - Audio para texto com IA
-  ![Texto alternativo](image2.png)
+  ![Audio para texto com IA](image2.png)
  

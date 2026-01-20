@@ -1,0 +1,7 @@
+# Configuração do Jekyll para GitHub Pages
+theme: jekyll-theme-minimal
+title: Datago Public
+description: Release Notes e Documentação
+
+# Habilita renderização de arquivos markdown
+markdown: kramdown
