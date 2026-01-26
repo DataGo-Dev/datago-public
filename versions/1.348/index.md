@@ -1,0 +1,17 @@
+---
+layout: clean
+---
+# 1.348
+
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000M8dF)
+
+20, Jan 2026
+
+## ⚠️ Correção de agendamentos
+
+## Correção ortográfica com IA
+  ![Correção ortográfica com IA](images/image.png)
+
+## Audio para texto com IA
+  ![Audio para texto com IA](images/image2.png)
+ 
