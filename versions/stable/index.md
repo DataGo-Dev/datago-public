@@ -15,6 +15,6 @@ layout: clean
    - Obs Resumo de conversas só podem ser usadas com Google Gemini IA
    - É possível resumir ao transferir 
    
-    ![Gemini Compatible](images/image.png)
+![Gemini Compatible](images/image.png)
 
  
