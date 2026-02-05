@@ -1,20 +1,17 @@
 ---
 layout: clean
 ---
-# 1.349
+# 1.366
 
-[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000MAn7)
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000Mtc9)
 
-26, Jan 2026
+5, Fev 2026
 
 ## ⚠️ Correção de agendamentos
 
-## Gemini Compatible
-   Nitzap aciona suporte para Google Gemini, capaz de resumir conversas
+## Melhorias no atendimendo
+   O Atendimento foi melhorado, também foi corrigido bugs no atendimento.
 
-   - Obs Resumo de conversas só podem ser usadas com Google Gemini IA
-   - É possível resumir ao transferir 
-   
-![Gemini Compatible](images/image.png)
-
+## Registro de ligações. 
+   Agora é possível ver registro de ligações recebidas pelo Nitzap
  
