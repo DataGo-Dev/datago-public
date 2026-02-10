@@ -20,7 +20,7 @@ layout: clean
 
 ## Metrics
    - Campos agora são ordenado por ordem alfabética
-   - Agora quando é agregado por um campo ID, ele pega o Nome do Objeto relacionado
+   - Agora quando é agregado por um campo ID, ele pega o Nome no Objeto relacionado Ex(OwnerId = Owner.Name)
 
 ## X para limpar busca 
 ![img](images/image3.png)
