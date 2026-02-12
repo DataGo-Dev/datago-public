@@ -18,6 +18,10 @@ layout: clean
 ## Novo filtro para atendendos no Omni
 ![img](images/image.png)
 
+## Omni agora salva o último filtro usado em cache
+   Ao atualizar a página o filtro continua
+   - Reseta ao limpar o cache
+
 ## Metrics
    - Campos agora são ordenado por ordem alfabética
    - Agora quando é agregado por um campo ID, ele pega o Nome no Objeto relacionado Ex(OwnerId = Owner.Name)
@@ -25,13 +29,15 @@ layout: clean
 ## X para limpar busca 
 ![img](images/image3.png)
 
+
 ## Bugs Atendimento Resolvido
    Corrigido um bug no atendimento que preenchia o agendamento ao preencher task
    Quando abria atendimento não mostrava em tempo que foi aberto
 
 ## Botão desconectar
    Corrigido botão desconectar que não aparece para todos os usuários
-   
+
+
 
 
 
