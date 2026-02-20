@@ -29,10 +29,13 @@ layout: clean
 ## X para limpar busca 
 ![img](images/image3.png)
 
+## Enviar resumo da conversa
+   - Ao resumir uma conversa com IA é possivel agora enviar diretamente a mensagem para a pessoa
 
 ## Bugs Atendimento Resolvido
-   Corrigido um bug no atendimento que preenchia o agendamento ao preencher task
-   Quando abria atendimento não mostrava em tempo que foi aberto
+   - Corrigido um bug no atendimento que preenchia o agendamento ao preencher task
+   - Quando abria atendimento não mostrava em tempo que foi aberto
+   - Ao abrir o atendimento o link do sussurro estava inválido
 
 ## Botão desconectar
    Corrigido botão desconectar que não aparece para todos os usuários
