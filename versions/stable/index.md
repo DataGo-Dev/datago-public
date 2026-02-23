@@ -38,9 +38,11 @@ layout: clean
    - Corrigido um bug no atendimento que preenchia o agendamento ao preencher task
    - Quando abria atendimento não mostrava em tempo que foi aberto
    - Ao abrir o atendimento o link do sussurro estava inválido
+   - Foi corrigido também bug onde as conversas não lidas estava filtrando errado
 
 ## Botão desconectar
    Corrigido botão desconectar que não aparece para todos os usuários
+
 
 
 
