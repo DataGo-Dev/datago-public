@@ -1,17 +1,51 @@
 ---
 layout: clean
 ---
-# 1.366
+# 1.381
 
-[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000Mtc9)
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000Ni6n)
 
-5, Fev 2026
+10, Fev 2026
+## Correção de Contatos
+   Alguns contatos vinham duplicados, para corrigir, force um Refresh
 
-## ⚠️ Correção de agendamentos
+## Reumir conversa Ajuste
+   Agora Resumir conversa pega 00:00 de sete dias pra trás
 
-## Melhorias no atendimendo
-   O Atendimento foi melhorado, também foi corrigido bugs no atendimento.
+## Fechar atendimento por ação rápida no Omni
+![img](images/image1.png)
 
-## Registro de ligações. 
-   Agora é possível ver registro de ligações recebidas pelo Nitzap
- 
+## Novo filtro para atendendos no Omni
+![img](images/image.png)
+
+## Omni agora salva o último filtro usado em cache
+   Ao atualizar a página o filtro continua
+   - Reseta ao limpar o cache
+
+## Metrics
+   - Campos agora são ordenado por ordem alfabética
+   - Agora quando é agregado por um campo ID, ele pega o Nome no Objeto relacionado Ex(OwnerId = Owner.Name)
+
+## X para limpar busca 
+![img](images/image3.png)
+
+## Enviar resumo da conversa
+   - Ao resumir uma conversa com IA é possivel agora enviar diretamente a mensagem para a pessoa
+
+## Ao Fehcar atendimento em tarefa, as mudanças refletem em tempo real
+
+## Bugs Atendimento Resolvido
+   - Corrigido um bug no atendimento que preenchia o agendamento ao preencher task
+   - Quando abria atendimento não mostrava em tempo que foi aberto
+   - Ao abrir o atendimento o link do sussurro estava inválido
+
+## Botão desconectar
+   Corrigido botão desconectar que não aparece para todos os usuários
+
+
+
+
+
+
+
+
