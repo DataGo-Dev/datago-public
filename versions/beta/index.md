@@ -5,44 +5,26 @@ layout: clean
 
 [Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000Nsm5)
 
-10, Fev 2026
-## Correção de Contatos
-   Alguns contatos vinham duplicados, para corrigir, force um Refresh
+<!-- 10, Fev 2026 -->
+## Reply de Audio automático com conteúdo do audio. Por conexão 
+   ![img](images/img1.png)
 
-## Reumir conversa Ajuste
-   Agora Resumir conversa pega 00:00 de sete dias pra trás
 
-## Fechar atendimento por ação rápida no Omni
-![img](images/image1.png)
 
-## Novo filtro para atendendos no Omni
-![img](images/image.png)
 
-## Omni agora salva o último filtro usado em cache
-   Ao atualizar a página o filtro continua
-   - Reseta ao limpar o cache
 
-## Metrics
-   - Campos agora são ordenado por ordem alfabética
-   - Agora quando é agregado por um campo ID, ele pega o Nome no Objeto relacionado Ex(OwnerId = Owner.Name)
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000M8N7)
 
-## X para limpar busca 
-![img](images/image3.png)
+20, Jan 2026
 
-## Enviar resumo da conversa
-   - Ao resumir uma conversa com IA é possivel agora enviar diretamente a mensagem para a pessoa
+## ⚠️ Correção de agendamentos
 
-## Ao Fehcar atendimento em tarefa, as mudanças refletem em tempo real
+## Correção ortográfica com IA
+<img width="353" height="173" alt="image" src="https://github.com/user-attachments/assets/ca13b6c4-732e-4b82-9ff4-931d11d6d92e" />
 
-## Bugs Atendimento Resolvido
-   - Corrigido um bug no atendimento que preenchia o agendamento ao preencher task
-   - Quando abria atendimento não mostrava em tempo que foi aberto
-   - Ao abrir o atendimento o link do sussurro estava inválido
-   - Foi corrigido também bug onde as conversas não lidas estava filtrando errado
 
-## Botão desconectar
-   Corrigido botão desconectar que não aparece para todos os usuários
-
+## Audio para texto com IA
+<img width="437" height="203" alt="image2" src="https://github.com/user-attachments/assets/d4532070-7a2c-409c-badf-666d9b6ff6fb" />
 
 
 
