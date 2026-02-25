@@ -1,9 +1,9 @@
 ---
 layout: clean
 ---
-# 1.381
+# 1.384
 
-[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000NspJ)
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000Nsm5)
 
 10, Fev 2026
 ## Correção de Contatos
