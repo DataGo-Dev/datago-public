@@ -32,7 +32,7 @@ layout: clean
 ## Enviar resumo da conversa
    - Ao resumir uma conversa com IA é possivel agora enviar diretamente a mensagem para a pessoa
 
-## Ao Fehcar atendimento em tarefa, as mudanças refletem em tempo real
+## Ao Fechar atendimento em tarefa, as mudanças refletem em tempo real
 
 ## Bugs Atendimento Resolvido
    - Corrigido um bug no atendimento que preenchia o agendamento ao preencher task
