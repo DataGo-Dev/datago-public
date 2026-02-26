@@ -9,7 +9,7 @@ layout: clean
 ## Correção de Contatos
    Alguns contatos vinham duplicados, para corrigir, force um Refresh
 
-## Reumir conversa Ajuste
+## Resumir conversa Ajuste
    Agora Resumir conversa pega 00:00 de sete dias pra trás
 
 ## Fechar atendimento por ação rápida no Omni
