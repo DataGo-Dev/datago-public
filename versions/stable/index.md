@@ -1,9 +1,11 @@
 ---
 layout: clean
 ---
-# 1.398
+# 1.401 - Correções
 
-[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000OIqD)
+- Esta verão corrige problemas identificados na versão de hoje(4 Mar)
+
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000OIwf)
 👉 Por favor, limpe o cache ao atualizar
 
 ## 🔥 Novo Layout
