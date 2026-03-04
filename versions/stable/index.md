@@ -9,6 +9,11 @@ layout: clean
 ## 🔥 Novo Layout
 <img width="499" height="723" alt="image" src="https://github.com/user-attachments/assets/fa4750c3-6a53-4002-80a2-4c8a8e5dd9f8" />
 
+## Fotos na API Oficial 
+<img width="364" height="139" alt="image" src="https://github.com/user-attachments/assets/b7531a53-43e7-4ade-84da-5afda442f694" />
+
+OBS: ⚠️ Para habilitar essa função é necessário algum usuário conectado na api não oficial
+
 ## Data e Hora da mensagem lida
 -  Agora o Nitzap mostra a data e hora da leitura da mensagem ao clicar no balão de ações
 <img width="226" height="259" alt="image" src="https://github.com/user-attachments/assets/02ed395b-b01b-4da2-9eb7-cf8ce8926ec8" />
