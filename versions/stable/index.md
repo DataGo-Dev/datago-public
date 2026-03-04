@@ -1,25 +1,28 @@
 ---
 layout: clean
 ---
-# 1.391
+# 1.398
 
-[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000O08X)
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000OHyz)
+👉 Por favor, limpe o cache ao atualizar
 
-## Reply de Audio automático com conteúdo do audio. Por conexão 
-<img width="641" height="171" alt="Screenshot 2026-02-25 at 16 50 29" src="https://github.com/user-attachments/assets/8f74b84a-11cd-4e81-bd67-1c0554c4bd16" />
-<img src="https://github.com/user-attachments/assets/bde15f76-8f98-40f7-be60-2d56624d1457" alt="img1" width="300">
+## 🔥 Novo Layout
+<img width="499" height="723" alt="image" src="https://github.com/user-attachments/assets/fa4750c3-6a53-4002-80a2-4c8a8e5dd9f8" />
 
-## Opção de transcrever audio automaticamente
-  - Transcreve e exibe audios automaticamente
-<img width="376" height="314" alt="image" src="https://github.com/user-attachments/assets/84c1fba6-883f-48ed-ac26-3ef954c3365d" />
+## Data e Hora da mensagem lida
+-  Agora o Nitzap mostra a data e hora da leitura da mensagem ao clicar no balão de ações
+<img width="226" height="259" alt="image" src="https://github.com/user-attachments/assets/02ed395b-b01b-4da2-9eb7-cf8ce8926ec8" />
 
-⚠️ Obs: usar as duas opções acima juntas pode usar mais tokens de IA
+## Resumo do conteúdo do balão da conversa
+<img width="465" height="570" alt="image" src="https://github.com/user-attachments/assets/7d25e344-9272-4e3a-bc20-e25845f2b109" />
 
-## Zoom em imagens
-<img height="500" alt="image" src="https://github.com/user-attachments/assets/2de70618-55cc-41a1-91ff-18109d9e35f1" />
+## Nome do Contato/Lead na tarefa de atendimento/agendamento
+<img width="587" height="228" alt="image" src="https://github.com/user-attachments/assets/690dc153-13cc-47a8-9a13-a8daeb4f3ebd" />
 
-## Opção de marcar como lida apenas ao responder (Por usuário)
-<img width="383" height="53" alt="image" src="https://github.com/user-attachments/assets/84c2048d-5ce2-487b-bbba-ccead39e9a40" />
-
-
-
+## Correção de bugs
+ - Ao agendar uma mensagem, a data de fechamento estava vindo com o dia e atual, deveria ser a data do agendamento.
+ - Prevenção de duplo clique ao resumir conversa
+ - Area de chamadas duplicada
+ - Bug onde na área de gerenciar os templates ficava com ícones sobrepostos nas ações da pasta
+ - Ajustado quebra de linha quando pressionado Shift + Enter ao enviar uma mídia
+ - Data e Hora agendamento em campanhas estava vindo zerada
