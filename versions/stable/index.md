@@ -3,7 +3,7 @@ layout: clean
 ---
 # 1.398
 
-[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000OHyz)
+[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000OIqD)
 👉 Por favor, limpe o cache ao atualizar
 
 ## 🔥 Novo Layout
