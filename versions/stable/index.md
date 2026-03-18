@@ -52,7 +52,3 @@ A hierarquia de visibilidade agora é respeitada também no histórico das mensa
 
 ### Alteração nas opções padrão
 <img width="344" height="291" alt="image" src="https://github.com/user-attachments/assets/6b67379c-92e5-4e6e-91a3-4d239f529e60" />
-
-
----
-*Notas de release geradas para atualização de pacotes Salesforce.*
