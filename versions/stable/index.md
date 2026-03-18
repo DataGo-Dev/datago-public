@@ -1,15 +1,6 @@
 ---
 layout: clean
 ---
-# 1.409 - Correções
-
-# 🚀 Notas de Lançamento - OMNI
-
-> [!CAUTION]
-> **ATENÇÃO:** Não instale versões beta em sua organização (Org) principal.
-
----
-
 ---
 
 ## 📦 Instalação
