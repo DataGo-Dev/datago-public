@@ -27,7 +27,7 @@ Clique no link abaixo para instalar o pacote na sua organização:
 ### 👤 Usuários Prioritários
 Adicionada a função para definir usuários que receberão contatos não cadastrados.
 * **Comportamento:** Ao marcar esta opção, apenas os usuários prioritários receberão novos chats de Leads/Contatos não cadastrados.
-* **Recomendação:** Deixe desmarcado para todos se desejar a distribuição padrão.
+* **Recomendação:** Deixe vazio para todos se desejar a distribuição padrão.
 
 
 
