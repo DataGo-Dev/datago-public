@@ -2,54 +2,33 @@
 layout: clean
 ---
 # 1.409
-- 18 Mar 2026
+- 7 Abr 2026
 
 ## 📦 Instalação
 Clique no link abaixo para instalar o pacote na sua organização:
 
-👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000OwIz)
+👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000QCC1)
 
 ---
+## Adiciona suporte a template com Vídeo para Api Coex Oficial
+<img width="589" height="810" alt="image" src="https://github.com/user-attachments/assets/2598e688-de11-48b1-83fa-b3c46bd64a41" />
 
-> [!CAUTION] 
-> **ATENÇÃO:** As hierarquias do OMNI nesta versão em diante serão processadas por **conexão**. Se sua Org utiliza esta opção, siga o tutorial abaixo imediatamente após a instalação:
+## Botão de download imagens
+<img width="547" height="342" alt="image" src="https://github.com/user-attachments/assets/7a777c84-ba47-40bd-94bc-caf674ed092b" />
 
-1. Vá até o perfil **dono da conexão** (o primeiro usuário que conectou a sessão).
+### Também no balão
+<img width="336" height="311" alt="image" src="https://github.com/user-attachments/assets/3e0b3ef1-2891-4fb4-88cb-10f872584bb9" />
 
-2. Clique em **Conf. Sessão**.
-   ![Configuração da Sessão](https://github.com/user-attachments/assets/46b91990-76df-4215-8a10-1356b7165373)
+## Notificações
+<img  alt="image" src="https://github.com/user-attachments/assets/a5ab81b2-d27f-4496-9873-89b04fa0d413" />
 
-3. Vá até a aba **Configurações**.
-  <img width="800"  alt="image" src="https://github.com/user-attachments/assets/5b2ecd76-9c86-4859-884f-edd8ba14b11b" />
-  
-4. Habilite a função **Omni: Regras de compartilhamento**.
+### Também adicionado opção de receber notificação apenas de quem está atendendo
+<img width="513" height="486" alt="image" src="https://github.com/user-attachments/assets/d5dcd962-47f0-4768-bb1b-1407c0c70bde" />
 
-### 👤 Usuários Prioritários
-Adicionada a função para definir usuários que receberão contatos não cadastrados.
-* **Comportamento:** Ao marcar esta opção, apenas os usuários prioritários receberão novos chats de Leads/Contatos não cadastrados.
-* **Recomendação:** Deixe vazio para todos se desejar a distribuição padrão.
+🔔 Receber notificações apenas de quem estiver atendendo
 
+## Componente Omni Compatível com record pages
 
-
-## 🛠️ Novidades e Melhorias
-
-### 📄 Envio de Arquivos via Flow
-Agora é possível enviar arquivos facilmente através de fluxos. Atente-se aos limites técnicos do Apex:
-* **Limite:** Máximo de 50 arquivos por vez.
-* **Processamento:** Enviar apenas em fluxo assíncrono.
-* **Tamanho:** Máximo de 2 MB por arquivo.
-
-![Envio via Flow](https://github.com/user-attachments/assets/d12c45e4-08db-40a0-a70b-5af403f92f23)
-
-### 📞 Chamadas na Conversa
-As chamadas recebidas agora são notificadas diretamente no componente de conversa.
-![Chamadas na Conversa](https://github.com/user-attachments/assets/87e5322b-7951-452b-ac90-abf87bac86f8)
-
-### 🏛️ Hierarquia em Histórico
-A hierarquia de visibilidade agora é respeitada também no histórico das mensagens quando a função está habilitada.
-
-### 🎨 Interface (UI)
-* **Ajuste de Layout:** O tamanho dos balões de mensagem foi otimizado para **80%** do espaço livre (anteriormente era 65%), melhorando o aproveitamento de tela.
-
-### Alteração nas opções padrão
-<img width="344" height="291" alt="image" src="https://github.com/user-attachments/assets/6b67379c-92e5-4e6e-91a3-4d239f529e60" />
+## Correções
+- Corrigido bug no metrics quando selecionado período "Hoje"
+- Corrigido problema onde IA não conseguia ouvir áudios
