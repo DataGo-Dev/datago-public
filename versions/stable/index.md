@@ -1,34 +1,27 @@
 ---
 layout: clean
 ---
-# 1.420
-- 7 Abr 2026
+# 1.448
+- 28 Abr 2026
 
 ## 📦 Instalação
 Clique no link abaixo para instalar o pacote na sua organização:
 
-👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000QCC1)
+👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000RQT3)
 
 ---
-## Adiciona suporte a template com Vídeo para Api Coex Oficial
-<img width="589" height="810" alt="image" src="https://github.com/user-attachments/assets/2598e688-de11-48b1-83fa-b3c46bd64a41" />
 
-## Botão de download imagens
-<img width="547" height="342" alt="image" src="https://github.com/user-attachments/assets/7a777c84-ba47-40bd-94bc-caf674ed092b" />
+> [!NOTE]
+> Para receber atualizações futuras Por favor instale esse pacote imediatamente. Em Breve você receberá Outra notificação para migrar o pacote para segunda geração
 
-### Também no balão
-<img width="336" height="311" alt="image" src="https://github.com/user-attachments/assets/3e0b3ef1-2891-4fb4-88cb-10f872584bb9" />
+## Nitzap - Agent Monitor
+- Nova Guia para monitorar atendimentos e agentes
+<img width="1881" height="864" alt="image" src="https://github.com/user-attachments/assets/5e088fe9-23c5-47a6-b68a-b620fc1ce3ca" />
 
-## Notificações
-<img  alt="image" src="https://github.com/user-attachments/assets/a5ab81b2-d27f-4496-9873-89b04fa0d413" />
+## Vídeo em Campanha
+- Agora campanha aceita enviar vídeos em Templates da Campanha
+<img width="1394" height="822" alt="image" src="https://github.com/user-attachments/assets/9aceb152-29be-40f2-a786-b080eb544951" />
 
-### Também adicionado opção de receber notificação apenas de quem está atendendo
-<img width="513" height="486" alt="image" src="https://github.com/user-attachments/assets/d5dcd962-47f0-4768-bb1b-1407c0c70bde" />
+## Variáveis em templates Canal NITZAP
+<img width="932" height="591" alt="image" src="https://github.com/user-attachments/assets/f0ef01bd-8e94-4b54-958e-480dd56006eb" />
 
-🔔 Receber notificações apenas de quem estiver atendendo
-
-## Componente Omni Compatível com record pages
-
-## Correções
-- Corrigido bug no metrics quando selecionado período "Hoje"
-- Corrigido problema onde IA não conseguia ouvir áudios
