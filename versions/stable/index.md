@@ -10,7 +10,7 @@ Clique no link abaixo para instalar o pacote na sua organização:
 👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003pyrIAA)
 ---
 
-## Aba de evetos agora mais completa 
+## Aba de eventos agora mais completa 
 <img width="1420" height="540" alt="image" src="https://github.com/user-attachments/assets/a82ad039-edbe-4256-b47e-65f5eb82d53a" />
 
 ## Hierarquia omni mais inteligente
