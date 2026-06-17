@@ -1,0 +1,52 @@
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+      function timestamp() { 
+        var response = document.getElementById("g-recaptcha-response"); 
+        if (response == null || response.value.trim() == "") {
+          var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);
+          elems["ts"] = JSON.stringify(new Date().getTime());
+          document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); 
+        } 
+      } 
+      setInterval(timestamp, 500); 
+    </script>
+    
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D1U000000wsHu" method="POST">
+    
+      <input type="hidden" name="captcha_settings" value='{"keyname":"captcha","fallback":"true","orgId":"00D1U000000wsHu","ts":""}'>
+      <input type="hidden" name="oid" value="00D1U000000wsHu">
+      <input type="hidden" name="retURL" value="http://datago.com.br">
+    
+      <!-- Atribuição direta ao usuário -->
+      <input type="hidden" name="OwnerId" value="005N500000VZKoXIAX">
+    
+      <label for="first_name">Primeiro Nome</label>
+      <input id="first_name" maxlength="40" name="first_name" size="20" type="text"><br>
+    
+      <label for="last_name">Sobrenome</label>
+      <input id="last_name" maxlength="80" name="last_name" size="20" type="text"><br>
+    
+      <label for="email">Email</label>
+      <input id="email" maxlength="80" name="email" size="20" type="text"><br>
+    
+      <label for="company">Empresa</label>
+      <input id="company" maxlength="40" name="company" size="20" type="text"><br>
+    
+      <label for="city">Cidade</label>
+      <input id="city" maxlength="40" name="city" size="20" type="text"><br>
+    
+      <label for="country_code">País</label>
+      <select id="country_code" name="country_code">
+        <!-- options originais mantidas -->
+      </select><br>
+    
+      <label for="state_code">Estado/província</label>
+      <select id="state_code" name="state_code">
+        <!-- options originais mantidas -->
+      </select><br>
+    
+      <div class="g-recaptcha" data-sitekey="6Lec0pshAAAAABUaSsnOfOBcXhxAwwx61A0p7jpf"></div><br>
+      <input type="submit" name="submit">
+    
+    </form>
