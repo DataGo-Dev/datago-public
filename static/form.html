@@ -1,623 +1,326 @@
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTA: Adicione o seguinte elemento <META> à sua página <HEAD>.  Se      -->
-<!--  necessário, modifique o parâmetro charset para especificar o conjunto   -->
-<!--  de caracteres de sua página HTML.                                       -->
-<!--  ----------------------------------------------------------------------  -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fale com a gente</title>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function timestamp() {
+      var response = document.getElementById("g-recaptcha-response");
+      if (response == null || response.value.trim() == "") {
+        var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);
+        elems["ts"] = JSON.stringify(new Date().getTime());
+        document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems);
+      }
+    }
+    setInterval(timestamp, 500);
+  </script>
 
-<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script>
-     function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
-    </script>
-    
-    <!--  ----------------------------------------------------------------------  -->
-    <!--  NOTA: Adicione o elemento <FORM> a seguir à sua página.                 -->
-    <!--  ----------------------------------------------------------------------  -->
-    
+  <style>
+    :root {
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --ring: rgba(37, 99, 235, .15);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 100% -10%, #dbeafe 0%, transparent 55%),
+        radial-gradient(900px 500px at -10% 110%, #ede9fe 0%, transparent 50%),
+        var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 40px -12px rgba(15, 23, 42, .18);
+      overflow: hidden;
+    }
+
+    .card__head {
+      padding: 32px 32px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #fafbff, #ffffff);
+    }
+
+    /* ---- Logo do cliente ---- */
+    .logo-zone {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .logo-box {
+      width: 96px;
+      height: 96px;
+      border-radius: 20px;
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #f8fafc;
+      transition: border-color .15s, background .15s;
+      position: relative;
+    }
+    .logo-zone:hover .logo-box { border-color: var(--brand); background: #f0f6ff; }
+    .logo-box img { width: 100%; height: 100%; object-fit: contain; }
+    .logo-box .placeholder {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.3;
+      padding: 0 8px;
+    }
+    .logo-box .placeholder svg { display: block; margin: 0 auto 4px; opacity: .6; }
+    .logo-hint { font-size: 12px; color: var(--muted); }
+    .logo-actions { margin-top: 6px; }
+    .logo-actions button {
+      background: none;
+      border: none;
+      color: var(--brand);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+    }
+    .logo-actions button:hover { text-decoration: underline; }
+
+    .card__head h1 {
+      margin: 18px 0 4px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .card__head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    form { padding: 28px 32px 32px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 11px 13px;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+      font-family: inherit;
+    }
+    input:focus, select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    .g-recaptcha { margin: 20px 0 8px; display: flex; justify-content: center; }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 8px;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--brand);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background .15s, transform .05s;
+    }
+    button[type="submit"]:hover { background: var(--brand-dark); }
+    button[type="submit"]:active { transform: translateY(1px); }
+
+    .footnote {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: 1fr; }
+      .card__head, form { padding-left: 22px; padding-right: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="card__head">
+      <!-- Logo carregada localmente pelo usuário (não sai do navegador) -->
+      <div class="logo-zone" id="logoZone" title="Clique para enviar a logo">
+        <div class="logo-box" id="logoBox">
+          <div class="placeholder" id="logoPlaceholder">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="m21 15-3.6-3.6a2 2 0 0 0-2.8 0L6 20"/>
+            </svg>
+            Enviar logo
+          </div>
+        </div>
+        <span class="logo-hint">Clique para usar a sua logo</span>
+      </div>
+      <div class="logo-actions" id="logoActions" style="display:none;">
+        <button type="button" id="logoRemove">Remover logo</button>
+      </div>
+      <input type="file" id="logoInput" accept="image/*" style="display:none;">
+
+      <h1>Fale com a gente</h1>
+      <p>Preencha os campos abaixo e entraremos em contato.</p>
+    </div>
+
     <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D1U000000wsHu" method="POST">
-    
-    <input type=hidden name='captcha_settings' value='{"keyname":"github","fallback":"true","orgId":"00D1U000000wsHu","ts":""}'>
-    <input type=hidden name="oid" value="00D1U000000wsHu">
-    <input type=hidden name="retURL" value="https://datago-dev.github.io/datago-public/static/form.html">
-    
-    <!--  ----------------------------------------------------------------------  -->
-    <!--  NOTA: Estes campos são elementos de depuração opcionais. Remova o       -->
-    <!--  comentário dessas linhas se quiser testar no modo de depuração.         -->
-    <!--  <input type="hidden" name="debug" value=1>                              -->
-    <!--  <input type="hidden" name="debugEmail" value="thiago@datago.com.br">    -->
-    <!--  ----------------------------------------------------------------------  -->
-    
-    <label for="first_name">Primeiro Nome</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
-    
-    <label for="last_name">Sobrenome</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
-    
-    <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-    
-    <label for="company">Empresa</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br>
-    
-    <label for="city">Cidade</label><input  id="city" maxlength="40" name="city" size="20" type="text" /><br>
-    
-    <label for="country_code">País</label><select  id="country_code" name="country_code"><option value="">-- Nenhum --</option><option value="AF">AF</option>
-    <option value="AX">AX</option>
-    <option value="AL">AL</option>
-    <option value="DZ">DZ</option>
-    <option value="AD">AD</option>
-    <option value="AO">AO</option>
-    <option value="AI">AI</option>
-    <option value="AQ">AQ</option>
-    <option value="AG">AG</option>
-    <option value="AR">AR</option>
-    <option value="AM">AM</option>
-    <option value="AW">AW</option>
-    <option value="AU">AU</option>
-    <option value="AT">AT</option>
-    <option value="AZ">AZ</option>
-    <option value="BS">BS</option>
-    <option value="BH">BH</option>
-    <option value="BD">BD</option>
-    <option value="BB">BB</option>
-    <option value="BY">BY</option>
-    <option value="BE">BE</option>
-    <option value="BZ">BZ</option>
-    <option value="BJ">BJ</option>
-    <option value="BM">BM</option>
-    <option value="BT">BT</option>
-    <option value="BO">BO</option>
-    <option value="BQ">BQ</option>
-    <option value="BA">BA</option>
-    <option value="BW">BW</option>
-    <option value="BV">BV</option>
-    <option value="BR">BR</option>
-    <option value="IO">IO</option>
-    <option value="BN">BN</option>
-    <option value="BG">BG</option>
-    <option value="BF">BF</option>
-    <option value="BI">BI</option>
-    <option value="KH">KH</option>
-    <option value="CM">CM</option>
-    <option value="CA">CA</option>
-    <option value="CV">CV</option>
-    <option value="KY">KY</option>
-    <option value="CF">CF</option>
-    <option value="TD">TD</option>
-    <option value="CL">CL</option>
-    <option value="CN">CN</option>
-    <option value="TW">TW</option>
-    <option value="CX">CX</option>
-    <option value="CC">CC</option>
-    <option value="CO">CO</option>
-    <option value="KM">KM</option>
-    <option value="CG">CG</option>
-    <option value="CD">CD</option>
-    <option value="CK">CK</option>
-    <option value="CR">CR</option>
-    <option value="CI">CI</option>
-    <option value="HR">HR</option>
-    <option value="CU">CU</option>
-    <option value="CW">CW</option>
-    <option value="CY">CY</option>
-    <option value="CZ">CZ</option>
-    <option value="DK">DK</option>
-    <option value="DJ">DJ</option>
-    <option value="DM">DM</option>
-    <option value="DO">DO</option>
-    <option value="EC">EC</option>
-    <option value="EG">EG</option>
-    <option value="SV">SV</option>
-    <option value="GQ">GQ</option>
-    <option value="ER">ER</option>
-    <option value="EE">EE</option>
-    <option value="ET">ET</option>
-    <option value="FK">FK</option>
-    <option value="FO">FO</option>
-    <option value="FJ">FJ</option>
-    <option value="FI">FI</option>
-    <option value="FR">FR</option>
-    <option value="GF">GF</option>
-    <option value="PF">PF</option>
-    <option value="TF">TF</option>
-    <option value="GA">GA</option>
-    <option value="GM">GM</option>
-    <option value="GE">GE</option>
-    <option value="DE">DE</option>
-    <option value="GH">GH</option>
-    <option value="GI">GI</option>
-    <option value="GR">GR</option>
-    <option value="GL">GL</option>
-    <option value="GD">GD</option>
-    <option value="GP">GP</option>
-    <option value="GT">GT</option>
-    <option value="GG">GG</option>
-    <option value="GN">GN</option>
-    <option value="GW">GW</option>
-    <option value="GY">GY</option>
-    <option value="HT">HT</option>
-    <option value="HM">HM</option>
-    <option value="VA">VA</option>
-    <option value="HN">HN</option>
-    <option value="HU">HU</option>
-    <option value="IS">IS</option>
-    <option value="IN">IN</option>
-    <option value="ID">ID</option>
-    <option value="IR">IR</option>
-    <option value="IQ">IQ</option>
-    <option value="IE">IE</option>
-    <option value="IM">IM</option>
-    <option value="IL">IL</option>
-    <option value="IT">IT</option>
-    <option value="JM">JM</option>
-    <option value="JP">JP</option>
-    <option value="JE">JE</option>
-    <option value="JO">JO</option>
-    <option value="KZ">KZ</option>
-    <option value="KE">KE</option>
-    <option value="KI">KI</option>
-    <option value="KP">KP</option>
-    <option value="KR">KR</option>
-    <option value="KW">KW</option>
-    <option value="KG">KG</option>
-    <option value="LA">LA</option>
-    <option value="LV">LV</option>
-    <option value="LB">LB</option>
-    <option value="LS">LS</option>
-    <option value="LR">LR</option>
-    <option value="LY">LY</option>
-    <option value="LI">LI</option>
-    <option value="LT">LT</option>
-    <option value="LU">LU</option>
-    <option value="MO">MO</option>
-    <option value="MK">MK</option>
-    <option value="MG">MG</option>
-    <option value="MW">MW</option>
-    <option value="MY">MY</option>
-    <option value="MV">MV</option>
-    <option value="ML">ML</option>
-    <option value="MT">MT</option>
-    <option value="MQ">MQ</option>
-    <option value="MR">MR</option>
-    <option value="MU">MU</option>
-    <option value="YT">YT</option>
-    <option value="MX">MX</option>
-    <option value="MD">MD</option>
-    <option value="MC">MC</option>
-    <option value="MN">MN</option>
-    <option value="ME">ME</option>
-    <option value="MS">MS</option>
-    <option value="MA">MA</option>
-    <option value="MZ">MZ</option>
-    <option value="MM">MM</option>
-    <option value="NA">NA</option>
-    <option value="NR">NR</option>
-    <option value="NP">NP</option>
-    <option value="NL">NL</option>
-    <option value="NC">NC</option>
-    <option value="NZ">NZ</option>
-    <option value="NI">NI</option>
-    <option value="NE">NE</option>
-    <option value="NG">NG</option>
-    <option value="NU">NU</option>
-    <option value="NF">NF</option>
-    <option value="NO">NO</option>
-    <option value="OM">OM</option>
-    <option value="PK">PK</option>
-    <option value="PS">PS</option>
-    <option value="PA">PA</option>
-    <option value="PG">PG</option>
-    <option value="PY">PY</option>
-    <option value="PE">PE</option>
-    <option value="PH">PH</option>
-    <option value="PN">PN</option>
-    <option value="PL">PL</option>
-    <option value="PT">PT</option>
-    <option value="QA">QA</option>
-    <option value="RE">RE</option>
-    <option value="RO">RO</option>
-    <option value="RU">RU</option>
-    <option value="RW">RW</option>
-    <option value="BL">BL</option>
-    <option value="SH">SH</option>
-    <option value="KN">KN</option>
-    <option value="LC">LC</option>
-    <option value="MF">MF</option>
-    <option value="PM">PM</option>
-    <option value="VC">VC</option>
-    <option value="WS">WS</option>
-    <option value="SM">SM</option>
-    <option value="ST">ST</option>
-    <option value="SA">SA</option>
-    <option value="SN">SN</option>
-    <option value="RS">RS</option>
-    <option value="SC">SC</option>
-    <option value="SL">SL</option>
-    <option value="SG">SG</option>
-    <option value="SX">SX</option>
-    <option value="SK">SK</option>
-    <option value="SI">SI</option>
-    <option value="SB">SB</option>
-    <option value="SO">SO</option>
-    <option value="ZA">ZA</option>
-    <option value="GS">GS</option>
-    <option value="SS">SS</option>
-    <option value="ES">ES</option>
-    <option value="LK">LK</option>
-    <option value="SD">SD</option>
-    <option value="SR">SR</option>
-    <option value="SJ">SJ</option>
-    <option value="SZ">SZ</option>
-    <option value="SE">SE</option>
-    <option value="CH">CH</option>
-    <option value="SY">SY</option>
-    <option value="TJ">TJ</option>
-    <option value="TZ">TZ</option>
-    <option value="TH">TH</option>
-    <option value="TL">TL</option>
-    <option value="TG">TG</option>
-    <option value="TK">TK</option>
-    <option value="TO">TO</option>
-    <option value="TT">TT</option>
-    <option value="TN">TN</option>
-    <option value="TR">TR</option>
-    <option value="TM">TM</option>
-    <option value="TC">TC</option>
-    <option value="TV">TV</option>
-    <option value="UG">UG</option>
-    <option value="UA">UA</option>
-    <option value="AE">AE</option>
-    <option value="GB">GB</option>
-    <option value="US">US</option>
-    <option value="UY">UY</option>
-    <option value="UZ">UZ</option>
-    <option value="VU">VU</option>
-    <option value="VE">VE</option>
-    <option value="VN">VN</option>
-    <option value="VG">VG</option>
-    <option value="WF">WF</option>
-    <option value="EH">EH</option>
-    <option value="YE">YE</option>
-    <option value="ZM">ZM</option>
-    <option value="ZW">ZW</option>
-    </select><br>
-    
-    <label for="state_code">Estado/província</label><select  id="state_code" name="state_code"><option value="">-- Nenhum --</option><option value="AC">AC</option>
-    <option value="AG">AG</option>
-    <option value="AG">AG</option>
-    <option value="AL">AL</option>
-    <option value="AL">AL</option>
-    <option value="AK">AK</option>
-    <option value="AB">AB</option>
-    <option value="AL">AL</option>
-    <option value="AP">AP</option>
-    <option value="AM">AM</option>
-    <option value="AN">AN</option>
-    <option value="AN">AN</option>
-    <option value="AP">AP</option>
-    <option value="34">34</option>
-    <option value="AO">AO</option>
-    <option value="AR">AR</option>
-    <option value="AZ">AZ</option>
-    <option value="AR">AR</option>
-    <option value="AR">AR</option>
-    <option value="AP">AP</option>
-    <option value="AS">AS</option>
-    <option value="AT">AT</option>
-    <option value="ACT">ACT</option>
-    <option value="AV">AV</option>
-    <option value="BA">BA</option>
-    <option value="BC">BC</option>
-    <option value="BS">BS</option>
-    <option value="BA">BA</option>
-    <option value="BT">BT</option>
-    <option value="11">11</option>
-    <option value="BL">BL</option>
-    <option value="BN">BN</option>
-    <option value="BG">BG</option>
-    <option value="BI">BI</option>
-    <option value="BR">BR</option>
-    <option value="BO">BO</option>
-    <option value="BZ">BZ</option>
-    <option value="BS">BS</option>
-    <option value="BR">BR</option>
-    <option value="BC">BC</option>
-    <option value="CA">CA</option>
-    <option value="CA">CA</option>
-    <option value="CL">CL</option>
-    <option value="CM">CM</option>
-    <option value="CB">CB</option>
-    <option value="CI">CI</option>
-    <option value="CW">CW</option>
-    <option value="CE">CE</option>
-    <option value="CT">CT</option>
-    <option value="CZ">CZ</option>
-    <option value="CN">CN</option>
-    <option value="CE">CE</option>
-    <option value="CH">CH</option>
-    <option value="CT">CT</option>
-    <option value="CS">CS</option>
-    <option value="CH">CH</option>
-    <option value="CH">CH</option>
-    <option value="71">71</option>
-    <option value="50">50</option>
-    <option value="CE">CE</option>
-    <option value="CO">CO</option>
-    <option value="CL">CL</option>
-    <option value="CO">CO</option>
-    <option value="CO">CO</option>
-    <option value="CT">CT</option>
-    <option value="CO">CO</option>
-    <option value="CS">CS</option>
-    <option value="CR">CR</option>
-    <option value="KR">KR</option>
-    <option value="CN">CN</option>
-    <option value="DN">DN</option>
-    <option value="DD">DD</option>
-    <option value="DE">DE</option>
-    <option value="DL">DL</option>
-    <option value="DC">DC</option>
-    <option value="DF">DF</option>
-    <option value="DL">DL</option>
-    <option value="D">D</option>
-    <option value="DG">DG</option>
-    <option value="EN">EN</option>
-    <option value="ES">ES</option>
-    <option value="DF">DF</option>
-    <option value="FM">FM</option>
-    <option value="FE">FE</option>
-    <option value="FI">FI</option>
-    <option value="FL">FL</option>
-    <option value="FG">FG</option>
-    <option value="FC">FC</option>
-    <option value="FR">FR</option>
-    <option value="35">35</option>
-    <option value="G">G</option>
-    <option value="62">62</option>
-    <option value="GE">GE</option>
-    <option value="GA">GA</option>
-    <option value="GA">GA</option>
-    <option value="GO">GO</option>
-    <option value="GO">GO</option>
-    <option value="GR">GR</option>
-    <option value="GT">GT</option>
-    <option value="44">44</option>
-    <option value="45">45</option>
-    <option value="GR">GR</option>
-    <option value="52">52</option>
-    <option value="GJ">GJ</option>
-    <option value="46">46</option>
-    <option value="HR">HR</option>
-    <option value="HI">HI</option>
-    <option value="13">13</option>
-    <option value="23">23</option>
-    <option value="41">41</option>
-    <option value="HG">HG</option>
-    <option value="HP">HP</option>
-    <option value="91">91</option>
-    <option value="42">42</option>
-    <option value="43">43</option>
-    <option value="ID">ID</option>
-    <option value="IL">IL</option>
-    <option value="IM">IM</option>
-    <option value="IN">IN</option>
-    <option value="IA">IA</option>
-    <option value="IS">IS</option>
-    <option value="JA">JA</option>
-    <option value="JK">JK</option>
-    <option value="JH">JH</option>
-    <option value="32">32</option>
-    <option value="36">36</option>
-    <option value="22">22</option>
-    <option value="KS">KS</option>
-    <option value="KA">KA</option>
-    <option value="KY">KY</option>
-    <option value="KL">KL</option>
-    <option value="KY">KY</option>
-    <option value="KE">KE</option>
-    <option value="KK">KK</option>
-    <option value="AQ">AQ</option>
-    <option value="LD">LD</option>
-    <option value="LS">LS</option>
-    <option value="SP">SP</option>
-    <option value="LT">LT</option>
-    <option value="LE">LE</option>
-    <option value="LC">LC</option>
-    <option value="LM">LM</option>
-    <option value="21">21</option>
-    <option value="LK">LK</option>
-    <option value="LI">LI</option>
-    <option value="LO">LO</option>
-    <option value="LD">LD</option>
-    <option value="LA">LA</option>
-    <option value="LH">LH</option>
-    <option value="LU">LU</option>
-    <option value="92">92</option>
-    <option value="MC">MC</option>
-    <option value="MP">MP</option>
-    <option value="MH">MH</option>
-    <option value="ME">ME</option>
-    <option value="MN">MN</option>
-    <option value="MB">MB</option>
-    <option value="MN">MN</option>
-    <option value="MA">MA</option>
-    <option value="MD">MD</option>
-    <option value="MS">MS</option>
-    <option value="MA">MA</option>
-    <option value="MT">MT</option>
-    <option value="MT">MT</option>
-    <option value="MS">MS</option>
-    <option value="MO">MO</option>
-    <option value="MH">MH</option>
-    <option value="VS">VS</option>
-    <option value="ML">ML</option>
-    <option value="ME">ME</option>
-    <option value="ME">ME</option>
-    <option value="MI">MI</option>
-    <option value="MI">MI</option>
-    <option value="MI">MI</option>
-    <option value="MG">MG</option>
-    <option value="MN">MN</option>
-    <option value="MS">MS</option>
-    <option value="MO">MO</option>
-    <option value="MZ">MZ</option>
-    <option value="MO">MO</option>
-    <option value="MN">MN</option>
-    <option value="MT">MT</option>
-    <option value="MB">MB</option>
-    <option value="MO">MO</option>
-    <option value="NL">NL</option>
-    <option value="NA">NA</option>
-    <option value="NA">NA</option>
-    <option value="NE">NE</option>
-    <option value="15">15</option>
-    <option value="NV">NV</option>
-    <option value="NB">NB</option>
-    <option value="NL">NL</option>
-    <option value="NH">NH</option>
-    <option value="NJ">NJ</option>
-    <option value="NM">NM</option>
-    <option value="NSW">NSW</option>
-    <option value="NY">NY</option>
-    <option value="64">64</option>
-    <option value="NC">NC</option>
-    <option value="ND">ND</option>
-    <option value="NT">NT</option>
-    <option value="NT">NT</option>
-    <option value="NO">NO</option>
-    <option value="NS">NS</option>
-    <option value="NL">NL</option>
-    <option value="NU">NU</option>
-    <option value="NU">NU</option>
-    <option value="OA">OA</option>
-    <option value="OR">OR</option>
-    <option value="OY">OY</option>
-    <option value="OG">OG</option>
-    <option value="OH">OH</option>
-    <option value="OK">OK</option>
-    <option value="OT">OT</option>
-    <option value="ON">ON</option>
-    <option value="OR">OR</option>
-    <option value="OR">OR</option>
-    <option value="PD">PD</option>
-    <option value="PA">PA</option>
-    <option value="PA">PA</option>
-    <option value="PB">PB</option>
-    <option value="PR">PR</option>
-    <option value="PR">PR</option>
-    <option value="PV">PV</option>
-    <option value="PA">PA</option>
-    <option value="PE">PE</option>
-    <option value="PG">PG</option>
-    <option value="PU">PU</option>
-    <option value="PE">PE</option>
-    <option value="PC">PC</option>
-    <option value="PI">PI</option>
-    <option value="PI">PI</option>
-    <option value="PT">PT</option>
-    <option value="PN">PN</option>
-    <option value="PZ">PZ</option>
-    <option value="PO">PO</option>
-    <option value="PE">PE</option>
-    <option value="PY">PY</option>
-    <option value="PB">PB</option>
-    <option value="PB">PB</option>
-    <option value="63">63</option>
-    <option value="QC">QC</option>
-    <option value="QLD">QLD</option>
-    <option value="QE">QE</option>
-    <option value="QR">QR</option>
-    <option value="RG">RG</option>
-    <option value="RJ">RJ</option>
-    <option value="RA">RA</option>
-    <option value="RC">RC</option>
-    <option value="RE">RE</option>
-    <option value="RI">RI</option>
-    <option value="RI">RI</option>
-    <option value="RN">RN</option>
-    <option value="RJ">RJ</option>
-    <option value="RN">RN</option>
-    <option value="RS">RS</option>
-    <option value="RM">RM</option>
-    <option value="RO">RO</option>
-    <option value="RR">RR</option>
-    <option value="RN">RN</option>
-    <option value="RO">RO</option>
-    <option value="SA">SA</option>
-    <option value="SL">SL</option>
-    <option value="SC">SC</option>
-    <option value="SP">SP</option>
-    <option value="SK">SK</option>
-    <option value="SS">SS</option>
-    <option value="SV">SV</option>
-    <option value="SE">SE</option>
-    <option value="61">61</option>
-    <option value="37">37</option>
-    <option value="31">31</option>
-    <option value="14">14</option>
-    <option value="51">51</option>
-    <option value="SI">SI</option>
-    <option value="SK">SK</option>
-    <option value="SI">SI</option>
-    <option value="SO">SO</option>
-    <option value="SO">SO</option>
-    <option value="SO">SO</option>
-    <option value="SA">SA</option>
-    <option value="SC">SC</option>
-    <option value="SD">SD</option>
-    <option value="SR">SR</option>
-    <option value="TB">TB</option>
-    <option value="TM">TM</option>
-    <option value="TN">TN</option>
-    <option value="TA">TA</option>
-    <option value="TAS">TAS</option>
-    <option value="TN">TN</option>
-    <option value="TE">TE</option>
-    <option value="TR">TR</option>
-    <option value="TX">TX</option>
-    <option value="12">12</option>
-    <option value="TA">TA</option>
-    <option value="TL">TL</option>
-    <option value="TO">TO</option>
-    <option value="TP">TP</option>
-    <option value="TN">TN</option>
-    <option value="TV">TV</option>
-    <option value="TS">TS</option>
-    <option value="TR">TR</option>
-    <option value="TO">TO</option>
-    <option value="UD">UD</option>
-    <option value="UT">UT</option>
-    <option value="UT">UT</option>
-    <option value="UP">UP</option>
-    <option value="VA">VA</option>
-    <option value="VE">VE</option>
-    <option value="VE">VE</option>
-    <option value="VB">VB</option>
-    <option value="VC">VC</option>
-    <option value="VT">VT</option>
-    <option value="VR">VR</option>
-    <option value="VV">VV</option>
-    <option value="VI">VI</option>
-    <option value="VIC">VIC</option>
-    <option value="VA">VA</option>
-    <option value="VT">VT</option>
-    <option value="WA">WA</option>
-    <option value="WD">WD</option>
-    <option value="WB">WB</option>
-    <option value="WA">WA</option>
-    <option value="WH">WH</option>
-    <option value="WV">WV</option>
-    <option value="WX">WX</option>
-    <option value="WW">WW</option>
-    <option value="WI">WI</option>
-    <option value="WY">WY</option>
-    <option value="65">65</option>
-    <option value="54">54</option>
-    <option value="YU">YU</option>
-    <option value="YT">YT</option>
-    <option value="53">53</option>
-    <option value="ZA">ZA</option>
-    <option value="33">33</option>
-    </select><br>
-    
-    <div class="g-recaptcha" data-sitekey="6LfU7iQtAAAAAIFdKFU-M2Y1XK70rJ4y-7H_EPCZ"></div><br>
-    <input type="submit" name="submit">
-    
+
+      <input type="hidden" name="captcha_settings" value='{"keyname":"github","fallback":"true","orgId":"00D1U000000wsHu","ts":""}'>
+      <input type="hidden" name="oid" value="00D1U000000wsHu">
+      <input type="hidden" name="retURL" value="https://datago-dev.github.io/datago-public/static/form.html">
+
+      <!-- DEBUG: mostra a página de depuração do Salesforce em vez de redirecionar. Remover depois dos testes. -->
+      <input type="hidden" name="debug" value="1">
+      <input type="hidden" name="debugEmail" value="log@datago.com.br">
+
+      <!-- Atribuição direta ao usuário -->
+      <input type="hidden" name="OwnerId" value="005N500000VZKoXIAX">
+
+      <div class="grid">
+        <div class="field">
+          <label for="first_name">Primeiro Nome</label>
+          <input id="first_name" maxlength="40" name="first_name" type="text" autocomplete="given-name">
+        </div>
+
+        <div class="field">
+          <label for="last_name">Sobrenome</label>
+          <input id="last_name" maxlength="80" name="last_name" type="text" autocomplete="family-name">
+        </div>
+
+        <div class="field full">
+          <label for="email">Email</label>
+          <input id="email" maxlength="80" name="email" type="email" autocomplete="email">
+        </div>
+
+        <div class="field full">
+          <label for="company">Empresa</label>
+          <input id="company" maxlength="40" name="company" type="text" autocomplete="organization">
+        </div>
+
+        <div class="field full">
+          <label for="city">Cidade</label>
+          <input id="city" maxlength="40" name="city" type="text" autocomplete="address-level2">
+        </div>
+
+        <div class="field">
+          <label for="country_code">País</label>
+          <select id="country_code" name="country_code">
+            <option value="">-- Nenhum --</option><option value="AF">AF</option><option value="AX">AX</option><option value="AL">AL</option><option value="DZ">DZ</option><option value="AD">AD</option><option value="AO">AO</option><option value="AI">AI</option><option value="AQ">AQ</option><option value="AG">AG</option><option value="AR">AR</option><option value="AM">AM</option><option value="AW">AW</option><option value="AU">AU</option><option value="AT">AT</option><option value="AZ">AZ</option><option value="BS">BS</option><option value="BH">BH</option><option value="BD">BD</option><option value="BB">BB</option><option value="BY">BY</option><option value="BE">BE</option><option value="BZ">BZ</option><option value="BJ">BJ</option><option value="BM">BM</option><option value="BT">BT</option><option value="BO">BO</option><option value="BQ">BQ</option><option value="BA">BA</option><option value="BW">BW</option><option value="BV">BV</option><option value="BR">BR</option><option value="IO">IO</option><option value="BN">BN</option><option value="BG">BG</option><option value="BF">BF</option><option value="BI">BI</option><option value="KH">KH</option><option value="CM">CM</option><option value="CA">CA</option><option value="CV">CV</option><option value="KY">KY</option><option value="CF">CF</option><option value="TD">TD</option><option value="CL">CL</option><option value="CN">CN</option><option value="TW">TW</option><option value="CX">CX</option><option value="CC">CC</option><option value="CO">CO</option><option value="KM">KM</option><option value="CG">CG</option><option value="CD">CD</option><option value="CK">CK</option><option value="CR">CR</option><option value="CI">CI</option><option value="HR">HR</option><option value="CU">CU</option><option value="CW">CW</option><option value="CY">CY</option><option value="CZ">CZ</option><option value="DK">DK</option><option value="DJ">DJ</option><option value="DM">DM</option><option value="DO">DO</option><option value="EC">EC</option><option value="EG">EG</option><option value="SV">SV</option><option value="GQ">GQ</option><option value="ER">ER</option><option value="EE">EE</option><option value="ET">ET</option><option value="FK">FK</option><option value="FO">FO</option><option value="FJ">FJ</option><option value="FI">FI</option><option value="FR">FR</option><option value="GF">GF</option><option value="PF">PF</option><option value="TF">TF</option><option value="GA">GA</option><option value="GM">GM</option><option value="GE">GE</option><option value="DE">DE</option><option value="GH">GH</option><option value="GI">GI</option><option value="GR">GR</option><option value="GL">GL</option><option value="GD">GD</option><option value="GP">GP</option><option value="GT">GT</option><option value="GG">GG</option><option value="GN">GN</option><option value="GW">GW</option><option value="GY">GY</option><option value="HT">HT</option><option value="HM">HM</option><option value="VA">VA</option><option value="HN">HN</option><option value="HU">HU</option><option value="IS">IS</option><option value="IN">IN</option><option value="ID">ID</option><option value="IR">IR</option><option value="IQ">IQ</option><option value="IE">IE</option><option value="IM">IM</option><option value="IL">IL</option><option value="IT">IT</option><option value="JM">JM</option><option value="JP">JP</option><option value="JE">JE</option><option value="JO">JO</option><option value="KZ">KZ</option><option value="KE">KE</option><option value="KI">KI</option><option value="KP">KP</option><option value="KR">KR</option><option value="KW">KW</option><option value="KG">KG</option><option value="LA">LA</option><option value="LV">LV</option><option value="LB">LB</option><option value="LS">LS</option><option value="LR">LR</option><option value="LY">LY</option><option value="LI">LI</option><option value="LT">LT</option><option value="LU">LU</option><option value="MO">MO</option><option value="MK">MK</option><option value="MG">MG</option><option value="MW">MW</option><option value="MY">MY</option><option value="MV">MV</option><option value="ML">ML</option><option value="MT">MT</option><option value="MQ">MQ</option><option value="MR">MR</option><option value="MU">MU</option><option value="YT">YT</option><option value="MX">MX</option><option value="MD">MD</option><option value="MC">MC</option><option value="MN">MN</option><option value="ME">ME</option><option value="MS">MS</option><option value="MA">MA</option><option value="MZ">MZ</option><option value="MM">MM</option><option value="NA">NA</option><option value="NR">NR</option><option value="NP">NP</option><option value="NL">NL</option><option value="NC">NC</option><option value="NZ">NZ</option><option value="NI">NI</option><option value="NE">NE</option><option value="NG">NG</option><option value="NU">NU</option><option value="NF">NF</option><option value="NO">NO</option><option value="OM">OM</option><option value="PK">PK</option><option value="PS">PS</option><option value="PA">PA</option><option value="PG">PG</option><option value="PY">PY</option><option value="PE">PE</option><option value="PH">PH</option><option value="PN">PN</option><option value="PL">PL</option><option value="PT">PT</option><option value="QA">QA</option><option value="RE">RE</option><option value="RO">RO</option><option value="RU">RU</option><option value="RW">RW</option><option value="BL">BL</option><option value="SH">SH</option><option value="KN">KN</option><option value="LC">LC</option><option value="MF">MF</option><option value="PM">PM</option><option value="VC">VC</option><option value="WS">WS</option><option value="SM">SM</option><option value="ST">ST</option><option value="SA">SA</option><option value="SN">SN</option><option value="RS">RS</option><option value="SC">SC</option><option value="SL">SL</option><option value="SG">SG</option><option value="SX">SX</option><option value="SK">SK</option><option value="SI">SI</option><option value="SB">SB</option><option value="SO">SO</option><option value="ZA">ZA</option><option value="GS">GS</option><option value="SS">SS</option><option value="ES">ES</option><option value="LK">LK</option><option value="SD">SD</option><option value="SR">SR</option><option value="SJ">SJ</option><option value="SZ">SZ</option><option value="SE">SE</option><option value="CH">CH</option><option value="SY">SY</option><option value="TJ">TJ</option><option value="TZ">TZ</option><option value="TH">TH</option><option value="TL">TL</option><option value="TG">TG</option><option value="TK">TK</option><option value="TO">TO</option><option value="TT">TT</option><option value="TN">TN</option><option value="TR">TR</option><option value="TM">TM</option><option value="TC">TC</option><option value="TV">TV</option><option value="UG">UG</option><option value="UA">UA</option><option value="AE">AE</option><option value="GB">GB</option><option value="US">US</option><option value="UY">UY</option><option value="UZ">UZ</option><option value="VU">VU</option><option value="VE">VE</option><option value="VN">VN</option><option value="VG">VG</option><option value="WF">WF</option><option value="EH">EH</option><option value="YE">YE</option><option value="ZM">ZM</option><option value="ZW">ZW</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="state_code">Estado/província</label>
+          <select id="state_code" name="state_code">
+            <option value="">-- Nenhum --</option><option value="AC">AC</option><option value="AG">AG</option><option value="AG">AG</option><option value="AL">AL</option><option value="AL">AL</option><option value="AK">AK</option><option value="AB">AB</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="AN">AN</option><option value="AN">AN</option><option value="AP">AP</option><option value="34">34</option><option value="AO">AO</option><option value="AR">AR</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="AR">AR</option><option value="AP">AP</option><option value="AS">AS</option><option value="AT">AT</option><option value="ACT">ACT</option><option value="AV">AV</option><option value="BA">BA</option><option value="BC">BC</option><option value="BS">BS</option><option value="BA">BA</option><option value="BT">BT</option><option value="11">11</option><option value="BL">BL</option><option value="BN">BN</option><option value="BG">BG</option><option value="BI">BI</option><option value="BR">BR</option><option value="BO">BO</option><option value="BZ">BZ</option><option value="BS">BS</option><option value="BR">BR</option><option value="BC">BC</option><option value="CA">CA</option><option value="CA">CA</option><option value="CL">CL</option><option value="CM">CM</option><option value="CB">CB</option><option value="CI">CI</option><option value="CW">CW</option><option value="CE">CE</option><option value="CT">CT</option><option value="CZ">CZ</option><option value="CN">CN</option><option value="CE">CE</option><option value="CH">CH</option><option value="CT">CT</option><option value="CS">CS</option><option value="CH">CH</option><option value="CH">CH</option><option value="71">71</option><option value="50">50</option><option value="CE">CE</option><option value="CO">CO</option><option value="CL">CL</option><option value="CO">CO</option><option value="CO">CO</option><option value="CT">CT</option><option value="CO">CO</option><option value="CS">CS</option><option value="CR">CR</option><option value="KR">KR</option><option value="CN">CN</option><option value="DN">DN</option><option value="DD">DD</option><option value="DE">DE</option><option value="DL">DL</option><option value="DC">DC</option><option value="DF">DF</option><option value="DL">DL</option><option value="D">D</option><option value="DG">DG</option><option value="EN">EN</option><option value="ES">ES</option><option value="DF">DF</option><option value="FM">FM</option><option value="FE">FE</option><option value="FI">FI</option><option value="FL">FL</option><option value="FG">FG</option><option value="FC">FC</option><option value="FR">FR</option><option value="35">35</option><option value="G">G</option><option value="62">62</option><option value="GE">GE</option><option value="GA">GA</option><option value="GA">GA</option><option value="GO">GO</option><option value="GO">GO</option><option value="GR">GR</option><option value="GT">GT</option><option value="44">44</option><option value="45">45</option><option value="GR">GR</option><option value="52">52</option><option value="GJ">GJ</option><option value="46">46</option><option value="HR">HR</option><option value="HI">HI</option><option value="13">13</option><option value="23">23</option><option value="41">41</option><option value="HG">HG</option><option value="HP">HP</option><option value="91">91</option><option value="42">42</option><option value="43">43</option><option value="ID">ID</option><option value="IL">IL</option><option value="IM">IM</option><option value="IN">IN</option><option value="IA">IA</option><option value="IS">IS</option><option value="JA">JA</option><option value="JK">JK</option><option value="JH">JH</option><option value="32">32</option><option value="36">36</option><option value="22">22</option><option value="KS">KS</option><option value="KA">KA</option><option value="KY">KY</option><option value="KL">KL</option><option value="KY">KY</option><option value="KE">KE</option><option value="KK">KK</option><option value="AQ">AQ</option><option value="LD">LD</option><option value="LS">LS</option><option value="SP">SP</option><option value="LT">LT</option><option value="LE">LE</option><option value="LC">LC</option><option value="LM">LM</option><option value="21">21</option><option value="LK">LK</option><option value="LI">LI</option><option value="LO">LO</option><option value="LD">LD</option><option value="LA">LA</option><option value="LH">LH</option><option value="LU">LU</option><option value="92">92</option><option value="MC">MC</option><option value="MP">MP</option><option value="MH">MH</option><option value="ME">ME</option><option value="MN">MN</option><option value="MB">MB</option><option value="MN">MN</option><option value="MA">MA</option><option value="MD">MD</option><option value="MS">MS</option><option value="MA">MA</option><option value="MT">MT</option><option value="MT">MT</option><option value="MS">MS</option><option value="MO">MO</option><option value="MH">MH</option><option value="VS">VS</option><option value="ML">ML</option><option value="ME">ME</option><option value="ME">ME</option><option value="MI">MI</option><option value="MI">MI</option><option value="MI">MI</option><option value="MG">MG</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MZ">MZ</option><option value="MO">MO</option><option value="MN">MN</option><option value="MT">MT</option><option value="MB">MB</option><option value="MO">MO</option><option value="NL">NL</option><option value="NA">NA</option><option value="NA">NA</option><option value="NE">NE</option><option value="15">15</option><option value="NV">NV</option><option value="NB">NB</option><option value="NL">NL</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NSW">NSW</option><option value="NY">NY</option><option value="64">64</option><option value="NC">NC</option><option value="ND">ND</option><option value="NT">NT</option><option value="NT">NT</option><option value="NO">NO</option><option value="NS">NS</option><option value="NL">NL</option><option value="NU">NU</option><option value="NU">NU</option><option value="OA">OA</option><option value="OR">OR</option><option value="OY">OY</option><option value="OG">OG</option><option value="OH">OH</option><option value="OK">OK</option><option value="OT">OT</option><option value="ON">ON</option><option value="OR">OR</option><option value="OR">OR</option><option value="PD">PD</option><option value="PA">PA</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option><option value="PR">PR</option><option value="PV">PV</option><option value="PA">PA</option><option value="PE">PE</option><option value="PG">PG</option><option value="PU">PU</option><option value="PE">PE</option><option value="PC">PC</option><option value="PI">PI</option><option value="PI">PI</option><option value="PT">PT</option><option value="PN">PN</option><option value="PZ">PZ</option><option value="PO">PO</option><option value="PE">PE</option><option value="PY">PY</option><option value="PB">PB</option><option value="PB">PB</option><option value="63">63</option><option value="QC">QC</option><option value="QLD">QLD</option><option value="QE">QE</option><option value="QR">QR</option><option value="RG">RG</option><option value="RJ">RJ</option><option value="RA">RA</option><option value="RC">RC</option><option value="RE">RE</option><option value="RI">RI</option><option value="RI">RI</option><option value="RN">RN</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RM">RM</option><option value="RO">RO</option><option value="RR">RR</option><option value="RN">RN</option><option value="RO">RO</option><option value="SA">SA</option><option value="SL">SL</option><option value="SC">SC</option><option value="SP">SP</option><option value="SK">SK</option><option value="SS">SS</option><option value="SV">SV</option><option value="SE">SE</option><option value="61">61</option><option value="37">37</option><option value="31">31</option><option value="14">14</option><option value="51">51</option><option value="SI">SI</option><option value="SK">SK</option><option value="SI">SI</option><option value="SO">SO</option><option value="SO">SO</option><option value="SO">SO</option><option value="SA">SA</option><option value="SC">SC</option><option value="SD">SD</option><option value="SR">SR</option><option value="TB">TB</option><option value="TM">TM</option><option value="TN">TN</option><option value="TA">TA</option><option value="TAS">TAS</option><option value="TN">TN</option><option value="TE">TE</option><option value="TR">TR</option><option value="TX">TX</option><option value="12">12</option><option value="TA">TA</option><option value="TL">TL</option><option value="TO">TO</option><option value="TP">TP</option><option value="TN">TN</option><option value="TV">TV</option><option value="TS">TS</option><option value="TR">TR</option><option value="TO">TO</option><option value="UD">UD</option><option value="UT">UT</option><option value="UT">UT</option><option value="UP">UP</option><option value="VA">VA</option><option value="VE">VE</option><option value="VE">VE</option><option value="VB">VB</option><option value="VC">VC</option><option value="VT">VT</option><option value="VR">VR</option><option value="VV">VV</option><option value="VI">VI</option><option value="VIC">VIC</option><option value="VA">VA</option><option value="VT">VT</option><option value="WA">WA</option><option value="WD">WD</option><option value="WB">WB</option><option value="WA">WA</option><option value="WH">WH</option><option value="WV">WV</option><option value="WX">WX</option><option value="WW">WW</option><option value="WI">WI</option><option value="WY">WY</option><option value="65">65</option><option value="54">54</option><option value="YU">YU</option><option value="YT">YT</option><option value="53">53</option><option value="ZA">ZA</option><option value="33">33</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="g-recaptcha" data-sitekey="6LfU7iQtAAAAAIFdKFU-M2Y1XK70rJ4y-7H_EPCZ"></div>
+
+      <button type="submit" name="submit">Enviar</button>
+
+      <p class="footnote">Seus dados estão seguros e não serão compartilhados.</p>
     </form>
-    
+  </main>
+
+  <script>
+    // ---- Upload de logo (fica só no navegador deste computador) ----
+    (function () {
+      var KEY = "demo_client_logo";
+      var zone = document.getElementById("logoZone");
+      var input = document.getElementById("logoInput");
+      var box = document.getElementById("logoBox");
+      var placeholder = document.getElementById("logoPlaceholder");
+      var actions = document.getElementById("logoActions");
+      var removeBtn = document.getElementById("logoRemove");
+
+      function render(dataUrl) {
+        if (dataUrl) {
+          box.innerHTML = '<img src="' + dataUrl + '" alt="Logo">';
+          actions.style.display = "block";
+        } else {
+          box.innerHTML = "";
+          box.appendChild(placeholder);
+          actions.style.display = "none";
+        }
+      }
+
+      // Restaura a logo salva neste PC, se houver
+      try {
+        var saved = localStorage.getItem(KEY);
+        if (saved) render(saved);
+      } catch (e) {}
+
+      zone.addEventListener("click", function () { input.click(); });
+
+      input.addEventListener("change", function () {
+        var file = input.files && input.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (ev) {
+          var dataUrl = ev.target.result;
+          render(dataUrl);
+          try { localStorage.setItem(KEY, dataUrl); } catch (e) {}
+        };
+        reader.readAsDataURL(file);
+      });
+
+      removeBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        try { localStorage.removeItem(KEY); } catch (e) {}
+        render(null);
+        input.value = "";
+      });
+    })();
+  </script>
+</body>
+</html>
