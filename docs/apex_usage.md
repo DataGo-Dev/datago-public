@@ -7,6 +7,7 @@ A classe `nitzap20.NitzapApi` expõe as operações do Nitzap para o seu código
 - Pacote Nitzap instalado e configurado no org (backend conectado).
 - O número da conexão que vai enviar (ex.: `5514981770936`). Você encontra os números conectados na tela de conexões do Nitzap, ou via `nitzap20.Connect.listConnections()`.
 - Recursos Meta (templates) exigem que a conexão seja um canal WABA/Coex.
+- **Autenticação**: a API usa a **credencial do sistema** (usuário integrador salvo nas configurações — criado automaticamente na primeira abertura da tela de Configurações pelo admin, ou salvo manualmente pelo botão "Salvar nas credenciais do sistema" na aba Usuários Integradores). Com ela configurada, os envios funcionam de qualquer contexto — flows, batches, usuários que nunca conectaram ao Nitzap. Sem ela, a API cai no token do usuário que está executando, que precisa estar conectado e ativo.
 
 Todos os métodos são estáticos. Em caso de entrada inválida a API lança `nitzap20.NitzapApi.NitzapApiException` **antes** de qualquer callout; o resultado dos envios vem num `SendResult`:
 
@@ -274,21 +275,30 @@ r.contactAnswered;        // true se o contato mandou ao menos 1 mensagem na jan
 r.firstMessageWasMine;    // true se a primeira mensagem da janela foi sua
 ```
 
-## 9. Listar conversas de uma conexão (`getChats`)
+## 9. Listar conversas (`getChats`)
 
-Busca os metadados das conversas (última mensagem, totais, não lidas) por filtro tipado — informe ao menos um critério:
+Busca os metadados das conversas (última mensagem, totais, não lidas) passando a condição `where` diretamente — flexível e customizável:
 
 ```apex
-nitzap20.NitzapApi.ChatFilter filter = new nitzap20.NitzapApi.ChatFilter();
-filter.connectionNumber = '5514981770936';                       // conversas dessa conexão
-filter.contactNumber = '5527997019622';                          // opcional: um contato específico
-filter.isGroup = false;                                          // opcional
-filter.archived = false;                                         // opcional
-filter.lastMessageAfter = System.now().addDays(-7);              // opcional: atividade recente
-// filter.lastMessageBefore = ...;
+List<nitzap20.NitzapApi.ChatInfo> chats = nitzap20.NitzapApi.getChats(
+    'mywhatsid = \'5514981770936@s.whatsapp.net\' AND isgroup = false');
+```
 
-List<nitzap20.NitzapApi.ChatInfo> chats = nitzap20.NitzapApi.getChats(filter);
+Colunas disponíveis para o filtro:
 
+| Coluna | Conteúdo | Exemplo |
+|---|---|---|
+| `chat_id` | `<conexão>_<contato>` (só dígitos) | `chat_id = '5514981770936_5527997019622'` |
+| `mywhatsid` | conexão, com sufixo `@s.whatsapp.net` | `mywhatsid = '5514981770936@s.whatsapp.net'` |
+| `secondwhatsappid` | contato (`@s.whatsapp.net`) ou grupo (`@g.us`) | `secondwhatsappid LIKE '5527997019622@%'` |
+| `isgroup`, `archived` | booleanos | `isgroup = false` |
+| `dt_lastmessage` | timestamp da última mensagem | `dt_lastmessage >= '2026-07-01 00:00:00+00'` |
+| `unread_messages` | não lidas | `unread_messages > 0` |
+| `last_salesforce_user` | último usuário SF que interagiu | `last_salesforce_user = '005...'` |
+
+Campos do `ChatInfo` retornado:
+
+```apex
 for(nitzap20.NitzapApi.ChatInfo c : chats){
     c.chatId;               // '5514981770936_5527997019622'
     c.connectionNumber;     // lado da conexão
@@ -305,7 +315,7 @@ for(nitzap20.NitzapApi.ChatInfo c : chats){
 }
 ```
 
-Os valores do filtro são sanitizados pela API (números viram só dígitos) — não é possível injetar condições.
+A condição vai direto para o banco do backend — monte valores com cuidado (números sem formatação, datas em UTC no formato `YYYY-MM-DD HH:MM:SS+00`). Erro de sintaxe retorna como `NitzapApiException` com a mensagem do servidor.
 
 ---
 
