@@ -145,18 +145,83 @@ tpl.headerMediaUrl = 'https://exemplo.com/banner.png';
 tpl.headerMediaType = 'image';                    // obrigatório com headerMediaUrl
 ```
 
-**Lote de templates (`sendMetaTemplateBatch`)** — mesma `TemplateMessage` do envio unitário, em lista. A API valida cada item, agrupa por conexão/remetente e faz 1 callout por grupo:
+### Lote de templates (`sendMetaTemplateBatch`)
+
+Para envio em massa, monte uma lista da mesma `TemplateMessage` do envio unitário — cada item com seu destinatário e suas próprias variáveis. A API valida item a item **antes** de qualquer callout (se um item estiver inválido, nada é enviado), agrupa por conexão/remetente e faz 1 callout por grupo.
+
+**Caso típico — campanha com variáveis por registro:**
 
 ```apex
+List<Contact> contatos = [
+    SELECT FirstName, nitzap20__WhatsAppId__c, Account.Name
+    FROM Contact
+    WHERE nitzap20__WhatsAppId__c != null AND Aceita_WhatsApp__c = true
+];
+
 List<nitzap20.NitzapApi.TemplateMessage> lote = new List<nitzap20.NitzapApi.TemplateMessage>();
 for(Contact c : contatos){
     nitzap20.NitzapApi.TemplateMessage tpl = new nitzap20.NitzapApi.TemplateMessage(
-        '5514981770936', c.nitzap20__WhatsAppId__c, 'pedido_enviado', 'pt_BR');
-    tpl.bodyParams = new Map<String, String>{ '1' => c.FirstName, '2' => c.NumPedido__c };
+        '5514981770936',                 // conexão que envia
+        c.nitzap20__WhatsAppId__c,       // destinatário
+        'boas_vindas',                   // template aprovado na Meta
+        'pt_BR');
+    tpl.bodyParams = new Map<String, String>{
+        'cliente' => c.FirstName,
+        'empresa' => c.Account.Name
+    };
     lote.add(tpl);
 }
+
+nitzap20.NitzapApi.SendResult r = nitzap20.NitzapApi.sendMetaTemplateBatch(lote);
+if(!r.success){
+    System.debug('Falha no lote: ' + r.errorMessage);
+}
+```
+
+**Misturando templates diferentes no mesmo lote** — cada item é independente; dá pra variar template, formato de variável e até a conexão:
+
+```apex
+List<nitzap20.NitzapApi.TemplateMessage> lote = new List<nitzap20.NitzapApi.TemplateMessage>();
+
+// item 1: template posicional
+nitzap20.NitzapApi.TemplateMessage cobranca = new nitzap20.NitzapApi.TemplateMessage(
+    '5514981770936', '5527997019622', 'lembrete_pagamento', 'pt_BR');
+cobranca.bodyParams = new Map<String, String>{ '1' => 'João', '2' => 'R$ 149,90', '3' => '25/07' };
+lote.add(cobranca);
+
+// item 2: template nomeado com imagem no header
+nitzap20.NitzapApi.TemplateMessage promo = new nitzap20.NitzapApi.TemplateMessage(
+    '5514981770936', '5511988887777', 'promo_semana', 'pt_BR');
+promo.bodyParams = new Map<String, String>{ 'nome_cliente' => 'Maria' };
+promo.headerFileId = bannerContentVersionId;
+lote.add(promo);
+
+// item 3: outra conexão (vira um segundo callout, agrupado automaticamente)
+lote.add(new nitzap20.NitzapApi.TemplateMessage(
+    '5527997419613', '5531977776666', 'follow_up', 'en'));
+
 nitzap20.NitzapApi.sendMetaTemplateBatch(lote);
 ```
+
+**Validação em massa antes de montar o lote** — cruze com `getMetaTemplates` para pular registros que não casam com o template (em vez de deixar o lote inteiro falhar na validação):
+
+```apex
+Map<String, nitzap20.NitzapApi.MetaTemplate> porNome = new Map<String, nitzap20.NitzapApi.MetaTemplate>();
+for(nitzap20.NitzapApi.MetaTemplate t : nitzap20.NitzapApi.getMetaTemplates('5514981770936')){
+    if(t.status == 'APPROVED'){ porNome.put(t.name, t); }
+}
+
+nitzap20.NitzapApi.MetaTemplate alvo = porNome.get('boas_vindas');
+System.assert(alvo != null, 'Template não aprovado ou inexistente');
+// alvo.parameterFormat -> 'NAMED' | 'POSITIONAL'
+// alvo.placeholders    -> chaves exatas que o bodyParams precisa preencher
+```
+
+Pontos de atenção no lote:
+
+- **Volume**: o backend enfileira os envios (resposta `{"enqueued": N}`) e a Meta aplica os limites de messaging da WABA — o lote retornar `success = true` significa "aceito na fila", não "entregue".
+- **Callouts**: itens da mesma conexão+remetente compartilham 1 callout; cada `headerFileId` distinto adiciona 2 callouts (upload). Para lotes grandes dentro de transações com DML, dispare de um Queueable/Batch seu.
+- **Falha parcial**: se um grupo falhar (ex.: conexão inativa), o `SendResult.errorMessage` acumula os erros separados por `|` e `success` fica `false`, mas os grupos que deram certo já foram aceitos.
 
 **Modo avançado (`sendMetaTemplateRaw`)** — para componentes que o `TemplateMessage` não cobre (botões com `sub_type`/`index`, flows com `flow_token`, carrossel), monte o payload da [Cloud API da Meta](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates) você mesmo; a API cuida da autenticação, do `vFrom` e preenche `messaging_product`/`recipient_type`/`type` se você omitir:
 
