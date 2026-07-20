@@ -151,6 +151,63 @@ tpl.headerMediaType = 'image';                    // obrigatório com headerMedi
 nitzap20.NitzapApi.sendMetaTemplateBatch(listaDeTemplateMessages);
 ```
 
+## 8. Resumo de uma conversa em um período (`getChatSummary`)
+
+Retorna totais e primeiras mensagens de cada conversa dentro de uma janela de tempo — útil para medir se o contato respondeu a uma campanha, tempo de primeira resposta etc. Aceita várias conversas por chamada (1 callout só):
+
+```apex
+nitzap20.NitzapApi.ChatSummaryRequest req = new nitzap20.NitzapApi.ChatSummaryRequest(
+    '5514981770936',                      // conexão
+    '5527997019622',                      // contato
+    DateTime.newInstance(2026, 7, 1),     // início da janela
+    System.now());                        // fim da janela
+req.referenceId = contato.Id;             // opcional: eco para correlacionar em lote
+
+List<nitzap20.NitzapApi.ChatSummaryResult> results =
+    nitzap20.NitzapApi.getChatSummary(new List<nitzap20.NitzapApi.ChatSummaryRequest>{req});
+
+nitzap20.NitzapApi.ChatSummaryResult r = results[0];
+r.totalSentMessages;      // enviadas na janela
+r.totalReceivedMessages;  // recebidas na janela
+r.firstSentAt;            // DateTime da primeira enviada (null se nenhuma)
+r.firstReceivedAt;        // DateTime da primeira recebida (null se nenhuma)
+r.contactAnswered;        // true se o contato mandou ao menos 1 mensagem na janela
+r.firstMessageWasMine;    // true se a primeira mensagem da janela foi sua
+```
+
+## 9. Listar conversas de uma conexão (`getChats`)
+
+Busca os metadados das conversas (última mensagem, totais, não lidas) por filtro tipado — informe ao menos um critério:
+
+```apex
+nitzap20.NitzapApi.ChatFilter filter = new nitzap20.NitzapApi.ChatFilter();
+filter.connectionNumber = '5514981770936';                       // conversas dessa conexão
+filter.contactNumber = '5527997019622';                          // opcional: um contato específico
+filter.isGroup = false;                                          // opcional
+filter.archived = false;                                         // opcional
+filter.lastMessageAfter = System.now().addDays(-7);              // opcional: atividade recente
+// filter.lastMessageBefore = ...;
+
+List<nitzap20.NitzapApi.ChatInfo> chats = nitzap20.NitzapApi.getChats(filter);
+
+for(nitzap20.NitzapApi.ChatInfo c : chats){
+    c.chatId;               // '5514981770936_5527997019622'
+    c.connectionNumber;     // lado da conexão
+    c.contactNumber;        // lado do contato (ou id do grupo)
+    c.name;                 // nome do contato (pushname)
+    c.isGroup; c.groupName;
+    c.lastMessageAt;        // DateTime da última mensagem
+    c.lastMessageText;      // prévia do texto
+    c.lastMessageType;      // text, image, video...
+    c.lastMessageFromMe;    // true se a última foi enviada por você
+    c.totalMessages; c.totalSent; c.totalReceived;   // podem vir null em chats antigos
+    c.unreadMessages;
+    c.lastSalesforceUserId; // último usuário SF que interagiu
+}
+```
+
+Os valores do filtro são sanitizados pela API (números viram só dígitos) — não é possível injetar condições.
+
 ---
 
 ## Tratamento de erros — resumo
