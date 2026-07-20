@@ -151,6 +151,33 @@ tpl.headerMediaType = 'image';                    // obrigatório com headerMedi
 nitzap20.NitzapApi.sendMetaTemplateBatch(listaDeTemplateMessages);
 ```
 
+**Modo avançado (`sendMetaTemplateRaw`)** — para componentes que o `TemplateMessage` não cobre (botões com `sub_type`/`index`, flows com `flow_token`, carrossel), monte o payload da [Cloud API da Meta](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates) você mesmo; a API cuida da autenticação, do `vFrom` e preenche `messaging_product`/`recipient_type`/`type` se você omitir:
+
+```apex
+Map<String, Object> payload = new Map<String, Object>{
+    'to' => '5527997019622',
+    'template' => new Map<String, Object>{
+        'name' => 'nps_pesquisa',
+        'language' => new Map<String, Object>{ 'code' => 'pt_BR' },
+        'components' => new List<Object>{
+            new Map<String, Object>{
+                'type' => 'button',
+                'sub_type' => 'flow',
+                'index' => '0',
+                'parameters' => new List<Object>{
+                    new Map<String, Object>{
+                        'type' => 'action',
+                        'action' => new Map<String, Object>{ 'flow_token' => 'meu-token' }
+                    }
+                }
+            }
+        }
+    }
+};
+
+nitzap20.NitzapApi.sendMetaTemplateRaw('5514981770936', new List<Map<String, Object>>{payload});
+```
+
 ## 8. Resumo de uma conversa em um período (`getChatSummary`)
 
 Retorna totais e primeiras mensagens de cada conversa dentro de uma janela de tempo — útil para medir se o contato respondeu a uma campanha, tempo de primeira resposta etc. Aceita várias conversas por chamada (1 callout só):
