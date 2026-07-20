@@ -145,10 +145,17 @@ tpl.headerMediaUrl = 'https://exemplo.com/banner.png';
 tpl.headerMediaType = 'image';                    // obrigatório com headerMediaUrl
 ```
 
-**Lote de templates:**
+**Lote de templates (`sendMetaTemplateBatch`)** — mesma `TemplateMessage` do envio unitário, em lista. A API valida cada item, agrupa por conexão/remetente e faz 1 callout por grupo:
 
 ```apex
-nitzap20.NitzapApi.sendMetaTemplateBatch(listaDeTemplateMessages);
+List<nitzap20.NitzapApi.TemplateMessage> lote = new List<nitzap20.NitzapApi.TemplateMessage>();
+for(Contact c : contatos){
+    nitzap20.NitzapApi.TemplateMessage tpl = new nitzap20.NitzapApi.TemplateMessage(
+        '5514981770936', c.nitzap20__WhatsAppId__c, 'pedido_enviado', 'pt_BR');
+    tpl.bodyParams = new Map<String, String>{ '1' => c.FirstName, '2' => c.NumPedido__c };
+    lote.add(tpl);
+}
+nitzap20.NitzapApi.sendMetaTemplateBatch(lote);
 ```
 
 **Modo avançado (`sendMetaTemplateRaw`)** — para componentes que o `TemplateMessage` não cobre (botões com `sub_type`/`index`, flows com `flow_token`, carrossel), monte o payload da [Cloud API da Meta](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates) você mesmo; a API cuida da autenticação, do `vFrom` e preenche `messaging_product`/`recipient_type`/`type` se você omitir:
