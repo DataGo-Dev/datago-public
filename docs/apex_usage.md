@@ -5,7 +5,13 @@ A classe `nitzap20.NitzapApi` expõe as operações do Nitzap para o seu código
 ## Pré-requisitos
 
 - Pacote Nitzap instalado e configurado no org (backend conectado).
-- O número da conexão que vai enviar (ex.: `5514981770936`). Você encontra os números conectados na tela de conexões do Nitzap, ou via `nitzap20.Connect.listConnections()`.
+- O número da conexão que vai enviar (ex.: `5514981770936`). Você encontra os números conectados na tela de conexões do Nitzap, ou via Apex:
+
+```apex
+for(nitzap20.NitzapApi.ConnectionInfo c : nitzap20.NitzapApi.listConnections()){
+    // c.connectionNumber, c.label, c.channel (NITZAP | WABA_COEX), c.active, c.memberCount
+}
+```
 - Recursos Meta (templates) exigem que a conexão seja um canal WABA/Coex.
 - **Autenticação**: a API usa a **credencial do sistema** (usuário integrador salvo nas configurações — criado automaticamente na primeira abertura da tela de Configurações pelo admin, ou salvo manualmente pelo botão "Salvar nas credenciais do sistema" na aba Usuários Integradores). Com ela configurada, os envios funcionam de qualquer contexto — flows, batches, usuários que nunca conectaram ao Nitzap. Sem ela, a API cai no token do usuário que está executando, que precisa estar conectado e ativo.
 
