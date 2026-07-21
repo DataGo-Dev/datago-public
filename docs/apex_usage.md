@@ -12,6 +12,17 @@ for(nitzap20.NitzapApi.ConnectionInfo c : nitzap20.NitzapApi.listConnections()){
     // c.connectionNumber, c.label, c.channel (NITZAP | WABA_COEX), c.active, c.memberCount
 }
 ```
+
+Para saber as conexões de usuários específicos (ex.: descobrir por qual número cada atendente envia), use `getUserConnections` — todo userId pedido volta na resposta, com lista vazia se não tiver conexão:
+
+```apex
+List<nitzap20.NitzapApi.UserConnections> result =
+    nitzap20.NitzapApi.getUserConnections(new List<String>{ userA.Id, userB.Id });
+
+for(nitzap20.NitzapApi.UserConnections uc : result){
+    // uc.userId, uc.connections -> List<ConnectionInfo> (connectionNumber, label, channel, active)
+}
+```
 - Recursos Meta (templates) exigem que a conexão seja um canal WABA/Coex.
 - **Autenticação**: a API usa a **credencial do sistema** (usuário integrador salvo nas configurações — criado automaticamente na primeira abertura da tela de Configurações pelo admin, ou salvo manualmente pelo botão "Salvar nas credenciais do sistema" na aba Usuários Integradores). Com ela configurada, os envios funcionam de qualquer contexto — flows, batches, usuários que nunca conectaram ao Nitzap. Sem ela, a API cai no token do usuário que está executando, que precisa estar conectado e ativo.
 
