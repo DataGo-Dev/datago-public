@@ -336,6 +336,21 @@ A condição vai direto para o banco do backend — monte valores com cuidado (n
 
 ---
 
+## 10. Utilitário: variações brasileiras de número (`getPossibleBrazilianVariations`)
+
+Números brasileiros existem no WhatsApp com e sem o nono dígito. Ao buscar um contato por telefone (SOQL em `WhatsAppId__c`, montar `where` do `getChats`...), teste todas as variações:
+
+```apex
+List<String> variacoes = nitzap20.NitzapApi.getPossibleBrazilianVariations('5527997019622');
+// ['5527997019622', '552797019622']  — original sempre primeiro
+
+List<Contact> contatos = [SELECT Id FROM Contact WHERE nitzap20__WhatsAppId__c IN :variacoes];
+```
+
+Números não-brasileiros e ids de grupo (`@g.us`) voltam como lista de um item. É lógica local — não faz callout.
+
+---
+
 ## Tratamento de erros — resumo
 
 | Situação | Comportamento |
