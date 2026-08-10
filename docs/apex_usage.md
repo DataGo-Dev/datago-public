@@ -1,6 +1,6 @@
 # Nitzap — API Apex para Desenvolvedores
 
-A classe `nitzap20.NitzapApi` expõe as operações do Nitzap para o seu código Apex: enviar mensagens de texto e mídia, listar templates Meta e enviar templates com variáveis — sempre informando **qual conexão (número de WhatsApp)** origina o envio.
+A classe `nitzap20.NitzapApi` expõe as operações do Nitzap para o seu código Apex: enviar mensagens de texto e mídia, listar templates Meta, enviar templates com variáveis e ler o histórico das conversas — sempre informando **qual conexão (número de WhatsApp)** origina a operação.
 
 ## Pré-requisitos
 
@@ -336,7 +336,99 @@ A condição vai direto para o banco do backend — monte valores com cuidado (n
 
 ---
 
-## 10. Utilitário: variações brasileiras de número (`getPossibleBrazilianVariations`)
+## 10. Ler as mensagens de uma conversa (`getMessages`)
+
+Enquanto o `getChats` lista as conversas, o `getMessages` devolve as **mensagens** de uma delas. A chamada mais simples traz a última página (50 mensagens, da mais recente para a mais antiga):
+
+```apex
+List<nitzap20.NitzapApi.ChatMessage> msgs =
+    nitzap20.NitzapApi.getMessages('5514981770936', '5527997019622');       // conexão, contato
+
+List<nitzap20.NitzapApi.ChatMessage> ultimas10 =
+    nitzap20.NitzapApi.getMessages('5514981770936', '5527997019622', 10);   // com take
+```
+
+O contato aceita formatação (`+55 (27) 99701-9622`) ou um id de grupo (`120363...@g.us`). Se a conversa não existir, a resposta é uma lista vazia — não é erro.
+
+Campos do `ChatMessage`:
+
+```apex
+for(nitzap20.NitzapApi.ChatMessage m : msgs){
+    m.id;                 // id interno, use para deduplicar
+    m.messageKey;         // msgkey do WhatsApp (o mesmo usado em respostas/reações)
+    m.chatId;             // '5514981770936_5527997019622'
+    m.connectionNumber;   // lado da conexão
+    m.contactNumber;      // lado do contato (ou id do grupo)
+    m.sender; m.receiver; m.participant;   // participant preenchido em grupo
+    m.type;               // text, image, video, audio, document, location...
+    m.text;               // texto ou legenda da mídia
+    m.sentAt;             // DateTime da mensagem
+    m.sequence;           // Long — o cursor de paginação (veja abaixo)
+    m.fromMe;             // true se foi você quem enviou
+    m.isGroup; m.pushName;
+    m.mediaUrl;           // link S3 pré-assinado, válido ~2h — não persista
+    m.mediaMimeType; m.mediaFileName;
+    m.transcription; m.summary;   // quando existirem (áudio transcrito, resumo)
+    m.status; m.channel; m.origin;
+    m.deleted; m.forwarded; m.edited;
+    m.readAt;             // DateTime da leitura, null se não lida
+    m.quotedMessageKey;   // msgkey da mensagem citada
+    m.quotedMessage;      // a mensagem citada inteira (ChatMessage), quando houver
+    m.reactions;          // List<MessageReaction>: messageKey, reaction, participant, pushName
+}
+```
+
+⚠️ **Não guarde o `mediaUrl`** no seu banco: ele expira em ~2h. Guarde o `messageKey`/`id` e releia a mensagem quando precisar do arquivo de novo.
+
+### Paginação — cursor por `sequence`, nunca offset
+
+`sequence` é o carimbo de gravação da mensagem (epoch em milissegundos). Para carregar o histórico, guarde o `sequence` da **última** mensagem da página e peça o que for mais antigo que ele:
+
+```apex
+List<nitzap20.NitzapApi.ChatMessage> pagina =
+    nitzap20.NitzapApi.getMessages('5514981770936', '5527997019622', 50);
+
+while(!pagina.isEmpty()){
+    Long cursor = pagina[pagina.size() - 1].sequence;   // ordem padrão: o último é o mais antigo
+    pagina = nitzap20.NitzapApi.getOlderMessages('5514981770936', '5527997019622', cursor, 50);
+    // processar...
+}
+```
+
+Pare quando a página vier vazia ou com menos itens que o `take`. Duas mensagens gravadas no mesmo milissegundo compartilham o `sequence`, então **deduplique por `id`** (um `Set<String>`) do seu lado — o cursor sozinho não garante isso.
+
+Para o caminho inverso — pegar só o que chegou depois da última sincronização — use `getMessagesAfter`, que já pede em ordem crescente e não deixa buraco quando acumulou mais mensagens que o `take`:
+
+```apex
+Long ultimoProcessado = 1783966686472L;   // guardado por conversa no seu org
+
+List<nitzap20.NitzapApi.ChatMessage> novas =
+    nitzap20.NitzapApi.getMessagesAfter('5514981770936', '5527997019622', ultimoProcessado, 100);
+```
+
+### Controle total com `MessageQuery`
+
+Quando precisar de outra combinação (enviar por outro usuário, inverter a ordem, usar outro operador de cursor):
+
+```apex
+nitzap20.NitzapApi.MessageQuery q =
+    new nitzap20.NitzapApi.MessageQuery('5514981770936', '5527997019622');
+q.take = 100;
+q.sequence = 1783966686472L;   // cursor
+q.follow = 'lt';               // lt | lte | gt | gte — default 'lt' quando há sequence
+q.ascending = true;            // true = mais antigas primeiro
+q.senderUserId = atendente.Id; // opcional: lê com o token desse usuário
+
+List<nitzap20.NitzapApi.ChatMessage> msgs = nitzap20.NitzapApi.getMessages(q);
+```
+
+O `skip` existe (`q.skip`) mas **evite**: com offset, uma mensagem nova chegando entre duas páginas empurra a lista e você lê a mesma mensagem duas vezes (ou pula uma, se alguma for apagada). O cursor por `sequence` é ancorado no dado e não sofre disso.
+
+Erros de leitura (conexão não autorizada para o token, backend fora) vêm como `NitzapApiException` — diferente dos envios, que devolvem `SendResult`.
+
+---
+
+## 11. Utilitário: variações brasileiras de número (`getPossibleBrazilianVariations`)
 
 Números brasileiros existem no WhatsApp com e sem o nono dígito. Ao buscar um contato por telefone (SOQL em `WhatsAppId__c`, montar `where` do `getChats`...), teste todas as variações:
 
@@ -376,5 +468,6 @@ try {
 
 - Cada `sendBatch`/`sendMetaTemplateBatch` consome 1 callout por remetente (limite Salesforce: 100 callouts por transação). Mensagens com `fileId` consomem 2 callouts extras cada (presigned URL + upload).
 - Em triggers e flows com DML, use sempre `sendBatchAsync`.
+- Cada página de `getMessages` é 1 callout. Para varrer conversas longas, prefira Queueable/Batch encadeado guardando o `sequence` — `take` alto com mídia e mensagem citada consome heap rápido.
 - Templates Meta só enviam por conexão WABA/Coex e com template `APPROVED`.
 - Para automações declarativas (Flow), continue usando a ação **"NITZAP 2.0: Enviar Mensagem WhatsApp"** — esta API é a superfície para código Apex.
