@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Conectar WhatsApp Business</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #4A90E2, #50E3C2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .login-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px 35px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            width: 90%;
+            max-width: 340px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #222;
+            font-weight: 600;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top-color: #4A90E2;
+            border-right-color: #50E3C2;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 25px auto;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+
+        .loader.hidden { display: none; }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+
+        p {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        p.error { color: #c0392b; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h1 id="title">Conectando ao WhatsApp Business</h1>
+        <div class="loader" id="loader"></div>
+        <p id="status">Mantenha esta janela aberta até que ela se feche sozinha</p>
+    </div>
+
+    <div id="fb-root"></div>
+    <script>
+        const APP_ID = '1617523109227160';
+        const CONFIG_ID = '699181689790896';
+        const VERSION = 'v25.0';
+        const ALLOWED_API_HOST = /^https:\/\/([a-z0-9-]+\.)+(nitzap|datago)\.com$/;
+        const FACEBOOK_ORIGINS = ['https://www.facebook.com', 'https://web.facebook.com'];
+        const SUPPORTED_MODES = ['coex'];
+
+        const params = new URLSearchParams(window.location.search);
+        const apiBaseUrl = params.get('api') || '';
+        const state = params.get('state') || '';
+        const mode = params.get('mode') || 'coex';
+
+        const collected = {};
+        let alreadyReported = false;
+
+        function showStatus(message, isError) {
+            document.getElementById('status').textContent = message;
+            document.getElementById('status').className = isError ? 'error' : '';
+            if (isError) {
+                document.getElementById('title').textContent = 'Não foi possível conectar';
+                document.getElementById('loader').classList.add('hidden');
+            }
+        }
+
+        function paramsAreValid() {
+            if (!ALLOWED_API_HOST.test(apiBaseUrl)) {
+                showStatus('Endereço de servidor não autorizado. Feche esta janela e inicie a conexão pelo Salesforce.', true);
+                return false;
+            }
+            if (!/^[a-f0-9]{16,}$/.test(state)) {
+                showStatus('Link inválido ou expirado. Feche esta janela e tente novamente pelo Salesforce.', true);
+                return false;
+            }
+            if (!SUPPORTED_MODES.includes(mode)) {
+                showStatus('Modo de conexão não suportado: ' + mode, true);
+                return false;
+            }
+            return true;
+        }
+
+        function buildExtras() {
+            if (mode === 'coex') {
+                return {
+                    version: 'v4',
+                    featureType: 'whatsapp_business_app_onboarding',
+                    features: [{ name: 'app_only_install' }, { name: 'marketing_messages_lite' }]
+                };
+            }
+            return {};
+        }
+
+        async function report(payload) {
+            if (alreadyReported) { return; }
+            alreadyReported = true;
+
+            try {
+                const response = await fetch(apiBaseUrl + '/waba/onboarding/finish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(Object.assign({ state: state }, payload))
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || data.success === false) {
+                    showStatus(data.message || 'O servidor recusou a conexão. Tente novamente pelo Salesforce.', true);
+                    return;
+                }
+                showStatus('Conectado! Você já pode fechar esta janela.');
+                window.close();
+            } catch (error) {
+                alreadyReported = false;
+                showStatus('Falha ao falar com o servidor: ' + error.message, true);
+            }
+        }
+
+        function reportFailure(message) {
+            showStatus(message, true);
+            report({ error: message });
+        }
+
+        function reportWhenComplete() {
+            if (!collected.code || !collected.info) { return; }
+            showStatus('Finalizando a conexão...');
+            report({
+                code: collected.code,
+                wabaId: collected.info.waba_id,
+                phoneNumberId: collected.info.phone_number_id
+            });
+        }
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: APP_ID,
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: VERSION
+            });
+            startLogin();
+        };
+
+        let loginStarted = false;
+        function startLogin() {
+            if (loginStarted) { return; }
+            loginStarted = true;
+
+            FB.login(function(response) {
+                if (response.authResponse && response.authResponse.code) {
+                    collected.code = response.authResponse.code;
+                    reportWhenComplete();
+                    return;
+                }
+                reportFailure('Login do Facebook cancelado.');
+            }, {
+                config_id: CONFIG_ID,
+                response_type: 'code',
+                override_default_response_type: true,
+                extras: buildExtras()
+            });
+        }
+
+        window.addEventListener('message', function(event) {
+            if (!FACEBOOK_ORIGINS.includes(event.origin)) { return; }
+
+            let data;
+            try {
+                data = JSON.parse(event.data);
+            } catch (error) {
+                return;
+            }
+
+            if (data.type !== 'WA_EMBEDDED_SIGNUP') { return; }
+
+            if (data.event === 'FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING') {
+                collected.info = data.data;
+                reportWhenComplete();
+                return;
+            }
+
+            if (data.event === 'FINISH_ONLY_WABA') {
+                reportFailure('O cadastro terminou sem um número de telefone. Refaça o processo cadastrando o número.');
+                return;
+            }
+
+            if (data.event === 'CANCEL') {
+                const step = data.data && data.data.current_step ? ' (etapa: ' + data.data.current_step + ')' : '';
+                reportFailure('Cadastro cancelado' + step + '.');
+            }
+        });
+
+        if (paramsAreValid()) {
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        }
+    </script>
+</body>
+</html>
