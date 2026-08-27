@@ -12,8 +12,7 @@ Para isso
 
 Na criação Habilite OAuth e selecione os escopos da imagem abaixo
 <img width="1253" height="607" alt="image" src="https://github.com/user-attachments/assets/73ed3b5b-3709-4142-bbef-062a4aa80871" />
-Se você ainda não configurou um usuário integração na sua organização consulte:
-https://help.salesforce.com/s/articleView?id=platform.integration_user.htm&type=5
+
 
 ou contato a Datago para consultoria personalizada.
 
@@ -35,6 +34,11 @@ Ou libere IPS do Nitzap
 178.156.196.62
 178.156.193.203
 178.156.140.66
+
+Também deve adicionar o usuário que irá executar em Politicas OAuth
+<img width="673" height="506" alt="Screenshot 2026-08-27 at 09 30 55" src="https://github.com/user-attachments/assets/8257e3ff-d507-4a9f-9031-1b58cd79a642" />
+Se você ainda não configurou um usuário integração na sua organização consulte:
+https://help.salesforce.com/s/articleView?id=platform.integration_user.htm&type=5
 
 Ao criar vá em configurações e em Configurações do OAuth > Chave e segredo do consumidor
 <img width="653" height="707" alt="image" src="https://github.com/user-attachments/assets/3efd0146-974d-410a-8841-3287ede71355" />
