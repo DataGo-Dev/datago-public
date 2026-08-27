@@ -52,7 +52,7 @@ Coloque em Credenciais Salesforce e clique em Salvar Configurações
 <img width="567" height="519" alt="image" src="https://github.com/user-attachments/assets/a83f93fc-a7f3-48f7-b6ed-888ede2362d5" />
 
 Confira se em:
-Configurações do OAuth e do OpenID Connect
+"Configurações do OAuth e do OpenID Connect" 
 esteja habilitado:
 Permitir código de autorização e fluxo de credenciais
 
