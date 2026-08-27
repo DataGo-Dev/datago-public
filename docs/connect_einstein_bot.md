@@ -56,7 +56,8 @@ esteja habilitado:
 Permitir código de autorização e fluxo de credenciais
 
 # Configurando o Agente/Bot
-Em Nitzap Config vá até Conexões > Conexões, Escolha uma conexão com a Meta Oficial (Ou adicione)
+Em Nitzap Config vá até Conexões > Conexões, Escolha uma conexão com a Meta Oficial (Ou adicione). 
+Obs: Essa configuração só funciona com Api Oficial do Nitzap.
 <img width="1146" height="338" alt="image" src="https://github.com/user-attachments/assets/36c64af3-9651-4415-9775-eaa1cc85cad9" />
 
 Clique na conexão e vá em configurações > Resposta Automática (bot/agent)
