@@ -39,6 +39,7 @@ Também deve adicionar o usuário que irá executar em Politicas OAuth
 <img width="673" height="506" alt="Screenshot 2026-08-27 at 09 30 55" src="https://github.com/user-attachments/assets/8257e3ff-d507-4a9f-9031-1b58cd79a642" />
 
 Se você ainda não configurou um usuário integração na sua organização consulte:
+
 https://help.salesforce.com/s/articleView?id=platform.integration_user.htm&type=5
 
 Ao criar vá em configurações e em Configurações do OAuth > Chave e segredo do consumidor
