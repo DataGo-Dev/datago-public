@@ -18,6 +18,7 @@ https://help.salesforce.com/s/articleView?id=platform.integration_user.htm&type=
 ou contato a Datago para consultoria personalizada.
 
 Você deve habilitar o fluxo de credencias do cliente
+
 <img width="420" height="213" alt="image" src="https://github.com/user-attachments/assets/56824720-9165-4803-8bb4-a376175ee988" />
 
 Na parte de Segurança habilite: "Emitir tokens de acesso com base em Token da Web do JSON (JWT) para usuários nomeados".
