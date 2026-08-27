@@ -63,6 +63,10 @@ Ao escolher coloque o Agente ou Bot no campo Agentforce: agente desta conexão
 
 Pronto, você configurou seu Bot!
 
+Agora quando Alguém enviar mensagem para seu Bot, ele entrará em ação. 
+Para personalizar ainda mais seu bot leia:
+https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
+
 Para quaisquer dúvidas entre em contato com a Datago +55 27 99997-0276
 
 - João
