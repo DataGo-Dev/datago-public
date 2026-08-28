@@ -292,7 +292,45 @@ r.contactAnswered;        // true se o contato mandou ao menos 1 mensagem na jan
 r.firstMessageWasMine;    // true se a primeira mensagem da janela foi sua
 ```
 
-## 9. Listar conversas (`getChats`)
+## 9. Listar conversas (`listChats` / `getChats`)
+
+### Sem filtro, só paginando (`listChats`)
+
+Passe o **número da conexão** e receba as conversas dela, da mais recente para a mais antiga (50 por página por padrão, máximo 200):
+
+```apex
+List<nitzap20.NitzapApi.ChatInfo> chats =
+    nitzap20.NitzapApi.listChats('5514981770936');            // conexão
+
+List<nitzap20.NitzapApi.ChatInfo> pagina =
+    nitzap20.NitzapApi.listChats('5514981770936', 100);       // com take
+```
+
+A paginação usa o mesmo cursor por `sequence` do `getMessages` (seção 10): guarde o `sequence` do **último** chat da página e peça o que vier antes dele:
+
+```apex
+List<nitzap20.NitzapApi.ChatInfo> pagina = nitzap20.NitzapApi.listChats('5514981770936', 100);
+while(!pagina.isEmpty()){
+    // processar...
+    Long cursor = pagina[pagina.size() - 1].sequence;
+    pagina = nitzap20.NitzapApi.listChats('5514981770936', 100, cursor);
+}
+```
+
+Pare quando a página vier vazia ou com menos itens que o `take`.
+
+### Metadados de uma conversa específica (`getChatMetadata`)
+
+Quando você já sabe a conexão e o contato, busque direto os metadados daquela conversa:
+
+```apex
+nitzap20.NitzapApi.ChatInfo chat =
+    nitzap20.NitzapApi.getChatMetadata('5514981770936', '5527997019622');   // conexão, contato
+```
+
+O contato aceita formatação (`+55 (27) 99701-9622`) ou um id de grupo (`120363...@g.us`); as variações do 9º dígito brasileiro são resolvidas no servidor. Se a conversa não existir, o retorno é `null` — não é erro.
+
+### Com filtro customizado (`getChats`)
 
 Busca os metadados das conversas (última mensagem, totais, não lidas) passando a condição `where` diretamente — flexível e customizável:
 
@@ -329,6 +367,7 @@ for(nitzap20.NitzapApi.ChatInfo c : chats){
     c.totalMessages; c.totalSent; c.totalReceived;   // podem vir null em chats antigos
     c.unreadMessages;
     c.lastSalesforceUserId; // último usuário SF que interagiu
+    c.sequence;             // Long — cursor de paginação do listChats
 }
 ```
 
@@ -338,14 +377,19 @@ A condição vai direto para o banco do backend — monte valores com cuidado (n
 
 ## 10. Ler as mensagens de uma conversa (`getMessages`)
 
-Enquanto o `getChats` lista as conversas, o `getMessages` devolve as **mensagens** de uma delas. A chamada mais simples traz a última página (50 mensagens, da mais recente para a mais antiga):
+Enquanto o `listChats`/`getChats` listam as conversas, o `getMessages` devolve as **mensagens** de uma delas. O primeiro parâmetro é sempre o **número da conexão** (o seu número no Nitzap) e o segundo é o **número do contato** com quem é a conversa. A chamada mais simples traz a última página (50 mensagens, da mais recente para a mais antiga):
 
 ```apex
-List<nitzap20.NitzapApi.ChatMessage> msgs =
-    nitzap20.NitzapApi.getMessages('5514981770936', '5527997019622');       // conexão, contato
+List<nitzap20.NitzapApi.ChatMessage> msgs = nitzap20.NitzapApi.getMessages(
+    '5514981770936',    // conexão: o SEU número (o mesmo de listConnections)
+    '5527997019622');   // contato: o número da outra ponta da conversa
+```
 
+Com `take` para limitar a quantidade:
+
+```apex
 List<nitzap20.NitzapApi.ChatMessage> ultimas10 =
-    nitzap20.NitzapApi.getMessages('5514981770936', '5527997019622', 10);   // com take
+    nitzap20.NitzapApi.getMessages('5514981770936', '5527997019622', 10);
 ```
 
 O contato aceita formatação (`+55 (27) 99701-9622`) ou um id de grupo (`120363...@g.us`). Se a conversa não existir, a resposta é uma lista vazia — não é erro.
