@@ -489,6 +489,28 @@ Números não-brasileiros e ids de grupo (`@g.us`) voltam como lista de um item.
 
 ---
 
+## 12. Encontrar o registro de um telefone (`findRecordByPhone`)
+
+Dado um telefone, devolve o **Id do registro Salesforce canônico** daquele número — o mesmo que o Nitzap usa para vincular conversas — ou `null` se nenhum registro tiver o número:
+
+```apex
+Id recordId = nitzap20.NitzapApi.findRecordByPhone('5527997019622');
+if(recordId != null){
+    String objectName = recordId.getSObjectType().getDescribe().getName(); // Account, Contact ou Lead
+}
+```
+
+Como a busca funciona:
+
+- O telefone aceita formatação (`+55 (27) 99701-9622`) e as variações brasileiras do nono dígito são testadas automaticamente.
+- Procura em `Account`, `Contact` e `Lead` pelo campo `nitzap20__WhatsAppId__c`.
+- Com mais de um registro no mesmo número, o desempate segue a regra canônica do Nitzap: registro com atendimento em andamento vem primeiro; depois Account > Contact > Lead; por fim o mais antigo.
+- A busca é sempre na base inteira, sem restrição de papéis/visibilidade do omni — o Id volta mesmo que o usuário atual não enxergue o registro. Cheque o acesso antes de expor dados dele (ex.: `UserRecordAccess`).
+
+É consulta local (SOQL) — não faz callout.
+
+---
+
 ## Tratamento de erros — resumo
 
 | Situação | Comportamento |
