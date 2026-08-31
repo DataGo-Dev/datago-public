@@ -368,6 +368,7 @@ for(nitzap20.NitzapApi.ChatInfo c : chats){
     c.unreadMessages;
     c.lastSalesforceUserId; // último usuário SF que interagiu
     c.sequence;             // Long — cursor de paginação do listChats
+    c.lastCtwaClid;         // click id do último anúncio Click-to-WhatsApp (CTWA), se houver
 }
 ```
 
@@ -419,6 +420,7 @@ for(nitzap20.NitzapApi.ChatMessage m : msgs){
     m.quotedMessageKey;   // msgkey da mensagem citada
     m.quotedMessage;      // a mensagem citada inteira (ChatMessage), quando houver
     m.reactions;          // List<MessageReaction>: messageKey, reaction, participant, pushName
+    m.ctwaClid;           // click id do anúncio Click-to-WhatsApp que originou a mensagem, se houver
 }
 ```
 
