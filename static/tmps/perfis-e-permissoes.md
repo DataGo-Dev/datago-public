@@ -250,21 +250,3 @@ Somente token de login. Token delegado não entra em nenhuma rota deste grupo.
 6. Depois do primeiro admin, a App Key não opera `/users`.
 7. O `secret` de um número é entregue uma única vez, na primeira conexão, e nunca é recuperável pela API.
 8. Um webhook cadastrado só recebe eventos dos números da instância que o cadastrou.
-
----
-
-## 5. Ambiente e contas de teste
-
-| Item | Valor |
-|---|---|
-| Base URL | _preencher_ |
-| Usuário comum A (conexão 1) | _preencher_ |
-| Usuário comum B (conexão 2) | _preencher_ |
-| Admin | _preencher_ |
-| Conta de integração | _preencher_ |
-| App Key | _preencher_ |
-| Números conectados | _preencher_ |
-
-Há limitação de taxa e bloqueio temporário por IP em falhas repetidas de autenticação. Se uma bateria de testes começar a receber `429` de forma consistente, avisem que liberamos o IP.
-
-Fora de escopo: infraestrutura de hospedagem, Salesforce e a plataforma da Meta/WhatsApp.
