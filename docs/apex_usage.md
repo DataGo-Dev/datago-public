@@ -23,6 +23,19 @@ for(nitzap20.NitzapApi.UserConnections uc : result){
     // uc.userId, uc.connections -> List<ConnectionInfo> (connectionNumber, label, channel, active)
 }
 ```
+
+O caminho inverso, descobrir quem atende por um número, é `getConnectionMembers`. Recebe o número da conexão e devolve os usuários vinculados a ela, com o Id e o nome do usuário Salesforce e as permissões de cada um na conexão:
+
+```apex
+List<nitzap20.NitzapApi.ConnectionMember> membros =
+    nitzap20.NitzapApi.getConnectionMembers('5514981770936');
+
+for(nitzap20.NitzapApi.ConnectionMember m : membros){
+    // m.userId (Id do User), m.name, m.isOwner, m.canSend, m.canReceive
+}
+```
+
+Usuários integradores aparecem na lista com o próprio identificador no lugar do Id, já que não são usuários Salesforce. Número em branco lança `NitzapApiException` antes do callout.
 - Recursos Meta (templates) exigem que a conexão seja um canal WABA/Coex.
 - **Autenticação**: a API usa a **credencial do sistema** (usuário integrador salvo nas configurações — criado automaticamente na primeira abertura da tela de Configurações pelo admin, ou salvo manualmente pelo botão "Salvar nas credenciais do sistema" na aba Usuários Integradores). Com ela configurada, os envios funcionam de qualquer contexto — flows, batches, usuários que nunca conectaram ao Nitzap. Sem ela, a API cai no token do usuário que está executando, que precisa estar conectado e ativo.
 
