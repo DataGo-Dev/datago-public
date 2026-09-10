@@ -20,23 +20,25 @@ jobs:
         with:
           ref: main
 
-      - name: Resolver release
+      - name: Resolver releases
         env:
           GH_TOKEN: ${{ github.token }}
           EVENT_RELEASE: ${{ toJSON(github.event.release) }}
         run: |
+          gh api "repos/${{ github.repository }}/releases?per_page=100" > /tmp/releases.json
           if [ "${{ github.event_name }}" = "release" ]; then
             printf '%s' "$EVENT_RELEASE" > /tmp/release.json
           else
             gh api "repos/${{ github.repository }}/releases/latest" > /tmp/release.json
           fi
 
-      - name: Gerar nitzap-version.json
-        run: python3 .github/scripts/nitzap_version.py /tmp/release.json nitzap-version.json
+      - name: Gerar releases.json e nitzap-version.json
+        run: python3 .github/scripts/nitzap_version.py /tmp/release.json /tmp/releases.json nitzap-version.json releases.json
 
       - name: Publicar
+        if: always()
         run: |
-          git add nitzap-version.json
+          git add nitzap-version.json releases.json
           if git diff --cached --quiet; then
             echo "Sem mudança para publicar"
             exit 0

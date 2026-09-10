@@ -436,6 +436,7 @@
 
     <script>
         const RELEASES_API = 'https://api.github.com/repos/DataGo-Dev/datago-public/releases?per_page=100';
+        const RELEASES_FILE = '../releases.json';
         const CACHE_KEY = 'nitzap-releases-cache-v1';
         const CACHE_TTL_MS = 10 * 60 * 1000;
         const INSTALL_URL_PATTERN = /https?:\/\/[^\s)]*installPackage\.apexp\?p0=(04t[A-Za-z0-9]{12,15})/;
@@ -468,7 +469,16 @@
             return response.json();
         }
 
+        async function fetchReleasesFile() {
+            const response = await fetch(RELEASES_FILE, { cache: 'no-cache' });
+            if (!response.ok) throw new Error('releases.json respondeu ' + response.status);
+            return response.json();
+        }
+
         async function loadReleases() {
+            try {
+                return await fetchReleasesFile();
+            } catch (error) {}
             const cached = readCache();
             if (cached && Date.now() - cached.savedAt < CACHE_TTL_MS) return cached.releases;
             try {

@@ -8,6 +8,11 @@ INSTALL_LINK_PATTERN = re.compile(r'https?://[^\s)]*installPackage\.apexp\?p0=(0
 PLACEHOLDER_PATTERN = re.compile(r'04tX{3,}', re.IGNORECASE)
 HEADING_PATTERN = re.compile(r'^##\s+(.+?)\s*$', re.MULTILINE)
 MAX_NOTES = 6
+RELEASE_FIELDS = ('id', 'tag_name', 'name', 'body', 'published_at', 'html_url')
+
+
+class MissingPackageLink(Exception):
+    pass
 
 
 def version_from_tag(tag):
@@ -51,13 +56,20 @@ def build_version_file(release):
     }
 
 
+def is_public(release):
+    return not release.get('draft') and not release.get('prerelease')
+
+
+def build_releases_file(releases):
+    public = [{field: release.get(field) for field in RELEASE_FIELDS} for release in releases if is_public(release)]
+    return sorted(public, key=lambda release: release.get('published_at') or '', reverse=True)
+
+
 def skip_reason(release, generated, existing):
     if release.get('draft'):
         return 'release é draft'
     if release.get('prerelease'):
         return 'release é pré-release'
-    if not generated['packageLink']:
-        return 'release sem link de pacote 04t válido'
     if existing and not is_newer_or_same(generated['releaseName'], existing.get('releaseName')):
         return f"release {generated['releaseName']} é mais antiga que a publicada {existing.get('releaseName')}"
     return None
@@ -67,17 +79,39 @@ def read_json(path):
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
 
 
-def main(release_path, output_path):
+def write_json(path, data):
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+
+def update_releases_file(releases_path, output_path):
+    releases = json.loads(Path(releases_path).read_text(encoding='utf-8'))
+    public = build_releases_file(releases)
+    write_json(Path(output_path), public)
+    print(f'{output_path} atualizado com {len(public)} versões')
+
+
+def update_version_file(release_path, output_path):
     release = json.loads(Path(release_path).read_text(encoding='utf-8'))
     output = Path(output_path)
     generated = build_version_file(release)
     reason = skip_reason(release, generated, read_json(output))
     if reason:
-        print(f'nitzap-version.json mantido: {reason}')
+        print(f'{output_path} mantido: {reason}')
         return
-    output.write_text(json.dumps(generated, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f"nitzap-version.json atualizado para {generated['releaseName']}")
+    if not generated['packageLink']:
+        raise MissingPackageLink(f"release {generated['releaseName']} publicada sem link de pacote 04t válido; edite a release com o link e a Action roda de novo")
+    write_json(output, generated)
+    print(f"{output_path} atualizado para {generated['releaseName']}")
+
+
+def main(release_path, releases_path, version_output, releases_output):
+    update_releases_file(releases_path, releases_output)
+    update_version_file(release_path, version_output)
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    try:
+        main(*sys.argv[1:5])
+    except MissingPackageLink as error:
+        print(f'ERRO: {error}')
+        sys.exit(1)

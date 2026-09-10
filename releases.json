@@ -1,0 +1,154 @@
+[
+  {
+    "id": 385825998,
+    "tag_name": "v1.688.0",
+    "name": "1.688.0",
+    "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000A229IAC\r\n\r\n## Reações nos anúncios oficiais do Nitzap\r\nNa janela de anúncios do Omni (o chat **Nitzap** no topo da lista), cada anúncio agora tem uma barra de reações logo abaixo da mensagem.\r\n\r\n- **👍 e 👎** ficam sempre visíveis. Um clique registra a reação, outro clique na mesma remove. Trocar de 👍 para 👎 substitui a anterior.\r\n- O botão **+** abre outras opções rápidas: ❤️ 🎉 😮 😕 🙏.\r\n- Cada pessoa tem uma reação por anúncio. A contagem ao lado do emoji soma as reações de todos os usuários do Nitzap.\r\n\r\nO objetivo é medir se cada novidade agradou. As reações chegam até a equipe do Nitzap junto com quem visualizou o anúncio.\r\n\r\nRequer o backend atualizado. Em organizações com backend em versão anterior, a barra aparece, mas as reações não são salvas.\r\n\r\n## Ver todas as conversas mesmo com hierarquia ativa\r\nCom **Respeitar Hierarquia** ligado, cada usuário só enxerga as conversas de quem está abaixo dele na hierarquia de papéis. Agora dá para liberar exceções por usuário, sem desligar a hierarquia para todo mundo.\r\n\r\n- O pacote traz o conjunto de permissões **Nitzap: Ver todas as conversas**. Quem receber esse conjunto vê as conversas de todos os usuários do Nitzap, independentemente do papel.\r\n- Para liberar: **Configuração > Conjuntos de Permissões > Nitzap: Ver todas as conversas > Gerenciar Atribuições** e adicione os usuários. Para remover, basta tirar a atribuição.\r\n- Vale para a lista de usuários na conversa, para a aba da conta e para abrir atendimentos de outros usuários.\r\n\r\nCom **Respeitar Hierarquia** desligado nada muda: todos continuam vendo todos.\r\n\r\n## Melhorias\r\n- **Legenda de mídia maior**: ao anexar ou colar uma imagem, o campo de legenda do modal de mídia abre com mais altura, sem precisar redimensionar para escrever textos longos.",
+    "published_at": "2026-09-10T13:28:33Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.688.0"
+  },
+  {
+    "id": 385582780,
+    "tag_name": "v1.685.0",
+    "name": "1.685.0",
+    "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000A0ZpIAK\r\n\r\n## Omni mostra edição e reação na prévia da conversa\r\nAo editar uma mensagem (ou receber uma edição), a lista de conversas do omni passa a exibir o texto editado, com um ✏️ na frente, tanto ao vivo quanto depois de atualizar a tela. Antes, a prévia continuava com o texto original.\r\n\r\nReações também aparecem na prévia:\r\n- **Você reagiu com ✅** quando a reação é sua (pelo Salesforce ou pelo celular)\r\n- **Reagiu com ✅** quando o contato reage\r\n- **Fulano reagiu com ✅** em grupos\r\n\r\nNesta versão a atualização acontece só no texto: a conversa não sobe para o topo nem ganha contador de não lida. Em organizações que ainda estiverem em versões anteriores do pacote, a prévia também atualiza, mas a conversa sobe para o topo como se fosse uma mensagem nova.\r\n\r\n## Etiquetas nas conversas do Omni\r\nAgora é possível criar etiquetas coloridas e aplicá-las nas conversas para organizar o atendimento (ex.: **A Pagar**, **Vencido**, **Cobrar**).\r\n\r\n<img width=\"391\" height=\"478\" alt=\"et1\" src=\"https://github.com/user-attachments/assets/319b448f-2254-4bdd-9ebd-8d2c4efc0e92\" />\r\n\r\n- **Cadastro**: em Administração de Conexões, nova aba **Etiquetas**. Cada etiqueta tem nome e cor, e pode valer para **todas as conexões** ou só para as conexões marcadas. O botão de emoji ao lado do nome insere um emoji no início da etiqueta (ex.: 💰 A Pagar).\r\n- **Por conexão**: em Gerenciar conexão, nova aba **Etiquetas** para marcar quais etiquetas ficam disponíveis naquele número. As etiquetas \"todas as conexões\" já entram automaticamente.\r\n- **No Omni**: as etiquetas aparecem como chips coloridos abaixo do nome do contato. No menu da conversa (botão direito) a opção **Etiquetas** abre a lista para marcar ou desmarcar. A mudança aparece na hora para todos os membros da conexão.\r\n<img width=\"710\" height=\"392\" alt=\"et2\" src=\"https://github.com/user-attachments/assets/1389a499-a33b-4876-8f99-4209baaab4a8\" />\r\n\r\nRequer o backend atualizado. Em organizações com backend em versão anterior, a aba Etiquetas e o menu ficam vazios.\r\n\r\n\r\n",
+    "published_at": "2026-09-09T14:59:47Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.685.0"
+  },
+  {
+    "id": 380770903,
+    "tag_name": "v.1.682.0",
+    "name": "1.682.0",
+    "body": "📦 **[Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000009AplIAE)**\r\n\r\n## Mesclagem de conexão Oficial com Api Web Nitzap\r\nEssa função permite reduzir os custos de envio de mensagens pela Api Oficial previstos em \r\nhttps://developers.facebook.com/documentation/business-messaging/whatsapp/pricing/non-template-messages\r\n\r\n<img width=\"1268\" height=\"428\" alt=\"image\" src=\"https://github.com/user-attachments/assets/4dd677c5-e2a8-4120-9cb1-819f6a1debcb\" />\r\n\r\nQuando linkado a mesma conexão, após resposta do cliente, as mensagens sairão majoritariamente pela conexão linkada, reduzindo os custos.",
+    "published_at": "2026-09-01T19:34:22Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v.1.682.0"
+  },
+  {
+    "id": 351746030,
+    "tag_name": "v.1.672.0",
+    "name": "1.672 - Multicon",
+    "body": "📦 **[Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000007rfVIAQ)**\r\n\r\n## Agora o user pode se conectar usando multiconexão\r\n<img width=\"675\" height=\"297\" alt=\"image\" src=\"https://github.com/user-attachments/assets/dfdfef56-81f5-4178-b579-ceb26454fa33\" />\r\n\r\nObs: Se sua organização ainda não foi migrada para a multi-conexão, por favor entre em contato com a Datago para fazer os ajustes",
+    "published_at": "2026-07-09T19:40:25Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v.1.672.0"
+  },
+  {
+    "id": 339573640,
+    "tag_name": "v.1.511.0",
+    "name": "1.524",
+    "body": "## 🚀 Nitzap for Salesforce — Nova Versão\r\n\r\n📦 **[Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003x3ZIAQ)**\r\n\r\n---\r\n\r\n### 🔐 Controle de Desconexão por Perfil\r\n\r\nMais controle sobre quem pode desconectar uma conexão Nitzap diretamente pelo Salesforce:\r\n\r\n- **Modo restrito:** apenas administradores podem desconectar conexões\r\n- **Modo padrão:** somente o dono da conexão pode desconectá-la (quando a restrição de admin está desativada)\r\n\r\n---\r\n\r\n### 🌐 Abrir no WhatsApp Web\r\n\r\nNovo botão disponível nas conexões do tipo **Oficial (API Oficial do WhatsApp)** para abrir a conversa diretamente no WhatsApp Web com um clique.\r\n\r\n![Botão WhatsApp Web](https://github.com/user-attachments/assets/7ecedc5a-e9de-4dc3-8049-57026ff6d4cb)\r\n\r\n---\r\n\r\n### 🔍 Busca de Mensagens\r\n\r\nAgora é possível buscar mensagens dentro das conversas diretamente pelo componente no Salesforce.\r\n\r\n![Campo de busca](https://github.com/user-attachments/assets/5d5684f0-6ec8-410e-9a5f-af33cadddcb6)\r\n\r\n![Resultados da busca](https://github.com/user-attachments/assets/ef6da963-dc53-4c30-aa9a-3bd22814952d)\r\n\r\n![Destaque do resultado](https://github.com/user-attachments/assets/208ac4d0-c19c-4672-a728-e8be5035a3d3)\r\n\r\n---\r\n\r\n### 🖼️ Área de Mídias\r\n\r\nNova seção dedicada para visualização de mídias trocadas na conversa — imagens, documentos e arquivos organizados em um único lugar.\r\n\r\n![Ícone da área de mídias](https://github.com/user-attachments/assets/cd2f8eec-4953-413b-b447-86ee3bca7604)\r\n\r\n![Galeria de imagens](https://github.com/user-attachments/assets/3b33d77c-aaab-45c6-a214-2c8c0204e085)\r\n\r\n![Visualização de documentos](https://github.com/user-attachments/assets/e1434995-3f4b-4d78-a103-f17bc8eb1be2)\r\n\r\n![Listagem de arquivos](https://github.com/user-attachments/assets/00c85c6c-79f2-4cc2-9136-5ef382b6d5ff)\r\n\r\n---\r\n### 🤖 Integração com AgentForce\r\nObs: entre em contato com a Datago para habilitar a configuração\r\n\r\n![Integração com AgentForce](https://github.com/user-attachments/assets/c8958020-e54a-4acc-abd7-6ab5b44672b3)\r\n\r\n---\r\n### 📝 Agora o Nitzap mostra mensagens antes de ser editada\r\n![Edit](https://github.com/user-attachments/assets/ea043048-d091-474e-92f2-8f0099341268)\r\n",
+    "published_at": "2026-06-15T13:31:46Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v.1.511.0"
+  },
+  {
+    "id": 333359135,
+    "tag_name": "v1.497.0",
+    "name": "1.509",
+    "body": "👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003tkjIAA)\r\n\r\n## Gerenciamento de Templates Meta pelo salesforce\r\nAgora é possível fazer o geranciamento dos seus templates diretamente pelo nitzap\r\n<img width=\"1252\" height=\"1077\" alt=\"image\" src=\"https://github.com/user-attachments/assets/925b9d9a-d5bf-441e-b065-fa3d278e3a25\" />\r\n\r\n## Controle de Prompts Por conexão a fim de usar com resumo da conversa\r\nQuando for resumir uma conversa, os prompts da conexão irá ser respeitado. Tenha cuidado ao usar em conexões que compartilham o mesmo número.\r\n<img width=\"1256\" height=\"815\" alt=\"image\" src=\"https://github.com/user-attachments/assets/b05aed6c-4245-454a-88c6-28d08fb3a789\" />\r\n\r\n## Aviso aos Admins\r\nNessa nova versão para mudar qualquer configuração, antes clique em \"Rotacionar App Key\"\r\nEssa é sua chave segura que irá autenticar algumas de suas requisições mais privativas no Nitzap.\r\n<img width=\"637\" height=\"377\" alt=\"image\" src=\"https://github.com/user-attachments/assets/2b8a6c5d-7f36-4aeb-903a-1ac25e3fde5e\" />\r\n\r\n\r\nPara usuários que não tem a credencial mestre gerada, clicar em \"Rotacionar App Key\" não irá funcionar, para isso é necessário entrar em contato com a Datago para solicitar o primeiro token",
+    "published_at": "2026-06-02T20:26:33Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.497.0"
+  },
+  {
+    "id": 324306973,
+    "tag_name": "v1.494.0",
+    "name": "1.494",
+    "body": "👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003qEzIAI)\r\n\r\n## Aba de eventos agora mais completa \r\n<img width=\"1420\" height=\"540\" alt=\"image\" src=\"https://github.com/user-attachments/assets/a82ad039-edbe-4256-b47e-65f5eb82d53a\" />\r\n\r\n## Hierarquia omni mais inteligente\r\nAgora quando regras são habitadas no omni, você poderá receber mensagem de alguém que já está cadastrado dentro da org e pertence ao outro usuário desde que use número diferente do proprietário\r\n\r\n## Reprodução de aúdios em seguida automático\r\nAgora audios seguidos reproduzem automaticamente\r\n\r\nTambém ao reproduzir 1 áudio, outros param de reproduzir\r\n\r\n## Link MCP Por user e tbm em credenciais master\r\n<img width=\"1258\" height=\"341\" alt=\"image\" src=\"https://github.com/user-attachments/assets/c07b54d4-705e-4e05-8cd9-a3d4b76e6784\" />\r\n\r\n## Variáveis automáticas\r\nAgora ao abrir um template meta, se a variável tiver nome {{nome_cliente}} ele pega o nome da pessoa automaticamente.\r\nOutras variáveis ficam salvas em cache para futuros usos\r\n\r\n<img width=\"1275\" height=\"558\" alt=\"image\" src=\"https://github.com/user-attachments/assets/3a1c8e64-5d61-4c85-9352-699a4c71bb00\" />\r\n\r\n\r\n## pequenas mudanças\r\n- Quando transfere atendimento para outro número, agora a mensagem vai para esse outro número\r\n- Ao fechar atendimento, ele seta automaticamente  em TASK:\r\n   Nitzap: Hora Primeira Mensagem Recebida\tnitzap20__DateTime_First_Message_Received__c\t\r\n    Nitzap: Hora Primeira Mensagem Enviada\tnitzap20__DateTime_First_Message_Sent__c\r\nObs: Nativamente será feito uma varredura disso automaticamente a cada meia hora para tasks abertas\r\n\r\n### Correções\r\n- Corrigido bugs relacionado a criação e transferencia de atendimentos de Contas\r\n- Sussuro agora não conta como mensagem enviada no omni\r\n",
+    "published_at": "2026-05-18T13:24:34Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.494.0"
+  },
+  {
+    "id": 318026655,
+    "tag_name": "v.1.461.0",
+    "name": "1.461",
+    "body": "👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003fZhIAI)\r\n\r\n## Novos filtros de atendimento\r\n<img width=\"377\" height=\"318\" alt=\"image\" src=\"https://github.com/user-attachments/assets/72cf84e8-8666-4b84-8ae0-96318c24ddd9\" />\r\n\r\n## Tokens delegados\r\n<img width=\"1236\" height=\"712\" alt=\"image\" src=\"https://github.com/user-attachments/assets/ab81fa4a-24de-4650-ae73-0c3ea21dbd62\" />\r\n\r\n> Com tokens delegados, você pode gerar um token de acesso único a sua conexão, útil para MCPS e integrações\r\nObs: Tokens delegados também estão disponível para credenciais master\r\n\r\n## Opção - Prevenir Leituras de Desconectados\r\nPrevine que usuários desconectados leiam mensagens\r\n<img width=\"625\" height=\"540\" alt=\"image\" src=\"https://github.com/user-attachments/assets/c730324f-73e4-44b2-8ff5-2954fcafdc07\" />\r\n\r\n\r\n### Bugs\r\nCorrigido um bug raro onde usuários desconectados viam mensagens de outros usuários.\r\nCorrigido bugs relacionados a abertura e fechamento de atividades\r\nCorrigido bug onde algumas mensagens duplicavam ao iniciar atendimento\r\nCorrigido Bug ao transferir atendimento dentro do objeto Caso",
+    "published_at": "2026-05-05T19:42:30Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v.1.461.0"
+  },
+  {
+    "id": 315187451,
+    "tag_name": "v1.449.0",
+    "name": "Migração de pacotes  2GP - 1.449",
+    "body": "Essa versão é a primeira versão com suporte oficial para 2GP\r\n\r\n## Para novas Orgs/Clientes\r\n-  instalar diretamente a versão 2GP\r\n[Clique aqui para instalar](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003alJIAQ)\r\n\r\n## Para orgs que estão com versão 1.448\r\n- Deve instalar a versão de Migração primeiro\r\n[Clique aqui para instalar](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003aGfIAI)\r\n- Logo após a versão mais nova do pacote\r\n[Clique aqui para instalar](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003alJIAQ)\r\n\r\n## Para Orgs com versões anteriores a 1.448 \r\n- Deve-se instalar a versão 1.448 primeiro\r\n[Clique aqui para instalar](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000RQT3)\r\n- Logo após instalar a versão de Migração \r\n[Clique aqui para instalar](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003aGfIAI)\r\n- Logo após a versão mais nova do pacote\r\n[Clique aqui para instalar](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000003alJIAQ)\r\n\r\n⚠️ A Versão mais nova do pacote pode não ser essa, verifique sempre em Releases se há alguma mais nova e que não esteja em Beta\r\n",
+    "published_at": "2026-04-29T12:53:27Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.449.0"
+  },
+  {
+    "id": 307205613,
+    "tag_name": "v.1.448",
+    "name": "1.438 - Migrate",
+    "body": "👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000RQT3)\r\n\r\n> [!NOTE]\r\n> Para receber atualizações futuras Por favor instale esse pacote imediatamente\r\n\r\n\r\n## Nitzap - Agent Monitor\r\n- Nova Guia para monitorar atendimentos e agentes\r\n<img width=\"1881\" height=\"864\" alt=\"image\" src=\"https://github.com/user-attachments/assets/5e088fe9-23c5-47a6-b68a-b620fc1ce3ca\" />\r\n\r\n## Vídeo em Campanha\r\n- Agora campanha aceita enviar vídeos em Templates da Campanha\r\n<img width=\"1394\" height=\"822\" alt=\"image\" src=\"https://github.com/user-attachments/assets/9aceb152-29be-40f2-a786-b080eb544951\" />\r\n\r\n## Variáveis em templates Canal NITZAP\r\n<img width=\"932\" height=\"591\" alt=\"image\" src=\"https://github.com/user-attachments/assets/f0ef01bd-8e94-4b54-958e-480dd56006eb\" />\r\n\r\n",
+    "published_at": "2026-04-09T18:09:34Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v.1.448"
+  },
+  {
+    "id": 302009521,
+    "tag_name": "v.1.420.0",
+    "name": "1.420",
+    "body": "👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000QCC1)\r\n\r\n## Adiciona suporte a template com Vídeo para Api Coex Oficial\r\n<img width=\"589\" height=\"810\" alt=\"image\" src=\"https://github.com/user-attachments/assets/2598e688-de11-48b1-83fa-b3c46bd64a41\" />\r\n\r\n## Botão de download imagens\r\n<img width=\"547\" height=\"342\" alt=\"image\" src=\"https://github.com/user-attachments/assets/7a777c84-ba47-40bd-94bc-caf674ed092b\" />\r\n\r\n### Também no balão\r\n<img width=\"336\" height=\"311\" alt=\"image\" src=\"https://github.com/user-attachments/assets/3e0b3ef1-2891-4fb4-88cb-10f872584bb9\" />\r\n\r\n## Notificações\r\n<img  alt=\"image\" src=\"https://github.com/user-attachments/assets/a5ab81b2-d27f-4496-9873-89b04fa0d413\" />\r\n\r\n### Também adicionado opção de receber notificação apenas de quem está atendendo\r\n<img width=\"513\" height=\"486\" alt=\"image\" src=\"https://github.com/user-attachments/assets/d5dcd962-47f0-4768-bb1b-1407c0c70bde\" />\r\n\r\n🔔 Receber notificações apenas de quem estiver atendendo\r\n\r\n## Componente Omni Compatível com record pages\r\n\r\n## Correções\r\n- Corrigido bug no metrics quando selecionado período \"Hoje\"\r\n- Corrigido problema onde IA não conseguia ouvir áudios\r\n",
+    "published_at": "2026-03-26T17:37:02Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v.1.420.0"
+  },
+  {
+    "id": 293614389,
+    "tag_name": "v1.409.0",
+    "name": "1.411",
+    "body": "## 📦 Instalação\r\nClique no link abaixo para instalar o pacote na sua organização:\r\n\r\n👉 [**Instalar Pacote**](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000P5Fp)\r\n\r\n---\r\n\r\n> [!CAUTION] \r\n> **ATENÇÃO:** As hierarquias do OMNI nesta versão em diante serão processadas por **conexão**. Se sua Org utiliza esta opção, siga o tutorial abaixo imediatamente após a instalação:\r\n\r\n1. Vá até o perfil **dono da conexão** (o primeiro usuário que conectou a sessão).\r\n\r\n2. Clique em **Conf. Sessão**.\r\n   ![Configuração da Sessão](https://github.com/user-attachments/assets/46b91990-76df-4215-8a10-1356b7165373)\r\n\r\n3. Vá até a aba **Configurações**.\r\n  <img width=\"800\"  alt=\"image\" src=\"https://github.com/user-attachments/assets/5b2ecd76-9c86-4859-884f-edd8ba14b11b\" />\r\n  \r\n4. Habilite a função **Omni: Regras de compartilhamento**.\r\n\r\n### 👤 Usuários Prioritários\r\nAdicionada a função para definir usuários que receberão contatos não cadastrados.\r\n* **Comportamento:** Ao marcar esta opção, apenas os usuários prioritários receberão novos chats de Leads/Contatos não cadastrados.\r\n* **Recomendação:** Deixe vazio para todos se desejar a distribuição padrão.\r\n\r\n\r\n\r\n## 🛠️ Novidades e Melhorias\r\n\r\n### 📄 Envio de Arquivos via Flow\r\nAgora é possível enviar arquivos facilmente através de fluxos. Atente-se aos limites técnicos do Apex:\r\n* **Limite:** Máximo de 50 arquivos por vez.\r\n* **Processamento:** Enviar apenas em fluxo assíncrono.\r\n* **Tamanho:** Máximo de 2 MB por arquivo.\r\n\r\n![Envio via Flow](https://github.com/user-attachments/assets/d12c45e4-08db-40a0-a70b-5af403f92f23)\r\n\r\n### 📞 Chamadas na Conversa\r\nAs chamadas recebidas agora são notificadas diretamente no componente de conversa.\r\n![Chamadas na Conversa](https://github.com/user-attachments/assets/87e5322b-7951-452b-ac90-abf87bac86f8)\r\n\r\n### 🏛️ Hierarquia em Histórico\r\nA hierarquia de visibilidade agora é respeitada também no histórico das mensagens quando a função está habilitada.\r\n\r\n### 🎨 Interface (UI)\r\n* **Ajuste de Layout:** O tamanho dos balões de mensagem foi otimizado para **80%** do espaço livre (anteriormente era 65%), melhorando o aproveitamento de tela.\r\n\r\n### Alteração nas opções padrão\r\n<img width=\"344\" height=\"291\" alt=\"image\" src=\"https://github.com/user-attachments/assets/6b67379c-92e5-4e6e-91a3-4d239f529e60\" />\r\n\r\n\r\n---\r\n*Notas de release geradas para atualização de pacotes Salesforce.*",
+    "published_at": "2026-03-05T18:06:50Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.409.0"
+  },
+  {
+    "id": 291426858,
+    "tag_name": "v1.401.0",
+    "name": "1.401",
+    "body": "[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000OIwf)\r\n👉 Por favor, limpe o cache ao atualizar\r\n\r\n## 🔥 Novo Layout\r\n<img width=\"499\" height=\"723\" alt=\"image\" src=\"https://github.com/user-attachments/assets/fa4750c3-6a53-4002-80a2-4c8a8e5dd9f8\" />\r\n\r\n## Fotos na API Oficial \r\n<img width=\"364\" height=\"139\" alt=\"image\" src=\"https://github.com/user-attachments/assets/b7531a53-43e7-4ade-84da-5afda442f694\" />\r\n\r\nOBS: ⚠️ Para habilitar essa função é necessário algum usuário conectado na api não oficial\r\n\r\n## Data e Hora da mensagem lida\r\n-  Agora o Nitzap mostra a data e hora da leitura da mensagem ao clicar no balão de ações\r\n<img width=\"226\" height=\"259\" alt=\"image\" src=\"https://github.com/user-attachments/assets/02ed395b-b01b-4da2-9eb7-cf8ce8926ec8\" />\r\n\r\n## Resumo do conteúdo do balão da conversa\r\n<img width=\"465\" height=\"570\" alt=\"image\" src=\"https://github.com/user-attachments/assets/7d25e344-9272-4e3a-bc20-e25845f2b109\" />\r\n\r\n## Nome do Contato/Lead na tarefa de atendimento/agendamento\r\n<img width=\"587\" height=\"228\" alt=\"image\" src=\"https://github.com/user-attachments/assets/690dc153-13cc-47a8-9a13-a8daeb4f3ebd\" />\r\n\r\n## Correção de bugs\r\n - Ao agendar uma mensagem, a data de fechamento estava vindo com o dia e atual, deveria ser a data do agendamento.\r\n - Prevenção de duplo clique ao resumir conversa\r\n - Area de chamadas duplicada\r\n - Bug onde na área de gerenciar os templates ficava com ícones sobrepostos nas ações da pasta\r\n - Ajustado quebra de linha quando pressionado Shift + Enter ao enviar uma mídia\r\n - Data e Hora agendamento em campanhas estava vindo zerada",
+    "published_at": "2026-02-27T16:33:07Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.401.0"
+  },
+  {
+    "id": 290491534,
+    "tag_name": "v1.391.0",
+    "name": "1.391.0",
+    "body": "[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000O08X)\r\n\r\n## Reply de Audio automático com conteúdo do audio. Por conexão \r\n<img width=\"641\" height=\"171\" alt=\"Screenshot 2026-02-25 at 16 50 29\" src=\"https://github.com/user-attachments/assets/8f74b84a-11cd-4e81-bd67-1c0554c4bd16\" />\r\n<img src=\"https://github.com/user-attachments/assets/bde15f76-8f98-40f7-be60-2d56624d1457\" alt=\"img1\" width=\"300\">\r\n\r\n## Opção de transcrever audio automaticamente\r\n  - Transcreve e exibe audios automaticamente\r\n<img width=\"376\" height=\"314\" alt=\"image\" src=\"https://github.com/user-attachments/assets/84c1fba6-883f-48ed-ac26-3ef954c3365d\" />\r\n\r\n⚠️ Obs: usar as duas opções acima juntas pode usar mais tokens de IA\r\n\r\n## Zoom em imagens\r\n<img height=\"500\" alt=\"image\" src=\"https://github.com/user-attachments/assets/2de70618-55cc-41a1-91ff-18109d9e35f1\" />\r\n\r\n## Opção de marcar como lida apenas ao responder (Por usuário)\r\n<img width=\"383\" height=\"53\" alt=\"image\" src=\"https://github.com/user-attachments/assets/84c2048d-5ce2-487b-bbba-ccead39e9a40\" />\r\n\r\n\r\n",
+    "published_at": "2026-02-25T18:45:54Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.391.0"
+  },
+  {
+    "id": 290362773,
+    "tag_name": "v1.382.0",
+    "name": "1.382",
+    "body": "[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000NspJ)\r\n\r\n10, Fev 2026\r\n## Correção de Contatos\r\n   Alguns contatos vinham duplicados, para corrigir, force um Refresh\r\n\r\n## Reumir conversa Ajuste\r\n   Agora Resumir conversa pega 00:00 de sete dias pra trás\r\n\r\n## Fechar atendimento por ação rápida no Omni\r\n<img width=\"409\" height=\"211\" alt=\"image1\" src=\"https://github.com/user-attachments/assets/63632609-1fa1-4b7f-9ad5-5830b4c70368\" />\r\n\r\n\r\n## Novo filtro para atendendos no Omni\r\n<img width=\"398\" height=\"266\" alt=\"image\" src=\"https://github.com/user-attachments/assets/e054b12b-b37d-4882-b254-7a544be34a1c\" />\r\n\r\n\r\n## Omni agora salva o último filtro usado em cache\r\n   Ao atualizar a página o filtro continua\r\n   - Reseta ao limpar o cache\r\n\r\n## Metrics\r\n   - Campos agora são ordenado por ordem alfabética\r\n   - Agora quando é agregado por um campo ID, ele pega o Nome no Objeto relacionado Ex(OwnerId = Owner.Name)\r\n\r\n## X para limpar busca \r\n<img width=\"391\" height=\"180\" alt=\"image3\" src=\"https://github.com/user-attachments/assets/1f115391-8197-4de4-aedd-97a95c940a9d\" />\r\n\r\n\r\n## Enviar resumo da conversa\r\n   - Ao resumir uma conversa com IA é possivel agora enviar diretamente a mensagem para a pessoa\r\n\r\n## Ao Fehcar atendimento em tarefa, as mudanças refletem em tempo real\r\n\r\n## Bugs Atendimento Resolvido\r\n   - Corrigido um bug no atendimento que preenchia o agendamento ao preencher task\r\n   - Quando abria atendimento não mostrava em tempo que foi aberto\r\n   - Ao abrir o atendimento o link do sussurro estava inválido\r\n   - Foi corrigido também bug onde as conversas não lidas estava filtrando errado\r\n\r\n## Botão desconectar\r\n   Corrigido botão desconectar que não aparece para todos os usuários\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "published_at": "2026-02-25T13:35:37Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.382.0"
+  },
+  {
+    "id": 290362228,
+    "tag_name": "v1.366.0",
+    "name": "1.366",
+    "body": "[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000Mtc9)\r\n\r\n5, Fev 2026\r\n\r\n## ⚠️ Correção de agendamentos\r\n\r\n## Melhorias no atendimendo\r\n   O Atendimento foi melhorado, também foi corrigido bugs no atendimento.\r\n\r\n## Registro de ligações. \r\n   Agora é possível ver registro de ligações recebidas pelo Nitzap\r\n ",
+    "published_at": "2026-02-25T13:34:16Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.366.0"
+  },
+  {
+    "id": 290361974,
+    "tag_name": "v1.349.0",
+    "name": "1.349",
+    "body": "# 1.349\r\n\r\n[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000MAn7)\r\n\r\n26, Jan 2026\r\n\r\n## ⚠️ Correção de agendamentos\r\n\r\n## Gemini Compatible\r\n   Nitzap aciona suporte para Google Gemini, capaz de resumir conversas\r\n\r\n   - Obs Resumo de conversas só podem ser usadas com Google Gemini IA\r\n   - É possível resumir ao transferir \r\n   \r\n<img width=\"341\" height=\"91\" alt=\"image\" src=\"https://github.com/user-attachments/assets/9aec9680-6cac-4b34-aaad-51fd6ce062df\" />\r\n\r\n\r\n\r\n ",
+    "published_at": "2026-02-25T13:33:35Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.349.0"
+  },
+  {
+    "id": 290361485,
+    "tag_name": "v1.348.0",
+    "name": "v1.348",
+    "body": "[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000M8dF)\r\n\r\n20, Jan 2026\r\n\r\n## ⚠️ Correção de agendamentos\r\n\r\n## Correção ortográfica com IA\r\n<img width=\"353\" height=\"173\" alt=\"image\" src=\"https://github.com/user-attachments/assets/df34e22f-d4da-4b2b-8875-d8351efd2ab9\" />\r\n\r\n\r\n## Audio para texto com IA\r\n<img width=\"437\" height=\"203\" alt=\"image2\" src=\"https://github.com/user-attachments/assets/26e958b2-e6f3-4b61-8fb4-d0c243be2b1a\" />",
+    "published_at": "2026-02-25T13:32:20Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.348.0"
+  },
+  {
+    "id": 290360981,
+    "tag_name": "v1.347.0",
+    "name": "1.347",
+    "body": "[Clique aqui para instalar o pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj000000M8N7)\r\n\r\n20, Jan 2026\r\n\r\n## ⚠️ Correção de agendamentos\r\n\r\n## Correção ortográfica com IA\r\n<img width=\"353\" height=\"173\" alt=\"image\" src=\"https://github.com/user-attachments/assets/ca13b6c4-732e-4b82-9ff4-931d11d6d92e\" />\r\n\r\n\r\n## Audio para texto com IA\r\n<img width=\"437\" height=\"203\" alt=\"image2\" src=\"https://github.com/user-attachments/assets/d4532070-7a2c-409c-badf-666d9b6ff6fb\" />\r\n\r\n**Full Changelog**: https://github.com/DataGo-Dev/datago-public/compare/1.366...1.347",
+    "published_at": "2026-02-25T13:31:06Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.347.0"
+  }
+]
