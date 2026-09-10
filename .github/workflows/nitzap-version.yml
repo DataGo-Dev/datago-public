@@ -1,0 +1,48 @@
+name: nitzap-version
+
+on:
+  release:
+    types: [published, edited]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nitzap-version
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Resolver release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_RELEASE: ${{ toJSON(github.event.release) }}
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            printf '%s' "$EVENT_RELEASE" > /tmp/release.json
+          else
+            gh api "repos/${{ github.repository }}/releases/latest" > /tmp/release.json
+          fi
+
+      - name: Gerar nitzap-version.json
+        run: python3 .github/scripts/nitzap_version.py /tmp/release.json nitzap-version.json
+
+      - name: Publicar
+        run: |
+          git add nitzap-version.json
+          if git diff --cached --quiet; then
+            echo "Sem mudança para publicar"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "nitzap-version: $(python3 -c "import json; print(json.load(open('nitzap-version.json'))['releaseName'])")"
+          git pull --rebase origin main
+          git push origin main

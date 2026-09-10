@@ -1,0 +1,13 @@
+{
+  "stable": "1.688",
+  "releaseName": "1.688.0",
+  "packageLink": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000A229IAC",
+  "link": "https://datago-dev.github.io/datago-public/static/novidades.html#1.688.0",
+  "notes": [
+    "Reações nos anúncios oficiais do Nitzap",
+    "Ver todas as conversas mesmo com hierarquia ativa",
+    "Melhorias"
+  ],
+  "backendRequired": true,
+  "publishedAt": "2026-09-10T13:28:33Z"
+}
