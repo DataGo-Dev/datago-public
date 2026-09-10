@@ -7,7 +7,6 @@ NOVIDADES_URL = 'https://datago-dev.github.io/datago-public/static/novidades.htm
 INSTALL_LINK_PATTERN = re.compile(r'https?://[^\s)]*installPackage\.apexp\?p0=(04t[A-Za-z0-9]{12,15})')
 PLACEHOLDER_PATTERN = re.compile(r'04tX{3,}', re.IGNORECASE)
 HEADING_PATTERN = re.compile(r'^##\s+(.+?)\s*$', re.MULTILINE)
-BACKEND_REQUIRED_PATTERN = re.compile(r'requer o backend atualizado|backend em vers[aã]o anterior|backend atualizado', re.IGNORECASE)
 MAX_NOTES = 6
 
 
@@ -48,7 +47,6 @@ def build_version_file(release):
         'packageLink': install_link_from(body),
         'link': f'{NOVIDADES_URL}#{version}',
         'notes': notes_from(body),
-        'backendRequired': bool(BACKEND_REQUIRED_PATTERN.search(body)),
         'publishedAt': release.get('published_at'),
     }
 

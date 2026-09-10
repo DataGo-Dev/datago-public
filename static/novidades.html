@@ -234,7 +234,6 @@
         }
 
         .badge-latest { background: var(--green-soft); color: var(--accent-strong); }
-        .badge-backend { background: var(--warn-soft); color: var(--warn-text); }
 
         .release-date {
             color: var(--text-muted);
@@ -440,7 +439,6 @@
         const CACHE_KEY = 'nitzap-releases-cache-v1';
         const CACHE_TTL_MS = 10 * 60 * 1000;
         const INSTALL_URL_PATTERN = /https?:\/\/[^\s)]*installPackage\.apexp\?p0=(04t[A-Za-z0-9]{12,15})/;
-        const BACKEND_REQUIRED_PATTERN = /requer o backend atualizado|backend em vers[aã]o anterior|backend atualizado/i;
 
         const feed = document.getElementById('feed');
         const versionsNav = document.getElementById('versions');
@@ -525,7 +523,6 @@
 
             const badges = [];
             if (index === 0) badges.push('<span class="badge badge-latest">Versão atual</span>');
-            if (BACKEND_REQUIRED_PATTERN.test(body)) badges.push('<span class="badge badge-backend">Requer backend atualizado</span>');
 
             const actions = [];
             if (installUrl) {
