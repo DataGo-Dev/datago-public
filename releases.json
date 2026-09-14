@@ -1,11 +1,11 @@
 [
   {
     "id": 386359696,
-    "tag_name": "v1.689.0",
-    "name": "1.689.0",
+    "tag_name": "v1.692.0",
+    "name": "1.692.0",
     "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000AnlpIAC\r\n\r\n## Página de novidades\r\nAs notas de cada versão agora têm uma página própria, com busca, lista de versões e link direto por versão: https://datago-dev.github.io/datago-public/static/novidades.html. O atalho **Notas de Lançamento** no menu de ajuda do Omni leva para ela.\r\n\r\n## API Apex: usuários de uma conexão\r\nNovo método `nitzap20.NitzapApi.getConnectionMembers(numero)` para quem integra via Apex. Passe o número da conexão e receba os usuários vinculados a ela, com Id e nome do usuário Salesforce e as permissões de cada um (dono, pode enviar, pode receber). É o caminho inverso do `getUserConnections`. Detalhes e exemplo na documentação da API Apex.\r\n",
     "published_at": "2026-09-14T19:42:23Z",
-    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.689.0"
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.692.0"
   },
   {
     "id": 385825998,
