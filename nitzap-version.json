@@ -1,12 +1,11 @@
 {
-  "stable": "1.688",
-  "releaseName": "1.688.0",
-  "packageLink": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000A229IAC",
-  "link": "https://datago-dev.github.io/datago-public/static/novidades.html#1.688.0",
+  "stable": "77.688",
+  "releaseName": "untagged-e77b688c902da5cde4b8",
+  "packageLink": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000AnlpIAC",
+  "link": "https://datago-dev.github.io/datago-public/static/novidades.html#untagged-e77b688c902da5cde4b8",
   "notes": [
-    "Reações nos anúncios oficiais do Nitzap",
-    "Ver todas as conversas mesmo com hierarquia ativa",
-    "Melhorias"
+    "Página de novidades",
+    "API Apex: usuários de uma conexão"
   ],
-  "publishedAt": "2026-09-10T13:28:33Z"
+  "publishedAt": "2026-09-14T19:42:23Z"
 }
