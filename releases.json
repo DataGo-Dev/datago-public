@@ -1,5 +1,13 @@
 [
   {
+    "id": 389152719,
+    "tag_name": "v1.693.0",
+    "name": "1.693.0",
+    "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000B1X3IAK\r\n\r\n## Canal principal do chat com canal vinculado\r\nNas conexões da API oficial que têm um canal de envio vinculado (Api WEB Nitzap), agora dá para escolher qual dos dois é o canal principal das mensagens do chat. Em **Gerenciar conexão → engrenagem do canal vinculado**, o novo campo **Canal principal do chat** aceita:\r\n- **Canal vinculado (Api WEB)**: comportamento de sempre. As mensagens saem pela Api WEB e, a cada X, 1 sai pela API oficial.\r\n- **API oficial (Meta)**: modo invertido. As mensagens saem pela API oficial e, a cada X, 1 sai pela Api WEB.\r\n\r\nO campo de intercalação continua o mesmo (vazio = 20, 0 desativa) e o texto dele muda conforme o canal escolhido. Em qualquer modo, se o canal da vez não conseguir enviar, a mensagem sai pelo outro. Com a API oficial como principal e a janela de 24h da Meta fechada, as mensagens acabam saindo pela Api WEB até o cliente responder. Templates, primeiro contato e campanhas seguem sempre pela API oficial.\r\n\r\n## Contagem de envios por canal\r\nO Nitzap passou a somar, por conexão e por dia, quantas mensagens saíram pela API oficial (Meta), quantas pela Api WEB (não oficial, incluindo o canal vinculado das conexões oficiais) e quantas foram enviadas fora do Nitzap (por exemplo, pelo celular). A soma é atualizada a cada envio e não pesa nas conversas nem no histórico. Em **Configurações → Logs → Envios por canal** há a tabela por dia e conexão, com filtro de datas e total do período. Em **Gerenciar conexão → engrenagem do canal vinculado** aparece o resumo dos últimos 30 dias daquela conexão. Na primeira subida da versão nova do backend, o histórico anterior é contabilizado uma única vez a partir das mensagens já existentes.\r\n\r\n## Melhorias\r\n- Nas Configurações do Nitzap, a aba **Eventos** passou a ficar dentro de **Logs**, ao lado de \"Log de disparos\" e \"Origem das mensagens\". Nada mudou no conteúdo, só o lugar.\r\n",
+    "published_at": "2026-09-15T19:45:51Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.693.0"
+  },
+  {
     "id": 386359696,
     "tag_name": "v1.692.0",
     "name": "1.692.0",
