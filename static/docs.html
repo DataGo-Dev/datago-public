@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação do Nitzap</title>
+    <meta name="description" content="Guias de configuração e referência técnica do Nitzap.">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #f3f7f6;
+            --surface: #ffffff;
+            --surface-border: rgba(15, 42, 40, 0.08);
+            --text: #0d2b28;
+            --text-muted: #5c7370;
+            --accent: #056764;
+            --accent-strong: #04514e;
+            --accent-soft: #d6f2f0;
+            --green: #25d366;
+            --green-soft: rgba(37, 211, 102, 0.16);
+            --code-bg: rgba(5, 103, 100, 0.08);
+            --shadow: 0 18px 40px -24px rgba(5, 44, 42, 0.35), 0 4px 12px -8px rgba(5, 44, 42, 0.2);
+            --hero-bg: #04322f;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #071615;
+                --surface: #10201f;
+                --surface-border: rgba(255, 255, 255, 0.09);
+                --text: #eaf5f3;
+                --text-muted: #9db5b1;
+                --accent: #3ddc97;
+                --accent-strong: #6ae7b3;
+                --accent-soft: rgba(61, 220, 151, 0.14);
+                --green: #25d366;
+                --green-soft: rgba(37, 211, 102, 0.18);
+                --code-bg: rgba(61, 220, 151, 0.12);
+                --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.7), 0 4px 12px -8px rgba(0, 0, 0, 0.5);
+                --hero-bg: #04322f;
+            }
+        }
+
+        * { box-sizing: border-box; }
+
+        [hidden] { display: none !important; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); }
+
+        .hero {
+            background-color: var(--hero-bg);
+            background-image:
+                radial-gradient(120% 90% at 12% 0%, #0a8f7a 0%, rgba(10, 143, 122, 0) 55%),
+                radial-gradient(100% 80% at 92% 8%, #25d366 0%, rgba(37, 211, 102, 0) 50%),
+                radial-gradient(140% 120% at 50% 120%, #032523 0%, rgba(3, 37, 35, 0) 60%);
+            color: #eaf5f3;
+            padding: 40px 24px 48px;
+        }
+
+        .hero-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.2px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.25);
+        }
+
+        .hero h1 {
+            margin: 22px 0 8px;
+            font-size: clamp(30px, 4vw, 42px);
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 620px;
+            font-size: 17px;
+            color: rgba(234, 245, 243, 0.82);
+        }
+
+        .search {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 10px 14px;
+            backdrop-filter: blur(6px);
+        }
+
+        .search svg { flex: none; opacity: 0.8; }
+
+        .search input {
+            flex: 1;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .search input::placeholder { color: rgba(234, 245, 243, 0.6); }
+
+        .layout {
+            max-width: 1120px;
+            margin: -22px auto 0;
+            padding: 0 24px 64px;
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .docs-nav {
+            position: sticky;
+            top: 20px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 14px 10px;
+            max-height: calc(100vh - 40px);
+            overflow: auto;
+        }
+
+        .nav-title, .nav-group {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            padding: 4px 10px 8px;
+        }
+
+        .nav-group { margin-top: 10px; }
+
+        .docs-nav a {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1.35;
+        }
+
+        .docs-nav a:hover { background: var(--accent-soft); }
+
+        .docs-nav a.active {
+            background: var(--accent-soft);
+            color: var(--accent-strong);
+            font-weight: 600;
+        }
+
+        .sections {
+            margin: 2px 0 6px 12px;
+            padding-left: 8px;
+            border-left: 2px solid var(--surface-border);
+        }
+
+        .sections a {
+            padding: 5px 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sections a.active {
+            background: transparent;
+            color: var(--accent-strong);
+        }
+
+        .content { display: grid; gap: 22px; min-width: 0; }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 22px 24px;
+            color: var(--text);
+            text-decoration: none;
+            min-width: 0;
+        }
+
+        .card:hover { border-color: var(--accent); }
+
+        .card h2 {
+            margin: 0;
+            font-size: 19px;
+            line-height: 1.3;
+            letter-spacing: -0.2px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-muted);
+            flex: 1;
+        }
+
+        .card small {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .doc {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 28px 32px 24px;
+            min-width: 0;
+        }
+
+        .doc-head h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.2;
+            letter-spacing: -0.4px;
+        }
+
+        .doc-head h1 a { color: inherit; text-decoration: none; }
+        .doc-head h1 a:hover { text-decoration: underline; }
+
+        .doc-date {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin: 8px 0 22px;
+        }
+
+        .doc-body { font-size: 16px; }
+        .doc-body > :first-child { margin-top: 0; }
+
+        .doc-body h1, .doc-body h2 {
+            margin: 32px 0 12px;
+            font-size: 21px;
+            line-height: 1.3;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--surface-border);
+        }
+
+        .doc-body h3 {
+            margin: 24px 0 10px;
+            font-size: 17px;
+            line-height: 1.3;
+        }
+
+        .doc-body h4 { margin: 20px 0 8px; font-size: 16px; }
+
+        .heading-anchor {
+            margin-left: 8px;
+            font-weight: 400;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .doc-body h1:hover .heading-anchor,
+        .doc-body h2:hover .heading-anchor,
+        .doc-body h3:hover .heading-anchor { opacity: 0.7; }
+
+        .doc-body p { margin: 0 0 12px; }
+
+        .doc-body ul, .doc-body ol { padding-left: 22px; margin: 0 0 12px; }
+        .doc-body li { margin: 4px 0; }
+
+        .doc-body hr {
+            border: 0;
+            border-top: 1px solid var(--surface-border);
+            margin: 28px 0;
+        }
+
+        .doc-body img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 14px 0;
+            border-radius: 10px;
+            border: 1px solid var(--surface-border);
+        }
+
+        .doc-body code {
+            background: var(--code-bg);
+            padding: 1px 6px;
+            border-radius: 5px;
+            font-size: 0.92em;
+        }
+
+        .doc-body pre {
+            background: var(--code-bg);
+            padding: 12px 14px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 0 0 14px;
+        }
+
+        .doc-body pre code { background: transparent; padding: 0; font-size: 0.88em; }
+
+        .doc-body table {
+            border-collapse: collapse;
+            display: block;
+            overflow-x: auto;
+            max-width: 100%;
+            margin: 0 0 12px;
+        }
+
+        .doc-body th, .doc-body td {
+            border: 1px solid var(--surface-border);
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .doc-body blockquote {
+            margin: 0 0 12px;
+            padding: 8px 14px;
+            border-left: 3px solid var(--accent);
+            background: var(--accent-soft);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .doc-foot {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 26px;
+            padding-top: 16px;
+            border-top: 1px solid var(--surface-border);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 9px;
+            border: 1px solid var(--surface-border);
+            background: transparent;
+            color: var(--text);
+            font: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover { background: var(--accent-soft); border-color: transparent; }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+
+        .btn.copied { color: var(--accent-strong); }
+
+        .state {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 36px 32px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .state a { font-weight: 600; }
+
+        .skeleton {
+            height: 240px;
+            border-radius: 16px;
+            background: linear-gradient(90deg, var(--surface) 0%, var(--accent-soft) 50%, var(--surface) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+            border: 1px solid var(--surface-border);
+        }
+
+        @keyframes shimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+
+        .foot {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px 40px;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+        }
+
+        .foot a { color: var(--text-muted); }
+
+        @media (max-width: 820px) {
+            .hero { padding: 28px 18px 40px; }
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+                padding: 0 14px 48px;
+                gap: 16px;
+            }
+            .docs-nav {
+                position: static;
+                max-height: none;
+                min-width: 0;
+                display: flex;
+                gap: 4px;
+                overflow-x: auto;
+                padding: 10px;
+            }
+            .nav-title, .nav-group, .sections { display: none; }
+            .docs-nav a { flex: none; padding: 6px 12px; white-space: nowrap; }
+            .doc { padding: 20px 18px 18px; border-radius: 12px; }
+            .doc-head h1 { font-size: 23px; }
+            .doc-body h1, .doc-body h2 { font-size: 19px; }
+        }
+
+        @media print {
+            .hero { background: none; color: #000; padding: 0 0 12px; }
+            .brand { color: #000; }
+            .hero p, .search, .docs-nav, .doc-foot, .foot, .heading-anchor { display: none; }
+            .layout { display: block; margin: 0; padding: 0; }
+            .doc { box-shadow: none; border: 0; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-inner">
+            <a class="brand" href="#"><span class="brand-dot"></span>Nitzap</a>
+            <h1>Documentação</h1>
+            <p>Guias de configuração e referência técnica do Nitzap para o seu Salesforce.</p>
+            <label class="search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+                <input id="search" type="search" placeholder="Buscar na documentação, por exemplo: template, Apex, bot" autocomplete="off">
+            </label>
+        </div>
+    </header>
+
+    <main class="layout">
+        <nav class="docs-nav" id="docs-nav" aria-label="Documentos">
+            <div class="nav-title">Documentos</div>
+        </nav>
+        <section class="content" id="content" aria-live="polite">
+            <div class="skeleton"></div>
+        </section>
+    </main>
+
+    <footer class="foot">
+        <span>Nitzap é um produto DataGo.</span>
+        <a href="novidades.html">Novidades por versão</a>
+        <a href="https://github.com/DataGo-Dev/datago-public/tree/main/docs" target="_blank" rel="noopener">Fontes no GitHub</a>
+    </footer>
+
+    <script>
+        const DOCS_FILE = '../docs.json';
+        const DOCS_BASE_URL = new URL('../docs/', location.href);
+        const GITHUB_DOC_PATTERN = /^https?:\/\/github\.com\/DataGo-Dev\/datago-public\/blob\/[^/]+\/docs\/(.+?\.md)(#.*)?$/i;
+        const PAGE_TITLE = document.title;
+
+        const content = document.getElementById('content');
+        const docsNav = document.getElementById('docs-nav');
+        const searchInput = document.getElementById('search');
+
+        let docsBySlug = new Map();
+        let currentSlug = null;
+
+        marked.setOptions({ gfm: true, breaks: true });
+
+        async function loadDocs() {
+            const response = await fetch(DOCS_FILE, { cache: 'no-cache' });
+            if (!response.ok) throw new Error('docs.json respondeu ' + response.status);
+            return response.json();
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+        }
+
+        function escapeHtml(text) {
+            return String(text).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+        }
+
+        function normalize(text) {
+            return (text || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+        }
+
+        function slugify(text) {
+            return normalize(text).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'secao';
+        }
+
+        function humanize(name) {
+            return name.replace(/[_-]+/g, ' ').replace(/^\w/, ch => ch.toUpperCase());
+        }
+
+        function renderMarkdown(markdown) {
+            const html = marked.parse(markdown);
+            return DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
+        }
+
+        function docSlugFromHref(href, doc) {
+            const github = href.match(GITHUB_DOC_PATTERN);
+            if (github) return github[1].replace(/\.md$/i, '');
+            if (/^[a-z]+:/i.test(href) || href.startsWith('#')) return null;
+            const resolved = new URL(href, new URL(doc.path, DOCS_BASE_URL));
+            if (!resolved.href.startsWith(DOCS_BASE_URL.href) || !/\.md$/i.test(resolved.pathname)) return null;
+            return decodeURIComponent(resolved.href.slice(DOCS_BASE_URL.href.length)).replace(/\.md$/i, '');
+        }
+
+        function rewriteLinks(container, doc) {
+            container.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                const slug = docSlugFromHref(href, doc);
+                if (slug && docsBySlug.has(slug)) {
+                    link.href = '#' + slug;
+                    return;
+                }
+                if (/^https?:/i.test(href)) {
+                    link.target = '_blank';
+                    link.rel = 'noopener';
+                }
+            });
+        }
+
+        function fitImages(container, doc) {
+            container.querySelectorAll('img').forEach(img => {
+                const src = img.getAttribute('src') || '';
+                if (!/^[a-z]+:/i.test(src)) img.src = new URL(src, new URL(doc.path, DOCS_BASE_URL)).href;
+                img.loading = 'lazy';
+                img.removeAttribute('width');
+                img.removeAttribute('height');
+            });
+        }
+
+        function assignHeadingIds(container, doc) {
+            const used = new Set();
+            container.querySelectorAll('h1, h2, h3').forEach(heading => {
+                let id = slugify(heading.textContent);
+                let attempt = 1;
+                while (used.has(id)) id = `${slugify(heading.textContent)}-${++attempt}`;
+                used.add(id);
+                heading.id = id;
+                heading.insertAdjacentHTML('beforeend', `<a class="heading-anchor" href="#${doc.slug}/${id}" aria-label="Link para esta seção">#</a>`);
+            });
+        }
+
+        function buildDocBody(doc) {
+            const body = document.createElement('div');
+            body.className = 'doc-body';
+            body.innerHTML = renderMarkdown(doc.body);
+            assignHeadingIds(body, doc);
+            rewriteLinks(body, doc);
+            fitImages(body, doc);
+            return body;
+        }
+
+        function buildDoc(doc) {
+            const article = document.createElement('article');
+            article.className = 'doc';
+            article.innerHTML = `
+                <div class="doc-head"><h1><a href="#${doc.slug}">${escapeHtml(doc.title)}</a></h1></div>
+                <p class="doc-date">Atualizado em ${formatDate(doc.updatedAt)}</p>
+            `;
+            article.appendChild(buildDocBody(doc));
+            article.insertAdjacentHTML('beforeend', `
+                <div class="doc-foot">
+                    <button class="btn btn-primary" type="button" data-copy="${doc.slug}">Copiar link</button>
+                    <a class="btn" href="${doc.html_url}" target="_blank" rel="noopener">Ver no GitHub</a>
+                    <a class="btn" href="#">Todos os documentos</a>
+                </div>
+            `);
+            return article;
+        }
+
+        function buildCard(doc) {
+            const card = document.createElement('a');
+            card.className = 'card';
+            card.href = '#' + doc.slug;
+            card.dataset.slug = doc.slug;
+            card.innerHTML = `
+                <h2>${escapeHtml(doc.title)}</h2>
+                <p>${escapeHtml(doc.summary)}</p>
+                <small>Atualizado em ${formatDate(doc.updatedAt)}</small>
+            `;
+            return card;
+        }
+
+        function buildNav(docs) {
+            let lastGroup = null;
+            docs.forEach(doc => {
+                if (doc.group && doc.group !== lastGroup) {
+                    docsNav.insertAdjacentHTML('beforeend', `<div class="nav-group">${escapeHtml(humanize(doc.group))}</div>`);
+                }
+                lastGroup = doc.group;
+                const link = document.createElement('a');
+                link.href = '#' + doc.slug;
+                link.dataset.slug = doc.slug;
+                link.textContent = doc.title;
+                docsNav.appendChild(link);
+            });
+        }
+
+        function buildSectionsNav(doc, article) {
+            const sections = document.createElement('div');
+            sections.className = 'sections';
+            article.querySelectorAll('.doc-body h1, .doc-body h2').forEach(heading => {
+                const link = document.createElement('a');
+                link.href = `#${doc.slug}/${heading.id}`;
+                link.dataset.heading = heading.id;
+                link.textContent = heading.textContent.replace(/#$/, '').trim();
+                sections.appendChild(link);
+            });
+            return sections;
+        }
+
+        function updateNav(doc, article) {
+            docsNav.querySelectorAll('.sections').forEach(node => node.remove());
+            docsNav.querySelectorAll('a[data-slug]').forEach(link => link.classList.toggle('active', !!doc && link.dataset.slug === doc.slug));
+            if (!doc) return;
+            const sections = buildSectionsNav(doc, article);
+            if (sections.childElementCount === 0) return;
+            docsNav.querySelector(`a[data-slug="${doc.slug}"]`).insertAdjacentElement('afterend', sections);
+            watchActiveSection(article, sections);
+        }
+
+        function watchActiveSection(article, sections) {
+            const links = Array.from(sections.querySelectorAll('a'));
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    links.forEach(link => link.classList.toggle('active', link.dataset.heading === entry.target.id));
+                });
+            }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+            article.querySelectorAll('.doc-body h1, .doc-body h2').forEach(heading => observer.observe(heading));
+        }
+
+        function renderState(message) {
+            content.innerHTML = `<div class="state">${message}</div>`;
+        }
+
+        function renderHome() {
+            currentSlug = null;
+            document.title = PAGE_TITLE;
+            const cards = document.createElement('div');
+            cards.className = 'cards';
+            docsBySlug.forEach(doc => cards.appendChild(buildCard(doc)));
+            content.innerHTML = '';
+            content.appendChild(cards);
+            updateNav(null);
+            applySearch();
+        }
+
+        function renderDoc(doc) {
+            currentSlug = doc.slug;
+            document.title = `${doc.title} · ${PAGE_TITLE}`;
+            const article = buildDoc(doc);
+            content.innerHTML = '';
+            content.appendChild(article);
+            updateNav(doc, article);
+        }
+
+        function renderNotFound() {
+            currentSlug = null;
+            document.title = PAGE_TITLE;
+            updateNav(null);
+            renderState('Esse documento não existe mais ou mudou de endereço. <a href="#">Ver todos os documentos</a>');
+        }
+
+        function resolveHash() {
+            const key = decodeURIComponent(location.hash.slice(1));
+            if (!key) return { home: true };
+            if (docsBySlug.has(key)) return { slug: key };
+            const separator = key.lastIndexOf('/');
+            if (separator > 0 && docsBySlug.has(key.slice(0, separator))) {
+                return { slug: key.slice(0, separator), heading: key.slice(separator + 1) };
+            }
+            return { notFound: true };
+        }
+
+        function scrollToHeading(id) {
+            const target = document.getElementById(id);
+            if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+
+        function route() {
+            const target = resolveHash();
+            if (target.home) return renderHome();
+            if (target.notFound) return renderNotFound();
+            if (target.slug !== currentSlug) renderDoc(docsBySlug.get(target.slug));
+            if (target.heading) scrollToHeading(target.heading);
+            else if (target.slug !== currentSlug) window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        function applySearch() {
+            const query = normalize(searchInput.value.trim());
+            if (query && currentSlug !== null) {
+                history.replaceState(null, '', location.pathname);
+                renderHome();
+                return;
+            }
+            let visible = 0;
+            docsBySlug.forEach(doc => {
+                const matches = !query || doc.search.includes(query);
+                if (matches) visible++;
+                content.querySelectorAll(`.card[data-slug="${doc.slug}"]`).forEach(card => card.hidden = !matches);
+                docsNav.querySelectorAll(`a[data-slug="${doc.slug}"]`).forEach(link => link.hidden = !matches);
+            });
+            const empty = document.getElementById('empty-state');
+            if (empty) empty.remove();
+            if (visible === 0 && currentSlug === null) {
+                content.insertAdjacentHTML('beforeend', '<div class="state" id="empty-state">Nenhum documento fala sobre isso. Tente outra palavra.</div>');
+            }
+        }
+
+        function copyLink(button) {
+            const url = location.origin + location.pathname + '#' + button.dataset.copy;
+            navigator.clipboard.writeText(url).then(() => {
+                button.textContent = 'Link copiado';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copiar link';
+                    button.classList.remove('copied');
+                }, 1800);
+            });
+        }
+
+        async function init() {
+            let docs;
+            try {
+                docs = await loadDocs();
+            } catch (error) {
+                renderState('Não foi possível carregar a documentação agora. Veja as <a href="https://github.com/DataGo-Dev/datago-public/tree/main/docs" target="_blank" rel="noopener">fontes no GitHub</a> ou tente de novo em instantes.');
+                return;
+            }
+
+            if (docs.length === 0) {
+                renderState('Ainda não há documentos publicados.');
+                return;
+            }
+
+            docsBySlug = new Map(docs.map(doc => [doc.slug, { ...doc, search: normalize(doc.title + ' ' + doc.body) }]));
+            buildNav(docs);
+
+            content.addEventListener('click', event => {
+                const button = event.target.closest('button[data-copy]');
+                if (button) copyLink(button);
+            });
+            searchInput.addEventListener('input', applySearch);
+            window.addEventListener('hashchange', route);
+            route();
+        }
+
+        init();
+    </script>
+</body>
+</html>
