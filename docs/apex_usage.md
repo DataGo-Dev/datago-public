@@ -524,6 +524,41 @@ Como a busca funciona:
 
 ---
 
+## 13. Avisar o Omni de um atendimento criado por código (`notifyServiceDeskChange`)
+
+Quando um atendente inicia, transfere ou encerra um atendimento pela tela do Nitzap, o Omni de todo mundo atualiza na hora, porque o chat publica um evento no canal da conexão. Um bot, um Flow ou um agente que cria a `Task` de atendimento direto no banco não dispara esse evento, e o Omni só percebe no próximo recarregar. `notifyServiceDeskChange` publica o mesmo evento a partir de uma `Task`:
+
+```apex
+Task atendimento = new Task(
+    WhoId = contato.Id,
+    OwnerId = filaComercial.Id,                          // usuário ou fila
+    Subject = 'Atendimento via bot',
+    nitzap20__TaskType__c = 'SERVICE_DESK',
+    nitzap20__Connection_Number__c = '5514981770936',    // obrigatório
+    nitzap20__Date_Time_Start_Chat__c = System.now()
+);
+insert atendimento;
+
+nitzap20.NitzapApi.notifyServiceDeskChangeAsync(atendimento.Id);  // retorna o Id do job
+```
+
+O método lê a `Task`, monta o evento com o dono atual (usuário ou fila), o registro vinculado (`WhoId`/`WhatId`) e a conexão, e publica no canal dessa conexão. Todo usuário dela com o Omni aberto recebe. A ação é deduzida do estado da `Task`:
+
+| Estado da Task | Ação publicada | Efeito no Omni |
+|---|---|---|
+| Aberta, dona é usuário, nunca transferida | `create` | Conversa entra em **Meus** e **Atendendo** do dono, com o aviso "Novo atendimento para você" |
+| Aberta, dona é usuário, `nitzap20__Date_Transfer_service__c` preenchido | `transfer` | Mesmo efeito de `create` |
+| Aberta, dona é fila | `transfer_to_group` | Conversa entra em **Fila** dos membros e o item mostra "Na fila X" |
+| `IsClosed` ou `nitzap20__Date_Time_End_Chat__c` preenchido | `close` | Conversa sai dos filtros de atendimento |
+
+Regras:
+
+- A `Task` precisa ter `nitzap20__TaskType__c = 'SERVICE_DESK'` e `nitzap20__Connection_Number__c` com o número da conexão do atendimento. Sem isso lança `NitzapApiException`. Com dona usuário e número em branco, o método ainda tenta o `nitzap20__WhatsAppId__c` legado do usuário.
+- É 1 callout com as credenciais do usuário que executa. Vale a regra de DML da seção 5: se a transação já fez `insert`/`update` (o caso normal, você acabou de criar a `Task`), use `notifyServiceDeskChangeAsync`, que enfileira um Queueable. A versão síncrona serve quando a `Task` foi criada em outra transação.
+- O método não altera a `Task` e não manda mensagem no WhatsApp. Se quiser o "Fulano iniciou o atendimento" no chat, mande com `sendText`.
+
+---
+
 ## Tratamento de erros — resumo
 
 | Situação | Comportamento |
@@ -548,7 +583,7 @@ try {
 ## Limites e boas práticas
 
 - Cada `sendBatch`/`sendMetaTemplateBatch` consome 1 callout por remetente (limite Salesforce: 100 callouts por transação). Mensagens com `fileId` consomem 2 callouts extras cada (presigned URL + upload).
-- Em triggers e flows com DML, use sempre `sendBatchAsync`.
+- Em triggers e flows com DML, use sempre `sendBatchAsync` e `notifyServiceDeskChangeAsync`.
 - Cada página de `getMessages` é 1 callout. Para varrer conversas longas, prefira Queueable/Batch encadeado guardando o `sequence` — `take` alto com mídia e mensagem citada consome heap rápido.
 - Templates Meta só enviam por conexão WABA/Coex e com template `APPROVED`.
 - Para automações declarativas (Flow), continue usando a ação **"NITZAP 2.0: Enviar Mensagem WhatsApp"** — esta API é a superfície para código Apex.
