@@ -102,9 +102,37 @@ Se o seu bot cria a tarefa de atendimento direto no Salesforce, a conversa só a
 nitzap20.NitzapApi.notifyServiceDeskChangeAsync(atendimento.Id);
 ```
 
+O que vai no parâmetro é o **Id da Task do atendimento** — não o do contato, nem o da conversa. Qualquer outro Id lança `NitzapApiException`.
+
 Ele publica o mesmo aviso que a tela do chat manda ao iniciar, transferir ou encerrar um atendimento. A ação é deduzida da própria tarefa: dona usuário abre atendimento, dona fila manda para a fila e tarefa encerrada fecha o atendimento. A versão assíncrona é a que serve depois de criar ou atualizar a tarefa na mesma transação.
 
-A tarefa precisa ter o tipo `SERVICE_DESK` e o campo `nitzap20__Connection_Number__c` com o número da conexão. Os detalhes estão na seção 13 de:
+## Como o bot deve criar o atendimento
+
+O atendimento é uma `Task`, e três campos precisam estar preenchidos na criação para o Nitzap reconhecer e conseguir ler a conversa nela:
+
+| Campo | Valor | Por quê |
+|---|---|---|
+| `nitzap20__TaskType__c` | `SERVICE_DESK` | É o que marca a tarefa como atendimento. Sem isso o Nitzap não a trata como atendimento e `notifyServiceDeskChange` lança erro |
+| `nitzap20__Connection_Number__c` | número da conexão que recebeu a mensagem | Diz de qual conexão é o atendimento. É por ele que o aviso chega no Omni certo e que o chat sabe qual número usar |
+| `nitzap20__Date_Time_Start_Chat__c` | momento em que o atendimento começou | Marca o início do histórico. É a partir dessa data que o Nitzap lê as mensagens da conversa dentro da tarefa; em branco, a tarefa abre sem histórico |
+
+```apex
+Task atendimento = new Task(
+    WhoId = contato.Id,
+    OwnerId = filaComercial.Id,
+    Subject = 'Atendimento via bot',
+    nitzap20__TaskType__c = 'SERVICE_DESK',
+    nitzap20__Connection_Number__c = '5514981770936',
+    nitzap20__Date_Time_Start_Chat__c = System.now()
+);
+insert atendimento;
+
+nitzap20.NitzapApi.notifyServiceDeskChangeAsync(atendimento.Id);
+```
+
+O dono pode ser um usuário ou uma fila: usuário abre o atendimento direto para ele, fila coloca a conversa na fila para alguém puxar.
+
+Os detalhes estão na seção 13 de:
 https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
 
 Para personalizar ainda mais seu bot leia:

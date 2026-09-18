@@ -554,7 +554,9 @@ O método lê a `Task`, monta o evento com o dono atual (usuário ou fila), o re
 
 Regras:
 
+- O parâmetro é o **Id da `Task` do atendimento** — não o do contato nem o do registro vinculado. Outro tipo de Id lança `NitzapApiException`.
 - A `Task` precisa ter `nitzap20__TaskType__c = 'SERVICE_DESK'` e `nitzap20__Connection_Number__c` com o número da conexão do atendimento. Sem isso lança `NitzapApiException`. Com dona usuário e número em branco, o método ainda tenta o `nitzap20__WhatsAppId__c` legado do usuário.
+- Preencha também `nitzap20__Date_Time_Start_Chat__c` na criação: é o início do histórico, a data a partir da qual o Nitzap lê as mensagens da conversa dentro da tarefa. Em branco, o atendimento abre sem histórico. O método não exige o campo, mas a tarefa fica sem conversa para o atendente.
 - É 1 callout com as credenciais do usuário que executa. Vale a regra de DML da seção 5: se a transação já fez `insert`/`update` (o caso normal, você acabou de criar a `Task`), use `notifyServiceDeskChangeAsync`, que enfileira um Queueable. A versão síncrona serve quando a `Task` foi criada em outra transação.
 - O método não altera a `Task` e não manda mensagem no WhatsApp. Se quiser o "Fulano iniciou o atendimento" no chat, mande com `sendText`.
 
