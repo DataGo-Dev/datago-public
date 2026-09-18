@@ -71,6 +71,42 @@ Ao escolher coloque o Agente ou Bot no campo Agentforce: agente desta conexão
 Pronto, você configurou seu Bot!
 
 Agora quando Alguém enviar mensagem para seu Bot, ele entrará em ação. 
+
+# O que o Nitzap envia para o bot
+
+O Nitzap manda os dados do contato no começo da conversa, uma única vez por sessão. O que muda é a forma, conforme o tipo escolhido.
+
+## Einstein Bot: variáveis
+
+Ao abrir a sessão, o Nitzap envia estas variáveis. Crie cada uma no seu bot, do tipo texto e com exatamente o mesmo nome:
+
+| Variável | Conteúdo |
+|---|---|
+| `nitzap_contact_phone` | Telefone do contato no WhatsApp |
+| `nitzap_contact_name` | Nome que o contato usa no WhatsApp |
+| `nitzap_connection_number` | Número da conexão que recebeu a mensagem |
+
+Variável sem valor não é enviada. Por exemplo, um contato sem nome no WhatsApp chega só com telefone e número da conexão.
+
+## Agentforce: mensagem de contexto
+
+O Agentforce não recebe variáveis. Em vez disso, logo depois de abrir a sessão e antes da primeira mensagem do cliente, o Nitzap envia uma mensagem de contexto com os mesmos três dados: nome do contato, telefone no WhatsApp e número da conexão. Ela começa avisando que é contexto do sistema e que não deve ser respondida, e a resposta do agente a ela é descartada, então o cliente nunca a vê.
+
+Uma sessão nova começa quando o contato fala pela primeira vez, quando a sessão anterior fica ociosa pelo tempo configurado na conexão, ou quando o atendimento é fechado no Nitzap. A cada sessão nova o contexto é enviado de novo.
+
+# Avisando o Nitzap quando o bot abre ou transfere um atendimento
+
+Se o seu bot cria a tarefa de atendimento direto no Salesforce, a conversa só aparece como atendida no Omni de quem estiver com a tela aberta depois de recarregar. Para avisar na hora, chame:
+
+```apex
+nitzap20.NitzapApi.notifyServiceDeskChangeAsync(atendimento.Id);
+```
+
+Ele publica o mesmo aviso que a tela do chat manda ao iniciar, transferir ou encerrar um atendimento. A ação é deduzida da própria tarefa: dona usuário abre atendimento, dona fila manda para a fila e tarefa encerrada fecha o atendimento. A versão assíncrona é a que serve depois de criar ou atualizar a tarefa na mesma transação.
+
+A tarefa precisa ter o tipo `SERVICE_DESK` e o campo `nitzap20__Connection_Number__c` com o número da conexão. Os detalhes estão na seção 13 de:
+https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
+
 Para personalizar ainda mais seu bot leia:
 https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
 
