@@ -1,11 +1,11 @@
 [
   {
     "id": 393248629,
-    "tag_name": "untagged-06008d54d55d3e423f53",
+    "tag_name": "v1.704.0",
     "name": "1.704.0",
     "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000DTvRIAW\r\n\r\n## Usuário principal da conexão\r\nEm **Gerenciar conexão**, na lista de membros, cada pessoa ganhou uma estrela. Clicando nela, esse membro vira o **usuário principal** da conexão e passa a aparecer com o selo *Principal*. Só existe um principal por conexão: marcar outro troca, e clicar de novo na estrela remove.\r\n\r\nServe para as mensagens enviadas por fora do Nitzap, direto no celular, no WhatsApp Web ou no app do WhatsApp Business. Até agora elas entravam na conversa sem dono. Com um usuário principal definido, o Nitzap atribui essas mensagens a ele, como se tivessem saído do Salesforce em nome dele, e ele passa a constar como o último usuário que falou naquela conversa. Vale tanto para conexões por QR Code quanto para a API oficial da Meta com coexistência.\r\n\r\nSem usuário principal, nada muda. Mensagens antigas, trazidas pela sincronização de histórico, não são atribuídas. Remover o membro da conexão também tira dele a marca de principal.\r\n\r\n## API Apex: quem enviou cada mensagem\r\nO `NitzapApi.ChatMessage`, devolvido por `getMessages` e pelas demais leituras de histórico, ganhou o campo `salesforceUserId` com o Id do usuário Salesforce que enviou a mensagem. Em mensagens enviadas por fora do Nitzap ele traz o usuário principal da conexão, quando houver. Em mensagens recebidas, ou enviadas antes desta versão, vem `null`.\r\n\r\n## Melhorias\r\n- Cada mensagem enviada agora guarda qual usuário do Salesforce a enviou. Antes só a conversa guardava o último usuário, então numa conversa atendida por várias pessoas não dava para saber quem mandou cada mensagem.\r\n",
     "published_at": "2026-09-22T12:42:52Z",
-    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/untagged-06008d54d55d3e423f53"
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.704.0"
   },
   {
     "id": 390749344,
