@@ -1,11 +1,12 @@
 {
-  "stable": "77.688",
-  "releaseName": "untagged-e77b688c902da5cde4b8",
-  "packageLink": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000AnlpIAC",
-  "link": "https://datago-dev.github.io/datago-public/static/novidades.html#untagged-e77b688c902da5cde4b8",
+  "stable": "6008.54",
+  "releaseName": "untagged-06008d54d55d3e423f53",
+  "packageLink": "https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000DTvRIAW",
+  "link": "https://datago-dev.github.io/datago-public/static/novidades.html#untagged-06008d54d55d3e423f53",
   "notes": [
-    "Página de novidades",
-    "API Apex: usuários de uma conexão"
+    "Usuário principal da conexão",
+    "API Apex: quem enviou cada mensagem",
+    "Melhorias"
   ],
-  "publishedAt": "2026-09-14T19:42:23Z"
+  "publishedAt": "2026-09-22T12:42:52Z"
 }
