@@ -1,5 +1,13 @@
 [
   {
+    "id": 394973005,
+    "tag_name": "v1.711.0",
+    "name": "1.711.0",
+    "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000FSwrIAG\r\n\r\n## Melhorias\r\n- No **Novo disparo** da campanha, o passo de envio já abre com **Agendar** selecionado. Disparar na hora continua a um clique, em \"Enviar agora\".\r\n- Na lista de disparos da campanha, o nome do disparo virou link para a tarefa correspondente.\r\n",
+    "published_at": "2026-09-23T19:40:22Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.711.0"
+  },
+  {
     "id": 393740168,
     "tag_name": "v.1.710.0",
     "name": "1.710.0",
