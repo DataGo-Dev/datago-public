@@ -577,7 +577,7 @@ Id jobId = nitzap20.NitzapApi.closeServiceDesk(
 O que acontece:
 
 1. Na sua transação: valida a `Task` (tipo `SERVICE_DESK` e `nitzap20__Connection_Number__c` preenchido), grava `nitzap20__Date_Time_End_Chat__c` e `ActivityDate` e muda o `Status` para um valor fechado da sua org (o `Completed` padrão, ou o primeiro status com `IsClosed` verdadeiro em `TaskStatus`). A `Task` já sai da chamada concluída, também para relatórios e para a linha do tempo de atividades.
-2. Num Queueable, depois do commit: publica o evento `close` no Omni (o mesmo de `notifyServiceDeskChange`), reativa o bot da conexão para o contato, envia a despedida pela conexão da `Task` ao telefone do contato e completa as datas da primeira mensagem enviada e recebida a partir do resumo da conversa.
+2. Num Queueable, depois do commit: publica o evento `close` no Omni (o mesmo de `notifyServiceDeskChange`) e faz uma única chamada ao backend, que encerra o atendimento no bot e, já com o encerramento gravado, envia a despedida pela conexão da `Task` ao telefone do contato. Por fim completa as datas da primeira mensagem enviada e recebida a partir do resumo da conversa. Se o encerramento no backend falhar, o job falha e a despedida não é enviada, para não reagendar o aviso por falta de resposta.
 
 Regras:
 
@@ -585,6 +585,7 @@ Regras:
 - `farewellMessage` em branco encerra sem mandar nada no WhatsApp.
 - O telefone do contato vem do `WhoId`/`WhatId` da `Task` (campo `nitzap20__WhatsAppId__c`). Sem telefone, a despedida é pulada e o encerramento segue.
 - Não mande a despedida por fora com `sendText` num `@future` paralelo. É exatamente a corrida que este método existe para evitar.
+- Exige o backend Nitzap da mesma versão desta API ou mais novo.
 - `Task` de outro tipo ou sem conexão lança `NitzapApiException` antes de qualquer alteração.
 
 ---
