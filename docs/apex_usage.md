@@ -428,6 +428,7 @@ for(nitzap20.NitzapApi.ChatMessage m : msgs){
     m.mediaMimeType; m.mediaFileName;
     m.transcription; m.summary;   // quando existirem (áudio transcrito, resumo)
     m.status; m.channel; m.origin;
+    m.salesforceUserId;   // Id do usuário Salesforce que enviou; em mensagens enviadas por fora do Nitzap (celular, WhatsApp Web) é o usuário principal da conexão; null nas recebidas ou sem usuário
     m.deleted; m.forwarded; m.edited;
     m.readAt;             // DateTime da leitura, null se não lida
     m.quotedMessageKey;   // msgkey da mensagem citada
@@ -558,7 +559,33 @@ Regras:
 - A `Task` precisa ter `nitzap20__TaskType__c = 'SERVICE_DESK'` e `nitzap20__Connection_Number__c` com o número da conexão do atendimento. Sem isso lança `NitzapApiException`. Com dona usuário e número em branco, o método ainda tenta o `nitzap20__WhatsAppId__c` legado do usuário.
 - Preencha também `nitzap20__Date_Time_Start_Chat__c` na criação: é o início do histórico, a data a partir da qual o Nitzap lê as mensagens da conversa dentro da tarefa. Em branco, o atendimento abre sem histórico. O método não exige o campo, mas a tarefa fica sem conversa para o atendente.
 - É 1 callout com as credenciais do usuário que executa. Vale a regra de DML da seção 5: se a transação já fez `insert`/`update` (o caso normal, você acabou de criar a `Task`), use `notifyServiceDeskChangeAsync`, que enfileira um Queueable. A versão síncrona serve quando a `Task` foi criada em outra transação.
-- O método não altera a `Task` e não manda mensagem no WhatsApp. Se quiser o "Fulano iniciou o atendimento" no chat, mande com `sendText`.
+- O método não altera a `Task` e não manda mensagem no WhatsApp. Se quiser o "Fulano iniciou o atendimento" no chat, mande com `sendText`. Para encerrar, prefira `closeServiceDesk` (seção 14), que já grava o fim, avisa o Omni, reativa o bot e manda a despedida na ordem certa.
+
+---
+
+## 14. Encerrar um atendimento por código (`closeServiceDesk`)
+
+Encerrar um atendimento tem quatro passos que precisam acontecer nesta ordem: gravar o fim na `Task`, avisar o Omni, reativar o bot da conexão para aquele contato e, só então, mandar a mensagem de despedida. Se a despedida sair antes de o bot ser reativado, ela conta como mensagem de atendimento e reagenda o aviso por falta de resposta, e o contato recebe "conversa encerrada por inatividade" minutos depois de já ter sido despedido. `closeServiceDesk` faz os quatro passos na sequência certa:
+
+```apex
+Id jobId = nitzap20.NitzapApi.closeServiceDesk(
+    atendimento.Id,
+    'Nossa conversa foi encerrada. Qualquer problema pode me chamar por aqui novamente.'
+);
+```
+
+O que acontece:
+
+1. Na sua transação: valida a `Task` (tipo `SERVICE_DESK` e `nitzap20__Connection_Number__c` preenchido), grava `nitzap20__Date_Time_End_Chat__c` e `ActivityDate` e muda o `Status` para um valor fechado da sua org (o `Completed` padrão, ou o primeiro status com `IsClosed` verdadeiro em `TaskStatus`). A `Task` já sai da chamada concluída, também para relatórios e para a linha do tempo de atividades.
+2. Num Queueable, depois do commit: publica o evento `close` no Omni (o mesmo de `notifyServiceDeskChange`), reativa o bot da conexão para o contato, envia a despedida pela conexão da `Task` ao telefone do contato e completa as datas da primeira mensagem enviada e recebida a partir do resumo da conversa.
+
+Regras:
+
+- Pode ser chamado de Flow, trigger ou Apex que já fez DML: a parte com callout roda no Queueable. O retorno é o Id do job.
+- `farewellMessage` em branco encerra sem mandar nada no WhatsApp.
+- O telefone do contato vem do `WhoId`/`WhatId` da `Task` (campo `nitzap20__WhatsAppId__c`). Sem telefone, a despedida é pulada e o encerramento segue.
+- Não mande a despedida por fora com `sendText` num `@future` paralelo. É exatamente a corrida que este método existe para evitar.
+- `Task` de outro tipo ou sem conexão lança `NitzapApiException` antes de qualquer alteração.
 
 ---
 
@@ -586,7 +613,7 @@ try {
 ## Limites e boas práticas
 
 - Cada `sendBatch`/`sendMetaTemplateBatch` consome 1 callout por remetente (limite Salesforce: 100 callouts por transação). Mensagens com `fileId` consomem 2 callouts extras cada (presigned URL + upload).
-- Em triggers e flows com DML, use sempre `sendBatchAsync` e `notifyServiceDeskChangeAsync`.
+- Em triggers e flows com DML, use sempre `sendBatchAsync` e `notifyServiceDeskChangeAsync`. Para encerrar atendimento, `closeServiceDesk` já cuida do DML e do callout na ordem certa.
 - Cada página de `getMessages` é 1 callout. Para varrer conversas longas, prefira Queueable/Batch encadeado guardando o `sequence` — `take` alto com mídia e mensagem citada consome heap rápido.
 - Templates Meta só enviam por conexão WABA/Coex e com template `APPROVED`.
 - Para automações declarativas (Flow), continue usando a ação **"NITZAP 2.0: Enviar Mensagem WhatsApp"** — esta API é a superfície para código Apex.
