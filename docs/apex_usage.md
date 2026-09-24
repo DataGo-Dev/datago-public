@@ -559,7 +559,7 @@ Regras:
 - A `Task` precisa ter `nitzap20__TaskType__c = 'SERVICE_DESK'` e `nitzap20__Connection_Number__c` com o número da conexão do atendimento. Sem isso lança `NitzapApiException`. Com dona usuário e número em branco, o método ainda tenta o `nitzap20__WhatsAppId__c` legado do usuário.
 - Preencha também `nitzap20__Date_Time_Start_Chat__c` na criação: é o início do histórico, a data a partir da qual o Nitzap lê as mensagens da conversa dentro da tarefa. Em branco, o atendimento abre sem histórico. O método não exige o campo, mas a tarefa fica sem conversa para o atendente.
 - É 1 callout com as credenciais do usuário que executa. Vale a regra de DML da seção 5: se a transação já fez `insert`/`update` (o caso normal, você acabou de criar a `Task`), use `notifyServiceDeskChangeAsync`, que enfileira um Queueable. A versão síncrona serve quando a `Task` foi criada em outra transação.
-- O método não altera a `Task` e não manda mensagem no WhatsApp. Se quiser o "Fulano iniciou o atendimento" no chat, mande com `sendText`. Para encerrar, prefira `closeServiceDesk` (seção 14), que já grava o fim, avisa o Omni, reativa o bot e manda a despedida na ordem certa.
+- O método não altera a `Task`. Ele publica o evento e grava no chat o mesmo aviso interno que o Omni mostra, visível só para os atendentes: "*Fulano* iniciou o atendimento", "*Fulano* transferiu o atendimento para *Fila X*" ou "*Fulano* fechou o atendimento", com o nome do usuário que executa. Para transferir ou encerrar, prefira `transferServiceDesk` (seção 15) e `closeServiceDesk` (seção 14), que fazem a mudança na `Task` e avisam na ordem certa.
 
 ---
 
@@ -577,7 +577,7 @@ Id jobId = nitzap20.NitzapApi.closeServiceDesk(
 O que acontece:
 
 1. Na sua transação: valida a `Task` (tipo `SERVICE_DESK` e `nitzap20__Connection_Number__c` preenchido), grava `nitzap20__Date_Time_End_Chat__c` e `ActivityDate` e muda o `Status` para um valor fechado da sua org (o `Completed` padrão, ou o primeiro status com `IsClosed` verdadeiro em `TaskStatus`). A `Task` já sai da chamada concluída, também para relatórios e para a linha do tempo de atividades.
-2. Num Queueable, depois do commit: publica o evento `close` no Omni (o mesmo de `notifyServiceDeskChange`) e faz uma única chamada ao backend, que encerra o atendimento no bot e, já com o encerramento gravado, envia a despedida pela conexão da `Task` ao telefone do contato. Por fim completa as datas da primeira mensagem enviada e recebida a partir do resumo da conversa. Se o encerramento no backend falhar, o job falha e a despedida não é enviada, para não reagendar o aviso por falta de resposta.
+2. Num Queueable, depois do commit: publica o evento `close` no Omni (o mesmo de `notifyServiceDeskChange`), grava no chat o aviso interno "*Fulano* fechou o atendimento", que só os atendentes veem, e faz uma única chamada ao backend, que encerra o atendimento no bot e, já com o encerramento gravado, envia a despedida pela conexão da `Task` ao telefone do contato. Por fim completa as datas da primeira mensagem enviada e recebida a partir do resumo da conversa. Se o encerramento no backend falhar, o job falha e a despedida não é enviada, para não reagendar o aviso por falta de resposta.
 
 Regras:
 
@@ -587,6 +587,34 @@ Regras:
 - Não mande a despedida por fora com `sendText` num `@future` paralelo. É exatamente a corrida que este método existe para evitar.
 - Exige o backend Nitzap da mesma versão desta API ou mais novo.
 - `Task` de outro tipo ou sem conexão lança `NitzapApiException` antes de qualquer alteração.
+
+---
+
+## 15. Transferir um atendimento por código (`transferServiceDesk`)
+
+Transferir é o que o botão **Transferir** do Omni faz, agora disponível para Flow, trigger e Apex: muda o responsável da `Task`, respeita a opção **Fechar tarefa ao transferir** das configurações do app, avisa o novo responsável com a notificação padrão, publica o evento no Omni e grava no chat o aviso interno "*Fulano* transferiu o atendimento de *A* para *B*".
+
+```apex
+nitzap20.NitzapApi.ServiceDeskTransfer moved =
+    nitzap20.NitzapApi.transferServiceDesk(atendimento.Id, filaComercial.Id);   // usuário ou fila
+
+System.debug(moved.taskId);            // Task que segue como atendimento
+System.debug(moved.closedTaskId);      // Task anterior, quando "Fechar tarefa ao transferir" está ligado
+System.debug(moved.previousOwnerName); // "Bruno Pereira"
+System.debug(moved.newOwnerName);      // "Fila Comercial"
+System.debug(moved.jobId);             // Queueable que publica o evento e o aviso interno
+```
+
+O que acontece:
+
+1. Na sua transação: valida a `Task` (tipo `SERVICE_DESK`, conexão preenchida) e o novo responsável (Id de `User` ou de fila `Group`). Com **Fechar tarefa ao transferir** desligado, muda `OwnerId` e grava `nitzap20__Date_Transfer_service__c`. Ligado e destino usuário, encerra a `Task` atual e cria outra para o novo responsável, com os mesmos vínculos e conexão; `taskId` passa a ser a nova. Em seguida envia a notificação "Transferência" ao novo responsável, quando não for você mesmo.
+2. Num Queueable, depois do commit: publica `transfer` (destino usuário) ou `transfer_to_group` (destino fila) no Omni e grava o aviso interno no chat.
+
+Regras:
+
+- O aviso interno vai para o telefone do contato da `Task` (`WhoId`/`WhatId` com `nitzap20__WhatsAppId__c`); sem telefone, a transferência acontece e só o aviso é pulado.
+- `Task` de outro tipo, sem conexão, ou destino que não seja usuário nem fila lança `NitzapApiException` antes de qualquer alteração.
+- Para quem já usa `notifyServiceDeskChange` depois de trocar o `OwnerId` na mão, nada muda; `transferServiceDesk` substitui as duas etapas e ainda cobre o "fechar ao transferir".
 
 ---
 
@@ -614,7 +642,7 @@ try {
 ## Limites e boas práticas
 
 - Cada `sendBatch`/`sendMetaTemplateBatch` consome 1 callout por remetente (limite Salesforce: 100 callouts por transação). Mensagens com `fileId` consomem 2 callouts extras cada (presigned URL + upload).
-- Em triggers e flows com DML, use sempre `sendBatchAsync` e `notifyServiceDeskChangeAsync`. Para encerrar atendimento, `closeServiceDesk` já cuida do DML e do callout na ordem certa.
+- Em triggers e flows com DML, use sempre `sendBatchAsync` e `notifyServiceDeskChangeAsync`. Para transferir ou encerrar atendimento, `transferServiceDesk` e `closeServiceDesk` já cuidam do DML e do callout na ordem certa.
 - Cada página de `getMessages` é 1 callout. Para varrer conversas longas, prefira Queueable/Batch encadeado guardando o `sequence` — `take` alto com mídia e mensagem citada consome heap rápido.
 - Templates Meta só enviam por conexão WABA/Coex e com template `APPROVED`.
 - Para automações declarativas (Flow), continue usando a ação **"NITZAP 2.0: Enviar Mensagem WhatsApp"** — esta API é a superfície para código Apex.
