@@ -1,5 +1,13 @@
 [
   {
+    "id": 395651148,
+    "tag_name": "v1.713.0",
+    "name": "1.713.0",
+    "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000FzCrIAK\r\n\r\n## Variáveis de campanha voltam a funcionar\r\nAo montar um template para a campanha, o Nitzap oferece os campos do **Membro da campanha**. No envio, porém, as variáveis eram procuradas no Contato ou no Lead. Quem escolhia um campo que só existe no membro, como um campo de fórmula da campanha, tinha o disparo interrompido em silêncio: a tarefa aparecia como enviada e nenhuma mensagem saía.\r\n\r\nAgora o envio parte do próprio membro da campanha, como a tela sempre ofereceu, e campos do Contato ou do Lead continuam valendo sem precisar mudar nada nos templates já montados.\r\n\r\n## Campanha agora envia só pelo canal oficial\r\nO disparo de campanha pelo canal não oficial (QR Code) foi descontinuado. Campanha é envio em massa, e a Meta pune esse uso fora da API oficial, então o Nitzap passa a aceitar campanha apenas por conexão oficial. O agendamento antigo por esse canal não é mais processado, e o painel obsoleto de templates da campanha perdeu o botão de agendar. Quem dispara pela aba **Disparos WhatsApp** não muda nada.\r\n\r\n## Melhorias\r\n- Webhook: a tela agora avisa que o endereço precisa usar **https**, e erros vindos do servidor ao salvar ou remover passam a aparecer na tela. Antes a tentativa falhava em silêncio.\r\n",
+    "published_at": "2026-09-24T13:38:05Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.713.0"
+  },
+  {
     "id": 394973005,
     "tag_name": "v1.711.0",
     "name": "1.711.0",
