@@ -1,5 +1,13 @@
 [
   {
+    "id": 395746277,
+    "tag_name": "v1.714.0",
+    "name": "1.714.0",
+    "body": "📦 **Instalar Pacote**:  https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000GdBuIAK\r\n\r\n## Correções\r\n- Mensagem por falta de resposta: a contagem passa a começar só na última mensagem do atendente. Mensagens do bot, inclusive a de transferência para um humano, não iniciam o relógio, então o cliente esperando na fila não recebe mais \"conversa encerrada por inatividade\" antes de ser atendido. Depende do backend publicado junto com esta versão.\r\n- Webhooks: a aba mostra carregamento e só libera \"Novo Webhook\" depois que a lista de eventos chega, então o formulário não abre mais com os eventos vazios. Erro ao buscar webhooks aparece em aviso na tela, e a lista recarrega ao salvar ou excluir.\r\n\r\n## Primeiro acesso já cria o administrador\r\nNa tela inicial do Nitzap Config, a App Key passa a ser obrigatória e funciona como chave de convite: ao salvar a URL e a chave, o seu usuário vira automaticamente o primeiro administrador do Nitzap, sem precisar ir em Conexões → Membros e clicar em \"Tornar-me administrador\". Se o backend já tiver administrador, a tela avisa e pede para ele adicionar você.\r\n\r\n## Melhorias\r\n- Salvar configurações e a organização no backend passa a usar o login do administrador, não mais só a App Key. Salvar configurações exige administrador do Salesforce ou do Nitzap. Depende do backend publicado junto com esta versão.",
+    "published_at": "2026-09-24T18:06:50Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.714.0"
+  },
+  {
     "id": 395651148,
     "tag_name": "v1.713.0",
     "name": "1.713.0",
