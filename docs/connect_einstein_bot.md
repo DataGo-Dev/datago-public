@@ -16,6 +16,8 @@ Na criação Habilite OAuth e selecione os escopos da imagem abaixo
 
 ou contato a Datago para consultoria personalizada.
 
+Entre os escopos, o **"Gerenciar dados do usuário via APIs (api)"** é obrigatório: além de falar com o agente, o Nitzap usa esse aplicativo para chamar a API do próprio pacote no Salesforce, por exemplo para concluir a tarefa de atendimento quando a mensagem por falta de resposta encerra a conversa. Sem esse escopo, o bot funciona, mas o atendimento fica aberto no Salesforce depois do aviso.
+
 Você deve habilitar o fluxo de credencias do cliente
 
 <img width="420" height="213" alt="image" src="https://github.com/user-attachments/assets/56824720-9165-4803-8bb4-a376175ee988" />
@@ -37,6 +39,8 @@ Ou libere IPS do Nitzap
 
 Também deve adicionar o usuário que irá executar em Politicas OAuth
 <img width="673" height="506" alt="Screenshot 2026-08-27 at 09 30 55" src="https://github.com/user-attachments/assets/8257e3ff-d507-4a9f-9031-1b58cd79a642" />
+
+Esse usuário de execução precisa do conjunto de permissões **Nitzap 2.0** (`Nitzap_20`): é com ele que o Nitzap lê e conclui as tarefas de atendimento pela API do pacote.
 
 Se você ainda não configurou um usuário integração na sua organização consulte:
 
@@ -108,7 +112,22 @@ Ele publica o mesmo aviso que a tela do chat manda ao iniciar, transferir ou enc
 
 ## Como o bot deve criar o atendimento
 
-O atendimento é uma `Task`, e três campos precisam estar preenchidos na criação para o Nitzap reconhecer e conseguir ler a conversa nela:
+O caminho mais simples é deixar o Nitzap criar a tarefa. `createServiceDesk` monta a `Task` já no formato certo, não duplica atendimento aberto para o mesmo contato, avisa o Omni e grava no chat o aviso interno "iniciou o atendimento":
+
+```apex
+nitzap20.NitzapApi.NewServiceDesk novo = new nitzap20.NitzapApi.NewServiceDesk();
+novo.whoId = contato.Id;                  // contato ou lead; ou whatId para o Caso
+novo.ownerId = filaComercial.Id;          // usuário ou fila; em branco, quem executa
+novo.connectionNumber = '5514981770936';  // conexão que recebeu a mensagem
+novo.subject = 'Atendimento via bot';     // opcional
+
+nitzap20.NitzapApi.ServiceDeskCreation atendimento = nitzap20.NitzapApi.createServiceDesk(novo);
+// atendimento.taskId é a Task; atendimento.created diz se foi criada agora ou já existia
+```
+
+Para transferir e encerrar existem `transferServiceDesk(taskId, novoResponsavel)` e `closeServiceDesk(taskId, mensagemDeDespedida)`, com a mesma sequência do Omni. Os três estão detalhados no guia da API Apex (seções 14 a 16).
+
+Se preferir criar a `Task` por conta própria, três campos precisam estar preenchidos na criação para o Nitzap reconhecer e conseguir ler a conversa nela:
 
 | Campo | Valor | Por quê |
 |---|---|---|

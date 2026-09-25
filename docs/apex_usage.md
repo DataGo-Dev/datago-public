@@ -528,7 +528,7 @@ Como a busca funciona:
 
 ## 13. Avisar o Omni de um atendimento criado por código (`notifyServiceDeskChange`)
 
-Quando um atendente inicia, transfere ou encerra um atendimento pela tela do Nitzap, o Omni de todo mundo atualiza na hora, porque o chat publica um evento no canal da conexão. Um bot, um Flow ou um agente que cria a `Task` de atendimento direto no banco não dispara esse evento, e o Omni só percebe no próximo recarregar. `notifyServiceDeskChange` publica o mesmo evento a partir de uma `Task`:
+Quando um atendente inicia, transfere ou encerra um atendimento pela tela do Nitzap, o Omni de todo mundo atualiza na hora, porque o chat publica um evento no canal da conexão. Um bot, um Flow ou um agente que cria a `Task` de atendimento direto no banco não dispara esse evento, e o Omni só percebe no próximo recarregar. Se você está começando agora, prefira `createServiceDesk` (seção 16), que cria a `Task` certa e já avisa; `notifyServiceDeskChange` publica o evento a partir de uma `Task` que você mesmo criou ou alterou:
 
 ```apex
 Task atendimento = new Task(
@@ -574,6 +574,17 @@ Id jobId = nitzap20.NitzapApi.closeServiceDesk(
 );
 ```
 
+Para trocar o aviso interno que fica no chat, use a forma com objeto. `internalNote` substitui o "*Fulano* fechou o atendimento" padrão, útil quando quem fecha é um robô e não uma pessoa:
+
+```apex
+nitzap20.NitzapApi.ServiceDeskClosure fechamento = new nitzap20.NitzapApi.ServiceDeskClosure();
+fechamento.taskId = atendimento.Id;
+fechamento.farewellMessage = 'Nossa conversa foi encerrada.';   // opcional
+fechamento.internalNote = 'Encerrado pelo robô de triagem';      // opcional
+
+Id jobId = nitzap20.NitzapApi.closeServiceDesk(fechamento);
+```
+
 O que acontece:
 
 1. Na sua transação: valida a `Task` (tipo `SERVICE_DESK` e `nitzap20__Connection_Number__c` preenchido), grava `nitzap20__Date_Time_End_Chat__c` e `ActivityDate` e muda o `Status` para um valor fechado da sua org (o `Completed` padrão, ou o primeiro status com `IsClosed` verdadeiro em `TaskStatus`). A `Task` já sai da chamada concluída, também para relatórios e para a linha do tempo de atividades.
@@ -586,6 +597,7 @@ Regras:
 - O telefone do contato vem do `WhoId`/`WhatId` da `Task` (campo `nitzap20__WhatsAppId__c`). Sem telefone, a despedida é pulada e o encerramento segue.
 - Não mande a despedida por fora com `sendText` num `@future` paralelo. É exatamente a corrida que este método existe para evitar.
 - Exige o backend Nitzap da mesma versão desta API ou mais novo.
+- Quando a mensagem por falta de resposta encerra o atendimento no bot, o próprio Nitzap chama este fechamento no Salesforce, pela rota `/services/apexrest/nitzap20/service-desk/close-idle` do pacote, com as credenciais do aplicativo conectado do bot. A `Task` é concluída com o aviso interno "Atendimento encerrado por inatividade do contato". Para reagir a esse fechamento, use um Flow disparado pela `Task`.
 - `Task` de outro tipo ou sem conexão lança `NitzapApiException` antes de qualquer alteração.
 
 ---
@@ -618,6 +630,38 @@ Regras:
 
 ---
 
+## 16. Criar um atendimento por código (`createServiceDesk`)
+
+É o que o Omni faz quando um atendente abre um atendimento: cria a `Task` já no formato certo (tipo `SERVICE_DESK`, conexão, contato ou registro vinculado, início do histórico), publica o evento no Omni e grava no chat o aviso interno "*Fulano* iniciou o atendimento" com o link da `Task`. Um bot ou Flow que hoje monta a `Task` campo a campo troca tudo por uma chamada:
+
+```apex
+nitzap20.NitzapApi.NewServiceDesk novo = new nitzap20.NitzapApi.NewServiceDesk();
+novo.whoId = contato.Id;                  // contato ou lead; ou whatId para Caso, Oportunidade...
+novo.whatId = caso.Id;                    // opcional, registro vinculado
+novo.ownerId = filaComercial.Id;          // usuário ou fila; em branco, quem executa
+novo.connectionNumber = '5514981770936';  // obrigatório
+novo.subject = 'Atendimento via bot';     // opcional; padrão "Novo Atendimento WhatsApp 📱"
+
+nitzap20.NitzapApi.ServiceDeskCreation atendimento = nitzap20.NitzapApi.createServiceDesk(novo);
+System.debug(atendimento.taskId);   // a Task do atendimento
+System.debug(atendimento.created);  // false quando já havia atendimento aberto para o contato nessa conexão
+System.debug(atendimento.jobId);    // Queueable que publica o evento e o aviso interno; null quando não criou
+```
+
+O que acontece:
+
+1. Na sua transação: valida `whoId`/`whatId`, `connectionNumber` e o responsável, e procura um atendimento aberto para o mesmo contato na mesma conexão. Se existir, devolve esse (`created = false`) sem criar outro nem publicar nada, a mesma proteção que o Omni usa contra atendimentos duplicados. Senão insere a `Task` com `nitzap20__Date_Time_Start_Chat__c` um minuto atrás, para o histórico já incluir a mensagem que motivou o atendimento.
+2. Num Queueable, depois do commit: publica `create` (responsável usuário) ou `transfer_to_group` (responsável fila) no Omni e grava o aviso interno com o link da `Task`.
+
+Regras:
+
+- `whoId` ou `whatId` é obrigatório, e o telefone do contato vem do `nitzap20__WhatsAppId__c` desse registro. Sem telefone, a `Task` é criada e só o aviso é pulado.
+- `connectionNumber` é o número da conexão pela qual o atendimento acontece. Em branco lança `NitzapApiException`.
+- Responsável que não seja usuário nem fila lança `NitzapApiException` antes de qualquer alteração.
+- Com `createServiceDesk`, `transferServiceDesk` e `closeServiceDesk`, o ciclo inteiro do atendimento fica na API; `notifyServiceDeskChange` continua para quem mexe na `Task` por conta própria.
+
+---
+
 ## Tratamento de erros — resumo
 
 | Situação | Comportamento |
@@ -642,7 +686,7 @@ try {
 ## Limites e boas práticas
 
 - Cada `sendBatch`/`sendMetaTemplateBatch` consome 1 callout por remetente (limite Salesforce: 100 callouts por transação). Mensagens com `fileId` consomem 2 callouts extras cada (presigned URL + upload).
-- Em triggers e flows com DML, use sempre `sendBatchAsync` e `notifyServiceDeskChangeAsync`. Para transferir ou encerrar atendimento, `transferServiceDesk` e `closeServiceDesk` já cuidam do DML e do callout na ordem certa.
+- Em triggers e flows com DML, use sempre `sendBatchAsync` e `notifyServiceDeskChangeAsync`. Para criar, transferir ou encerrar atendimento, `createServiceDesk`, `transferServiceDesk` e `closeServiceDesk` já cuidam do DML e do callout na ordem certa.
 - Cada página de `getMessages` é 1 callout. Para varrer conversas longas, prefira Queueable/Batch encadeado guardando o `sequence` — `take` alto com mídia e mensagem citada consome heap rápido.
 - Templates Meta só enviam por conexão WABA/Coex e com template `APPROVED`.
 - Para automações declarativas (Flow), continue usando a ação **"NITZAP 2.0: Enviar Mensagem WhatsApp"** — esta API é a superfície para código Apex.
