@@ -126,8 +126,7 @@ O usuário que o aplicativo conectado usa para executar precisa conseguir chamar
 **Se o usuário de execução tem licença Salesforce Integration**, que é o padrão recomendado pela Salesforce para integrações:
 
 1. O conjunto **Nitzap 2.0** não pode ser atribuído a essa licença, porque inclui acesso a uma página Visualforce que a licença não aceita. A org recusa a atribuição com a mensagem "A licença do usuário não permite Acesso à página do Visualforce".
-2. Em **Configuração › Usuários**, abra o usuário de integração e, em **Atribuições de licenças de conjunto de permissões**, adicione a licença **Salesforce API Integration**. Ela costuma vir junto com a licença de integração e é o que permite conceder acesso a objetos a esse usuário.
-3. Crie um conjunto de permissões próprio, por exemplo "Nitzap: Integração", com **apenas** o acesso à classe Apex **`NitzapServiceDeskRest`** do pacote, e atribua ao usuário. Nenhuma permissão de objeto é necessária: o pacote grava o fechamento em contexto de sistema.
+2. Crie um conjunto de permissões próprio, por exemplo "Nitzap: Integração", com **apenas** o acesso à classe Apex **`NitzapServiceDeskRest`** do pacote, e atribua ao usuário. Nenhuma permissão de objeto, de campo ou licença adicional é necessária: o pacote grava o fechamento em contexto de sistema.
 
 Além disso, no aplicativo conectado, o escopo **"Gerenciar dados do usuário via APIs (api)"** precisa estar marcado. Sem ele o agente continua respondendo, mas o atendimento não é concluído no Salesforce.
 
@@ -146,36 +145,70 @@ Se a `Task` continuar aberta, a causa quase sempre é permissão. Em **Configura
 | `INSUFFICIENT_ACCESS_ON_CROSS_REFERENCE_ENTITY` | Pacote desatualizado: atualize para a versão que grava o fechamento em contexto de sistema |
 | Nada acontece e o agente segue respondendo | Falta o escopo `api` no aplicativo conectado, ou as credenciais não estão salvas em Nitzap Config › Configurações › Credenciais Salesforce |
 
-# Avisando o Nitzap quando o bot abre ou transfere um atendimento
+# O bot controlando o atendimento pelo Apex
 
-Se o seu bot cria a tarefa de atendimento direto no Salesforce, a conversa só aparece como atendida no Omni de quem estiver com a tela aberta depois de recarregar. Para avisar na hora, chame:
+O agente pode abrir, transferir e encerrar o atendimento chamando o Nitzap direto do Apex, de um Flow ou de uma ação invocável. Os três métodos fazem exatamente o que os botões do chat fazem: mexem na `Task`, avisam o Omni de todo mundo na hora e gravam no chat o aviso interno que só os atendentes veem.
+
+Todos recebem o **Id da Task do atendimento**, nunca o do contato nem o da conversa, e podem ser chamados depois de gravar registros na mesma transação.
+
+## Abrir o atendimento
+
+`createServiceDesk` monta a `Task` no formato certo, não duplica atendimento aberto para o mesmo contato na mesma conexão, avisa o Omni e registra "iniciou o atendimento" com o link da tarefa:
+
+```apex
+nitzap20.NitzapApi.NewServiceDesk novo = new nitzap20.NitzapApi.NewServiceDesk();
+novo.whoId = contato.Id;                  // contato ou lead; use whatId para Caso ou Oportunidade
+novo.ownerId = filaComercial.Id;          // usuário ou fila; em branco fica com quem executa
+novo.connectionNumber = '5514981770936';  // conexão que recebeu a mensagem
+novo.subject = 'Atendimento via bot';     // opcional
+
+nitzap20.NitzapApi.ServiceDeskCreation atendimento = nitzap20.NitzapApi.createServiceDesk(novo);
+```
+
+O retorno traz `taskId`, a tarefa do atendimento, e `created`, que vem `false` quando já existia atendimento aberto e nenhum outro foi criado.
+
+Dono usuário abre o atendimento direto para ele; dono fila coloca a conversa na fila para alguém puxar.
+
+## Transferir o atendimento
+
+`transferServiceDesk` troca o responsável, respeita a opção "Fechar tarefa ao transferir" das configurações do app, notifica o novo responsável e registra "transferiu o atendimento de A para B":
+
+```apex
+nitzap20.NitzapApi.ServiceDeskTransfer movido =
+    nitzap20.NitzapApi.transferServiceDesk(atendimento.Id, filaComercial.Id);   // usuário ou fila
+```
+
+O retorno diz qual `Task` segue como atendimento, útil quando a opção de fechar ao transferir cria uma nova.
+
+## Encerrar o atendimento
+
+`closeServiceDesk` conclui a `Task`, avisa o Omni, encerra a sessão do agente e, só depois disso, envia a mensagem de despedida ao contato:
+
+```apex
+nitzap20.NitzapApi.closeServiceDesk(
+    atendimento.Id,
+    'Nossa conversa foi encerrada. Qualquer problema pode me chamar por aqui novamente.'
+);
+```
+
+A despedida é opcional: passando em branco, o atendimento encerra sem enviar nada.
+
+**Não envie a despedida por conta própria em paralelo.** Se ela sair antes de o Nitzap encerrar a sessão do agente, conta como mensagem de atendimento e reinicia a contagem da mensagem por falta de resposta, e o cliente recebe "conversa encerrada por inatividade" minutos depois de já ter sido despedido. Deixando o texto no `closeServiceDesk`, a ordem fica garantida.
+
+Os três métodos estão detalhados, com todas as regras e mensagens de erro, nas seções 14 a 16 de:
+https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
+
+# Alternativa: criar a tarefa por conta própria
+
+Se o seu bot já cria ou atualiza a `Task` do atendimento do jeito dele, use `notifyServiceDeskChangeAsync` para avisar o Nitzap depois. Sem isso, a conversa só aparece como atendida no Omni de quem recarregar a tela.
 
 ```apex
 nitzap20.NitzapApi.notifyServiceDeskChangeAsync(atendimento.Id);
 ```
 
-O que vai no parâmetro é o **Id da Task do atendimento** — não o do contato, nem o da conversa. Qualquer outro Id lança `NitzapApiException`.
+A ação é deduzida do estado da própria tarefa: dona usuário abre atendimento, dona fila manda para a fila e tarefa encerrada fecha o atendimento.
 
-Ele publica o mesmo aviso que a tela do chat manda ao iniciar, transferir ou encerrar um atendimento. A ação é deduzida da própria tarefa: dona usuário abre atendimento, dona fila manda para a fila e tarefa encerrada fecha o atendimento. A versão assíncrona é a que serve depois de criar ou atualizar a tarefa na mesma transação.
-
-## Como o bot deve criar o atendimento
-
-O caminho mais simples é deixar o Nitzap criar a tarefa. `createServiceDesk` monta a `Task` já no formato certo, não duplica atendimento aberto para o mesmo contato, avisa o Omni e grava no chat o aviso interno "iniciou o atendimento":
-
-```apex
-nitzap20.NitzapApi.NewServiceDesk novo = new nitzap20.NitzapApi.NewServiceDesk();
-novo.whoId = contato.Id;                  // contato ou lead; ou whatId para o Caso
-novo.ownerId = filaComercial.Id;          // usuário ou fila; em branco, quem executa
-novo.connectionNumber = '5514981770936';  // conexão que recebeu a mensagem
-novo.subject = 'Atendimento via bot';     // opcional
-
-nitzap20.NitzapApi.ServiceDeskCreation atendimento = nitzap20.NitzapApi.createServiceDesk(novo);
-// atendimento.taskId é a Task; atendimento.created diz se foi criada agora ou já existia
-```
-
-Para transferir e encerrar existem `transferServiceDesk(taskId, novoResponsavel)` e `closeServiceDesk(taskId, mensagemDeDespedida)`, com a mesma sequência do Omni. Os três estão detalhados no guia da API Apex (seções 14 a 16).
-
-Se preferir criar a `Task` por conta própria, três campos precisam estar preenchidos na criação para o Nitzap reconhecer e conseguir ler a conversa nela:
+Nesse caminho, três campos precisam estar preenchidos na criação para o Nitzap reconhecer a tarefa e conseguir ler a conversa dentro dela:
 
 | Campo | Valor | Por quê |
 |---|---|---|
@@ -183,27 +216,10 @@ Se preferir criar a `Task` por conta própria, três campos precisam estar preen
 | `nitzap20__Connection_Number__c` | número da conexão que recebeu a mensagem | Diz de qual conexão é o atendimento. É por ele que o aviso chega no Omni certo e que o chat sabe qual número usar |
 | `nitzap20__Date_Time_Start_Chat__c` | momento em que o atendimento começou | Marca o início do histórico. É a partir dessa data que o Nitzap lê as mensagens da conversa dentro da tarefa; em branco, a tarefa abre sem histórico |
 
-```apex
-Task atendimento = new Task(
-    WhoId = contato.Id,
-    OwnerId = filaComercial.Id,
-    Subject = 'Atendimento via bot',
-    nitzap20__TaskType__c = 'SERVICE_DESK',
-    nitzap20__Connection_Number__c = '5514981770936',
-    nitzap20__Date_Time_Start_Chat__c = System.now()
-);
-insert atendimento;
-
-nitzap20.NitzapApi.notifyServiceDeskChangeAsync(atendimento.Id);
-```
-
-O dono pode ser um usuário ou uma fila: usuário abre o atendimento direto para ele, fila coloca a conversa na fila para alguém puxar.
-
-Os detalhes estão na seção 13 de:
+Os detalhes desse caminho estão na seção 13 de:
 https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
 
-Para personalizar ainda mais seu bot leia:
-https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
+Esse mesmo guia traz tudo o que o bot pode fazer pelo Apex: enviar mensagens e templates, ler conversas, consultar métricas e encontrar o registro de um telefone.
 
 Para quaisquer dúvidas entre em contato com a Datago +55 27 99997-0276
 
