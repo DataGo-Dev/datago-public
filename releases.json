@@ -1,5 +1,13 @@
 [
   {
+    "id": 396877689,
+    "tag_name": "v1.716.0",
+    "name": "1.716.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000IBjNIAW)\r\n\r\n## Correções\r\n\r\n- **Transferir Atendimento:** a lista de usuários e filas da busca não fica mais cortada pela janela — o resultado aparece inteiro por cima do formulário, como já acontecia em Vincular Atendimento.\r\n- **Novo Atendimento para uma fila:** o campo \"Proprietário / Sender\" não mostra mais \"Unknown\" com aviso vermelho de registro sem acesso quando o atendimento é criado para uma fila; ele agora só aparece quando o proprietário é um usuário.\r\n",
+    "published_at": "2026-09-25T19:51:42Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.716.0"
+  },
+  {
     "id": 396022581,
     "tag_name": "v1.715.0",
     "name": "1.715.0",
