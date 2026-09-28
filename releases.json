@@ -1,5 +1,13 @@
 [
   {
+    "id": 398287128,
+    "tag_name": "v1.724.0",
+    "name": "1.725.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000JwebIAC)\r\n\r\n## Mensagem de saudação automática\r\nAs configurações da conexão ganharam o bloco **Mensagem de saudação**. Com um texto cadastrado, o Nitzap responde sozinho quando o contato escreve pela primeira vez, ou quando volta a escrever depois de um período sem nenhuma mensagem na conversa, do mesmo jeito que a saudação do WhatsApp Business. Exemplo: o cliente manda \"Oi\" e recebe na hora \"Olá! Enquanto preparamos a equipe para te atender, envie seu nome e e-mail\".\r\n\r\nO período é configurável em dias por conexão. Vazio vale 14 dias, o padrão do WhatsApp. Conta qualquer mensagem, enviada ou recebida: um contato que está sendo atendido, ou que responde a uma campanha, não recebe a saudação. Ela funciona na API oficial da Meta e na conexão por QR Code, aparece no chat como mensagem enviada e não é mandada para grupos, para mensagens recebidas há mais de 5 minutos (fila acumulada quando o número volta a se conectar) nem quando a mensagem do contato é uma palavra de descadastro.\r\n\r\nEm conexão com Agentforce ou Einstein Bot a saudação não é enviada, porque o bot já recepciona o contato. Na API oficial, se o app WhatsApp Business do número também tiver a saudação ligada, o contato recebe as duas: deixe ligada só no Nitzap.\r\n\r\n## Melhorias\r\n- **Chaves visíveis para o administrador:** na tela de configurações, o administrador volta a ver a App Key, o Consumer Secret e os tokens de IA e de transcrição ao clicar no olho, e a App Key nova aparece logo depois de **Rotacionar App Key**. Para os demais usuários esses valores continuam protegidos.",
+    "published_at": "2026-09-28T18:56:23Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.724.0"
+  },
+  {
     "id": 398238637,
     "tag_name": "v1.723.0",
     "name": "1.723.0",
