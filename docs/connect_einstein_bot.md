@@ -66,7 +66,7 @@ Em **Nitzap Config › Conexões › Conexões**, escolha a conexão que vai usa
 
 ![Lista de conexões do Nitzap](images/agentforce-conexoes.png)
 
-Só funciona em conexão da **API oficial da Meta**. Conexões por QR Code não respondem com bot.
+Funciona nos dois tipos de conexão: **API oficial da Meta** e **QR Code**. Na conexão por QR Code, o agente mostra "digitando..." por alguns segundos antes de cada resposta, não responde em grupos e ignora mensagens recebidas há mais de 5 minutos. Isso evita que, quando o número volta depois de um tempo desconectado, o agente dispare respostas para tudo o que chegou nesse intervalo.
 
 Clique na engrenagem da conexão e vá na aba **Configurações**. O bloco **Bot e agente** tem tudo o que importa:
 
@@ -79,7 +79,7 @@ Clique na engrenagem da conexão e vá na aba **Configurações**. O bloco **Bot
 | **Ociosidade da sessão do bot (min)** | Tempo sem mensagem do cliente após o qual o agente esquece a conversa e começa uma sessão nova. Vazio usa 30 minutos |
 | **Pausa após atendimento humano (min)** | Quando o agente transfere o atendimento ou o vendedor responde pelo Nitzap, o agente para de triar e só volta depois desses minutos sem mensagem do vendedor. Vazio usa 8 horas. **É este campo que controla quanto tempo o cliente pode esperar na fila sem o agente reassumir a conversa** |
 | **Mensagem por falta de resposta** | Texto enviado ao contato quando ele não responde à última mensagem do atendente. Mensagens do próprio agente, inclusive a de transferência, não iniciam a contagem, então quem está esperando na fila nunca recebe este aviso. Vazio desliga |
-| **Tempo sem resposta (min)** | Quanto esperar antes de enviar a mensagem acima. Precisa ser menor que 24 horas, senão o WhatsApp não entrega |
+| **Tempo sem resposta (min)** | Quanto esperar antes de enviar a mensagem acima. Precisa ser menor que 24 horas, senão a mensagem não é agendada. Na API oficial, é também o limite em que o WhatsApp entrega texto livre |
 
 Pronto. A partir daí, mensagem recebida nesse número é respondida pelo agente.
 
@@ -220,6 +220,21 @@ Os detalhes desse caminho estão na seção 13 de:
 https://github.com/DataGo-Dev/datago-public/blob/main/docs/apex_usage.md
 
 Esse mesmo guia traz tudo o que o bot pode fazer pelo Apex: enviar mensagens e templates, ler conversas, consultar métricas e encontrar o registro de um telefone.
+
+# Testando o agente
+
+Para testar o agente várias vezes com o mesmo telefone, sem esperar a pausa ou a ociosidade acabarem, envie a mensagem `/restart-agent` do celular de teste para o número da conexão. Maiúsculas e espaços antes ou depois não fazem diferença.
+
+O comando faz o seguinte:
+
+- Tira a pausa do agente nessa conversa.
+- Marca o atendimento como fechado no Nitzap e cancela a mensagem por falta de resposta que estiver agendada.
+- Encerra a sessão do agente. A próxima mensagem começa uma conversa nova, e o contexto do contato é enviado de novo.
+
+Observações:
+
+- A `Task` do atendimento **não é concluída** no Salesforce. Se havia um atendimento aberto, feche-o pelo Nitzap ou pelo `closeServiceDesk`.
+- O comando é para testes, mas não é restrito: qualquer contato que enviar `/restart-agent` reinicia o agente na própria conversa.
 
 Para quaisquer dúvidas entre em contato com a Datago +55 27 99997-0276
 
