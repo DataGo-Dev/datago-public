@@ -1,5 +1,13 @@
 [
   {
+    "id": 398238637,
+    "tag_name": "v1.723.0",
+    "name": "1.723.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000J9pBIAS)\r\n\r\n## Agentforce e Einstein Bot na conexão por QR Code\r\nO bloco **Bot e agente** das configurações da conexão agora aparece também nas conexões por QR Code, não só nas da API oficial da Meta. Tudo o que o bot já fazia vale nos dois tipos de conexão: resposta automática pelo agente ou bot escolhido, mensagem de contexto e variáveis do contato no início da sessão, ociosidade da sessão, pausa quando o vendedor responde pelo Nitzap ou pelo celular, transferência para atendimento humano e mensagem por falta de resposta encerrando o atendimento.\r\n\r\nNa conexão por QR Code o agente mostra \"digitando...\" por alguns segundos antes de cada resposta, não responde em grupos e ignora mensagens recebidas há mais de 5 minutos. Assim, quando o número volta depois de um tempo desconectado, o agente não dispara respostas atrasadas para tudo o que chegou nesse intervalo.\r\n",
+    "published_at": "2026-09-28T13:01:09Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.723.0"
+  },
+  {
     "id": 396877689,
     "tag_name": "v1.716.0",
     "name": "1.716.0",
