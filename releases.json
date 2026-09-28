@@ -1,5 +1,13 @@
 [
   {
+    "id": 398551049,
+    "tag_name": "v1.726.0",
+    "name": "1.726.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000K1pZIAS)\r\n\r\n## Melhorias\r\n- **Salvar mensagem automática só no botão:** a **Mensagem de saudação** e a **Mensagem por falta de resposta** não são mais gravadas enquanto você digita. O texto só passa a valer quando você clica em **Salvar mensagem**, então nenhum contato recebe uma mensagem pela metade. O botão fica desabilitado enquanto não há alteração. Para desligar, apague o texto e salve.\r\n- **Caixa de texto maior:** as duas mensagens automáticas ganharam uma caixa de texto na largura toda do bloco, abaixo da descrição, com espaço para várias linhas.\r\n- **Saudação depois de apagar a conversa:** o contato de uma conversa apagada no Nitzap volta a receber a saudação na próxima mensagem, como num primeiro contato.\r\n- **Botões do bloco Atendimento alinhados:** os botões de ligar e desligar de **Habilitar atendimento** e **Ocultar Fechar e Transferir no chat** voltaram para a direita, alinhados com os outros da tela.\r\n",
+    "published_at": "2026-09-28T19:35:16Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.726.0"
+  },
+  {
     "id": 398287128,
     "tag_name": "v1.724.0",
     "name": "1.725.0",
