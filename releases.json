@@ -1,5 +1,13 @@
 [
   {
+    "id": 399113200,
+    "tag_name": "v1.727.0",
+    "name": "1.728.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000KZWHIA4)\r\n\r\n## API Apex: usuário principal nos membros da conexão\r\nO `nitzap20.NitzapApi.getConnectionMembers(numero)` agora diz quem é o usuário principal da conexão, no campo novo `isPrimary` de cada membro. O principal é quem fica como autor das mensagens enviadas por fora do Nitzap, pelo celular ou pelo WhatsApp Web, e é o mesmo usuário que aparece em `ChatMessage.salesforceUserId` nessas mensagens. Conexão sem principal definido volta com `isPrimary = false` em todos os membros. Documentado no início do guia da API Apex, junto com `getConnectionMembers`.\r\n\r\n\r\n## Áudios tocam em qualquer computador\r\nEm alguns computadores os áudios da conversa apareciam sem a onda sonora e não tocavam. Agora o chat espera o player terminar de carregar antes de montar os áudios. Se mesmo assim a onda não puder ser exibida, o áudio aparece no player padrão do navegador e toca normalmente.\r\n\r\nTambém tem uma opção nova nas preferências do Omni: **Usar player de áudio simples (sem a onda sonora)**. Com ela ligada, todos os áudios usam sempre o player padrão do navegador.\r\n",
+    "published_at": "2026-09-29T14:05:16Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.727.0"
+  },
+  {
     "id": 398551049,
     "tag_name": "v1.726.0",
     "name": "1.726.0",
