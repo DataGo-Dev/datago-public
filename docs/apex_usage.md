@@ -31,9 +31,11 @@ List<nitzap20.NitzapApi.ConnectionMember> membros =
     nitzap20.NitzapApi.getConnectionMembers('5514981770936');
 
 for(nitzap20.NitzapApi.ConnectionMember m : membros){
-    // m.userId (Id do User), m.name, m.isOwner, m.canSend, m.canReceive
+    // m.userId (Id do User), m.name, m.isOwner, m.canSend, m.canReceive, m.isPrimary
 }
 ```
+
+`isPrimary` marca o usuário principal da conexão, no máximo um por número. É ele quem fica como autor das mensagens enviadas por fora do Nitzap (celular, WhatsApp Web), o mesmo usuário que aparece em `ChatMessage.salesforceUserId` nessas mensagens. Conexão sem principal definido volta com `isPrimary = false` em todos os membros.
 
 Usuários integradores aparecem na lista com o próprio identificador no lugar do Id, já que não são usuários Salesforce. Número em branco lança `NitzapApiException` antes do callout.
 - Recursos Meta (templates) exigem que a conexão seja um canal WABA/Coex.
