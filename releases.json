@@ -1,5 +1,13 @@
 [
   {
+    "id": 399984964,
+    "tag_name": "v1.729.0",
+    "name": "1.731.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000LSAzIAO)\r\n\r\n## Melhorias\r\n**Número repetido abre o cadastro mais recente.** Quando o mesmo número de WhatsApp está em mais de um registro (Lead, Contato ou Conta), o Omni e o clique no número passam a abrir o registro criado por último, e não mais o mais antigo. A ordem de prioridade continua a mesma: primeiro o registro com atendimento em andamento, depois Conta antes de Contato antes de Lead (ou Contato primeiro, se a preferência estiver ligada), e só então o criado mais recentemente.\r\n\r\n## Áudios voltam a aparecer no Chrome atualizado\r\nA partir da versão 154 do Chrome (liberada em 22/09), os áudios das conversas apareciam sem a onda sonora e não tocavam. O Chrome passou a informar o tipo do arquivo de áudio de um jeito novo, e a camada de segurança do Salesforce (Lightning Web Security) recusava esse formato ao montar o player. Navegadores ainda na versão anterior não eram afetados.\r\n\r\nO player agora prepara o áudio de um modo que o Salesforce aceita, e a onda sonora volta a aparecer em qualquer navegador. Se mesmo assim o player não conseguir montar a onda, o áudio aparece no player padrão do navegador e toca normalmente, como já acontecia na 1.728.0.\r\n",
+    "published_at": "2026-09-30T12:34:45Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.729.0"
+  },
+  {
     "id": 399113200,
     "tag_name": "v1.727.0",
     "name": "1.728.0",
