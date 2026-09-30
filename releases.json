@@ -1,5 +1,13 @@
 [
   {
+    "id": 400037223,
+    "tag_name": "v1.732.0",
+    "name": "1.732.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000M3QfIAK)\r\n\r\n## Bot fica quieto quando é a equipe que inicia a conversa\r\nQuando alguém da equipe abria o contato pelo número do bot e mandava uma saudação, a resposta do cliente era atendida pelo bot, e não por quem tinha escrito. Isso acontecia em duas situações: nas 24 horas seguintes a um atendimento encerrado, quando a mensagem da equipe não pausava o bot, e em conexões por QR Code, onde o envio pela tela nunca pausava. Agora qualquer mensagem enviada por uma pessoa da equipe, texto, mídia ou template, pausa o bot naquela conversa pelo tempo de \"Pausa após atendimento humano\", em qualquer tipo de conexão.\r\n\r\nDisparos em massa e campanhas ficaram de fora de propósito: a mensagem de campanha não pausa o bot, para que ele possa triar as respostas. Mensagens do próprio sistema, como a despedida ao encerrar o atendimento, o aviso por falta de resposta e a saudação automática, também não pausam.\r\n\r\nEsta mudança é no servidor do Nitzap e não depende de atualizar o pacote.\r\n\r\n## Correções\r\n**Conversa de contato cadastrado durante a conversa entra na fila sem recarregar.** Quando o bot criava o Contato no meio da triagem e em seguida transferia o atendimento para uma fila, quem estava com o Omni aberto não via a conversa aparecer na fila até recarregar a tela, porque o aviso chegava para um registro que o Omni ainda não conhecia. Agora o aviso traz o telefone do contato, e o Omni reassocia a conversa ao registro novo antes de aplicar a transferência. Vale para abertura, transferência e encerramento vindos da API Apex.\r\n",
+    "published_at": "2026-09-30T18:02:28Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.732.0"
+  },
+  {
     "id": 399984964,
     "tag_name": "v1.729.0",
     "name": "1.731.0",
