@@ -83,6 +83,23 @@ Clique na engrenagem da conexão e vá na aba **Configurações**. O bloco **Bot
 
 Pronto. A partir daí, mensagem recebida nesse número é respondida pelo agente.
 
+# Como as opções do bot aparecem no WhatsApp
+
+Quando o Einstein Bot oferece opções para o cliente escolher, o Nitzap as entrega do jeito que o WhatsApp permite em cada canal:
+
+| Situação | O que o cliente vê |
+|---|---|
+| API oficial, até 3 opções | Botões de resposta abaixo da pergunta |
+| API oficial, de 4 a 10 opções | Uma lista: o cliente toca em "Ver opções" e escolhe |
+| API oficial, mais de 10 opções | Lista numerada em texto, e o cliente responde com o número ou o texto |
+| Conexão por QR Code | Lista numerada em texto, porque botões não são confiáveis fora da API oficial |
+
+Limites do WhatsApp: título de botão com até 20 caracteres e item de lista com até 24. Rótulos mais longos são encurtados no título e aparecem por inteiro na descrição do item da lista. Vale a pena escrever os rótulos das opções do bot já curtos.
+
+Tocar em um botão ou item vale como a resposta do cliente: o bot recebe a opção escolhida, não um texto solto, mesmo que o rótulo tenha sido encurtado. No chat do Nitzap a mensagem aparece como a pergunta seguida da lista numerada, e a resposta do cliente aparece com o texto da opção. Se o WhatsApp recusar a mensagem interativa por algum motivo, o Nitzap envia a versão em texto.
+
+Agentforce responde em texto livre e não oferece opções, então nada disso se aplica a ele.
+
 # O que o Nitzap envia para o bot
 
 O Nitzap manda os dados do contato no começo da conversa, uma única vez por sessão. O que muda é a forma, conforme o tipo escolhido.
