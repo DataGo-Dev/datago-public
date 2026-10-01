@@ -1,5 +1,13 @@
 [
   {
+    "id": 400950513,
+    "tag_name": "v1.733.0",
+    "name": "1.733.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000M3QfIAK)\r\n\r\n## Melhorias\r\n**Saiu a opção \"Usar player de áudio simples\".** Ela entrou na 1.728.0 como saída provisória enquanto os áudios não apareciam no Chrome 154. Com a correção da 1.731.0, os áudios voltaram a mostrar a onda sonora em qualquer navegador, e a opção deixou de ser necessária. Se um áudio não conseguir montar a onda, ele continua aparecendo no player padrão do navegador e toca normalmente.\r\n\r\n## Opções do bot viram botões e listas no WhatsApp\r\nQuando o Einstein Bot oferece opções, na API oficial elas agora chegam ao cliente como **botões de resposta** (até 3 opções) ou como **lista** (de 4 a 10 opções), no mesmo balão da pergunta, em vez da lista numerada em texto. Tocar na opção vale como resposta, e o bot recebe exatamente a opção escolhida, mesmo que o rótulo tenha sido encurtado para caber nos limites do WhatsApp (20 caracteres em botão, 24 em item de lista; o texto completo vai na descrição do item). Acima de 10 opções, em conexão por QR Code, ou se o WhatsApp recusar a mensagem, continua a lista numerada em texto. No chat do Nitzap a mensagem aparece como pergunta mais lista numerada. Agentforce não oferece opções e não muda.\r\n\r\nEsta mudança é no servidor do Nitzap e não depende de atualizar o pacote.\r\n",
+    "published_at": "2026-10-01T14:14:10Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.733.0"
+  },
+  {
     "id": 400037223,
     "tag_name": "v1.732.0",
     "name": "1.732.0",
