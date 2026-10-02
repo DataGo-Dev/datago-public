@@ -210,6 +210,18 @@ nitzap20.NitzapApi.closeServiceDesk(
 
 A despedida é opcional: passando em branco, o atendimento encerra sem enviar nada.
 
+Se o seu bot cria a Task de atendimento logo na primeira mensagem, antes de cadastrar o cliente, ela ainda não tem contato vinculado quando o cliente desiste, e o Nitzap não consegue descobrir qual conversa encerrar. Nesse caso use a forma com objeto e informe o telefone, que o bot já tem na variável `nitzap_contact_phone`:
+
+```apex
+nitzap20.NitzapApi.ServiceDeskClosure fechamento = new nitzap20.NitzapApi.ServiceDeskClosure();
+fechamento.taskId = atendimento.Id;
+fechamento.farewellMessage = 'Tudo bem! Se mudar de ideia, é só chamar.';
+fechamento.contactPhone = telefoneDoCliente;   // variável nitzap_contact_phone
+nitzap20.NitzapApi.closeServiceDesk(fechamento);
+```
+
+Sem contato na Task e sem telefone, o método recusa a chamada com erro claro, em vez de fechar a Task e deixar o bot sem responder.
+
 **Não envie a despedida por conta própria em paralelo.** Se ela sair antes de o Nitzap encerrar a sessão do agente, conta como mensagem de atendimento e reinicia a contagem da mensagem por falta de resposta, e o cliente recebe "conversa encerrada por inatividade" minutos depois de já ter sido despedido. Deixando o texto no `closeServiceDesk`, a ordem fica garantida.
 
 Os três métodos estão detalhados, com todas as regras e mensagens de erro, nas seções 14 a 16 de:

@@ -583,9 +583,12 @@ nitzap20.NitzapApi.ServiceDeskClosure fechamento = new nitzap20.NitzapApi.Servic
 fechamento.taskId = atendimento.Id;
 fechamento.farewellMessage = 'Nossa conversa foi encerrada.';   // opcional
 fechamento.internalNote = 'Encerrado pelo robô de triagem';      // opcional
+fechamento.contactPhone = '5511999999999';                        // só se a Task não tiver contato vinculado
 
 Id jobId = nitzap20.NitzapApi.closeServiceDesk(fechamento);
 ```
+
+`contactPhone` cobre o caso em que a Task de atendimento foi criada antes do cadastro do cliente e ainda não aponta para Contato, Lead ou Conta. O Nitzap precisa do telefone para encerrar a conversa certa no WhatsApp; normalmente ele vem do registro vinculado à Task, e sem registro é preciso informá-lo. Em bot, a variável `nitzap_contact_phone` que o Nitzap entrega no início da sessão é exatamente esse valor. Sem contato na Task e sem `contactPhone`, o método lança erro e não fecha nada, em vez de fechar a Task e deixar o bot preso.
 
 O que acontece:
 
