@@ -1,5 +1,13 @@
 [
   {
+    "id": 404017421,
+    "tag_name": "v1.740.0",
+    "name": "1.740.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000Q97hIAC)\n\n## Transcrição de áudio pelo servidor\nA transcrição dos áudios do chat passou a ser feita pelo servidor do Nitzap, com o provedor escolhido em **Configuração > Inteligência Artificial > Transcrição de áudio**. Se o servidor não conseguir transcrever, o chat segue pelo caminho anterior, usando a IA configurada no Salesforce.\n\nO mesmo card ganhou duas opções para o administrador:\n\n- **Transcrever todos os áudios automaticamente no servidor.** Todo áudio novo de conversa individual, recebido ou enviado, é transcrito assim que chega, mesmo que ninguém abra a conversa. Assim a busca e a IA encontram o que foi falado. Cada áudio consome a cota do provedor configurado.\n- **Transcrever também os áudios de grupos.** Vem desligada e só fica disponível com a opção acima ligada. Grupos movimentados podem ter muitos áudios e aumentar bastante o consumo do provedor.\n\nAo salvar, o Nitzap envia o provedor, o token e essas opções ao servidor. Se o servidor recusar a configuração ou ainda não tiver o recurso, a opção volta a ficar desligada e o motivo aparece na tela.\n\n## Melhorias\n**Envios por canal com filtro e cabeçalho fixo.** A aba **Logs > Envios por canal** ganhou o campo \"Filtrar por conexão ou dia\", que aceita nome, número ou data (dd/mm/aaaa) e mostra quantas linhas ficaram. A tabela agora rola por dentro, com o cabeçalho e a linha de total sempre visíveis.\n\n**Card de Transcrição de áudio mais fácil de ler.** As opções do card seguem o mesmo padrão das Preferências: título e explicação à esquerda, botão de ligar à direita. A opção de grupos aparece recuada, logo abaixo da opção de que depende.\n\n**Saiu a opção \"Usar player de áudio simples\".** A preferência já não tinha efeito e foi retirada das preferências do Omni. Quando o player com a onda sonora não consegue abrir um áudio, o Nitzap continua trocando sozinho para o player simples.\n",
+    "published_at": "2026-10-05T18:47:09Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.740.0"
+  },
+  {
     "id": 401174763,
     "tag_name": "v1.734.0",
     "name": "1.734.0",
