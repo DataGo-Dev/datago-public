@@ -161,6 +161,64 @@ Se a `Task` continuar aberta, a causa quase sempre é permissão. Em **Configura
 | `INSUFFICIENT_ACCESS_ON_CROSS_REFERENCE_ENTITY` | Pacote desatualizado: atualize para a versão que grava o fechamento em contexto de sistema |
 | Nada acontece e o agente segue respondendo | Falta o escopo `api` no aplicativo conectado, ou as credenciais não estão salvas em Nitzap Config › Configurações › Credenciais Salesforce |
 
+# Dúvidas frequentes sobre os tempos
+
+As perguntas abaixo são as que mais aparecem na hora de parametrizar o bloco **Bot e agente** da conexão.
+
+## Se o cliente demora a responder ao bot, em quanto tempo o bot recomeça do zero?
+
+No tempo do campo **Ociosidade da sessão do bot**, e não no da pausa. Com 10 minutos configurados, se o cliente ficar 10 minutos sem responder, o bot encerra a conversa; em branco vale 30 minutos. Havendo mensagem por falta de resposta, ela é enviada nesse momento. Quando o cliente escrever de novo, o bot começa do zero.
+
+## Nesse momento a tarefa é fechada no Salesforce?
+
+Só se ela já estiver vinculada ao cliente. O Nitzap localiza o atendimento pelo Contato, Lead ou Conta que tem aquele telefone, e fecha a tarefa de atendimento aberta ligada a esse registro. Uma tarefa criada pelo bot na primeira mensagem, antes do cadastro, não aponta para ninguém e por isso continua aberta. Se o seu bot cria tarefas assim e você quer vê-las concluídas, use um Flow agendado na sua organização para fechar as que ficaram sem contato e sem movimentação.
+
+Sem mensagem por falta de resposta configurada, nada é enviado e nada é fechado: a sessão do bot apenas expira.
+
+## O bot transferiu para a fila e ninguém atendeu. O atendimento expira?
+
+Não. Ele fica na fila até alguém puxar. O encerramento automático só começa a contar depois que um vendedor responde ao cliente; enquanto o cliente espera na fila, nada é enviado e nada é fechado.
+
+O que vence nesse caso é a **Pausa após atendimento humano**, que é o tempo de silêncio do bot. Se ela terminar sem ninguém ter assumido e o cliente escrever de novo, o bot volta a atendê-lo, e o atendimento antigo continua aberto na fila. Por isso o valor da pausa deve ser maior que o tempo máximo que um cliente pode esperar na fila. O padrão de 8 horas costuma cobrir um dia de trabalho.
+
+## Para que serve, afinal, a Pausa após atendimento humano?
+
+É o tempo que o bot fica em silêncio para não atrapalhar o atendimento humano. Ela começa quando o bot transfere para a fila e recomeça a cada mensagem de um vendedor. O que acontece quando ela vence depende do momento:
+
+| Momento | Quando a pausa vence |
+|---|---|
+| Cliente na fila, sem resposta de vendedor | Nada é enviado e o atendimento continua aberto. O bot apenas volta a atender, caso o cliente escreva de novo |
+| Depois que um vendedor respondeu | Se o cliente não respondeu ao vendedor até o fim do tempo, a mensagem por falta de resposta é enviada e o atendimento é encerrado |
+
+## Quando a mensagem por falta de resposta é enviada?
+
+Em dois momentos, sempre que o cliente para de responder:
+
+- na conversa com o bot, ao fim da ociosidade da sessão;
+- depois que um vendedor respondeu, ao fim da pausa após atendimento humano, contada da última mensagem do vendedor.
+
+Ao ser enviada, ela encerra o atendimento, fecha a tarefa vinculada ao cliente e devolve a conversa ao bot. É cancelada se o cliente responder ou se o atendimento for fechado antes. Deixando o texto em branco, não existe encerramento automático.
+
+Se o seu texto citar um tempo, como "nos últimos 5 minutos", confira se ele bate com os dois campos acima. O mesmo vale para a mensagem de transferência do bot: não prometa encerramento por tempo a quem vai esperar na fila, porque na fila nada é contado.
+
+## E o campo "Tempo sem resposta (min)"?
+
+Foi removido. O tempo da mensagem passou a ser o da ociosidade e o da pausa. Em pacotes anteriores o campo ainda aparece na tela, mas deixa de ter efeito assim que o servidor do Nitzap é atualizado.
+
+## Posso deixar a pausa bem curta para encerrar rápido quem não responde ao vendedor?
+
+Pode, mas a pausa é também o silêncio do bot na fila. Com pausa de 5 minutos, um cliente que espera 6 minutos por um vendedor e escreve "oi" é atendido pelo bot de novo. Escolha o valor pensando nas duas situações.
+
+## O bot transferiu, mas a equipe não vê a conversa na fila. Por quê?
+
+Três causas respondem por quase todos os casos:
+
+- **O usuário não é membro da conexão.** Ser membro da fila no Salesforce não basta: o Omni só mostra conversas das conexões em que o usuário foi incluído, em Nitzap Config › Conexões › Membros.
+- **O usuário nunca abriu o Nitzap.** O cadastro dele no servidor nasce no primeiro acesso.
+- **A conversa está arquivada.** Conversa arquivada some da lista, da fila e dos alertas para todos os membros, e nada a desarquiva sozinha. Confira a aba Arquivadas.
+
+No Omni, atendimentos que ainda estão em fila aparecem no filtro **Fila**. O filtro **Equipe** mostra os que já estão com uma pessoa, de qualquer atendente, nas conexões do usuário.
+
 # O bot controlando o atendimento pelo Apex
 
 O agente pode abrir, transferir e encerrar o atendimento chamando o Nitzap direto do Apex, de um Flow ou de uma ação invocável. Os três métodos fazem exatamente o que os botões do chat fazem: mexem na `Task`, avisam o Omni de todo mundo na hora e gravam no chat o aviso interno que só os atendentes veem.
