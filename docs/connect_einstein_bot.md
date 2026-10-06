@@ -179,7 +179,20 @@ Sem mensagem por falta de resposta configurada, nada é enviado e nada é fechad
 
 Não. Ele fica na fila até alguém puxar. O encerramento automático só começa a contar depois que um vendedor responde ao cliente; enquanto o cliente espera na fila, nada é enviado e nada é fechado.
 
-O que vence nesse caso é a **Pausa após atendimento humano**, que é o tempo de silêncio do bot. Se ela terminar sem ninguém ter assumido e o cliente escrever de novo, o bot volta a atendê-lo, e o atendimento antigo continua aberto na fila. Por isso o valor da pausa deve ser maior que o tempo máximo que um cliente pode esperar na fila. O padrão de 8 horas costuma cobrir um dia de trabalho.
+São dois relógios independentes. O atendimento, que é a tarefa na fila do Salesforce, não tem prazo. O silêncio do bot tem: é a **Pausa após atendimento humano**. Quando ela vence, nada é encerrado; o bot só deixa de ficar calado e responde se o cliente escrever de novo.
+
+Por isso o valor da pausa deve ser maior que o tempo máximo que um cliente pode esperar na fila. O padrão de 8 horas costuma cobrir um dia de trabalho.
+
+## Se a pausa vencer com o cliente ainda na fila, o bot cria outro atendimento?
+
+Quando o cliente escreve depois da pausa vencida, o bot recomeça a triagem do zero, e o atendimento anterior continua aberto na fila. O que acontece no fim da nova triagem depende de como o seu bot abre o atendimento:
+
+| Como o bot abre o atendimento | Resultado |
+|---|---|
+| Com `createServiceDesk` do Nitzap | Não duplica. O método encontra o atendimento que já está aberto para aquele contato na conexão e devolve o mesmo; o cliente continua na fila em que estava |
+| Criando a `Task` direto no Flow | Cria outra. Ficam duas tarefas de atendimento abertas para o mesmo cliente, e a antiga permanece na fila até alguém fechar |
+
+É uma situação rara, porque exige que a pausa inteira passe sem ninguém puxar o atendimento. Para evitá-la, mantenha a pausa maior que a espera máxima na fila e prefira `createServiceDesk` para abrir o atendimento.
 
 ## Para que serve, afinal, a Pausa após atendimento humano?
 
