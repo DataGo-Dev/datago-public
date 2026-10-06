@@ -167,6 +167,8 @@ As perguntas abaixo são as que mais aparecem na hora de parametrizar o bloco **
 
 ## Se o cliente demora a responder ao bot, em quanto tempo o bot recomeça do zero?
 
+![Campo Ociosidade da sessão do bot](images/bot-ociosidade-sessao.png)
+
 No tempo do campo **Ociosidade da sessão do bot**, e não no da pausa. Com 10 minutos configurados, se o cliente ficar 10 minutos sem responder, o bot encerra a conversa; em branco vale 30 minutos. Havendo mensagem por falta de resposta, ela é enviada nesse momento. Quando o cliente escrever de novo, o bot começa do zero.
 
 ## Nesse momento a tarefa é fechada no Salesforce?
@@ -196,6 +198,8 @@ Quando o cliente escreve depois da pausa vencida, o bot recomeça a triagem do z
 
 ## Para que serve, afinal, a Pausa após atendimento humano?
 
+![Campo Pausa após atendimento humano](images/bot-pausa-atendimento-humano.png)
+
 É o tempo que o bot fica em silêncio para não atrapalhar o atendimento humano. Ela começa quando o bot transfere para a fila e recomeça a cada mensagem de um vendedor. O que acontece quando ela vence depende do momento:
 
 | Momento | Quando a pausa vence |
@@ -204,6 +208,8 @@ Quando o cliente escreve depois da pausa vencida, o bot recomeça a triagem do z
 | Depois que um vendedor respondeu | Se o cliente não respondeu ao vendedor até o fim do tempo, a mensagem por falta de resposta é enviada e o atendimento é encerrado |
 
 ## Quando a mensagem por falta de resposta é enviada?
+
+![Campo Mensagem por falta de resposta](images/bot-mensagem-falta-de-resposta.png)
 
 Em dois momentos, sempre que o cliente para de responder:
 
