@@ -208,7 +208,10 @@
         const VERSION = 'v25.0';
         const ALLOWED_API_HOST = /^https:\/\/([a-z0-9-]+\.)+(nitzap|datago)\.com$/;
         const FACEBOOK_ORIGINS = ['https://www.facebook.com', 'https://web.facebook.com'];
-        const SUPPORTED_MODES = ['coex'];
+        const SIGNUP_BY_MODE = {
+            coex: { featureType: 'whatsapp_business_app_onboarding', finishEvent: 'FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING' },
+            cloud: { featureType: '', finishEvent: 'FINISH' }
+        };
 
         const params = new URLSearchParams(window.location.search);
         const apiBaseUrl = params.get('api') || '';
@@ -236,7 +239,8 @@
                 showStatus('Link inválido ou expirado. Feche esta janela e tente novamente pelo Salesforce.', true);
                 return false;
             }
-            if (!SUPPORTED_MODES.includes(mode)) {
+            const supportedModes = Object.keys(SIGNUP_BY_MODE);
+            if (!supportedModes.includes(mode)) {
                 showStatus('Modo de conexão não suportado: ' + mode, true);
                 return false;
             }
@@ -244,14 +248,11 @@
         }
 
         function buildExtras() {
-            if (mode === 'coex') {
-                return {
-                    version: 'v4',
-                    featureType: 'whatsapp_business_app_onboarding',
-                    features: [{ name: 'app_only_install' }, { name: 'marketing_messages_lite' }]
-                };
-            }
-            return {};
+            return {
+                version: 'v4',
+                featureType: SIGNUP_BY_MODE[mode].featureType,
+                features: [{ name: 'app_only_install' }, { name: 'marketing_messages_lite' }]
+            };
         }
 
         async function report(payload) {
@@ -334,7 +335,7 @@
 
             if (data.type !== 'WA_EMBEDDED_SIGNUP') { return; }
 
-            if (data.event === 'FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING') {
+            if (data.event === SIGNUP_BY_MODE[mode].finishEvent) {
                 collected.info = data.data;
                 reportWhenComplete();
                 return;
