@@ -1,5 +1,13 @@
 [
   {
+    "id": 406112823,
+    "tag_name": "v1.743.0",
+    "name": "1.743.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000SdJNIA0)\n\n## Melhorias\n**CSV do resultado do disparo traz todos os destinatários.** O botão passou a se chamar **Exportar tudo (CSV)** e baixa o disparo inteiro, com a situação de cada destinatário, mesmo quando há um filtro de situação selecionado na janela.\n\n## Correções\n**Lista de destinatários no resultado do disparo.** Na 1.742.0, o botão **Ver resultado** mostrava os totais por situação, mas a lista de destinatários não carregava e aparecia \"An internal server error has occurred\". A lista e a exportação CSV voltam a funcionar.\n",
+    "published_at": "2026-10-07T20:08:05Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.743.0"
+  },
+  {
     "id": 404795956,
     "tag_name": "v1.742.0",
     "name": "1.742.0",
