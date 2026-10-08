@@ -99,6 +99,20 @@ Tocar em um botão ou item vale como a resposta do cliente: o bot recebe a opç�
 
 Agentforce responde em texto livre e não oferece opções, então nada disso se aplica a ele.
 
+# Quando o cliente manda áudio
+
+Agentforce e Einstein Bot só recebem texto. Quando o cliente envia um áudio para uma conexão com agente, o Nitzap transcreve o áudio e entrega o texto ao agente, como se o cliente tivesse digitado. A mesma transcrição fica gravada na mensagem, para o atendente ler no chat depois.
+
+Para isso funcionar, a organização precisa ter um provedor de transcrição configurado em **Nitzap Config › Configurações › Transcrição de áudio**, ou o token da IA do assistente. Não depende da opção "Transcrever todos os áudios automaticamente no servidor": com agente na conexão, o áudio do cliente é sempre transcrito.
+
+Quando o Nitzap não consegue transcrever, o cliente recebe uma resposta pedindo que envie a mensagem por texto, em vez de ficar sem retorno. Isso acontece em três situações:
+
+- não há provedor de transcrição configurado;
+- o provedor recusou o áudio ou devolveu erro;
+- o provedor está sem crédito. Nesse caso o Nitzap pausa as tentativas de transcrição automática por 10 minutos antes de tentar de novo, para não insistir numa conta sem saldo. Durante a pausa, áudios recebidos pelo agente têm a resposta pedindo texto, e a transcrição automática do servidor é pulada. O botão de transcrever no chat continua disponível.
+
+Só vale para áudio de conversa individual enviado pelo cliente enquanto o agente está atendendo. Com o agente em pausa, porque um vendedor assumiu ou o atendimento está na fila, o áudio não é enviado ao agente.
+
 # O que o Nitzap envia para o bot
 
 O Nitzap manda os dados do contato no começo da conversa, uma única vez por sessão. O que muda é a forma, conforme o tipo escolhido.
