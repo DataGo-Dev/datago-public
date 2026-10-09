@@ -1,5 +1,13 @@
 [
   {
+    "id": 408102241,
+    "tag_name": "v1.745.0",
+    "name": "1.745.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000UecjIAC)\n\n## Melhorias\n**Cartão \"Conexão do Doctor\" removido.** O cartão que tinha aparecido na administração de conexões na versão anterior saiu da tela.\n\n## Correções\n**Atendimento aparecia em duas conexões no Omni.** Quando o mesmo cliente tinha conversa em mais de um número e o atendente via várias conexões juntas, o atendimento aberto em uma delas aparecia também na conversa da outra, com \"Na fila\" e o botão Puxar nas duas. Era um atendimento só; o Omni ligava o atendimento à conversa pelo telefone do cliente, sem olhar a conexão. Agora ele aparece apenas na conversa do número em que foi aberto, e os avisos ao vivo de abertura, transferência e encerramento atualizam só essa conversa.\n",
+    "published_at": "2026-10-09T16:39:31Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.745.0"
+  },
+  {
     "id": 406798876,
     "tag_name": "v1.744.0",
     "name": "1.744.0",
