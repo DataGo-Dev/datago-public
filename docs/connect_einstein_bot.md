@@ -77,7 +77,7 @@ Clique na engrenagem da conexão e vá na aba **Configurações**. O bloco **Bot
 | **Resposta automática (bot/agente)** | Escolha `Agentforce (agente)` ou `Einstein Bot`. Só um por conexão |
 | **Agentforce: agente desta conexão** | Busque e selecione o agente do Salesforce. **Obrigatório**: com a resposta automática ligada e sem agente escolhido, aparece o aviso amarelo e nada é respondido |
 | **Ociosidade da sessão do bot (min)** | Tempo sem mensagem do cliente após o qual o agente esquece a conversa e começa uma sessão nova na próxima mensagem. Se houver mensagem por falta de resposta, ela é enviada neste momento. Vazio usa 30 minutos |
-| **Pausa após atendimento humano (min)** | Quando o agente transfere o atendimento ou alguém da equipe manda mensagem pelo Nitzap, o agente para de triar e só volta depois desses minutos sem mensagem da equipe. Vale também quando é a equipe que inicia a conversa: o vendedor manda a saudação, o cliente responde e quem recebe é o vendedor, não o agente. Disparos em massa não pausam o agente, para que ele possa triar as respostas. Se houver mensagem por falta de resposta, ela é enviada quando este tempo vence sem o cliente responder ao vendedor. Vazio usa 8 horas. **É este campo que controla quanto tempo o cliente pode esperar na fila sem o agente reassumir a conversa** |
+| **Pausa após atendimento humano (min)** | Depois que alguém da equipe manda mensagem pelo Nitzap, o agente fica em silêncio por estes minutos, contados da última mensagem da equipe. Vale também quando é a equipe que inicia a conversa: o vendedor manda a saudação, o cliente responde e quem recebe é o vendedor, não o agente. Se houver mensagem por falta de resposta, ela é enviada quando este tempo vence sem o cliente responder. Enquanto o cliente espera na fila, depois que o agente transfere, este tempo não conta: o agente aguarda um atendente responder, por até 24 horas. Disparos em massa não pausam o agente. Vazio usa 8 horas |
 | **Mensagem por falta de resposta** | Texto enviado quando o contato para de responder. Na conversa com o agente, sai ao fim da ociosidade da sessão. Depois que um vendedor responde, sai ao fim da pausa após atendimento humano, contada da última mensagem do vendedor. Enquanto o cliente espera na fila, sem resposta de um vendedor, nada é contado. Com qualquer um desses tempos em 24 horas ou mais, a mensagem não é enviada naquele caso. Vazio desliga |
 
 Pronto. A partir daí, mensagem recebida nesse número é respondida pelo agente.
@@ -195,31 +195,21 @@ Sem mensagem por falta de resposta configurada, nada é enviado e nada é fechad
 
 Não. Ele fica na fila até alguém puxar. O encerramento automático só começa a contar depois que um vendedor responde ao cliente; enquanto o cliente espera na fila, nada é enviado e nada é fechado.
 
-São dois relógios independentes. O atendimento, que é a tarefa na fila do Salesforce, não tem prazo. O silêncio do bot tem: é a **Pausa após atendimento humano**. Quando ela vence, nada é encerrado; o bot só deixa de ficar calado e responde se o cliente escrever de novo.
+O agente também não volta: depois de transferir, ele fica em silêncio até um atendente responder. A **Pausa após atendimento humano** não conta nesse intervalo; ela só começa na primeira mensagem do vendedor. Se o cliente escrever enquanto espera, a mensagem fica na conversa para quem assumir.
 
-Por isso o valor da pausa deve ser maior que o tempo máximo que um cliente pode esperar na fila. O padrão de 8 horas costuma cobrir um dia de trabalho.
-
-## Se a pausa vencer com o cliente ainda na fila, o bot cria outro atendimento?
-
-Quando o cliente escreve depois da pausa vencida, o bot recomeça a triagem do zero, e o atendimento anterior continua aberto na fila. O que acontece no fim da nova triagem depende de como o seu bot abre o atendimento:
-
-| Como o bot abre o atendimento | Resultado |
-|---|---|
-| Com `createServiceDesk` do Nitzap | Não duplica. O método encontra o atendimento que já está aberto para aquele contato na conexão e devolve o mesmo; o cliente continua na fila em que estava |
-| Criando a `Task` direto no Flow | Cria outra. Ficam duas tarefas de atendimento abertas para o mesmo cliente, e a antiga permanece na fila até alguém fechar |
-
-É uma situação rara, porque exige que a pausa inteira passe sem ninguém puxar o atendimento. Para evitá-la, mantenha a pausa maior que a espera máxima na fila e prefira `createServiceDesk` para abrir o atendimento.
+Existe um teto de segurança de 24 horas. Se ninguém da equipe responder nem encerrar o atendimento nesse período, o agente volta a atender aquele cliente, para que ele não fique sem resposta para sempre.
 
 ## Para que serve, afinal, a Pausa após atendimento humano?
 
 ![Campo Pausa após atendimento humano](images/bot-pausa-atendimento-humano.png)
 
-É o tempo que o bot fica em silêncio para não atrapalhar o atendimento humano. Ela começa quando o bot transfere para a fila e recomeça a cada mensagem de um vendedor. O que acontece quando ela vence depende do momento:
+É o tempo que o agente fica em silêncio depois que um vendedor fala, para não atrapalhar o atendimento humano. Ela começa na primeira mensagem do vendedor e recomeça a cada mensagem dele.
 
-| Momento | Quando a pausa vence |
+| Momento | O que acontece |
 |---|---|
-| Cliente na fila, sem resposta de vendedor | Nada é enviado e o atendimento continua aberto. O bot apenas volta a atender, caso o cliente escreva de novo |
-| Depois que um vendedor respondeu | Se o cliente não respondeu ao vendedor até o fim do tempo, a mensagem por falta de resposta é enviada e o atendimento é encerrado |
+| O agente transferiu e o cliente espera na fila | A pausa ainda não conta. O agente fica em silêncio até um atendente responder, por até 24 horas |
+| Um vendedor respondeu | A pausa conta a partir da última mensagem dele. Se o cliente não responder até o fim, a mensagem por falta de resposta é enviada e o atendimento é encerrado |
+| O atendimento foi encerrado | O agente volta a atender na próxima mensagem do cliente, sem esperar a pausa |
 
 ## Quando a mensagem por falta de resposta é enviada?
 
@@ -240,7 +230,15 @@ Foi removido. O tempo da mensagem passou a ser o da ociosidade e o da pausa. Em 
 
 ## Posso deixar a pausa bem curta para encerrar rápido quem não responde ao vendedor?
 
-Pode, mas a pausa é também o silêncio do bot na fila. Com pausa de 5 minutos, um cliente que espera 6 minutos por um vendedor e escreve "oi" é atendido pelo bot de novo. Escolha o valor pensando nas duas situações.
+Pode. A pausa só conta depois que um vendedor responde, então um valor curto, como 5 minutos, encerra rápido o cliente que parou de responder ao vendedor e não faz o agente reassumir quem ainda está esperando na fila.
+
+O que um valor curto muda é o outro lado: se o vendedor ficar esse tempo sem escrever e o cliente também não responder, o atendimento é encerrado. Escolha um tempo que dê folga para o vendedor trabalhar.
+
+## O bot se despediu sem transferir e parou de responder. Por quê?
+
+Para o Nitzap, o fim da sessão do bot é o sinal de que a conversa foi entregue a uma pessoa, porque o Einstein encerra a sessão do mesmo jeito quando transfere e quando só se despede. Então, depois de qualquer fim de sessão, o agente fica em silêncio esperando um atendente, por até 24 horas.
+
+Quando o seu bot encerra a conversa sem passar para ninguém, avise o Nitzap chamando `closeServiceDesk` nesse ramo do diálogo. É esse aviso que libera o agente na hora, para atender o cliente na próxima mensagem. Se a tarefa ainda não tiver contato vinculado, informe o telefone no `contactPhone`, como mostra a seção "Encerrar o atendimento".
 
 ## O bot transferiu, mas a equipe não vê a conversa na fila. Por quê?
 
