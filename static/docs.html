@@ -5,32 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentação do Nitzap</title>
     <meta name="description" content="Guias de configuração e referência técnica do Nitzap.">
-    <script>
-        const THEME_STORAGE_KEY = 'nitzap-docs-theme';
-
-        function readSavedTheme() {
-            try {
-                return localStorage.getItem(THEME_STORAGE_KEY);
-            } catch (error) {
-                return null;
-            }
-        }
-
-        function saveTheme(theme) {
-            try {
-                localStorage.setItem(THEME_STORAGE_KEY, theme);
-            } catch (error) {
-                console.warn('Tema não foi salvo neste navegador', error);
-            }
-        }
-
-        function systemTheme() {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            return prefersDark ? 'dark' : 'light';
-        }
-
-        document.documentElement.dataset.theme = readSavedTheme() || systemTheme();
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -55,33 +29,9 @@
             --warn: #b97700;
             --warn-soft: #fff5dc;
             --image-shadow: 0 10px 28px -18px rgba(13, 43, 40, 0.45);
-            --sun-display: none;
-            --moon-display: block;
             --topbar-height: 60px;
             --nav-width: 240px;
             --column-gap: 48px;
-        }
-
-        :root[data-theme="dark"] {
-            color-scheme: dark;
-            --bg: #0b1211;
-            --bg-soft: #131d1c;
-            --bg-bar: rgba(11, 18, 17, 0.92);
-            --border: #212e2c;
-            --text: #edf4f2;
-            --text-body: #cfdbd8;
-            --text-muted: #8fa29e;
-            --accent: #4fd6a4;
-            --accent-strong: #7be4bd;
-            --accent-soft: rgba(79, 214, 164, 0.12);
-            --inline-code-bg: #1a2725;
-            --code-bg: #070d0c;
-            --code-border: #1d2927;
-            --warn: #f0b84a;
-            --warn-soft: rgba(240, 184, 74, 0.1);
-            --image-shadow: 0 10px 28px -18px rgba(0, 0, 0, 0.8);
-            --sun-display: block;
-            --moon-display: none;
         }
 
         * { box-sizing: border-box; }
@@ -209,25 +159,6 @@
         }
 
         .topbar-links a:hover { color: var(--text); }
-
-        .icon-btn {
-            flex: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            border-radius: 9px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        .icon-btn:hover { background: var(--bg-soft); color: var(--text); }
-
-        .icon-sun { display: var(--sun-display); }
-        .icon-moon { display: var(--moon-display); }
 
         .layout {
             max-width: 1360px;
@@ -726,7 +657,7 @@
         }
 
         @media print {
-            :root[data-theme] {
+            :root {
                 --bg: #ffffff;
                 --text: #000000;
                 --text-body: #000000;
@@ -763,10 +694,6 @@
                 <a href="novidades.html">Novidades</a>
                 <a href="https://github.com/DataGo-Dev/datago-public/tree/main/docs" target="_blank" rel="noopener">GitHub</a>
             </nav>
-            <button class="icon-btn" id="theme-toggle" type="button" aria-label="Alternar entre tema claro e escuro">
-                <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
-            </button>
         </div>
     </header>
 
@@ -811,7 +738,6 @@
         const toc = document.getElementById('toc');
         const tocLinks = document.getElementById('toc-links');
         const searchInput = document.getElementById('search');
-        const themeToggle = document.getElementById('theme-toggle');
 
         let docsBySlug = new Map();
         let currentSlug = null;
@@ -1212,15 +1138,7 @@
             if (codeButton) copyCode(codeButton);
         }
 
-        function toggleTheme() {
-            const currentTheme = document.documentElement.dataset.theme;
-            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.dataset.theme = nextTheme;
-            saveTheme(nextTheme);
-        }
-
         async function init() {
-            themeToggle.addEventListener('click', toggleTheme);
             WIDE_SCREEN.addEventListener('change', syncTocDisclosure);
             syncTocDisclosure();
 
