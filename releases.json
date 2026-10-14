@@ -1,5 +1,13 @@
 [
   {
+    "id": 411945719,
+    "tag_name": "v1.748.0",
+    "name": "1.748.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000WvmLIAS)\n\n## Na fila, o bot espera o atendente\nDepois de transferir o atendimento, o bot agora fica em silêncio até um atendente responder, em vez de voltar quando a \"Pausa após atendimento humano\" vencia. Antes, com uma pausa curta, o cliente que esperava na fila e escrevia de novo era atendido pelo bot outra vez, e a triagem recomeçava.\n\nA pausa configurada passa a contar só a partir da primeira mensagem do vendedor, e recomeça a cada mensagem dele. Assim dá para usar um valor curto para encerrar rápido quem não responde ao vendedor, sem devolver a fila ao bot.\n\nHá um teto de segurança de 24 horas: se ninguém responder nem encerrar o atendimento nesse período, o bot volta a atender aquele cliente. Se o seu bot se despede sem transferir, chame `closeServiceDesk` nesse ramo para liberar o bot na hora; sem esse aviso ele espera um atendente como se tivesse transferido.\n\nEsta mudança é no servidor do Nitzap e não depende de atualizar o pacote; só o texto de ajuda do campo vem com o pacote.\n\n## Enviar contato pelo chat\nUm novo botão no campo de mensagem abre o seletor de contatos e envia o contato escolhido como cartão de contato do WhatsApp, que o cliente pode salvar ou abrir direto no celular. O seletor já abre na agenda da conexão da conversa. O cartão sai sem a assinatura do atendente, e encaminhar um cartão de contato recebido também envia um cartão de verdade, não mais um texto. Disponível nas conexões não oficiais; depende da atualização do servidor do Nitzap.\n\n## Melhorias\n**Cartão de contato redesenhado.** Os contatos recebidos no chat aparecem com avatar de iniciais, nome e número formatado, e com os botões **Conversar**, que abre a conversa com aquele número, e **Copiar número**.\n",
+    "published_at": "2026-10-14T13:16:49Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.748.0"
+  },
+  {
     "id": 408102241,
     "tag_name": "v1.745.0",
     "name": "1.745.0",
