@@ -1,5 +1,13 @@
 [
   {
+    "id": 413759827,
+    "tag_name": "v1.749.0",
+    "name": "1.749.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000YH85IAG)\n\n## Permissões do Salesforce respeitadas\nO Nitzap passa a conferir as permissões de cada usuário em mais pontos:\n\n- **Vincular WhatsApp a um registro:** só grava o número se o usuário puder editar aquela conta, contato ou lead. Quem não tem permissão vê uma mensagem explicando. Se a gravação falhar por outro motivo, como uma regra de validação da sua org, a mensagem da regra aparece na tela; antes a janela ficava carregando sem fim.\n- **Painel do gestor:** quando o gestor não tem acesso a uma conta, contato ou lead, a conversa aparece com o nome do WhatsApp ou o número, sem o nome do registro e da empresa. O conteúdo da conversa continua igual.\n- **Entrar em uma conexão:** o assistente de conexão inclui você só numa conexão que você acabou de criar ou da qual já participa. Para entrar na conexão de outra pessoa, peça a um administrador do Nitzap.\n- **Templates e métricas:** continuam podendo ser criados, editados e apagados por todos os usuários do Nitzap, e o conjunto de permissões **Nitzap 2.0** já inclui esse acesso. Se algum usuário usa o Nitzap só pelo perfil, sem esse conjunto de permissões, atribua o conjunto a ele para continuar editando templates e métricas.\n\n## API Apex: token da conta de integração\nPara quem tem Apex próprio que chama a API do Nitzap (por exemplo, batches que buscam conversas), o novo método `nitzap20.NitzapApi.getIntegrationToken()` devolve o token da conta de integração pronto para usar no cabeçalho `Authorization: Bearer`. Ele substitui o login feito com `Master_ID` e `Master_Secret` lidos das configurações do Nitzap.\n\nO método só funciona para o usuário que executa o código com o conjunto de permissões **Nitzap: Integração por Apex**. Atribua esse conjunto ao usuário que agenda os batches. A classe que usar o método precisa indicar esta versão do pacote no `packageVersions` do arquivo `.cls-meta.xml`.\n\nA partir desta versão, as chaves salvas ou trocadas na tela de configurações ficam guardadas só em uma área protegida do pacote. O código que ainda lê `Master_Secret` das configurações continua funcionando com o valor atual, mas passa a ficar desatualizado se a credencial for trocada; por isso, vale migrar para o método novo.\n",
+    "published_at": "2026-10-15T14:20:24Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.749.0"
+  },
+  {
     "id": 411945719,
     "tag_name": "v1.748.0",
     "name": "1.748.0",
