@@ -61,6 +61,39 @@ Para chamadas customizadas direto ao backend (a maioria dos casos não precisa d
 String token = nitzap20.NitzapApi.getAccessToken(UserInfo.getUserId());
 ```
 
+### Token da conta de integração (`getIntegrationToken`)
+
+Para batches e integrações próprias que chamam a API do Nitzap direto, `getIntegrationToken` devolve o token de sessão da **credencial do sistema** (o usuário integrador das configurações), pronto para o cabeçalho `Authorization: Bearer`. Ele substitui o login feito com `Master_ID__c` e `Master_Secret__c` lidos de `nitzap20__NitzapConfigs__c`: a partir da versão 1.749.0 as chaves salvas ou trocadas na tela de configurações ficam numa área protegida do pacote, e esses campos deixam de ser atualizados.
+
+```apex
+String authToken = nitzap20.NitzapApi.getIntegrationToken();
+
+HttpRequest req = new HttpRequest();
+req.setEndpoint(nitzap20__NitzapConfigs__c.getOrgDefaults().nitzap20__Url_Base__c + '/whatsapp/get-chats-metadata');
+req.setMethod('POST');
+req.setHeader('Authorization', 'Bearer ' + authToken);
+req.setHeader('Content-Type', 'application/json');
+req.setBody(JSON.serialize(new Map<String, Object>{ 'where' => whereClause }));
+HttpResponse res = new Http().send(req);
+```
+
+Requisitos:
+
+- O usuário que **executa** o código precisa do conjunto de permissões **Nitzap: Integração por Apex**. Num batch agendado, é quem agendou. Sem ele, o método lança `NitzapApiException` e não devolve token. Ser administrador não basta: o acesso é liberado só por esse conjunto, para que nenhum outro código da org (componentes, páginas públicas, usuários convidados) consiga obter o token.
+- A classe que chama o método precisa indicar a versão 1.749.0 ou posterior do pacote no `packageVersions` do arquivo `.cls-meta.xml`:
+
+```xml
+<packageVersions>
+    <majorNumber>1</majorNumber>
+    <minorNumber>749</minorNumber>
+    <namespace>nitzap20</namespace>
+</packageVersions>
+```
+
+- O token vale por tempo limitado. Peça um novo a cada execução, em vez de guardar o valor.
+
+Antes de montar a chamada na mão, veja se um método desta API já faz a operação: `getChats` (seção 9) busca as conversas com o mesmo filtro de `/whatsapp/get-chats-metadata` e já devolve a lista convertida.
+
 ## 2. Enviar mensagem de texto
 
 ```apex
@@ -674,6 +707,7 @@ Regras:
 | Entrada inválida (sem `to`, variável faltando, mix de formatos...) | `NitzapApiException` antes do callout |
 | Backend recusou (conexão inativa, sem permissão, rate limit Meta) | `SendResult.success = false` + `errorMessage` |
 | Falha de upload do `fileId` | `NitzapApiException` |
+| `getIntegrationToken` chamado por usuário sem o conjunto **Nitzap: Integração por Apex** | `NitzapApiException`, sem token |
 
 Exemplo de padrão recomendado:
 
