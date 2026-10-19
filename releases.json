@@ -1,5 +1,13 @@
 [
   {
+    "id": 417321632,
+    "tag_name": "v1.750.0",
+    "name": "1.750.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000b0p3IAA)\n\n## Nitzap Web dentro da barra de utilitários\nNa barra de utilitários (rodapé do Salesforce), o painel do Nitzap agora abre ampliado e funciona como o Nitzap Web: a lista de conversas fica à esquerda e, ao clicar numa conversa, ela abre numa aba ao lado, sem sair da página em que você está. Dá para manter várias conversas abertas em abas e ver os detalhes do contato, lead ou conta pelo botão de informações. No painel, o botão de abrir o registro completo leva ao registro na própria página do Salesforce, sem abrir outra aba do navegador. Não é preciso mudar nada na configuração do app.\n\nNo cabeçalho do painel há um botão novo para alternar entre o tamanho **ampliado** e o **compacto**. No compacto, o painel volta a ser só a lista, e clicar numa conversa abre o registro como antes. O Nitzap lembra a escolha de cada usuário nas próximas vezes em que o painel for aberto naquele navegador.\n\nOs ícones do topo da lista de conversas ganharam um visual mais leve, no mesmo estilo dos ícones da caixa de mensagem. Nas abas de conversa, a barra de rolagem ficou fina e a rodinha do mouse sobre as abas rola para o lado.\n\n## Conversas abrem mais rápido\nAo abrir uma conversa de uma conexão sua, as mensagens agora aparecem em cerca de metade do tempo de antes.\n\n## Aviso de conversa fechada mais claro\nQuando a janela de 24 horas da Meta fecha, a conversa mostra um cartão único com o cadeado, a explicação (envie um template para retomar; quando a pessoa responder, a conversa reabre sozinha) e as ações ao lado: abrir no WhatsApp Web, agendar envio e Template.\n\n## Melhorias\n**Documentação no novo endereço.** O link de documentação na janela de Ajuda e Recursos agora leva à documentação nova do Nitzap.\n\n## Correções\n- Mensagens de erro com link muito comprido (como os avisos de pagamento da Meta) agora quebram a linha dentro do balão, sem criar barra de rolagem lateral na conversa.\n- O botão **Template** volta a abrir a lista de templates quando a conversa está no painel da barra de utilitários; antes a lista abria fora da área visível.\n- A faixa de abas das conversas não mostra mais uma barra de rolagem vertical sem necessidade.\n",
+    "published_at": "2026-10-19T14:34:53Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.750.0"
+  },
+  {
     "id": 413759827,
     "tag_name": "v1.749.0",
     "name": "1.749.0",
