@@ -1,5 +1,13 @@
 [
   {
+    "id": 418664886,
+    "tag_name": "v1.752.0",
+    "name": "1.752.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000cEd4IAE)\n\n## Painel do gestor: Ao vivo em lista\nA aba **Ao vivo** ficou no formato da aba Chats: uma lista única com todas as conversas abertas, quem está esperando no topo, e filtros rápidos para **Cliente esperando**, **Sem atendimento**, **Na fila**, **Aguardando contato** e **Paradas +24h**. Cada linha mostra o contato, o agente, a situação, as mensagens não lidas e há quanto tempo o cliente espera. A lista mostra 100 conversas por vez, com o botão **Mostrar mais**. Nas abas Ao vivo e Chats, cada contato ganhou um avatar com as iniciais e, embaixo do nome, o tipo de registro e a empresa (ou o número, para quem não está no CRM).\n\n## Chat interno: apagar e editar\nNo chat interno, passe o mouse na sua mensagem e abra o menu: agora dá para **Editar** e **Apagar**. A mudança aparece na hora para os dois, com a marca \"Editada\" ou \"Excluída\". No menu do topo da conversa, **Apagar conversa** limpa a conversa só para você: o colega continua com as mensagens dele. Depende da atualização do servidor Nitzap da sua empresa.\n\nMensagens do chat interno agora **sempre avisam**: a barra do Nitzap pisca, o som toca e chega a notificação do navegador, mesmo com as conversas silenciadas nas configurações. Clicar na notificação abre a conversa com o colega.\n\n## Nitzap no Experience Cloud ampliado\nA barra do Nitzap usada em sites do Experience Cloud ganhou o mesmo botão de ampliar e reduzir da barra de utilitários do Salesforce. Ampliada, que passa a ser o padrão, a lista de conversas fica à esquerda e a conversa abre ao lado; reduzida, volta ao painel estreito. A escolha fica salva no navegador.\n\n## Correções\n**Painel do gestor mais leve.** Em empresas com muitas conversas abertas, a tela ficava travada, porque cada mensagem nova redesenhava tudo. Agora as atualizações em tempo real são agrupadas.\n**Campo Buscar do painel.** O texto digitado aparecia cortado; agora cabe inteiro.",
+    "published_at": "2026-10-20T17:47:46Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.752.0"
+  },
+  {
     "id": 417546229,
     "tag_name": "v1.751.0",
     "name": "1.751.0",
