@@ -1,5 +1,13 @@
 [
   {
+    "id": 419603593,
+    "tag_name": "v1.753.0",
+    "name": "1.753.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000d2gHIAQ)\n\n## Mencionar participantes em grupos\nEm conversas de grupo, digite **@** na caixa de mensagem para abrir a lista de participantes, com quem tem nome aparecendo primeiro. Continue digitando para filtrar por nome ou número, use as setas e **Enter** (ou clique) para escolher. A pessoa recebe a menção de verdade no WhatsApp, com a notificação de que foi mencionada.\n\nAs menções que chegam no grupo, que antes apareciam como um número longo (por exemplo \"@23665303384318\"), agora mostram o nome do participante em destaque, inclusive nas mensagens antigas. Depende da atualização do servidor Nitzap da sua empresa.\n",
+    "published_at": "2026-10-21T14:41:53Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.753.0"
+  },
+  {
     "id": 418664886,
     "tag_name": "v1.752.0",
     "name": "1.752.0",
