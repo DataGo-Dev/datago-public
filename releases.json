@@ -1,5 +1,13 @@
 [
   {
+    "id": 419927628,
+    "tag_name": "v1.754.0",
+    "name": "1.754.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000eW4PIAU)\n\n## Erro ao agendar mensagem agora aparece na tela\nQuando o agendamento não pode ser salvo, o Nitzap mostra um aviso com o motivo. Antes, o botão **Agendar** não fazia nada e o erro ficava escondido. Se o campo **Assunto** da Tarefa tiver atingido o limite de valores inativos da org (erro \"picklist inactive limit exceeded\"), o aviso explica onde o administrador deve excluir esses valores.\n\n\n## Agendamento preenche {{nome_cliente}} e {{nome_usuario}}\nMensagens e templates agendados agora trocam `{{nome_cliente}}` pelo primeiro nome do contato, lead ou membro da campanha, e `{{nome_usuario}}` pelo primeiro nome do proprietário da tarefa, na hora do envio. Antes as variáveis saíam escritas assim mesmo para o cliente. Outras variáveis continuam só no envio rápido de templates.",
+    "published_at": "2026-10-22T16:29:49Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.754.0"
+  },
+  {
     "id": 419603593,
     "tag_name": "v1.753.0",
     "name": "1.753.0",
