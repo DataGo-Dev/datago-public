@@ -64,7 +64,7 @@ A janela **Adicionar conexão** pergunta como você quer conectar o número.
 
 ### Sem câmera: conectar com código
 
-Se não der para ler o QR Code, por exemplo quando o celular é o mesmo aparelho em que você está usando o Salesforce, use um código de pareamento:
+Se não der para ler o QR Code, use um código de pareamento:
 
 1. Selecione **Código**.
 2. Em **Número com DDI**, digite o número completo, só com dígitos: DDI + DDD + número (exemplo: `5511999999999`).
