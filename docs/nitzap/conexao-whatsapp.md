@@ -167,7 +167,7 @@ Aguarde a janela do Facebook fechar e o número aparece na lista de conexões co
 
 ### API Cloud (só API oficial)
 
-O caminho é o mesmo: selecione **API Cloud (só API oficial)** e clique em **Entrar com Facebook**. A diferença é que não existe a etapa no celular, porque o número deixa de funcionar no app. Antes de começar, confira se o número **não está ativo** no WhatsApp nem no WhatsApp Business. Se estiver, exclua a conta no app primeiro.
+O caminho é o mesmo: selecione **API Cloud (só API oficial)** e clique em **Entrar com Facebook**. A diferença é que não existe a etapa no celular, porque é uma conexão apenas oficial sem utilizar o número no app de whatsapp. Antes de começar, confira se o número **não está ativo** no WhatsApp nem no WhatsApp Business. Se estiver, exclua a conta no app primeiro.
 
 ![Opção API Cloud (só API oficial)](images/conexao-waba-cloud.png)
 
