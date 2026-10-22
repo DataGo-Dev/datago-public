@@ -7,7 +7,7 @@ Cada número de WhatsApp usado no Nitzap é uma **conexão**. Você pode conecta
 | Forma | Como funciona | Indicada para |
 | --- | --- | --- |
 | **WhatsApp (QR)** | O Nitzap entra como um aparelho conectado ao seu WhatsApp, como o WhatsApp Web. | Começar rápido com um número que já está no celular. |
-| **WhatsApp Business: API Coex (Coexistência)** | API oficial da Meta ligada a um número que **continua ativo no app WhatsApp Business**. As mensagens aparecem no celular e no Nitzap ao mesmo tempo, e dá para importar até 6 meses de histórico. | Empresas que já atendem pelo celular e não querem perder o número, os contatos nem o histórico. |
+| **WhatsApp Business: API Coex (Coexistência)** | API oficial da Meta ligada a um número que **continua ativo no app WhatsApp Business**. As mensagens aparecem no celular e no Nitzap ao mesmo tempo. | Empresas que já atendem pelo celular e não querem perder o número, os contatos nem o histórico. |
 | **WhatsApp Business: API Cloud (só API oficial)** | O número funciona só pela API oficial e **deixa de existir no celular**. Se ele estiver ativo no WhatsApp ou no WhatsApp Business, a conta precisa ser excluída no app antes. | Números novos ou dedicados a atendimento em escala, automação e vários atendentes. |
 
 Os templates aprovados na Meta e os disparos de campanha só funcionam nas conexões oficiais (Coex ou Cloud).
