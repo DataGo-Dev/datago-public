@@ -32,7 +32,11 @@ Clique no botão **Abrir Nitzap Web** (o quadrado com a seta, no topo da lista) 
 
 Cada conversa aberta vira uma aba no topo. Clique na aba para trocar de conversa e no **×** para fechá-la. Ficam abertas no máximo 10 abas: ao abrir a 11ª, a que está há mais tempo sem uso fecha sozinha.
 
-O botão **i**, à direita das abas, aparece quando a conversa está ligada a um Lead, Contato ou Conta. Ele abre o painel **Detalhes**, com os dados do registro e até 10 Casos, Oportunidades e Tarefas ligados a ele. Clique em um item para ver os detalhes e em **Voltar ao registro** para retornar.
+O botão **i**, à direita das abas, aparece quando a conversa está ligada a um Lead, Contato ou Conta. Ele abre o painel **Detalhes** ao lado da conversa, com os dados do registro. Os campos com lápis podem ser editados ali mesmo, sem sair da conversa.
+
+![Painel Detalhes com os dados do contato ao lado da conversa](images/omni-web-detalhes.png)
+
+No fim do painel aparecem até 10 Casos, Oportunidades e Tarefas ligados ao registro. Clique em um item para ver os detalhes e em **Voltar ao registro** para retornar. O botão no topo do painel abre o registro completo em uma nova aba, e o **×** fecha o painel.
 
 ## A lista de conversas
 
