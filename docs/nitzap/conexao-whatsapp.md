@@ -93,7 +93,7 @@ Abre uma janela **Conectando ao WhatsApp Business**. Mantenha essa janela aberta
 
 ![Janela Conectando ao WhatsApp Business](images/conexao-facebook-janela.png)
 
-Se o navegador bloquear o pop-up do Facebook, libere pop-ups para o site (no Chrome, clique no ícone de pop-up bloqueado na barra de endereço e escolha **Sempre permitir**) e clique em **Entrar com Facebook** de novo.
+Se o navegador bloquear o pop-up do Facebook, libere pop-ups para o site (no Chrome, clique no ícone de pop-up bloqueado na barra de endereço e escolha **Sempre permitir**) e clique no link do facebook na parte superior.
 
 ![Aviso de pop-up bloqueado no navegador](images/conexao-facebook-popup-bloqueado.png)
 
