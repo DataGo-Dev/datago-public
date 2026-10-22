@@ -115,11 +115,15 @@ Se o navegador bloquear o pop-up do Facebook, libere pop-ups para o site (no Chr
 
    ![Seleção do portfólio empresarial](images/conexao-facebook-portfolio.png)
 
+5. A tela **Importar contatos e histórico de conversas** mostra um QR Code para ler com o app WhatsApp Business. Deixe essa tela aberta e pegue o celular: o botão **Avançar** só é liberado depois que você confirmar no celular.
+
+   ![QR Code do Facebook para ler com o app WhatsApp Business](images/conexao-facebook-qr-code.png)
+
 ### 3. Confirmar no celular
 
-Nesse ponto, o WhatsApp Business do celular recebe uma mensagem do **Facebook Business**: *Connect to the Business Platform*.
+Ao mesmo tempo em que o QR Code aparece no Facebook, o WhatsApp Business do celular recebe uma mensagem da conta oficial do **Facebook Business**: *Connect to the Business Platform*. Você pode seguir por essa mensagem ou ler o QR Code com o app. Os dois caminhos levam às mesmas telas.
 
-1. Abra a mensagem e toque em **Connect**.
+1. Abra a mensagem e toque em **Connect**. Se a mensagem não chegar, no app WhatsApp Business vá em **Configurações** > **Conta** > **Plataforma comercial** e leia o QR Code da tela do Facebook.
 
    ![Mensagem do Facebook Business no WhatsApp](images/conexao-celular-mensagem.jpeg)
 
@@ -145,7 +149,7 @@ Para manter a coexistência ativa, **abra o app WhatsApp Business no celular pel
 
 ### 4. Concluir no Facebook
 
-Volte para a janela do Facebook no computador.
+Volte para a janela do Facebook no computador e clique em **Avançar** na tela do QR Code.
 
 1. Em **Confirme ou edite sua conta do WhatsApp Business**, confira o **nome da conta** e o **fuso horário** e clique em **Avançar**.
 
