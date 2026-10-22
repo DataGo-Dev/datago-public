@@ -163,7 +163,7 @@ Volte para a janela do Facebook no computador e clique em **Avançar** na tela d
 
    ![Conta conectada à Datago Tecnologia no Facebook](images/conexao-facebook-concluido.png)
 
-A janela do Facebook fecha e o número aparece na lista de conexões com a etiqueta **Coex (Meta)**.
+Aguarde a janela do Facebook fechar e o número aparece na lista de conexões com a etiqueta **Coex (Meta)**.
 
 ### API Cloud (só API oficial)
 
