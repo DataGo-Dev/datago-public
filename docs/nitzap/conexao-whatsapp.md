@@ -177,7 +177,14 @@ A conexão nova aparece em **Nitzap Config** > **Conexões**, identificada pelo 
 
 ![Lista de conexões com a conexão nova](images/conexao-lista.png)
 
-Clique na engrenagem (⚙) da conexão para abrir **Gerenciar conexão**.
+Cada conexão tem dois botões:
+
+| Botão | O que faz |
+| --- | --- |
+| **Engrenagem** (⚙) | Abre **Gerenciar conexão**, onde você dá nome à conexão e adiciona membros. |
+| **Lixeira** | Remove a conexão. O Nitzap pede confirmação antes. Ao confirmar, o WhatsApp é desconectado e **todos os membros saem da conexão**. Para usar o número de novo, será preciso conectá-lo do zero, com um novo QR Code ou um novo login no Facebook. |
+
+Clique na engrenagem (⚙) para continuar.
 
 ### Dar um nome à conexão
 
@@ -196,11 +203,19 @@ O usuário aparece na lista de membros. Repita para cada pessoa que vai usar o n
 
 ![Membro adicionado à conexão](images/conexao-membro-adicionado.png)
 
+### Reconectar
+
+Use **Reconectar** quando a conexão cair ou o celular for trocado. O botão fica no rodapé da tela **Gerenciar conexão** e abre de novo a janela **Adicionar conexão**, para refazer a ligação do número pelo mesmo caminho usado na primeira vez (QR Code ou Facebook). Diferente da lixeira, **Reconectar não remove a conexão nem os membros**.
+
+Quando uma conexão fica inativa, ela aparece na lista marcada como **inativa** e o botão **Reconectar** aparece também ali, ao lado da engrenagem.
+
 ### Outros pontos da tela Gerenciar conexão
 
-- **Canal de envio vinculado (Api WEB Nitzap):** em uma conexão oficial, você pode conectar o mesmo número também via QR, em **Conectar canal de envio (QR)**, usando o mesmo celular. Assim, as mensagens do chat saem sem custo da Meta. Templates e o primeiro contato continuam pela API oficial. O uso do canal não oficial é de responsabilidade do cliente.
-- **Reconectar:** abre de novo a janela de conexão para refazer a ligação do número, por exemplo quando ele cai ou o celular é trocado.
-- As abas **Configurações**, **Etiquetas**, **Prompts IA** e **Templates Meta** têm os demais ajustes da conexão.
+- [Canal de envio vinculado (Api WEB Nitzap)](#nitzap/conexao-whatsapp/canal-de-envio-vinculado)
+- [Configurações](#nitzap/conexao-whatsapp/configuracoes-da-conexao)
+- [Etiquetas](#nitzap/conexao-whatsapp/etiquetas)
+- [Prompts IA](#nitzap/conexao-whatsapp/prompts-ia)
+- [Templates Meta](#nitzap/conexao-whatsapp/templates-meta)
 
 ## Problemas comuns
 
