@@ -1,4 +1,4 @@
-# Conectar um número de WhatsApp ao Nitzap
+# 01. Conectar um número de WhatsApp ao Nitzap
 
 Cada número de WhatsApp usado no Nitzap é uma **conexão**. Você pode conectar um número de duas formas: lendo um **QR Code** com o celular (WhatsApp Web) ou pela **API oficial da Meta**, entrando com o Facebook. Este guia mostra as duas, de onde começar e o que fazer depois que o número aparece na lista.
 
