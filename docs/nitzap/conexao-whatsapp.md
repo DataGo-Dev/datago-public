@@ -30,7 +30,7 @@ As duas formas de conexão abrem a mesma janela, **Adicionar conexão**. O ponto
 
    ![Conexões WhatsApp e o botão Adicionar conexão](images/conexao-nitzap-config.png)
 
-Uma conexão criada pelo Nitzap Config começa **sem membros**. Depois de conectar, adicione quem vai atender por ela (veja [Depois de conectar](#depois-de-conectar-nome-e-membros)).
+Uma conexão criada pelo Nitzap Config começa **sem membros**. Depois de conectar, adicione quem vai atender por ela (veja [Depois de conectar](#nitzap/conexao-whatsapp/depois-de-conectar-nome-e-membros)).
 
 ### Se você não administra: Nitzap Connect
 
@@ -49,8 +49,8 @@ A janela **Adicionar conexão** pergunta como você quer conectar o número.
 
 ![Escolha entre WhatsApp (QR) e WhatsApp Business](images/conexao-tipo.png)
 
-- **WhatsApp (QR):** siga a seção [Conectar via QR Code](#conectar-via-qr-code).
-- **WhatsApp Business:** siga a seção [Conectar pela API oficial (Coexistência)](#conectar-pela-api-oficial-coexistência).
+- **WhatsApp (QR):** siga a seção [Conectar via QR Code](#nitzap/conexao-whatsapp/conectar-via-qr-code).
+- **WhatsApp Business:** siga a seção [Conectar pela API oficial (Coexistência)](#nitzap/conexao-whatsapp/conectar-pela-api-oficial-coexistencia).
 
 ## Conectar via QR Code
 
