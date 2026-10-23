@@ -1,5 +1,13 @@
 [
   {
+    "id": 422082516,
+    "tag_name": "v1.756.0",
+    "name": "1.756.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000gKaDIAU)\n\n## Melhorias\n**Agendamento conclui a tarefa ao enviar.** Quando uma mensagem agendada (texto, template ou template da Meta, para um registro ou para uma campanha) é disparada, a tarefa do agendamento passa a ser fechada com o status \"Concluído\". Se a org não usar esse status, a tarefa fica com o primeiro status fechado configurado no Salesforce.\n",
+    "published_at": "2026-10-23T16:54:30Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.756.0"
+  },
+  {
     "id": 421832755,
     "tag_name": "v1.755.0",
     "name": "1.755.0",
