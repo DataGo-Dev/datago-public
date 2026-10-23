@@ -1,5 +1,13 @@
 [
   {
+    "id": 421832755,
+    "tag_name": "v1.755.0",
+    "name": "1.755.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000fnw1IAA)\n\n## Melhorias\n**Atendimentos registrados no servidor do Nitzap.** Todo atendimento aberto, transferido ou fechado pelo Nitzap no Salesforce (Omni, conversa do registro ou `NitzapApi`) passa a ficar registrado também no servidor do Nitzap, com o número atendido e o número que atende. Nada muda na tela nem no Salesforce. Depende da atualização do servidor do Nitzap.\n",
+    "published_at": "2026-10-23T12:45:33Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.755.0"
+  },
+  {
     "id": 419927628,
     "tag_name": "v1.754.0",
     "name": "1.754.0",
