@@ -6,22 +6,12 @@ O usuário integrador é a credencial do seu sistema na API do Nitzap. Com ele, 
 **Neste artigo:**
 
 - [O que é o usuário integrador](#nitzap/usuario-integrador-postman/o-que-e-o-usuario-integrador)
-- [1. Criar a credencial](#nitzap/usuario-integrador-postman/1-criar-a-credencial)
-- [2. Preparar o Postman](#nitzap/usuario-integrador-postman/2-preparar-o-postman)
-  - [Importar a collection](#nitzap/usuario-integrador-postman/importar-a-collection)
-  - [Preencher as variáveis](#nitzap/usuario-integrador-postman/preencher-as-variaveis)
-- [3. Fazer login](#nitzap/usuario-integrador-postman/3-fazer-login)
-- [4. Descobrir os números das conexões](#nitzap/usuario-integrador-postman/4-descobrir-os-numeros-das-conexoes)
-- [5. O `vFrom`: a regra que mais derruba integração](#nitzap/usuario-integrador-postman/5-o-vfrom-a-regra-que-mais-derruba-integracao)
-- [6. Primeiros testes](#nitzap/usuario-integrador-postman/6-primeiros-testes)
-  - [Enviar uma mensagem de texto](#nitzap/usuario-integrador-postman/enviar-uma-mensagem-de-texto)
-  - [Enviar um arquivo](#nitzap/usuario-integrador-postman/enviar-um-arquivo)
-  - [Ler uma conversa](#nitzap/usuario-integrador-postman/ler-uma-conversa)
-  - [Enviar um template (só conexões WABA)](#nitzap/usuario-integrador-postman/enviar-um-template-so-conexoes-waba)
-  - [Receber mensagens em tempo real (webhook)](#nitzap/usuario-integrador-postman/receber-mensagens-em-tempo-real-webhook)
-- [7. Token de longa duração (para servidores)](#nitzap/usuario-integrador-postman/7-token-de-longa-duracao-para-servidores)
-- [8. Erros comuns](#nitzap/usuario-integrador-postman/8-erros-comuns)
-- [Resumo](#nitzap/usuario-integrador-postman/resumo)
+- [Criar a credencial](#nitzap/usuario-integrador-postman/1-criar-a-credencial)
+- [Configurar o Postman e fazer login](#nitzap/usuario-integrador-postman/2-preparar-o-postman)
+- [Descobrir as conexões e usar o vFrom](#nitzap/usuario-integrador-postman/4-descobrir-os-numeros-das-conexoes)
+- [Primeiros testes: enviar e ler mensagens](#nitzap/usuario-integrador-postman/6-primeiros-testes)
+- [Token de longa duração para servidores](#nitzap/usuario-integrador-postman/7-token-de-longa-duracao-para-servidores)
+- [Erros comuns](#nitzap/usuario-integrador-postman/8-erros-comuns)
 
 <!-- sumario:fim -->
 
