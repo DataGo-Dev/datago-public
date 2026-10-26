@@ -2,6 +2,31 @@
 
 Cada número de WhatsApp usado no Nitzap é uma **conexão**. Você pode conectar um número de duas formas: lendo um **QR Code** com o celular (WhatsApp Web) ou pela **API oficial da Meta**, entrando com o Facebook. Este guia mostra as duas, de onde começar e o que fazer depois que o número aparece na lista.
 
+<!-- sumario:inicio -->
+**Neste artigo:**
+
+- [Qual forma escolher](#nitzap/conexao-whatsapp/qual-forma-escolher)
+- [Por onde começar](#nitzap/conexao-whatsapp/por-onde-comecar)
+  - [Se você administra o Nitzap: Nitzap Config](#nitzap/conexao-whatsapp/se-voce-administra-o-nitzap-nitzap-config)
+  - [Se você não administra: Nitzap Connect](#nitzap/conexao-whatsapp/se-voce-nao-administra-nitzap-connect)
+- [Escolher o tipo de conexão](#nitzap/conexao-whatsapp/escolher-o-tipo-de-conexao)
+- [Conectar via QR Code](#nitzap/conexao-whatsapp/conectar-via-qr-code)
+  - [Sem câmera: conectar com código](#nitzap/conexao-whatsapp/sem-camera-conectar-com-codigo)
+- [Conectar pela API oficial (Coexistência)](#nitzap/conexao-whatsapp/conectar-pela-api-oficial-coexistencia)
+  - [1. Escolher Coexistência e entrar com o Facebook](#nitzap/conexao-whatsapp/1-escolher-coexistencia-e-entrar-com-o-facebook)
+  - [2. Seguir os passos no Facebook](#nitzap/conexao-whatsapp/2-seguir-os-passos-no-facebook)
+  - [3. Confirmar no celular](#nitzap/conexao-whatsapp/3-confirmar-no-celular)
+  - [4. Concluir no Facebook](#nitzap/conexao-whatsapp/4-concluir-no-facebook)
+  - [API Cloud (só API oficial)](#nitzap/conexao-whatsapp/api-cloud-so-api-oficial)
+- [Depois de conectar: nome e membros](#nitzap/conexao-whatsapp/depois-de-conectar-nome-e-membros)
+  - [Dar um nome à conexão](#nitzap/conexao-whatsapp/dar-um-nome-a-conexao)
+  - [Adicionar membros](#nitzap/conexao-whatsapp/adicionar-membros)
+  - [Reconectar](#nitzap/conexao-whatsapp/reconectar)
+  - [Outros pontos da tela Gerenciar conexão](#nitzap/conexao-whatsapp/outros-pontos-da-tela-gerenciar-conexao)
+- [Problemas comuns](#nitzap/conexao-whatsapp/problemas-comuns)
+
+<!-- sumario:fim -->
+
 ## Qual forma escolher
 
 | Forma | Como funciona | Indicada para |

@@ -2,6 +2,26 @@
 
 O disparo de campanha envia um template aprovado na Meta para todos os membros de uma Campanha do Salesforce que têm WhatsApp cadastrado. Tudo é feito na aba **Disparos WhatsApp** da própria Campanha: você escolhe o número de saída, a mensagem e quando enviar, e depois acompanha quem recebeu, quem leu e quem ficou de fora.
 
+<!-- sumario:inicio -->
+**Neste artigo:**
+
+- [Antes de começar](#nitzap/disparo-campanha/antes-de-comecar)
+- [1. Abrir a aba Disparos WhatsApp](#nitzap/disparo-campanha/1-abrir-a-aba-disparos-whatsapp)
+- [2. Conexão: por qual número a campanha vai sair](#nitzap/disparo-campanha/2-conexao-por-qual-numero-a-campanha-vai-sair)
+- [3. Mensagem: o que vai ser enviado](#nitzap/disparo-campanha/3-mensagem-o-que-vai-ser-enviado)
+  - [Mensagens prontas desta campanha](#nitzap/disparo-campanha/mensagens-prontas-desta-campanha)
+  - [Templates aprovados na Meta](#nitzap/disparo-campanha/templates-aprovados-na-meta)
+- [4. Envio: quando enviar](#nitzap/disparo-campanha/4-envio-quando-enviar)
+- [5. Acompanhar o disparo](#nitzap/disparo-campanha/5-acompanhar-o-disparo)
+  - [O que cada contador significa](#nitzap/disparo-campanha/o-que-cada-contador-significa)
+  - [Ver resultado](#nitzap/disparo-campanha/ver-resultado)
+- [Cancelar um disparo agendado](#nitzap/disparo-campanha/cancelar-um-disparo-agendado)
+- [Reutilizar uma mensagem pronta](#nitzap/disparo-campanha/reutilizar-uma-mensagem-pronta)
+- [Números duplicados](#nitzap/disparo-campanha/numeros-duplicados)
+- [Problemas comuns](#nitzap/disparo-campanha/problemas-comuns)
+
+<!-- sumario:fim -->
+
 ## Antes de começar
 
 Confira estes quatro pontos. Quase todo "não consigo disparar" é um deles.

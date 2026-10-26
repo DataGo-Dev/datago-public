@@ -4,6 +4,47 @@ O webhook avisa o seu sistema, em tempo real, cada vez que algo acontece no What
 
 Se você só quer ler mensagens dentro do Salesforce, não precisa de webhook — ele existe para levar os eventos para fora: ERP, site, automação, integração própria.
 
+<!-- sumario:inicio -->
+**Neste artigo:**
+
+- [Onde configurar](#nitzap/webhooks/onde-configurar)
+- [Campo a campo](#nitzap/webhooks/campo-a-campo)
+  - [Ativo](#nitzap/webhooks/ativo)
+  - [Nome do Webhook](#nitzap/webhooks/nome-do-webhook)
+  - [URL do Endpoint](#nitzap/webhooks/url-do-endpoint)
+  - [Secret (Chave de Autenticação)](#nitzap/webhooks/secret-chave-de-autenticacao)
+  - [Eventos](#nitzap/webhooks/eventos)
+  - [Usuários Rastreados](#nitzap/webhooks/usuarios-rastreados)
+- [O envelope: o que chega na sua URL](#nitzap/webhooks/o-envelope-o-que-chega-na-sua-url)
+  - [Entrega e novas tentativas](#nitzap/webhooks/entrega-e-novas-tentativas)
+- [`ON_MESSAGE` — exemplos por tipo de mensagem](#nitzap/webhooks/on-message-exemplos-por-tipo-de-mensagem)
+  - [Texto recebido](#nitzap/webhooks/texto-recebido)
+  - [Texto enviado pela sua conexão](#nitzap/webhooks/texto-enviado-pela-sua-conexao)
+  - [Imagem (e vídeo) com legenda](#nitzap/webhooks/imagem-e-video-com-legenda)
+  - [Áudio](#nitzap/webhooks/audio)
+  - [Documento](#nitzap/webhooks/documento)
+  - [Localização](#nitzap/webhooks/localizacao)
+  - [Contato compartilhado](#nitzap/webhooks/contato-compartilhado)
+  - [Resposta (citação de outra mensagem)](#nitzap/webhooks/resposta-citacao-de-outra-mensagem)
+  - [Mensagem enviada pelo canal oficial (Meta)](#nitzap/webhooks/mensagem-enviada-pelo-canal-oficial-meta)
+  - [Valores possíveis de `type`](#nitzap/webhooks/valores-possiveis-de-type)
+- [`ON_GROUP_MESSAGE` — mensagem de grupo](#nitzap/webhooks/ongroupmessage-mensagem-de-grupo)
+- [`MESSAGE_UPDATE` — mensagem que mudou](#nitzap/webhooks/message-update-mensagem-que-mudou)
+  - [Mensagem lida (`update_type: "READ_DATE"`)](#nitzap/webhooks/mensagem-lida-updatetype-readdate)
+  - [Mensagem editada](#nitzap/webhooks/mensagem-editada)
+  - [Mensagem apagada](#nitzap/webhooks/mensagem-apagada)
+- [`BUTTON_CLICK` — botão e Flow do canal oficial](#nitzap/webhooks/button-click-botao-e-flow-do-canal-oficial)
+  - [Botão de template](#nitzap/webhooks/botao-de-template)
+  - [Resposta de Flow (formulário)](#nitzap/webhooks/resposta-de-flow-formulario)
+- [`ON_ERROR` — mensagem não entregue](#nitzap/webhooks/on-error-mensagem-nao-entregue)
+- [`CONNECTION_UPDATE` — reservado](#nitzap/webhooks/connection-update-reservado)
+- [O que **não** gera webhook](#nitzap/webhooks/o-que-nao-gera-webhook)
+- [Referência dos campos do `payload`](#nitzap/webhooks/referencia-dos-campos-do-payload)
+- [Exemplo de servidor recebendo os eventos](#nitzap/webhooks/exemplo-de-servidor-recebendo-os-eventos)
+- [Não está chegando nada?](#nitzap/webhooks/nao-esta-chegando-nada)
+
+<!-- sumario:fim -->
+
 ## Onde configurar
 
 Aba **Nitzap Config → 🔗 Webhooks**, dentro do Gerenciador de Configurações do Nitzap.

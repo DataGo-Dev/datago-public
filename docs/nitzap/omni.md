@@ -4,6 +4,35 @@ O Nitzap Omni é onde você conversa com os clientes pelo WhatsApp sem sair do S
 
 **Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela ou da lista logo abaixo da imagem.
 
+<!-- sumario:inicio -->
+**Neste artigo:**
+
+- [Formas de visualizar as conversas](#nitzap/omni/formas-de-visualizar-as-conversas)
+  - [Compacto](#nitzap/omni/compacto)
+  - [Ampliado](#nitzap/omni/ampliado)
+  - [Nitzap Web](#nitzap/omni/nitzap-web)
+- [A lista de conversas](#nitzap/omni/a-lista-de-conversas)
+  - [Botões do topo](#nitzap/omni/botoes-do-topo)
+  - [Filtrar por conexão](#nitzap/omni/filtrar-por-conexao)
+  - [O que cada conversa mostra](#nitzap/omni/o-que-cada-conversa-mostra)
+  - [Botão direito na conversa](#nitzap/omni/botao-direito-na-conversa)
+- [Dentro da conversa](#nitzap/omni/dentro-da-conversa)
+  - [Cabeçalho](#nitzap/omni/cabecalho)
+  - [Opções da mensagem](#nitzap/omni/opcoes-da-mensagem)
+  - [Caixa de mensagem](#nitzap/omni/caixa-de-mensagem)
+  - [Enviar arquivos](#nitzap/omni/enviar-arquivos)
+  - [Emoji](#nitzap/omni/emoji)
+  - [Enviar contato](#nitzap/omni/enviar-contato)
+  - [Registrar histórico](#nitzap/omni/registrar-historico)
+- [Recursos de IA](#nitzap/omni/recursos-de-ia)
+  - [Gerar com IA](#nitzap/omni/gerar-com-ia)
+  - [Correção ortográfica](#nitzap/omni/correcao-ortografica)
+  - [Resumir conversa](#nitzap/omni/resumir-conversa)
+  - [Transcrição de áudio](#nitzap/omni/transcricao-de-audio)
+- [Preferências](#nitzap/omni/preferencias)
+
+<!-- sumario:fim -->
+
 ## Formas de visualizar as conversas
 
 O Omni pode ser usado de três jeitos. As conversas são as mesmas nos três; muda o espaço na tela e o que acontece quando você clica em um cliente.

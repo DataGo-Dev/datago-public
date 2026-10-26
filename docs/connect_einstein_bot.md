@@ -4,6 +4,37 @@ Configuração inicial.
 Obs: A configuração abaixo é apenas um Start do requerido para rodar o Bot. Pode ser que ao configurar como abaixo será necessário ainda 
 habilitar e desabilitar funções que dependem de cada fluxo de segurança de cada Organização. Para obter consultoria personalizada consulte a Datago.
 
+<!-- sumario:inicio -->
+**Neste artigo:**
+
+- [Configurando o Agente/Bot](#connect_einstein_bot/configurando-o-agente-bot)
+- [Como as opções do bot aparecem no WhatsApp](#connect_einstein_bot/como-as-opcoes-do-bot-aparecem-no-whatsapp)
+- [Quando o cliente manda áudio](#connect_einstein_bot/quando-o-cliente-manda-audio)
+- [O que o Nitzap envia para o bot](#connect_einstein_bot/o-que-o-nitzap-envia-para-o-bot)
+  - [Einstein Bot: variáveis](#connect_einstein_bot/einstein-bot-variaveis)
+  - [Agentforce: mensagem de contexto](#connect_einstein_bot/agentforce-mensagem-de-contexto)
+- [Encerrando o atendimento automaticamente](#connect_einstein_bot/encerrando-o-atendimento-automaticamente)
+  - [Permissões que só você pode liberar](#connect_einstein_bot/permissoes-que-so-voce-pode-liberar)
+  - [Como saber se está funcionando](#connect_einstein_bot/como-saber-se-esta-funcionando)
+- [Dúvidas frequentes sobre os tempos](#connect_einstein_bot/duvidas-frequentes-sobre-os-tempos)
+  - [Se o cliente demora a responder ao bot, em quanto tempo o bot recomeça do zero?](#connect_einstein_bot/se-o-cliente-demora-a-responder-ao-bot-em-quanto-tempo-o-bot-recomeca-do-zero)
+  - [Nesse momento a tarefa é fechada no Salesforce?](#connect_einstein_bot/nesse-momento-a-tarefa-e-fechada-no-salesforce)
+  - [O bot transferiu para a fila e ninguém atendeu. O atendimento expira?](#connect_einstein_bot/o-bot-transferiu-para-a-fila-e-ninguem-atendeu-o-atendimento-expira)
+  - [Para que serve, afinal, a Pausa após atendimento humano?](#connect_einstein_bot/para-que-serve-afinal-a-pausa-apos-atendimento-humano)
+  - [Quando a mensagem por falta de resposta é enviada?](#connect_einstein_bot/quando-a-mensagem-por-falta-de-resposta-e-enviada)
+  - [E o campo "Tempo sem resposta (min)"?](#connect_einstein_bot/e-o-campo-tempo-sem-resposta-min)
+  - [Posso deixar a pausa bem curta para encerrar rápido quem não responde ao vendedor?](#connect_einstein_bot/posso-deixar-a-pausa-bem-curta-para-encerrar-rapido-quem-nao-responde-ao-vendedor)
+  - [O bot se despediu sem transferir e parou de responder. Por quê?](#connect_einstein_bot/o-bot-se-despediu-sem-transferir-e-parou-de-responder-por-que)
+  - [O bot transferiu, mas a equipe não vê a conversa na fila. Por quê?](#connect_einstein_bot/o-bot-transferiu-mas-a-equipe-nao-ve-a-conversa-na-fila-por-que)
+- [O bot controlando o atendimento pelo Apex](#connect_einstein_bot/o-bot-controlando-o-atendimento-pelo-apex)
+  - [Abrir o atendimento](#connect_einstein_bot/abrir-o-atendimento)
+  - [Transferir o atendimento](#connect_einstein_bot/transferir-o-atendimento)
+  - [Encerrar o atendimento](#connect_einstein_bot/encerrar-o-atendimento)
+- [Alternativa: criar a tarefa por conta própria](#connect_einstein_bot/alternativa-criar-a-tarefa-por-conta-propria)
+- [Testando o agente](#connect_einstein_bot/testando-o-agente)
+
+<!-- sumario:fim -->
+
 Para iniciar a configuração deve-se criar um aplicativo conectado externo no Salesforce para realizar a comunicação do Nitzap com o Salesforce
 Para isso 
 1. clique em Configurações
