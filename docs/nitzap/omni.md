@@ -9,8 +9,11 @@ O Nitzap Omni é onde você conversa com os clientes pelo WhatsApp sem sair do S
 
 - [Formas de abrir o Omni: compacto, ampliado e Nitzap Web](#nitzap/omni/formas-de-visualizar-as-conversas)
 - [Lista de conversas: filtros, ícones e ações](#nitzap/omni/a-lista-de-conversas)
+- [Iniciar uma conversa nova](#nitzap/omni/iniciar-uma-conversa-nova)
 - [Opções da conversa e das mensagens](#nitzap/omni/dentro-da-conversa)
+- [Ver conversas de outros usuários](#nitzap/omni/ver-conversas-de-outros-usuarios)
 - [Enviar arquivos, contatos e registrar histórico](#nitzap/omni/caixa-de-mensagem)
+- [Agendar mensagens](#nitzap/omni/agendar-envio)
 - [Recursos de IA e transcrição de áudio](#nitzap/omni/recursos-de-ia)
 - [Preferências](#nitzap/omni/preferencias)
 
@@ -83,7 +86,7 @@ No fim do painel aparecem até 10 Casos, Oportunidades e Tarefas ligados ao regi
 | 4 | **Ajuda e Recursos** | Links para as notas de lançamento, a documentação, a configuração de bot e o canal do Nitzap no YouTube. |
 | 5 | **Preferências** | Abre as suas preferências. Veja [Preferências](#nitzap/omni/preferencias). |
 | 6 | **Chamadas Recebidas** | Lista as ligações de WhatsApp recebidas e feitas. Em vermelho, as recusadas ou perdidas; em verde, as atendidas. Clique em uma para abrir a conversa. Não aparece se todas as suas conexões forem oficiais (Coex ou Cloud). |
-| 7 | **Meus Contatos** | Abre a lista de contatos para começar uma conversa nova. A aba **Internos** traz os colegas, para o chat interno. |
+| 7 | **Meus Contatos** | Abre a lista de contatos para começar uma conversa nova. Veja [Iniciar uma conversa nova](#nitzap/omni/iniciar-uma-conversa-nova). |
 | 8 | **Pesquisar** | Encontra conversas pelo nome, pelo número ou pelo nome da empresa. |
 | 9 | **Arquivadas** | Mostra quantas conversas estão arquivadas. Clique para ver a lista e em **<** para voltar. |
 | 10 | **Todas** | Mostra todas as conversas que não estão arquivadas. |
@@ -129,7 +132,7 @@ Clique com o botão direito em uma conversa da lista para ver as ações rápida
 | :---: | --- | --- |
 | 1 | **Marcar como lido** / **Marcar como não lido** | Zera o contador de não lidas da conversa ou volta a marcá-la como não lida, para lembrar de responder depois. O texto muda conforme a conversa já está lida ou não. |
 | 2 | **Fixar** / **Desfixar** | Prende a conversa no topo da lista, com um alfinete. |
-| 3 | **Etiquetas** | Abre a lista de etiquetas da conexão da conversa para você aplicar à conversa. As etiquetas aparecem coloridas na lista, acima da última mensagem. Se a conexão não tiver etiquetas, aparece **Nenhuma etiqueta disponível nesta conexão**. Veja [Etiquetas](#nitzap/omni/etiquetas). |
+| 3 | **Etiquetas** | Abre a lista de etiquetas da conexão da conversa para você aplicar à conversa. As etiquetas aparecem coloridas embaixo do nome do cliente. Se a conexão não tiver etiquetas, aparece **Nenhuma etiqueta disponível nesta conexão**. Veja o guia [Etiquetas](etiquetas.md). |
 | 4 | **Arquivar** / **Desarquivar** | Tira a conversa da lista principal e a guarda nas **Arquivadas** (nº 9 em [Botões do topo](#nitzap/omni/botoes-do-topo)). Para trazer de volta, abra as arquivadas e use **Desarquivar**. |
 | 5 | **Criar atendimento** | Abre um atendimento para o cliente. Veja [Atendimento](#nitzap/omni/atendimento). |
 
@@ -138,6 +141,27 @@ As ações de atendimento mudam conforme a situação da conversa:
 - **Criar atendimento** aparece quando o número está salvo no Salesforce, não há atendimento aberto e a conversa não é de grupo.
 - **Puxar atendimento** aparece quando a conversa está na fila de uma equipe.
 - **Fechar Atendimento** aparece quando a conversa está em atendimento.
+
+### Iniciar uma conversa nova
+
+Clique em **Meus Contatos** (o **+**, nº 7 em [Botões do topo](#nitzap/omni/botoes-do-topo)).
+
+![Meus Contatos: buscar um contato ou digitar um número novo](images/omni-meus-contatos.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Contatos** traz os clientes; **Internos** traz os colegas, para o chat interno. A aba **Internos** só aparece quando o chat interno está disponível. |
+| 2 | **Conexão:** escolhe de qual número você quer ver os contatos e os grupos. Só aparece quando você participa de mais de uma conexão. |
+| 3 | **Busca:** digite o nome ou o número. |
+| 4 | **Exportar contatos:** baixa a lista de contatos da conexão escolhida em uma planilha (CSV). |
+| 5 | **Contatos / Grupos:** alterna entre os contatos e os grupos. Conexões oficiais (Coex e Cloud API) não têm grupos. |
+| 6 | **Iniciar conversa com (número):** aparece quando você digita um número. Clique para abrir a conversa, mesmo que o número ainda não esteja nos contatos. |
+
+Digite o número completo, só com dígitos: DDI + DDD + número (exemplo: `5511999999999`). O Nitzap não acrescenta o DDI sozinho. Para números do Brasil, ele também procura a versão com e sem o 9 extra.
+
+A conversa abre pela última conexão que você usou. Antes de escrever, confira no cabeçalho por qual número a mensagem vai sair e troque se precisar (nº 2 em [Cabeçalho](#nitzap/omni/cabecalho)).
+
+Nas conexões oficiais (Coex e Cloud API), uma conversa nova começa **fechada**: a Meta só permite iniciar o contato com um template aprovado. Veja [Templates](#nitzap/omni/templates). Quando o cliente responder, a conversa abre e você pode escrever livremente.
 
 ## Dentro da conversa
 
@@ -148,7 +172,7 @@ As ações de atendimento mudam conforme a situação da conversa:
 | Nº | O que é |
 | :---: | --- |
 | 1 | **Foto e nome do cliente.** Mostram também quando ele está digitando ou online. |
-| 2 | **Foto do usuário com seta:** escolhe **de qual usuário e de qual conexão** é a conversa que você está vendo. Quando mais de uma pessoa já falou com o cliente, cada uma aparece aqui com os números que usou. Não é transferência de atendimento. |
+| 2 | **Foto do usuário com seta:** escolhe **de qual usuário e de qual conexão** é a conversa que você está vendo. Não é transferência de atendimento. Veja [Ver conversas de outros usuários](#nitzap/omni/ver-conversas-de-outros-usuarios). |
 | 3 | **Menu ⋮:** mais opções da conversa (tabela abaixo). |
 
 | Opção do menu ⋮ | O que faz |
@@ -159,6 +183,31 @@ As ações de atendimento mudam conforme a situação da conversa:
 | **Mídias** | Abre a galeria com as fotos, vídeos e arquivos trocados na conversa. |
 | **Buscar** | Procura um texto nas mensagens da conversa. |
 | **Novo Lead / Novo Contato / Nova Conta** | Abre o cadastro do Salesforce já preenchido com o nome e o número do WhatsApp. Não aparece quando o cliente pertence a outro usuário e o seu acesso é limitado. Nesse caso, o cabeçalho mostra quem é o proprietário. |
+
+### Ver conversas de outros usuários
+
+O mesmo cliente pode ter falado com mais de uma pessoa da equipe, ou por mais de um número. Clique na foto do usuário, à direita do nome do cliente, para escolher qual conversa ver.
+
+![Seletor de usuário e conexão da conversa](images/omni-seletor-conexao.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Foto do usuário dono da conversa que está na tela. Clique para trocar. |
+| 2 | **Buscar usuário:** encontra um usuário pelo nome. |
+| 3 | Cada usuário que já conversou com esse cliente. |
+| 4 | As conexões desse usuário em que a conversa aconteceu. A que está na tela fica destacada. |
+
+Você sempre aparece na lista, com **todas** as suas conexões, para poder falar com o cliente por qualquer uma delas. Conexões desconectadas aparecem por último, marcadas como **Conexão desconectada**.
+
+Quais outros usuários aparecem depende da configuração do administrador:
+
+| Configuração | O que você vê |
+| --- | --- |
+| **Respeitar Hierarquia** desligada | As conversas de todos os usuários que têm login no Nitzap. |
+| **Respeitar Hierarquia** ligada | As suas conversas e as dos usuários abaixo de você na hierarquia de papéis do Salesforce. Sem papel definido, só as suas. |
+| Conjunto de permissões **Nitzap: Ver todas as conversas** | As conversas de todos os usuários, mesmo com a hierarquia ligada. |
+
+Ser administrador do Salesforce ou do Nitzap não libera, sozinho, as conversas dos outros: vale a configuração acima. Nas conversas de outros usuários você acompanha o histórico, mas só envia mensagens na sua própria conversa, por uma conexão sua que esteja conectada.
 
 ### Opções da mensagem
 
@@ -250,6 +299,64 @@ Use para guardar no Salesforce um trecho importante da conversa, como uma negoci
 5. Clique em **Registrar**.
 
 Os números da imagem são os mesmos dos passos. O Nitzap cria uma Tarefa concluída, do tipo **HISTORY**, ligada ao cliente, e abre a Tarefa em seguida.
+
+### Agendar envio
+
+Use para deixar uma mensagem programada, como um lembrete de pagamento ou um retorno combinado. O botão do relógio (nº 7 da caixa de mensagem) só aparece quando o número está salvo como Lead, Contato ou Conta.
+
+![Agendar Mensagem com texto livre](images/omni-agendar-mensagem.png)
+
+| Nº | O que fazer |
+| :---: | --- |
+| 1 | **Assunto:** vira o assunto da Tarefa. O padrão é *(nome do cliente) - WhatsApp Agendado 📲*. |
+| 2 | **Data e hora** do envio. O padrão é daqui a 1 minuto. |
+| 3 | Aba **Mensagem:** para escrever um texto livre. |
+| 4 | Aba **Template:** para usar uma mensagem pronta (veja abaixo). |
+| 5 | O texto da mensagem. |
+| 6 | **Agendar:** confirma. Aparece **⏰ Agendado com sucesso** e a página recarrega. |
+
+Para usar uma mensagem pronta, abra a aba **Template**:
+
+![Agendar Mensagem com template](images/omni-agendar-template.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Aba **Template**. |
+| 2 | **Buscar:** encontra o template pelo nome. |
+| 3 | A lista traz os seus templates e os compartilhados com você. Nas conexões oficiais, também aparecem os templates da Meta importados. |
+
+Nas conexões oficiais (Coex e Cloud API), uma mensagem sem template da Meta só é entregue se o cliente tiver mandado alguma mensagem nas últimas 24 horas. O Nitzap mostra esse aviso na tela. Para falar com quem não escreveu nesse período, agende com um template da Meta.
+
+#### A Tarefa do agendamento
+
+Cada agendamento vira uma **Tarefa** no Salesforce, em seu nome, ligada ao cliente.
+
+![Tarefa do agendamento na lista de Tarefas](images/omni-agendar-tarefas.png)
+
+- **1:** aba **Tasks** (Tarefas) do Salesforce.
+- **2:** a Tarefa criada pelo agendamento, com o assunto escolhido.
+
+![Detalhes da Tarefa do agendamento](images/omni-agendar-tarefa.png)
+
+| Nº | Campo | O que mostra |
+| :---: | --- | --- |
+| 1 | **Comments** | O texto da mensagem agendada. |
+| 2 | **Nitzap Tipo Tarefa** | **Agendamento** (ou **Agendamento Meta**, nas conexões oficiais). |
+| 3 | **Nitzap: Data Agendamento** | Dia e hora marcados para o envio. |
+| 4 | **Nitzap: Data Envio Mensagem** | Fica vazio até o envio; é preenchido quando o Nitzap processa o agendamento. |
+| 5 | **Nitzap Chat** | A conversa com o cliente, na própria página da Tarefa. |
+
+#### Como o envio acontece
+
+- O Nitzap confere os agendamentos a cada minuto e envia no horário marcado, em seu nome, pela conexão que estava selecionada na conversa.
+- Depois disso, a Tarefa é **concluída** e o campo **Nitzap: Data Envio Mensagem** é preenchido.
+- O envio automático precisa estar ligado pelo administrador (**Agendamento Ativo**, no Nitzap Config).
+
+Cuidados:
+
+- **A Tarefa é concluída mesmo quando a mensagem não pode sair**, por exemplo se o cliente não tem WhatsApp cadastrado no registro ou se o seu usuário está inativo no Nitzap. Depois do horário, confira na conversa se a mensagem foi enviada.
+- **A mensagem só sai no dia agendado.** Se ela não for enviada naquele dia (por exemplo, com o agendamento desligado), não é enviada nos dias seguintes.
+- **Para cancelar**, conclua ou exclua a Tarefa antes do horário. **Para mudar o horário**, cancele e agende de novo.
 
 ## Recursos de IA
 

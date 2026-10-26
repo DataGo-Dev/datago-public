@@ -227,7 +227,7 @@ Quando uma conexão fica inativa, ela aparece na lista marcada como **inativa** 
 
 - [Canal de envio vinculado (Api WEB Nitzap)](#nitzap/conexao-whatsapp/canal-de-envio-vinculado)
 - [Configurações](#nitzap/conexao-whatsapp/configuracoes-da-conexao)
-- [Etiquetas](#nitzap/conexao-whatsapp/etiquetas)
+- [Etiquetas](etiquetas.md)
 - [Prompts IA](#nitzap/conexao-whatsapp/prompts-ia)
 - [Templates Meta](#nitzap/conexao-whatsapp/templates-meta)
 
