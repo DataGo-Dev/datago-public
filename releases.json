@@ -1,5 +1,13 @@
 [
   {
+    "id": 424343522,
+    "tag_name": "v1.757.0",
+    "name": "1.757.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000iL7BIAU)\n\n## Chat do site\nAgora dá para atender pelo site da empresa, no mesmo Omni do WhatsApp. Em **Configuração > Conexões**, o botão **Chat do site** cria uma janelinha de conversa com nome, cor, mensagem de boas-vindas e a lista de sites liberados. A tela mostra o código para colar no site; o visitante clica no botão do canto da página, escreve e manda arquivos, e a resposta da equipe aparece na hora.\n\n- **No Omni**, a conversa chega como qualquer outra, com o nome que o visitante digitou e o ícone de globo. Fila, bot (Agentforce ou Einstein), saudação, aviso de inatividade, etiquetas e membros funcionam como numa conexão de WhatsApp.\n- **O chat do site é uma conexão**: entra na contagem de licenças e os membros são escolhidos do mesmo jeito.\n- **O visitante não vira Contato nem Lead**, porque não tem telefone. No chat do site não há template, cartão de contato, encaminhar, reagir, editar nem apagar; o sussurro interno funciona e nunca chega ao visitante.\n- **Formatação do WhatsApp:** a assinatura do atendente e textos com *negrito*, _itálico_ e ~riscado~ aparecem formatados no site, e links ficam clicáveis.\n- **Sites liberados:** um domínio libera também os subdomínios. Com a lista vazia, o chat funciona em qualquer site que tiver o código.\n\nPrecisa do servidor Nitzap atualizado.\n\n## Melhorias\n**Omni atualiza as conexões sem recarregar a página.** Quando você cria ou remove uma conexão, ou muda os membros dela em Configuração > Conexões, o Omni aberto passa a receber na hora as mensagens e notificações dessa conexão. Antes era preciso recarregar a página.\n\n## Correções\n**Registro de atendimentos para todos os usuários.** O registro de atendimentos no servidor do Nitzap, que chegou na versão 1.755.0, falhava para quem recebe acesso ao Nitzap só pelo conjunto de permissões Nitzap 2.0. Agora vale para esses usuários também.",
+    "published_at": "2026-10-26T19:28:32Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.757.0"
+  },
+  {
     "id": 422082516,
     "tag_name": "v1.756.0",
     "name": "1.756.0",
