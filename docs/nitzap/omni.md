@@ -360,7 +360,7 @@ Cuidados:
 
 ## Recursos de IA
 
-Os recursos de IA só aparecem quando o administrador configurou a IA no Nitzap.
+Os recursos de IA só aparecem depois que o administrador habilita a IA no Nitzap (veja [Habilitar a IA](#nitzap/omni/habilitar-a-ia-administrador)).
 
 | Recurso | Onde fica | O que faz |
 | --- | --- | --- |
@@ -369,6 +369,26 @@ Os recursos de IA só aparecem quando o administrador configurou a IA no Nitzap.
 | **Resumir conversa** | Botão nº 12 da caixa de mensagem | Resume a conversa em um período. |
 | **IA: Resumir** | [Opções da mensagem](#nitzap/omni/opcoes-da-mensagem) | Resume uma mensagem só. |
 | **Transcrição de áudio** | Embaixo de cada áudio | Transforma o áudio em texto. |
+
+### Habilitar a IA (administrador)
+
+A IA é configurada uma vez para toda a empresa, por um administrador, em **Nitzap Config** > **Configuração** > **Inteligência Artificial**.
+
+![Configuração de Inteligência Artificial no Nitzap Config](images/ia-configuracao.png)
+
+| Nº | Campo | O que fazer |
+| :---: | --- | --- |
+| 1 | **Inteligência Artificial** | Aba com as configurações de IA, dentro de **Configuração**. |
+| 2 | **IA** | O provedor de IA do assistente. Hoje a opção é o **Gemini**, que tem a maior parte dos recursos. |
+| 3 | **Modelo** | O modelo do Gemini usado pelo assistente. |
+| 4 | **Token IA** | A chave de acesso (token) da conta de IA da empresa. O olho mostra ou esconde a chave. Sem o token, os botões de IA não aparecem para os usuários. |
+| 5 | **Forçar transcrição automática para todos os usuários** | Liga a transcrição automática para todo mundo e trava a preferência individual (aparece **Ativado pelo administrador**). Recarregue as páginas abertas para aplicar. |
+| 6 | **Transcrever todos os áudios automaticamente no servidor** | Transcreve todo áudio novo de conversa individual assim que ele chega, mesmo que ninguém abra a conversa. Com isso, a busca e os recursos de IA encontram o que foi falado. |
+| 7 | **Transcrever também os áudios de grupos** | Inclui os grupos na transcrição do servidor. Só pode ser ligado com a opção 6 ligada. Grupos movimentados aumentam bastante o consumo. |
+| 8 | **Provedor** | Quem faz a transcrição: **Mesma IA configurada ao lado** (o Gemini) ou **ElevenLabs**. Com ElevenLabs, aparece o campo **Token de transcrição** para a chave dessa conta. Vale para a transcrição manual e automática; os outros recursos continuam no Gemini. |
+| 9 | **Salvar Configurações** | Grava as alterações. |
+
+Cada transcrição e cada uso da IA consome a cota da conta do provedor. A opção 6, e principalmente a 7, são as que mais consomem, porque transcrevem todos os áudios, inclusive os que ninguém vai ouvir.
 
 ### Gerar com IA
 
@@ -416,6 +436,8 @@ Há dois jeitos de usar:
 
 - **Automático:** ligue a preferência **IA: Transcrever e exibir automaticamente áudios** (nº 11 em [Preferências](#nitzap/omni/preferencias)). Todo áudio é transcrito sozinho. Se o administrador deixou a transcrição obrigatória, ela já vem ligada.
 - **Um áudio por vez:** com a preferência desligada, clique em **Transcrever**, embaixo do áudio que você quer ler.
+
+Se o administrador ligou a transcrição no servidor (nº 6 em [Habilitar a IA](#nitzap/omni/habilitar-a-ia-administrador)), os áudios já chegam transcritos. Com a preferência ligada, o texto aparece direto; com ela desligada, clique em **Transcrever** e o texto aparece na hora, sem transcrever de novo.
 
 A transcrição fica salva na mensagem: quem abrir a conversa depois vê o texto sem transcrever de novo.
 
