@@ -243,7 +243,7 @@ Escreva a mensagem e tecle **Enter** para enviar. Para pular uma linha sem envia
 | 1 | **Arquivos** (+) | Envia um arquivo do computador ou do Salesforce. Veja [Arquivos](#nitzap/omni/enviar-arquivos). |
 | 2 | **Emoji** | Insere um emoji no texto. |
 | 3 | **Enviar contato** | Envia um cartão de contato. Veja [Enviar contato](#nitzap/omni/enviar-contato). |
-| 4 | **Modo sussurro** | Escreve uma nota interna na conversa: só a equipe vê, o cliente não recebe. |
+| 4 | **Modo sussurro** | Escreve uma nota interna na conversa, que o cliente não recebe. Veja [Modo sussurro](#nitzap/omni/modo-sussurro). |
 | 5 | **Registrar histórico** | Cria uma Tarefa no Salesforce com um trecho da conversa. Veja [Registrar histórico](#nitzap/omni/registrar-historico). |
 | 6 | **Templates** | Veja [Templates](#nitzap/omni/templates). |
 | 7 | **Agendar envio** | Veja [Agendar envio](#nitzap/omni/agendar-envio). |
@@ -285,6 +285,22 @@ Clique no ícone de cartão (indicado pela seta embaixo).
 | 3 | Clique no contato para enviar o cartão. |
 
 O botão não aparece nas conexões oficiais (Coex e Cloud API) nem no chat interno.
+
+### Modo sussurro
+
+Use o sussurro para deixar uma anotação dentro da conversa sem que o cliente receba, por exemplo um combinado com o cliente ou um aviso para quem for atender depois.
+
+![Modo sussurro ligado e uma nota interna na conversa](images/omni-sussurro.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Botão **Modo sussurro**. Clique para ligar; ele fica destacado. |
+| 2 | Com o sussurro ligado, a caixa de mensagem fica tracejada e mostra **Modo sussurro: Apenas você verá esta mensagem**. |
+| 3 | A nota enviada aparece na conversa com **fundo amarelo**. O cliente não recebe. |
+
+Escreva a nota e tecle **Enter** para registrar. Depois do envio, o modo sussurro desliga sozinho e a próxima mensagem volta a ir para o cliente.
+
+Enquanto o sussurro está ligado, os botões de arquivo, contato, templates, microfone e enviar ficam escondidos: a nota é só texto. O modo sussurro não existe no chat interno.
 
 ### Registrar histórico
 
