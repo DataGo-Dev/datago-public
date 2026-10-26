@@ -107,7 +107,25 @@ Só dá para escolher uma opção por vez. A escolhida fica marcada com ✓ e o 
 | 7 | **Número verde** | Quantidade de mensagens não lidas na conversa. |
 | 8 | **✓ azul ao lado do nome** | Canal oficial de anúncios do Nitzap. |
 
-Clicando com o botão direito em uma conversa, você pode **marcar como lida ou não lida**, **fixar** no topo, aplicar **etiquetas** e **arquivar** ou **desarquivar**.
+### Botão direito na conversa
+
+Clique com o botão direito em uma conversa da lista para ver as ações rápidas. O menu abre logo abaixo da conversa.
+
+![Menu do botão direito em uma conversa](images/omni-menu-direito.png)
+
+| Nº | Ação | O que faz |
+| :---: | --- | --- |
+| 1 | **Marcar como lido** / **Marcar como não lido** | Zera o contador de não lidas da conversa ou volta a marcá-la como não lida, para lembrar de responder depois. O texto muda conforme a conversa já está lida ou não. |
+| 2 | **Fixar** / **Desfixar** | Prende a conversa no topo da lista, com um alfinete. |
+| 3 | **Etiquetas** | Abre a lista de etiquetas da conexão da conversa para você aplicar à conversa. As etiquetas aparecem coloridas na lista, acima da última mensagem. Se a conexão não tiver etiquetas, aparece **Nenhuma etiqueta disponível nesta conexão**. Veja [Etiquetas](#nitzap/omni/etiquetas). |
+| 4 | **Arquivar** / **Desarquivar** | Tira a conversa da lista principal e a guarda nas **Arquivadas** (nº 9 em [Botões do topo](#nitzap/omni/botoes-do-topo)). Para trazer de volta, abra as arquivadas e use **Desarquivar**. |
+| 5 | **Criar atendimento** | Abre um atendimento para o cliente. Veja [Atendimento](#nitzap/omni/atendimento). |
+
+As ações de atendimento mudam conforme a situação da conversa:
+
+- **Criar atendimento** aparece quando o número está salvo no Salesforce, não há atendimento aberto e a conversa não é de grupo.
+- **Puxar atendimento** aparece quando a conversa está na fila de uma equipe.
+- **Fechar Atendimento** aparece quando a conversa está em atendimento.
 
 ## Dentro da conversa
 
