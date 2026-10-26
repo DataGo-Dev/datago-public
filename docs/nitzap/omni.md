@@ -1,6 +1,8 @@
 # 02. Nitzap Omni: conversas dentro do Salesforce
 
-O Nitzap Omni é onde você conversa com os clientes pelo WhatsApp sem sair do Salesforce. Ele mostra as conversas de todas as conexões das quais você é membro, indica por qual número cada cliente falou com você e liga cada conversa ao Lead, Contato ou Conta correspondente. Este guia mostra as formas de abrir o Omni, como filtrar e ler a lista de conversas, as opções dentro de uma conversa e as suas preferências.
+O Nitzap Omni é onde você conversa com os clientes pelo WhatsApp sem sair do Salesforce. Ele mostra as conversas de todas as conexões das quais você é membro, indica por qual número cada cliente falou com você e liga cada conversa ao Lead, Contato ou Conta correspondente. Este guia mostra as formas de abrir o Omni, como filtrar e ler a lista de conversas, as opções dentro de uma conversa, os recursos de IA e as suas preferências.
+
+**Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela ou da lista logo abaixo da imagem.
 
 ## Formas de visualizar as conversas
 
@@ -14,76 +16,96 @@ O Omni pode ser usado de três jeitos. As conversas são as mesmas nos três; mu
 
 ### Compacto
 
-Clique em **Nitzap**, no canto inferior esquerdo, para abrir o painel.
+Clique em **Nitzap**, no canto inferior esquerdo (onde a seta aponta), para abrir o painel.
 
 ![Omni compacto na barra de utilitários](images/omni-compacto.png)
 
 ### Ampliado
 
-No painel compacto, clique no botão de ampliar (as duas setas, no topo da lista). Para voltar ao tamanho compacto, clique no mesmo botão, que passa a se chamar **Reduzir painel**. O Nitzap lembra no navegador qual tamanho você usou por último.
+No painel compacto, clique no botão de ampliar, no topo da lista. Para voltar ao tamanho compacto, clique no mesmo botão, que passa a se chamar **Reduzir painel**. O Nitzap lembra no navegador qual tamanho você usou por último.
 
 ![Omni ampliado, com a conversa ao lado da lista](images/omni-ampliado.png)
 
+| Nº | O que é |
+| :---: | --- |
+| 1 | Botão **Ampliar painel / Reduzir painel**. |
+| 2 | A conversa aberta, em uma aba ao lado da lista. O resto do Salesforce continua acessível atrás do painel. |
+
 ### Nitzap Web
 
-Clique no botão **Abrir Nitzap Web** (o quadrado com a seta, no topo da lista) ou abra a aba **Nitzap Web** pelo menu de aplicativos do Salesforce.
+Clique no botão **Abrir Nitzap Web** (nº 3 em [Botões do topo](#nitzap/omni/botoes-do-topo)) ou abra a aba **Nitzap Web** pelo menu de aplicativos do Salesforce.
 
 ![Nitzap Web em tela cheia](images/omni-web.png)
 
-Cada conversa aberta vira uma aba no topo. Clique na aba para trocar de conversa e no **×** para fechá-la. Ficam abertas no máximo 10 abas: ao abrir a 11ª, a que está há mais tempo sem uso fecha sozinha.
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Abas das conversas abertas.** Clique na aba para trocar de conversa e no **×** para fechá-la. Ficam abertas no máximo 10 abas: ao abrir a 11ª, a que está há mais tempo sem uso fecha sozinha. |
+| 2 | Botão **i**: abre os detalhes do cliente (veja abaixo). |
 
-O botão **i**, à direita das abas, aparece quando a conversa está ligada a um Lead, Contato ou Conta. Ele abre o painel **Detalhes** ao lado da conversa, com os dados do registro. Os campos com lápis podem ser editados ali mesmo, sem sair da conversa.
+#### Detalhes do cliente (botão i)
+
+O botão **i** aparece quando a conversa está ligada a um Lead, Contato ou Conta. Ele abre o painel **Detalhes** ao lado da conversa, com os dados do registro.
 
 ![Painel Detalhes com os dados do contato ao lado da conversa](images/omni-web-detalhes.png)
 
-No fim do painel aparecem até 10 Casos, Oportunidades e Tarefas ligados ao registro. Clique em um item para ver os detalhes e em **Voltar ao registro** para retornar. O botão no topo do painel abre o registro completo em uma nova aba, e o **×** fecha o painel.
+| Nº | O que é |
+| :---: | --- |
+| 1 | Botão **i**, que abre e fecha o painel. |
+| 2 | **Lápis:** edita o campo ali mesmo, sem sair da conversa. |
+| 3 | Abre o registro completo em uma nova aba. |
+| 4 | Fecha o painel. |
+
+No fim do painel aparecem até 10 Casos, Oportunidades e Tarefas ligados ao registro. Clique em um item para ver os detalhes e em **Voltar ao registro** para retornar.
 
 ## A lista de conversas
 
 ### Botões do topo
 
-| Botão | O que faz |
-| --- | --- |
-| **Conexões** | Filtra a lista por conexão. Veja [Filtrar por conexão](#nitzap/omni/filtrar-por-conexao). |
-| **Ampliar painel / Reduzir painel** (setas) | Alterna entre o compacto e o ampliado. Só aparece na barra de utilitários. |
-| **Abrir Nitzap Web** (quadrado com seta) | Abre a aba Nitzap Web. Não aparece quando você já está nela. |
-| **Ajuda e Recursos** (?) | Links para as notas de lançamento, a documentação, a configuração de bot e o canal do Nitzap no YouTube. |
-| **Preferências** (controles deslizantes) | Abre as suas preferências. Veja [Preferências](#nitzap/omni/preferencias). |
-| **Chamadas Recebidas** (telefone com seta) | Lista as ligações de WhatsApp recebidas e feitas. Em vermelho, as recusadas ou perdidas; em verde, as atendidas. Clique em uma para abrir a conversa. Não aparece se todas as suas conexões forem oficiais (Coex ou Cloud). |
-| **Meus Contatos** (+) | Abre a lista de contatos para começar uma conversa nova. A aba **Internos** traz os colegas, para o chat interno. |
+![Botões do topo da lista de conversas](images/omni-topo-lista.png)
+
+| Nº | Botão | O que faz |
+| :---: | --- | --- |
+| 1 | **Conexões** | Filtra a lista por conexão. Veja [Filtrar por conexão](#nitzap/omni/filtrar-por-conexao). |
+| 2 | **Ampliar painel / Reduzir painel** | Alterna entre o compacto e o ampliado. Só aparece na barra de utilitários. |
+| 3 | **Abrir Nitzap Web** | Abre a aba Nitzap Web. Não aparece quando você já está nela. |
+| 4 | **Ajuda e Recursos** | Links para as notas de lançamento, a documentação, a configuração de bot e o canal do Nitzap no YouTube. |
+| 5 | **Preferências** | Abre as suas preferências. Veja [Preferências](#nitzap/omni/preferencias). |
+| 6 | **Chamadas Recebidas** | Lista as ligações de WhatsApp recebidas e feitas. Em vermelho, as recusadas ou perdidas; em verde, as atendidas. Clique em uma para abrir a conversa. Não aparece se todas as suas conexões forem oficiais (Coex ou Cloud). |
+| 7 | **Meus Contatos** | Abre a lista de contatos para começar uma conversa nova. A aba **Internos** traz os colegas, para o chat interno. |
+| 8 | **Pesquisar** | Encontra conversas pelo nome, pelo número ou pelo nome da empresa. |
+| 9 | **Arquivadas** | Mostra quantas conversas estão arquivadas. Clique para ver a lista e em **<** para voltar. |
+| 10 | **Todas** | Mostra todas as conversas que não estão arquivadas. |
+| 11 | **Não Lidas** | Mostra só as conversas com mensagens não lidas. O número ao lado é a quantidade dessas conversas. |
 
 ### Filtrar por conexão
 
-Quando você participa de mais de uma conexão, o botão **Conexões** aparece no topo. Passe o mouse ou clique nele e escolha o que quer ver:
-
-- **Todas as conexões:** conversas de todos os números.
-- **Interno:** conversas com a equipe (chat interno entre colegas).
-- **Uma conexão específica:** só as conversas daquele número. Embaixo do nome aparecem o número e o tipo de conexão (**Nitzap** para conexões via QR Code, **Coex (Meta)** ou **Cloud API (Meta)** para as oficiais).
+Quando você participa de mais de uma conexão, o botão **Conexões** aparece no topo. Passe o mouse ou clique nele e escolha o que quer ver.
 
 ![Filtro de conexões](images/omni-filtro-conexoes.png)
 
+| Nº | Opção | O que mostra |
+| :---: | --- | --- |
+| 1 | **Todas as conexões** | Conversas de todos os números. |
+| 2 | **Interno** | Conversas com a equipe (chat interno entre colegas). |
+| 3 | **Uma conexão específica** | Só as conversas daquele número. Embaixo do nome aparecem o número e o tipo de conexão: **Nitzap** para conexões via QR Code, **Coex (Meta)** ou **Cloud API (Meta)** para as oficiais. |
+| 4 | **Bolinha colorida** | Não indica se a conexão está online: é só a cor que identifica a conexão. A mesma cor aparece na etiqueta da conexão em cada conversa da lista (nº 6 em [O que cada conversa mostra](#nitzap/omni/o-que-cada-conversa-mostra)). |
+
 Só dá para escolher uma opção por vez. A escolhida fica marcada com ✓ e o botão passa a mostrar o nome dela. O Nitzap lembra a sua escolha na próxima vez.
-
-A bolinha colorida ao lado de cada conexão não indica se ela está online: é só a cor que identifica a conexão. A mesma cor aparece na etiqueta da conexão em cada conversa da lista.
-
-### Busca, arquivadas e não lidas
-
-- **Pesquisar:** encontra conversas pelo nome, pelo número ou pelo nome da empresa.
-- **Arquivadas** (ícone de caixa com um número): mostra quantas conversas estão arquivadas. Clique para ver a lista e em **<** para voltar.
-- **Todas:** mostra todas as conversas que não estão arquivadas.
-- **Não Lidas:** mostra só as conversas com mensagens não lidas. O número ao lado é a quantidade dessas conversas.
 
 ### O que cada conversa mostra
 
-| Elemento | O que significa |
-| --- | --- |
-| **👤 Nome · 🏢 Empresa** (acima do nome) | O proprietário do registro no Salesforce e a empresa (do Lead, ou da Conta do Contato). Só aparece quando o número está salvo. Dá para esconder nas [Preferências](#nitzap/omni/preferencias). |
-| **Ícone antes do nome** | Tipo do registro ligado ao número: cartão roxo para **Contato**, pessoa laranja para **Lead** e prédio azul para **Conta**. Sem ícone, o número não está salvo no Salesforce. |
-| **Seta verde para baixo** | A última mensagem foi **recebida** do cliente. |
-| **Seta cinza para cima** | A última mensagem foi **enviada** por você e ainda não foi lida. Depois de lida, vira um ✓ azul. |
-| **Etiqueta colorida no canto direito** (ex.: **Niter**) | A **conexão por onde o cliente falou**, ou seja, para qual número ele mandou a mensagem. **Interno** indica uma conversa com um colega. Só aparece quando você participa de mais de uma conexão. |
-| **Número verde** | Quantidade de mensagens não lidas na conversa. |
-| **✓ azul ao lado do nome** | Canal oficial de anúncios do Nitzap. |
+![Elementos de cada conversa na lista](images/omni-conversas-lista.png)
+
+| Nº | Elemento | O que significa |
+| :---: | --- | --- |
+| 1 | **👤 Nome · 🏢 Empresa** | O proprietário do registro no Salesforce e a empresa (do Lead, ou da Conta do Contato). Só aparece quando o número está salvo. Dá para esconder nas [Preferências](#nitzap/omni/preferencias). |
+| 2 | **Cartão roxo** antes do nome | O número está salvo como **Contato**. |
+| 3 | **Pessoa laranja** antes do nome | O número está salvo como **Lead**. Um **prédio azul** indica **Conta**. Sem ícone, o número não está salvo no Salesforce. |
+| 4 | **Seta verde para baixo** | A última mensagem foi **recebida** do cliente. |
+| 5 | **Seta cinza para cima** | A última mensagem foi **enviada** por você e ainda não foi lida. Depois de lida, vira um ✓ azul. |
+| 6 | **Etiqueta colorida** (ex.: **Niter**, **Interno**) | A **conexão por onde o cliente falou**, ou seja, para qual número ele mandou a mensagem. **Interno** indica uma conversa com um colega. Só aparece quando você participa de mais de uma conexão. |
+| 7 | **Número verde** | Quantidade de mensagens não lidas na conversa. |
+| 8 | **✓ azul ao lado do nome** | Canal oficial de anúncios do Nitzap. |
 
 Clicando com o botão direito em uma conversa, você pode **marcar como lida ou não lida**, **fixar** no topo, aplicar **etiquetas** e **arquivar** ou **desarquivar**.
 
@@ -91,13 +113,15 @@ Clicando com o botão direito em uma conversa, você pode **marcar como lida ou 
 
 ### Cabeçalho
 
-- **Foto e nome do cliente:** mostram também quando ele está digitando ou online.
-- **Foto do usuário com seta** (à direita): escolhe **de qual usuário e de qual conexão** é a conversa que você está vendo. Quando mais de uma pessoa já falou com o cliente, cada uma aparece aqui com os números que usou. Não é transferência de atendimento.
-- **Menu ⋮:** mais opções da conversa (tabela abaixo).
+![Cabeçalho e menu de opções da conversa](images/omni-menu-conversa.png)
 
-![Menu de opções da conversa](images/omni-menu-conversa.png)
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Foto e nome do cliente.** Mostram também quando ele está digitando ou online. |
+| 2 | **Foto do usuário com seta:** escolhe **de qual usuário e de qual conexão** é a conversa que você está vendo. Quando mais de uma pessoa já falou com o cliente, cada uma aparece aqui com os números que usou. Não é transferência de atendimento. |
+| 3 | **Menu ⋮:** mais opções da conversa (tabela abaixo). |
 
-| Opção | O que faz |
+| Opção do menu ⋮ | O que faz |
 | --- | --- |
 | **Excluir conversa** | Apaga as mensagens com esse cliente na conexão selecionada, depois de uma confirmação. Só aparece se o administrador liberou a exclusão. |
 | **Copiar Número** | Copia o número do cliente, só com os dígitos. |
@@ -108,14 +132,17 @@ Clicando com o botão direito em uma conversa, você pode **marcar como lida ou 
 
 ### Opções da mensagem
 
-Passe o mouse sobre uma mensagem e clique na seta que aparece no canto do balão. À esquerda, as opções de uma mensagem **recebida**; à direita, as de uma mensagem **enviada**.
+Passe o mouse sobre uma mensagem e clique na seta que aparece no canto do balão.
 
 ![Opções da mensagem recebida e da mensagem enviada](images/omni-opcoes-mensagem.png)
 
-| Opção | Recebida | Enviada | O que faz |
+- **1:** seta de uma mensagem **recebida** e o menu que ela abre.
+- **2:** seta de uma mensagem **enviada** e o menu que ela abre.
+
+| Opção | Recebida (1) | Enviada (2) | O que faz |
 | --- | :---: | :---: | --- |
 | **Lida (data e hora)** | | ✓ | Não é um botão: mostra quando o cliente leu a mensagem. |
-| **✨ IA: Resumir** | ✓ | ✓ | Resume a mensagem (texto, áudio, imagem ou documento). Só aparece se a IA estiver configurada pelo administrador. |
+| **✨ IA: Resumir** | ✓ | ✓ | Resume a mensagem (texto, áudio, imagem ou documento). Veja [Recursos de IA](#nitzap/omni/recursos-de-ia). |
 | **Responder** | ✓ | ✓ | Responde citando a mensagem. |
 | **Encaminhar** | ✓ | ✓ | Seleciona a mensagem para encaminhar. Você pode marcar outras e depois escolher o contato. |
 | **Reagir** | ✓ | | Envia uma reação com emoji. |
@@ -130,71 +157,153 @@ Passe o mouse sobre uma mensagem e clique na seta que aparece no canto do balão
 
 Escreva a mensagem e tecle **Enter** para enviar. Para pular uma linha sem enviar, use **Shift + Enter**. Em grupos, digite **@** para mencionar um participante.
 
-| Botão | O que faz |
-| --- | --- |
-| **+ Arquivos** | Envia um arquivo do computador (clique em **Selecionar** ou arraste) ou um arquivo já salvo no Salesforce (**Do Salesforce**). Limite de 100 MB; vídeos até 40 MB, pelo limite do WhatsApp. |
-| **Emoji** | Insere um emoji no texto. |
-| **Enviar contato** | Envia um cartão de contato. Escolha a conexão e busque o contato. Não aparece nas conexões oficiais nem no chat interno. |
-| **Modo sussurro** (balão) | Escreve uma nota interna na conversa: só a equipe vê, o cliente não recebe. |
-| **Registrar histórico** (telefone) | Cria uma Tarefa no Salesforce com um trecho da conversa. Só aparece quando o número está salvo. |
-| **Templates** (quatro quadrados) | Veja [Templates](#nitzap/omni/templates). |
-| **Agendar envio** (relógio) | Veja [Agendar envio](#nitzap/omni/agendar-envio). |
-| **Microfone** | Grava um áudio. Antes de enviar, dá para ouvir e descartar. |
+![Botões da caixa de mensagem](images/omni-caixa-mensagem.png)
 
-Acima da caixa de mensagem ficam três botões de IA, que só aparecem quando o administrador configurou a IA:
+| Nº | Botão | O que faz |
+| :---: | --- | --- |
+| 1 | **Arquivos** (+) | Envia um arquivo do computador ou do Salesforce. Veja [Arquivos](#nitzap/omni/enviar-arquivos). |
+| 2 | **Emoji** | Insere um emoji no texto. |
+| 3 | **Enviar contato** | Envia um cartão de contato. Veja [Enviar contato](#nitzap/omni/enviar-contato). |
+| 4 | **Modo sussurro** | Escreve uma nota interna na conversa: só a equipe vê, o cliente não recebe. |
+| 5 | **Registrar histórico** | Cria uma Tarefa no Salesforce com um trecho da conversa. Veja [Registrar histórico](#nitzap/omni/registrar-historico). |
+| 6 | **Templates** | Veja [Templates](#nitzap/omni/templates). |
+| 7 | **Agendar envio** | Veja [Agendar envio](#nitzap/omni/agendar-envio). |
+| 8 | **Microfone** | Grava um áudio. Antes de enviar, dá para ouvir e descartar. |
+| 9 | **Enviar** | Envia a mensagem (o mesmo que **Enter**). |
+| 10 | **Gerar com IA** | Escreve uma sugestão de resposta. Veja [Recursos de IA](#nitzap/omni/recursos-de-ia). |
+| 11 | **Correção ortográfica** | Corrige o texto que você está escrevendo. Veja [Recursos de IA](#nitzap/omni/recursos-de-ia). |
+| 12 | **Resumir conversa** | Resume a conversa em um período. Veja [Recursos de IA](#nitzap/omni/recursos-de-ia). |
 
-- **Gerar com IA** (varinha): lê as últimas 10 mensagens e escreve uma sugestão de resposta na caixa. A mensagem não é enviada sozinha: revise antes de enviar.
-- **Correção ortográfica** (✓): corrige o texto que você está escrevendo.
-- **Resumir conversa** (raio): resume a conversa em um período. O resumo pode ser copiado, enviado ao cliente ou salvo como nota interna (sussurro).
+### Enviar arquivos
 
-#### Arquivos
+Clique no **+** (indicado pela seta embaixo). O botão vira um **×**, que fecha o menu.
 
 ![Envio de arquivos](images/omni-anexo.png)
 
-#### Emoji
+| Nº | Opção | O que faz |
+| :---: | --- | --- |
+| 1 | **Do Salesforce** | Envia um arquivo que já está salvo no Salesforce. |
+| 2 | **Selecionar** ou arrastar | Envia um arquivo do computador. Também dá para arrastar o arquivo para dentro da área tracejada. |
+
+O limite é de 100 MB por arquivo; vídeos aceitam até 40 MB, pelo limite do WhatsApp.
+
+### Emoji
+
+Clique no ícone de carinha (indicado pela seta) e escolha o emoji. Use **Procurar** para buscar pelo nome.
 
 ![Seletor de emoji](images/omni-emoji.png)
 
-#### Enviar contato
+### Enviar contato
+
+Clique no ícone de cartão (indicado pela seta embaixo).
 
 ![Enviar contato: conexão e busca do contato](images/omni-enviar-contato.png)
 
-#### Registrar histórico
+| Nº | O que fazer |
+| :---: | --- |
+| 1 | Escolha por qual conexão o contato vai ser enviado. Já vem selecionada a conexão da conversa. |
+| 2 | Busque o contato pelo nome ou número. |
+| 3 | Clique no contato para enviar o cartão. |
 
-Use para guardar no Salesforce um trecho importante da conversa, como uma negociação ou um atendimento por telefone.
+O botão não aparece nas conexões oficiais (Coex e Cloud API) nem no chat interno.
 
-1. Clique no ícone de telefone.
+### Registrar histórico
+
+Use para guardar no Salesforce um trecho importante da conversa, como uma negociação ou um atendimento por telefone. O botão só aparece quando o número está salvo como Lead, Contato ou Conta.
+
+![Registrar Histórico do WhatsApp](images/omni-registrar-historico.png)
+
+1. Clique no ícone de telefone (nº 5 da caixa de mensagem).
 2. Confira o **Assunto** (o padrão é *Conversa Whatsapp*).
 3. Informe o **Início do histórico** e o **Fim do histórico**. O fim precisa ser depois do início.
 4. Se quiser, escreva **Comentários**.
 5. Clique em **Registrar**.
 
-![Registrar Histórico do WhatsApp](images/omni-registrar-historico.png)
+Os números da imagem são os mesmos dos passos. O Nitzap cria uma Tarefa concluída, do tipo **HISTORY**, ligada ao cliente, e abre a Tarefa em seguida.
 
-O Nitzap cria uma Tarefa concluída, do tipo **HISTORY**, ligada ao cliente, e abre a Tarefa em seguida.
+## Recursos de IA
+
+Os recursos de IA só aparecem quando o administrador configurou a IA no Nitzap.
+
+| Recurso | Onde fica | O que faz |
+| --- | --- | --- |
+| **Gerar com IA** | Botão nº 10 da caixa de mensagem | Escreve uma sugestão de resposta. |
+| **Correção ortográfica** | Botão nº 11 da caixa de mensagem | Corrige o texto que você está escrevendo. |
+| **Resumir conversa** | Botão nº 12 da caixa de mensagem | Resume a conversa em um período. |
+| **IA: Resumir** | [Opções da mensagem](#nitzap/omni/opcoes-da-mensagem) | Resume uma mensagem só. |
+| **Transcrição de áudio** | Embaixo de cada áudio | Transforma o áudio em texto. |
+
+### Gerar com IA
+
+Clique na varinha. A IA lê as últimas 10 mensagens da conversa, inclusive imagens e áudios, e escreve uma sugestão de resposta na caixa de mensagem.
+
+![Botão Gerar com IA](images/ia-gerar.png)
+
+A mensagem **não é enviada sozinha**: leia, ajuste se precisar e envie.
+
+### Correção ortográfica
+
+Escreva a mensagem e clique no ✓. A IA corrige a ortografia do texto que está na caixa. Com a caixa vazia, o botão não faz nada.
+
+![Botão Correção ortográfica](images/ia-correcao.png)
+
+### Resumir conversa
+
+Clique no raio para abrir a janela **Resumir Conversa**.
+
+![Janela Resumir Conversa](images/ia-resumir-janela.png)
+
+| Nº | O que fazer |
+| :---: | --- |
+| 1 | **Início:** data e hora a partir das quais a conversa entra no resumo. O padrão é hoje, à meia-noite. |
+| 2 | **Fim:** data e hora finais. O padrão é agora. |
+| 3 | O resumo gerado: principais assuntos, decisões, pendências e tom da conversa. |
+| 4 | **Copiar:** copia o resumo. |
+| 5 | **Enviar:** manda o resumo para o cliente, como mensagem. |
+| 6 | **Sussurrar:** salva o resumo na conversa como nota interna. Só a equipe vê. |
+
+Um resumo sussurrado fica na conversa com fundo amarelo, para quem assumir o atendimento depois:
+
+![Resumo salvo como nota interna (sussurro)](images/ia-resumo-sussurro.png)
+
+- **1:** botão **Resumir conversa**.
+- **2:** o resumo salvo como sussurro. O cliente não recebe.
+
+### Transcrição de áudio
+
+A IA transforma os áudios em texto, que aparece entre aspas embaixo do áudio (indicado pela seta).
+
+![Transcrição de um áudio](images/ia-transcricao.png)
+
+Há dois jeitos de usar:
+
+- **Automático:** ligue a preferência **IA: Transcrever e exibir automaticamente áudios** (nº 11 em [Preferências](#nitzap/omni/preferencias)). Todo áudio é transcrito sozinho. Se o administrador deixou a transcrição obrigatória, ela já vem ligada.
+- **Um áudio por vez:** com a preferência desligada, clique em **Transcrever**, embaixo do áudio que você quer ler.
+
+A transcrição fica salva na mensagem: quem abrir a conversa depois vê o texto sem transcrever de novo.
 
 ## Preferências
 
-Clique no botão **Preferências** (controles deslizantes), no topo da lista de conversas. As preferências são suas: valem em qualquer computador e não mudam nada para os outros usuários.
+Clique no botão **Preferências** (nº 5 em [Botões do topo](#nitzap/omni/botoes-do-topo)). As preferências são suas: valem em qualquer computador e não mudam nada para os outros usuários.
 
 ![Preferências do Omni](images/omni-preferencias.png)
 
-| Preferência | O que faz |
-| --- | --- |
-| **🎨 Cor do meu balão** | Muda a cor dos balões das mensagens que você envia. Nas conversas que já estavam abertas, clique em **Atualizar agora** para aplicar. |
-| **Silenciar todos os grupos** | Desliga o som, a notificação e o alerta de mensagens novas em grupos. O contador de não lidas continua funcionando. |
-| **Silenciar todos os chats individuais** | O mesmo, para as conversas individuais. |
-| **Assinar mensagens com meu nome** | Coloca o seu primeiro nome em negrito no início de cada mensagem enviada (ex.: **#Thiago:**). |
-| **Exibir proprietário** | Mostra o 👤 proprietário do registro acima do nome de cada conversa. |
-| **Exibir nome da empresa** | Mostra a 🏢 empresa acima do nome de cada conversa. |
-| **Marcar como lida apenas ao responder** | Ligada: abrir a conversa não zera as não lidas, só responder. Desligada: abrir a conversa já marca como lida. |
-| **Abrir conversas em uma nova guia do navegador** | No modo compacto, quando o clique na conversa abre o registro do cliente, ele abre em uma nova guia do navegador. |
-| **Habilitar filtros de atendimento** | Troca o botão **Não Lidas** pelos filtros de atendimento. Veja [Filtros de atendimento](#nitzap/omni/filtros-de-atendimento). |
-| **Receber notificações apenas de quem eu estiver atendendo** | Só avisa sobre conversas cujo atendimento aberto é seu. |
-| **IA: Transcrever e exibir automaticamente áudios** | Transcreve os áudios e mostra o texto embaixo de cada um. Depende da IA configurada. Se o administrador deixou obrigatório, aparece **Ativado pelo administrador** e não dá para desligar. |
+| Nº | Preferência | O que faz |
+| :---: | --- | --- |
+| 1 | **🎨 Cor do meu balão** | Muda a cor dos balões das mensagens que você envia. Nas conversas que já estavam abertas, clique em **Atualizar agora** para aplicar. |
+| 2 | **Silenciar todos os grupos** | Desliga o som, a notificação e o alerta de mensagens novas em grupos. O contador de não lidas continua funcionando. |
+| 3 | **Silenciar todos os chats individuais** | O mesmo, para as conversas individuais. |
+| 4 | **Assinar mensagens com meu nome** | Coloca o seu primeiro nome em negrito no início de cada mensagem enviada (ex.: **#Thiago:**). |
+| 5 | **Exibir proprietário** | Mostra o 👤 proprietário do registro acima do nome de cada conversa. |
+| 6 | **Exibir nome da empresa** | Mostra a 🏢 empresa acima do nome de cada conversa. |
+| 7 | **Marcar como lida apenas ao responder** | Ligada: abrir a conversa não zera as não lidas, só responder. Desligada: abrir a conversa já marca como lida. |
+| 8 | **Abrir conversas em uma nova guia do navegador** | No modo compacto, quando o clique na conversa abre o registro do cliente, ele abre em uma nova guia do navegador. |
+| 9 | **Habilitar filtros de atendimento** | Troca o botão **Não Lidas** pelos filtros de atendimento. Veja [Filtros de atendimento](#nitzap/omni/filtros-de-atendimento). |
+| 10 | **Receber notificações apenas de quem eu estiver atendendo** | Só avisa sobre conversas cujo atendimento aberto é seu. |
+| 11 | **IA: Transcrever e exibir automaticamente áudios** | Transcreve os áudios sozinho. Veja [Transcrição de áudio](#nitzap/omni/transcricao-de-audio). Se o administrador deixou obrigatório, aparece **Ativado pelo administrador** e não dá para desligar. |
 
 Ao mudar **Assinar mensagens com meu nome**, **IA: Transcrever** ou **Habilitar filtros de atendimento**, o Nitzap pede confirmação e recarrega a página.
 
-Com **Exibir proprietário** e **Exibir nome da empresa** desligados, a lista fica mais enxuta:
+Veja a diferença na lista com **Exibir proprietário** e **Exibir nome da empresa** ligados e desligados:
 
-![Lista de conversas sem proprietário e empresa](images/omni-compacto-sem-proprietario.png)
+![Lista de conversas com e sem proprietário e empresa](images/omni-proprietario-comparacao.png)
