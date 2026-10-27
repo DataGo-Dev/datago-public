@@ -257,9 +257,9 @@ Quando o seu bot encerra a conversa sem passar para ninguém, avise o Nitzap cha
 
 ## O cliente mandou várias mensagens seguidas. O agente responde a cada uma?
 
-Não. O Nitzap espera 5 segundos sem mensagem nova antes de enviar ao agente, e cada mensagem nova reinicia essa espera. Assim, mensagens como "Sextou!", "tá tranquilo" e "e por aí?" chegam juntas ao agente, uma por linha, como uma mensagem só, e ele responde uma vez, com o contexto do conjunto.
+Com **Agentforce**, não. O Nitzap espera 5 segundos sem mensagem nova antes de enviar ao agente, e cada mensagem nova reinicia essa espera. Assim, mensagens como "Sextou!", "tá tranquilo" e "e por aí?" chegam juntas ao agente, uma por linha, como uma mensagem só, e ele responde uma vez, com o contexto do conjunto. Por isso toda resposta do Agentforce leva alguns segundos a mais, inclusive a primeira. Áudios recebidos no período entram no conjunto já transcritos.
 
-Por isso toda resposta do agente leva alguns segundos a mais, inclusive a primeira. Áudios recebidos no período entram no conjunto já transcritos, e clique em botão ou item de lista não espera: as mensagens acumuladas vão primeiro e a escolha logo em seguida.
+Com **Einstein Bot**, cada mensagem é respondida na hora, como antes. O Einstein trabalha com menus e opções, e juntar mensagens atrapalharia a escolha do cliente.
 
 ## O bot transferiu, mas a equipe não vê a conversa na fila. Por quê?
 
