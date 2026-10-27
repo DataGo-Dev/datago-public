@@ -9,10 +9,10 @@ O atendimento mostra quem está cuidando de cada conversa no Nitzap Omni. Cada a
 
 - [Como funciona o atendimento](#nitzap/atendimento/como-funciona)
 - [Configurar o atendimento (administrador)](#nitzap/atendimento/configurar-o-atendimento-administrador)
+- [Ativar os filtros de atendimento](#nitzap/atendimento/ativar-os-filtros-de-atendimento)
 - [Abrir um atendimento](#nitzap/atendimento/abrir-um-atendimento)
-- [Durante o atendimento](#nitzap/atendimento/durante-o-atendimento)
-- [Filtros de atendimento](#nitzap/atendimento/filtros-de-atendimento)
 - [Puxar uma conversa da fila](#nitzap/atendimento/puxar-uma-conversa-da-fila)
+- [Durante o atendimento](#nitzap/atendimento/durante-o-atendimento)
 - [Transferir um atendimento](#nitzap/atendimento/transferir-um-atendimento)
 - [Fechar um atendimento](#nitzap/atendimento/fechar-um-atendimento)
 - [A Tarefa do atendimento](#nitzap/atendimento/a-tarefa-do-atendimento)
@@ -22,10 +22,13 @@ O atendimento mostra quem está cuidando de cada conversa no Nitzap Omni. Cada a
 
 ## Como funciona
 
-1. **Abrir:** o atendimento abre sozinho quando o atendente envia a primeira mensagem ao cliente, ou é aberto à mão. Um bot também pode abrir e mandar para a fila de uma equipe.
+Antes de começar, o administrador configura o atendimento e cada atendente liga os filtros de atendimento no Omni. Depois, cada atendimento segue estes passos:
+
+1. **Abrir ou puxar:** o atendimento abre sozinho quando o atendente envia a primeira mensagem ao cliente, ou é aberto à mão. Quando chega na fila de uma equipe (por exemplo, enviado por um bot), alguém da equipe puxa para si.
 2. **Atender:** na conversa aparece uma barra com quem está atendendo. Na lista, a conversa mostra **(nome) está atendendo** ou **Na fila (equipe)**.
-3. **Transferir:** o atendimento pode passar para outro usuário ou para a fila de uma equipe.
-4. **Fechar:** quem está atendendo fecha o atendimento, e a Tarefa guarda as datas e os horários.
+3. **Transferir, se precisar:** o atendimento pode passar para outro usuário ou para a fila de uma equipe.
+4. **Fechar:** quem está atendendo fecha o atendimento.
+5. **Consultar:** a Tarefa do atendimento guarda quem atendeu, as datas e os horários.
 
 As mensagens de abertura, transferência e fechamento aparecem na conversa como **notas internas**, com fundo amarelo. O cliente não recebe essas notas.
 
@@ -57,6 +60,30 @@ Em **Nitzap Config** > **Configuração** > **Preferências**, no bloco **Conver
 
 As equipes do atendimento são as **Filas** (Queues) do próprio Salesforce. O administrador do Salesforce cria a fila e adiciona os usuários como membros. As filas aparecem no Nitzap como opção ao abrir e ao transferir um atendimento, e os membros de cada fila veem as conversas que chegam nela.
 
+## Ativar os filtros de atendimento
+
+Antes de começar a atender, cada usuário liga a preferência **Habilitar filtros de atendimento** no Omni (nº 9 nas [Preferências do Omni](#nitzap/omni/preferencias)). A página recarrega e o botão **Não Lidas** dá lugar ao filtro **Atendimento**.
+
+![Filtros de atendimento na lista de conversas](images/atendimento-filtros.png)
+
+| Nº | Filtro | O que mostra |
+| :---: | --- | --- |
+| 1 | **Atendimento** | Abre a lista de filtros. O número ao lado de cada um é a quantidade de conversas. |
+| 2 | **Novo** | Conversas **sem atendimento aberto**, inclusive de números que não estão salvos no Salesforce. |
+| 3 | **Fila** | Conversas **na fila de uma equipe sua**, esperando alguém puxar. |
+| 4 | **Meus** | Conversas que você está atendendo **ou** de clientes dos quais você é o proprietário no Salesforce. |
+| 5 | **Atendendo** | Só as conversas que **você** está atendendo. |
+| 6 | **Equipe** | Conversas em atendimento por **qualquer pessoa** da equipe. |
+
+Em **Fila**, **Meus**, **Atendendo** e **Equipe** aparecem também dois subfiltros:
+
+- **A responder:** a última mensagem foi do cliente, ou há mensagens não lidas.
+- **Respondido:** a última mensagem foi sua e não há nada por ler.
+
+Clique de novo no subfiltro escolhido para desligá-lo.
+
+Para receber alertas só das suas conversas, ligue também a preferência **Receber notificações apenas de quem eu estiver atendendo**.
+
 ## Abrir um atendimento
 
 Há três jeitos:
@@ -66,6 +93,15 @@ Há três jeitos:
 - **Pelo bot:** quando o bot ou agente transfere a conversa, ela entra na fila da equipe. Veja o guia do [Einstein Bot e Agentforce](../connect_einstein_bot.md).
 
 Se o cliente já tem um atendimento aberto naquela conexão, o Nitzap avisa **Atendimento já aberto** e mostra com quem está.
+
+## Puxar uma conversa da fila
+
+Quando uma conversa chega na fila de uma equipe sua, a lista destaca a conversa e toca um som (conforme a configuração do administrador). Para assumir:
+
+- clique em **Puxar**, ao lado de **Na fila (equipe)**, na lista de conversas; ou
+- clique com o botão direito na conversa e escolha **Puxar atendimento**.
+
+O atendimento passa para você, aparece **Atendimento puxado: O atendimento agora é seu** e a lista muda para o filtro **Atendendo**. O som da fila para quando alguém puxa, transfere ou fecha o atendimento.
 
 ## Durante o atendimento
 
@@ -100,39 +136,6 @@ Clique no ícone de link (nº 2 da barra) para ligar o atendimento a um registro
 | 3 | Clique em **Vincular**. |
 
 Depois de vinculado, a barra mostra o nome do registro e o botão muda para **Trocar vínculo**.
-
-## Filtros de atendimento
-
-Para ver a lista organizada por atendimento, cada usuário liga a preferência **Habilitar filtros de atendimento** no Omni (nº 9 nas [Preferências do Omni](#nitzap/omni/preferencias)). A página recarrega e o botão **Não Lidas** dá lugar ao filtro **Atendimento**.
-
-![Filtros de atendimento na lista de conversas](images/atendimento-filtros.png)
-
-| Nº | Filtro | O que mostra |
-| :---: | --- | --- |
-| 1 | **Atendimento** | Abre a lista de filtros. O número ao lado de cada um é a quantidade de conversas. |
-| 2 | **Novo** | Conversas **sem atendimento aberto**, inclusive de números que não estão salvos no Salesforce. |
-| 3 | **Fila** | Conversas **na fila de uma equipe sua**, esperando alguém puxar. |
-| 4 | **Meus** | Conversas que você está atendendo **ou** de clientes dos quais você é o proprietário no Salesforce. |
-| 5 | **Atendendo** | Só as conversas que **você** está atendendo. |
-| 6 | **Equipe** | Conversas em atendimento por **qualquer pessoa** da equipe. |
-
-Em **Fila**, **Meus**, **Atendendo** e **Equipe** aparecem também dois subfiltros:
-
-- **A responder:** a última mensagem foi do cliente, ou há mensagens não lidas.
-- **Respondido:** a última mensagem foi sua e não há nada por ler.
-
-Clique de novo no subfiltro escolhido para desligá-lo.
-
-Para receber alertas só das suas conversas, ligue também a preferência **Receber notificações apenas de quem eu estiver atendendo**.
-
-## Puxar uma conversa da fila
-
-Quando uma conversa chega na fila de uma equipe sua, a lista destaca a conversa e toca um som (conforme a configuração do administrador). Para assumir:
-
-- clique em **Puxar**, ao lado de **Na fila (equipe)**, na lista de conversas; ou
-- clique com o botão direito na conversa e escolha **Puxar atendimento**.
-
-O atendimento passa para você, aparece **Atendimento puxado: O atendimento agora é seu** e a lista muda para o filtro **Atendendo**. O som da fila para quando alguém puxa, transfere ou fecha o atendimento.
 
 ## Transferir um atendimento
 

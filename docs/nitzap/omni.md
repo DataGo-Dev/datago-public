@@ -473,7 +473,7 @@ Clique no botão **Preferências** (nº 5 em [Botões do topo](#nitzap/omni/boto
 | 6 | **Exibir nome da empresa** | Mostra a 🏢 empresa acima do nome de cada conversa. |
 | 7 | **Marcar como lida apenas ao responder** | Ligada: abrir a conversa não zera as não lidas, só responder. Desligada: abrir a conversa já marca como lida. |
 | 8 | **Abrir conversas em uma nova guia do navegador** | No modo compacto, quando o clique na conversa abre o registro do cliente, ele abre em uma nova guia do navegador. |
-| 9 | **Habilitar filtros de atendimento** | Troca o botão **Não Lidas** pelos filtros de atendimento. Veja [Filtros de atendimento](#nitzap/atendimento/filtros-de-atendimento). |
+| 9 | **Habilitar filtros de atendimento** | Troca o botão **Não Lidas** pelos filtros de atendimento. Veja [Filtros de atendimento](#nitzap/atendimento/ativar-os-filtros-de-atendimento). |
 | 10 | **Receber notificações apenas de quem eu estiver atendendo** | Só avisa sobre conversas cujo atendimento aberto é seu. |
 | 11 | **IA: Transcrever e exibir automaticamente áudios** | Transcreve os áudios sozinho. Veja [Transcrição de áudio](#nitzap/omni/transcricao-de-audio). Se o administrador deixou obrigatório, aparece **Ativado pelo administrador** e não dá para desligar. |
 
