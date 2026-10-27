@@ -36,13 +36,29 @@ As mensagens de abertura, transferência e fechamento aparecem na conversa como 
 
 ### Na conexão
 
-Em **Nitzap Config** > **Conexões**, clique na engrenagem da conexão, abra a aba **Configurações** e procure o bloco **Atendimento**.
+O atendimento é ligado por conexão. Em **Nitzap Config** > **Conexões**, clique na engrenagem da conexão e abra a aba **Configurações** (indicada pela seta).
 
-| Configuração | O que faz |
+![Aba Configurações da tela Gerenciar conexão](images/atendimento-config-conexao-aba.png)
+
+Desça até o bloco **Atendimento**:
+
+![Bloco Atendimento nas configurações da conexão](images/atendimento-config-conexao.png)
+
+| Nº | Configuração | O que faz |
+| :---: | --- | --- |
+| 1 | **Habilitar atendimento** | Quando ligada, a primeira mensagem que o atendente **envia** a um contato sem atendimento aberto abre um atendimento automaticamente nessa conexão. Não vale para grupos. |
+| 2 | **Fluxo ao fechar atendimento** | Um Flow de tela do Salesforce que abre logo depois que o atendimento é fechado nessa conexão, por exemplo para registrar o resultado. Busque o Flow pelo nome. Só aparece com o atendimento habilitado. |
+| 3 | **O que o Nitzap envia ao Flow** | As informações que o Flow recebe ao abrir (tabela abaixo). |
+| 4 | **Ocultar Fechar e Transferir no chat** | Esconde os botões **Fechar** e **Transferir** da barra de atendimento na conversa. Use quando o atendimento é conduzido pelo bot ou fechado por Flow ou API. Atualize a página para aplicar. |
+
+Para o Flow receber essas informações, crie no Flow uma variável para cada uma, do tipo **Texto**, **disponível para entrada** e com exatamente o mesmo nome. Variável sem valor não é enviada.
+
+| Variável | O que contém |
 | --- | --- |
-| **Habilitar atendimento** | Quando ligada, a primeira mensagem que o atendente **envia** a um contato sem atendimento aberto abre um atendimento automaticamente nessa conexão. Não vale para grupos. |
-| **Fluxo ao fechar atendimento** | Um Flow de tela do Salesforce que abre logo depois que o atendimento é fechado nessa conexão, por exemplo para registrar o resultado. Só aparece com o atendimento habilitado. |
-| **Ocultar Fechar e Transferir no chat** | Esconde os botões **Fechar** e **Transferir** da barra de atendimento na conversa. Atualize a página para aplicar. |
+| `recordId` | Id do registro aberto na conversa (Contato, Conta, Lead, Caso...). |
+| `taskId` | Id da Tarefa do atendimento. |
+| `phone` | Telefone do contato no WhatsApp. |
+| `connectionNumber` | Número da conexão. |
 
 ### No Nitzap Config
 
