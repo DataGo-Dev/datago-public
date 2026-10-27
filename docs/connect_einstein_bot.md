@@ -92,7 +92,6 @@ Clique na engrenagem da conexão e vá na aba **Configurações**. O bloco **Bot
 | **Resposta automática (bot/agente)** | Escolha `Agentforce (agente)` ou `Einstein Bot`. Só um por conexão |
 | **Agentforce: agente desta conexão** | Busque e selecione o agente do Salesforce. **Obrigatório**: com a resposta automática ligada e sem agente escolhido, aparece o aviso amarelo e nada é respondido |
 | **Ociosidade da sessão do bot (min)** | Tempo sem mensagem do cliente após o qual o agente esquece a conversa e começa uma sessão nova na próxima mensagem. Se houver mensagem por falta de resposta, ela é enviada neste momento. Vazio usa 30 minutos |
-| **Agrupar mensagens do cliente (s)** | Quando o cliente manda várias mensagens seguidas, o agente espera estes segundos sem mensagem nova e responde ao conjunto de uma vez, em vez de responder uma por uma. Cada mensagem nova reinicia a espera. Clique em botão ou item de lista é respondido na hora. Vazio ou 0 desliga. Máximo de 30 segundos |
 | **Pausa após atendimento humano (min)** | Depois que alguém da equipe manda mensagem pelo Nitzap, o agente fica em silêncio por estes minutos, contados da última mensagem da equipe. Vale também quando é a equipe que inicia a conversa: o vendedor manda a saudação, o cliente responde e quem recebe é o vendedor, não o agente. Se houver mensagem por falta de resposta, ela é enviada quando este tempo vence sem o cliente responder. Enquanto o cliente espera na fila, depois que o agente transfere, este tempo não conta: o agente aguarda um atendente responder, por até 24 horas. Disparos em massa não pausam o agente. Vazio usa 8 horas |
 | **Mensagem por falta de resposta** | Texto enviado quando o contato para de responder. Na conversa com o agente, sai ao fim da ociosidade da sessão. Depois que um vendedor responde, sai ao fim da pausa após atendimento humano, contada da última mensagem do vendedor. Enquanto o cliente espera na fila, sem resposta de um vendedor, nada é contado. Com qualquer um desses tempos em 24 horas ou mais, a mensagem não é enviada naquele caso. Vazio desliga |
 
@@ -256,11 +255,11 @@ Para o Nitzap, o fim da sessão do bot é o sinal de que a conversa foi entregue
 
 Quando o seu bot encerra a conversa sem passar para ninguém, avise o Nitzap chamando `closeServiceDesk` nesse ramo do diálogo. É esse aviso que libera o agente na hora, para atender o cliente na próxima mensagem. Se a tarefa ainda não tiver contato vinculado, informe o telefone no `contactPhone`, como mostra a seção "Encerrar o atendimento".
 
-## O cliente mandou várias mensagens e o agente respondeu cada uma separadamente. Como evitar?
+## O cliente mandou várias mensagens seguidas. O agente responde a cada uma?
 
-Configure **Agrupar mensagens do cliente (s)** na conexão. Com 5 segundos, por exemplo, mensagens como "Sextou!", "tá tranquilo" e "e por aí?" chegam juntas ao agente, uma por linha, como se fossem uma mensagem só, e ele responde uma vez, com o contexto do conjunto.
+Não. O Nitzap espera 5 segundos sem mensagem nova antes de enviar ao agente, e cada mensagem nova reinicia essa espera. Assim, mensagens como "Sextou!", "tá tranquilo" e "e por aí?" chegam juntas ao agente, uma por linha, como uma mensagem só, e ele responde uma vez, com o contexto do conjunto.
 
-Cada mensagem nova reinicia a espera, então o agente só responde quando o cliente para de digitar pelo tempo configurado. O custo é esse atraso em toda resposta do agente, inclusive na primeira; valores entre 3 e 5 segundos costumam ser suficientes. Áudios recebidos no período entram no conjunto já transcritos, e clique em botão ou item de lista não espera: as mensagens acumuladas vão primeiro e a escolha logo em seguida.
+Por isso toda resposta do agente leva alguns segundos a mais, inclusive a primeira. Áudios recebidos no período entram no conjunto já transcritos, e clique em botão ou item de lista não espera: as mensagens acumuladas vão primeiro e a escolha logo em seguida.
 
 ## O bot transferiu, mas a equipe não vê a conversa na fila. Por quê?
 
