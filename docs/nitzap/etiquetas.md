@@ -1,4 +1,4 @@
-# 04. Etiquetas
+# 05. Etiquetas
 
 As etiquetas são marcadores coloridos que organizam as conversas no Nitzap Omni, como **A pagar**, **Pago** ou **Vencido**. O administrador cria as etiquetas e define em quais conexões cada uma vale; os atendentes aplicam as etiquetas nas conversas, pelo botão direito. Uma mesma conversa pode ter várias etiquetas.
 

@@ -1,4 +1,4 @@
-# 03. Disparo de campanha pelo WhatsApp
+# 04. Disparo de campanha pelo WhatsApp
 
 O disparo de campanha envia um template aprovado na Meta para todos os membros de uma Campanha do Salesforce que têm WhatsApp cadastrado. Tudo é feito na aba **Disparos WhatsApp** da própria Campanha: você escolhe o número de saída, a mensagem e quando enviar, e depois acompanha quem recebeu, quem leu e quem ficou de fora.
 
