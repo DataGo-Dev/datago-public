@@ -2,6 +2,8 @@
 
 O disparo de campanha envia um template aprovado na Meta para todos os membros de uma Campanha do Salesforce que têm WhatsApp cadastrado. Tudo é feito na aba **Disparos WhatsApp** da própria Campanha: você escolhe o número de saída, a mensagem e quando enviar, e depois acompanha quem recebeu, quem leu e quem ficou de fora.
 
+**Como ler as imagens:** quando a imagem tem círculos vermelhos numerados, o número no círculo é o mesmo da coluna **Nº** da tabela logo abaixo.
+
 <!-- sumario:inicio -->
 **Neste artigo:**
 
@@ -11,6 +13,8 @@ O disparo de campanha envia um template aprovado na Meta para todos os membros d
 - [Cancelar um disparo agendado](#nitzap/disparo-campanha/cancelar-um-disparo-agendado)
 - [Reutilizar uma mensagem pronta](#nitzap/disparo-campanha/reutilizar-uma-mensagem-pronta)
 - [Números duplicados](#nitzap/disparo-campanha/numeros-duplicados)
+- [Opt-out: quem não recebe template](#nitzap/disparo-campanha/opt-out-quem-nao-quer-receber)
+- [Log de disparos](#nitzap/disparo-campanha/log-de-disparos-administrador)
 - [Problemas comuns](#nitzap/disparo-campanha/problemas-comuns)
 
 <!-- sumario:fim -->
@@ -129,7 +133,7 @@ A coluna **Motivo** explica os casos de **Não enviado** e **Erro**. Os mais com
 | Motivo | O que fazer |
 | --- | --- |
 | Sem número de WhatsApp. | Preencha o **Nitzap WhatsApp Id** do Lead ou Contato. |
-| Pediu para não receber mensagens (opt-out). | Nada: a pessoa pediu para sair da lista e o Nitzap não envia template para ela. |
+| Pediu para não receber mensagens (opt-out). | Nada: a pessoa pediu para sair da lista e o Nitzap não envia template para ela. Veja [Opt-out](#nitzap/disparo-campanha/opt-out-quem-nao-quer-receber). |
 | O usuário remetente está inativo no Nitzap. | Quem criou o disparo precisa estar ativo no Nitzap. Reative o usuário ou crie o disparo com outro. |
 | Não foi possível montar a mensagem. | Uma variável do template aponta para um campo que não existe ou está vazio para aquele membro. Edite a mensagem pronta e corrija a variável. |
 | O servidor não aceitou o envio. | O texto que vem depois é o motivo devolvido pela Meta (número inválido, template pausado, limite da conta). |
@@ -157,6 +161,47 @@ Abra a seção **Mensagens prontas**, no fim da aba. Cada mensagem mostra a cone
 Quando dois membros da campanha têm o mesmo número, aparece um alerta no topo da aba: **"N número(s) duplicado(s) encontrado(s)"**.
 
 Enviar a mesma mensagem duas vezes para a mesma pessoa aumenta a chance de bloqueio e de denúncia na Meta. Clique no alerta para ver os números repetidos e remover os membros duplicados da campanha antes de disparar.
+
+## Opt-out: quem não quer receber
+
+O opt-out é a lista de números que **não recebem template**. Quem está nela fica de fora de todos os disparos, por qualquer conexão da organização, e aparece como **Não enviado** em [Ver resultado](#nitzap/disparo-campanha/ver-resultado).
+
+A configuração fica em **Nitzap Config** > **Opt-out** (só administradores).
+
+![Aba Opt-out do Nitzap Config](images/campanha-optout.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Desativar ofertas no WhatsApp:** no app, o contato pode desligar **Ofertas e anúncios** da sua empresa. A Meta avisa o Nitzap e o número entra na lista sozinho. Se ele religar, sai da lista sozinho. |
+| 2 | **Palavras que tiram da lista de envio:** quando o contato manda exatamente uma dessas palavras (ex.: **sair**), o número entra na lista. Vale também para o clique em um botão de template com esse texto. Maiúsculas, acentos e pontuação não importam, mas a mensagem precisa ser só a palavra: **sair** tira da lista, **vou sair mais tarde** não. Digite a palavra e clique em **Adicionar**; o **×** remove. Sem nenhuma palavra, aparece **Usar sugestões**, que preenche *sair, parar, cancelar, descadastrar, remover, stop*. |
+| 3 | **Palavras que voltam a receber:** quem saiu volta à lista de envio mandando uma dessas palavras (ex.: **voltar**). Sem nenhuma palavra, a volta é só manual (nº 8). |
+| 4 | **Confirmação para o contato:** o texto que o Nitzap responde na hora em que o contato sai (**Ao sair**) ou volta (**Ao voltar**). Deixe vazio para não responder nada. |
+| 5 | **Salvar:** grava os textos de confirmação. As palavras dos itens 2 e 3 são salvas na hora em que você adiciona ou remove. |
+| 6 | **Quem está fora:** a lista de números bloqueados, com o total. Mostra o **Número**, o **Motivo** (a palavra que o contato mandou, ou quem bloqueou à mão), a **Conexão** por onde chegou e **Desde** quando. Use **Buscar número...** para encontrar um. |
+| 7 | **Bloquear à mão:** digite o número completo, com DDI e DDD (ex.: `5527999887766`), e clique em **Bloquear**. |
+| 8 | **Liberar:** tira o número da lista; ele volta a receber template. |
+
+O bloqueio vale só para **template**. Se o próprio contato escrever para a empresa, a conversa segue normal e a equipe responde pelo Omni.
+
+## Log de disparos (administrador)
+
+Para conferir mensagem por mensagem o que saiu nos disparos, abra **Nitzap Config** > **Logs** > **Log de disparos da campanha**.
+
+![Log de disparos da campanha](images/campanha-log-disparos.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Data Inicial** e **Data Final:** o período que você quer ver. Abre com o dia de hoje. |
+| 2 | **Buscar:** carrega os envios do período. Use **Anterior** e **Próxima**, no fim da lista, para trocar de página. |
+| 3 | **Exportar:** baixa os envios do período em uma planilha (CSV). |
+| 4 | **Status:** **SUCCESS** quando a Meta aceitou o template, **ERROR** quando recusou. |
+| 5 | **Fluxo:** **De** é o número da conexão que enviou; **Para** é o número do contato. |
+| 6 | **Mensagem / Erro:** *Template enviado com sucesso* ou o motivo da recusa, com o código da Meta. O **131026 - Message Undeliverable** é o mais comum: o número não pode receber a mensagem, por exemplo porque não tem WhatsApp. |
+| 7 | **Canal:** o tipo de conexão usada (ex.: **WABA_COEX** para a API oficial com Coexistência). |
+
+A coluna **Texto** mostra o começo da mensagem enviada.
+
+O log mostra o envio de cada mensagem. Para saber se ela foi recebida e lida, use **Ver resultado** no próprio disparo.
 
 ## Problemas comuns
 
