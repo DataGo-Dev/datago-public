@@ -12,6 +12,7 @@ Cada número de WhatsApp usado no Nitzap é uma **conexão**. Você pode conecta
 - [Conectar pela API oficial (Cloud API)](#nitzap/conexao-whatsapp/api-cloud-so-api-oficial)
 - [Dar nome à conexão e adicionar membros](#nitzap/conexao-whatsapp/depois-de-conectar-nome-e-membros)
 - [Reconectar um número](#nitzap/conexao-whatsapp/reconectar)
+- [Alternar entre canal oficial e não oficial (canal vinculado)](#nitzap/conexao-whatsapp/canal-de-envio-vinculado)
 - [Problemas comuns](#nitzap/conexao-whatsapp/problemas-comuns)
 
 <!-- sumario:fim -->
@@ -25,6 +26,8 @@ Cada número de WhatsApp usado no Nitzap é uma **conexão**. Você pode conecta
 | **WhatsApp Business: API Cloud (só API oficial)** | O número funciona só pela API oficial e **deixa de existir no celular**. Se ele estiver ativo no WhatsApp ou no WhatsApp Business, a conta precisa ser excluída no app antes. | Números novos ou dedicados a atendimento em escala, automação e vários atendentes. |
 
 Os templates aprovados na Meta e os disparos de campanha só funcionam nas conexões oficiais (Coex ou Cloud).
+
+Na Coexistência, dá para ligar também o mesmo número pelo QR Code e alternar o envio entre o canal oficial e o não oficial. Veja [Canal de envio vinculado](#nitzap/conexao-whatsapp/canal-de-envio-vinculado).
 
 ## Por onde começar
 
@@ -231,6 +234,121 @@ Quando uma conexão fica inativa, ela aparece na lista marcada como **inativa** 
 - [Prompts IA](#nitzap/conexao-whatsapp/prompts-ia)
 - [Templates Meta](#nitzap/conexao-whatsapp/templates-meta)
 
+## Canal de envio vinculado
+
+Uma conexão pela **API oficial com Coexistência** pode ter também um **canal de envio vinculado**: o mesmo número conectado pelo QR Code (**Api WEB Nitzap**). Com os dois ligados, o Nitzap alterna o envio das mensagens do chat entre o canal **oficial** (Meta) e o **não oficial** (Api WEB).
+
+| Canal | O que é | Custo |
+| --- | --- | --- |
+| **API oficial (Meta)** | A conexão Coexistência, ligada pelo Facebook. | A Meta pode cobrar pelas mensagens. |
+| **Canal vinculado (Api WEB)** | O mesmo número, conectado pelo QR Code como um aparelho, igual ao WhatsApp Web. | Sem custo da Meta. |
+
+**O que sempre sai pela API oficial:** os **templates** e o **primeiro contato** com o cliente. O canal vinculado só envia as mensagens do chat.
+
+**Atenção:** o canal vinculado usa o WhatsApp por um caminho que não é o oficial da Meta. Esse uso é por conta e risco da empresa.
+
+O canal vinculado só aparece em conexões **Coexistência**. Não aparece nas conexões só QR Code nem nas **API Cloud (só API oficial)**, porque o número da API Cloud não existe mais no celular.
+
+**Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela logo abaixo da imagem.
+
+### 1. Vincular o número pelo QR Code
+
+Em **Nitzap Config** > **Conexões**, clique na engrenagem (⚙) da conexão Coexistência para abrir **Gerenciar conexão**.
+
+![Canal de envio vinculado ainda não vinculado](images/conexao-vinculado-nao-vinculado.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Situação do canal: **Não vinculado**. |
+| 2 | **Conectar canal de envio (QR):** abre a janela para vincular. |
+
+A janela **Adicionar conexão** já vem com o número da conexão oficial. Leia o QR Code com o **mesmo celular** em que está o WhatsApp Business desse número.
+
+![Escolher QR Code ou Código para vincular](images/conexao-vinculado-escolher.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **QR Code:** para ler com a câmera do celular. |
+| 2 | **Código:** se não der para ler o QR Code. O número já vem preenchido. Veja [Sem câmera: conectar com código](#nitzap/conexao-whatsapp/sem-camera-conectar-com-codigo). |
+| 3 | **Gerar conexão:** mostra o QR Code (ou o código). |
+
+![QR Code para vincular o canal de envio](images/conexao-vinculado-qr.png)
+
+| Nº | O que fazer |
+| :---: | --- |
+| 1 | No celular, abra o WhatsApp Business e vá em **Aparelhos conectados** > **Conectar aparelho**. |
+| 2 | Aponte a câmera para o QR Code. |
+| 3 | Aguarde: enquanto aparece **Aguardando leitura no celular...**, o Nitzap ainda não recebeu a leitura. |
+
+### 2. Conferir se o canal está conectado
+
+Depois da leitura, a janela fecha e o cartão muda:
+
+![Canal de envio vinculado conectado](images/conexao-vinculado-conectado.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Situação: **Conectado** (bolinha verde). Se aparecer **Desconectado**, o celular perdeu a ligação com o Nitzap (veja [Problemas comuns](#nitzap/conexao-whatsapp/problemas-comuns)). |
+| 2 | **Engrenagem:** abre as configurações do canal vinculado (passo 3). |
+| 3 | **Desvincular:** remove o canal vinculado. |
+| 4 | Confirmação **Canal vinculado conectado ✓**. |
+
+A partir daqui, com a configuração padrão, as mensagens do chat já saem pelo canal vinculado e **1 a cada 20** sai pela API oficial.
+
+### 3. Escolher como alternar entre oficial e não oficial
+
+Clique na **engrenagem** do cartão. As configurações são salvas sozinhas, logo depois de você mudar: não há botão Salvar.
+
+![Canal principal e intercalação](images/conexao-vinculado-config.png)
+
+| Nº | Campo | O que é |
+| :---: | --- | --- |
+| 1 | **Canal principal do chat** | Por onde sai a maioria das mensagens do chat. |
+| 2 | Opções do canal principal | **Canal vinculado (Api WEB)** (padrão) ou **API oficial (Meta)**. |
+| 3 | **Intercalar** | De quantas em quantas mensagens 1 sai pelo outro canal (tabela abaixo). O nome do campo muda conforme o canal principal: **Intercalar API oficial (Meta)** ou **Intercalar canal vinculado (Api WEB)**. |
+| 4 | Resumo dos **últimos 30 dias** | Quantas mensagens saíram pela API oficial, quantas pelo canal vinculado e quantas **fora do Nitzap** (enviadas direto do celular). |
+
+#### Como o número da intercalação funciona
+
+Com o canal principal **Canal vinculado (Api WEB)**, o campo se chama **Intercalar API oficial (Meta)**:
+
+| Valor no campo | Como as mensagens do chat saem |
+| --- | --- |
+| Vazio | Igual a 20 (padrão): a cada 20 mensagens, 1 pela API oficial e 19 pelo canal vinculado. |
+| **2** ou mais | A cada X mensagens, 1 pela API oficial e as demais pelo canal vinculado. Com **2**, alterna uma e uma. |
+| **1** | Todas pela API oficial. Não há intercalação. |
+| **0** | Todas pelo canal vinculado. Não há intercalação. |
+
+Com o canal principal **API oficial (Meta)**, a lógica se inverte e o campo se chama **Intercalar canal vinculado (Api WEB)**:
+
+| Valor no campo | Como as mensagens do chat saem |
+| --- | --- |
+| Vazio | Igual a 20 (padrão): a cada 20 mensagens, 1 pelo canal vinculado e 19 pela API oficial. |
+| **2** ou mais | A cada X mensagens, 1 pelo canal vinculado e as demais pela API oficial. |
+| **1** | Todas pelo canal vinculado. Não há intercalação. |
+| **0** | Todas pela API oficial. Não há intercalação. |
+
+**Por que intercalar:** manter algumas mensagens saindo pela API oficial mostra para a Meta que o número continua em uso legítimo na conexão oficial.
+
+### 4. Ver por onde cada mensagem saiu
+
+Na conversa, as mensagens enviadas pelo canal vinculado têm uma **bolinha verde** ao lado do horário. Passe o mouse sobre ela para ver **Enviada pela conexão vinculada (Api WEB Nitzap)**.
+
+![Mensagens pela API oficial e pelo canal vinculado](images/conexao-vinculado-bolinha.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Sem bolinha: a mensagem saiu pela **API oficial**. |
+| 2 | Com bolinha verde: a mensagem saiu pelo **canal vinculado (Api WEB)**. |
+
+No exemplo, a intercalação está em **2**: uma mensagem sai pela API oficial e a seguinte pelo canal vinculado.
+
+Para o cliente, não muda nada: as duas mensagens chegam do mesmo número, na mesma conversa.
+
+### Desvincular
+
+Clique em **Desvincular** no cartão e confirme. O canal vinculado é removido e **todas as mensagens do chat voltam a sair pela API oficial**. A conexão oficial e os membros continuam como estavam.
+
 ## Problemas comuns
 
 | Mensagem ou situação | O que fazer |
@@ -241,3 +359,6 @@ Quando uma conexão fica inativa, ela aparece na lista marcada como **inativa** 
 | A mensagem do Facebook Business não chegou no celular. | Confira se o número informado no Facebook é o mesmo do app WhatsApp Business e se o app está atualizado. |
 | O número conectado não aparece no chat de um usuário. | O usuário não é membro da conexão. Adicione-o em **Gerenciar conexão** > **Membros**. |
 | A coexistência caiu depois de alguns dias. | O app WhatsApp Business ficou mais de 14 dias sem ser aberto. Abra o app e use **Reconectar** se precisar. |
+| O botão **Conectar canal de envio (QR)** não aparece. | O canal vinculado só existe em conexões **Coexistência**. Conexões só QR Code e **API Cloud** não têm essa opção. |
+| O canal vinculado aparece como **Desconectado**. | O celular desconectou o aparelho do Nitzap (por exemplo, em **Aparelhos conectados**). Clique em **Desvincular** e vincule de novo pelo QR Code. |
+| Nenhuma mensagem tem a bolinha verde. | Confira na engrenagem do canal vinculado se o campo **Intercalar** não está em **1** (com o canal vinculado como principal), o que manda tudo pela API oficial. |
