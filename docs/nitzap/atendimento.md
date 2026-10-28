@@ -7,7 +7,6 @@ O atendimento mostra quem está cuidando de cada conversa no Nitzap Omni. Cada a
 <!-- sumario:inicio -->
 **Neste artigo:**
 
-- [Como funciona o atendimento](#nitzap/atendimento/como-funciona)
 - [Configurar o atendimento (administrador)](#nitzap/atendimento/configurar-o-atendimento-administrador)
 - [Ativar os filtros de atendimento](#nitzap/atendimento/ativar-os-filtros-de-atendimento)
 - [Abrir um atendimento](#nitzap/atendimento/abrir-um-atendimento)
@@ -19,18 +18,6 @@ O atendimento mostra quem está cuidando de cada conversa no Nitzap Omni. Cada a
 - [Problemas comuns](#nitzap/atendimento/problemas-comuns)
 
 <!-- sumario:fim -->
-
-## Como funciona
-
-Antes de começar, o administrador configura o atendimento e cada atendente liga os filtros de atendimento no Omni. Depois, cada atendimento segue estes passos:
-
-1. **Abrir ou puxar:** o atendimento abre sozinho quando o atendente envia a primeira mensagem ao cliente, ou é aberto à mão. Quando chega na fila de uma equipe (por exemplo, enviado por um bot), alguém da equipe puxa para si.
-2. **Atender:** na conversa aparece uma barra com quem está atendendo. Na lista, a conversa mostra **(nome) está atendendo** ou **Na fila (equipe)**.
-3. **Transferir, se precisar:** o atendimento pode passar para outro usuário ou para a fila de uma equipe.
-4. **Fechar:** quem está atendendo fecha o atendimento.
-5. **Consultar:** a Tarefa do atendimento guarda quem atendeu, as datas e os horários.
-
-As mensagens de abertura, transferência e fechamento aparecem na conversa como **notas internas**, com fundo amarelo. O cliente não recebe essas notas.
 
 ## Configurar o atendimento (administrador)
 
@@ -62,19 +49,46 @@ Para o Flow receber essas informações, crie no Flow uma variável para cada um
 
 ### No Nitzap Config
 
-Em **Nitzap Config** > **Configuração** > **Preferências**, no bloco **Conversas e atendimento**:
+Estas configurações valem para todas as conexões. Em **Nitzap Config**, abra **Configuração** > **Preferências** e vá até o bloco **Conversas e atendimento**:
 
-| Configuração | O que faz |
-| --- | --- |
-| **Fechar Tarefa ao Transferir** | Na transferência para um **usuário**, fecha a Tarefa de quem passou o atendimento e cria uma nova para quem recebeu. Assim cada atendente fica com a sua própria Tarefa. |
-| **Duração do alerta de fila (s)** | Por quanto tempo a conversa que chega na fila fica destacada. Vazio usa 10 segundos; **0** desliga o destaque e o som. |
-| **Som da chegada na fila** | O som tocado quando uma conversa entra na fila. Aceita um MP3 de até 3 MB; **Usar som padrão** volta ao som original. |
-| **Repetição do som da fila** | **Tocar uma vez**, **Repetir até alguém puxar** ou **Repetir por um tempo**. |
-| **Tempo tocando (s)** | Por quanto tempo o som repete, na opção **Repetir por um tempo**. Vazio usa 30 segundos; o máximo é 600. |
+![Preferências do Nitzap Config, bloco Conversas e atendimento](images/atendimento-config-preferencias.png)
+
+| Nº | Configuração | O que faz |
+| :---: | --- | --- |
+| 1 | **Fechar Tarefa ao Transferir** | Na transferência para um **usuário**, fecha a Tarefa de quem passou o atendimento e cria uma nova para quem recebeu. Assim cada atendente fica com a sua própria Tarefa. |
+| 2 | **Duração do alerta de fila (s)** | Por quanto tempo a conversa que chega na fila fica piscando. Vazio usa 10 segundos; **0** desliga o destaque e o som. Não muda o alerta de mensagem nova. |
+| 3 | **Som da chegada na fila** | O som tocado quando uma conversa entra na fila. Aceita um MP3 de até 3 MB; sem arquivo, toca o som padrão do Nitzap. |
+| 4 | **Repetição do som da fila** | **Tocar uma vez**, **Repetir até alguém puxar** ou **Repetir por um tempo**. Repetindo, o som para quando alguém puxa, transfere ou fecha o atendimento. |
+
+Na opção **Repetir por um tempo** aparece também **Tempo tocando (s)**: por quanto tempo o som repete. Vazio usa 30 segundos; o máximo é 600.
+
+As outras opções do bloco (**Respeitar Hierarquia**, **Priorizar Contatos**, **Exibir Mensagens Apagadas** e **Prevenir Leituras de Desconectados**) valem para as conversas em geral, não só para o atendimento. Sobre a hierarquia, veja [Ver conversas de outros usuários](#nitzap/omni/ver-conversas-de-outros-usuarios), no guia do Omni.
 
 ### Equipes (filas)
 
-As equipes do atendimento são as **Filas** (Queues) do próprio Salesforce. O administrador do Salesforce cria a fila e adiciona os usuários como membros. As filas aparecem no Nitzap como opção ao abrir e ao transferir um atendimento, e os membros de cada fila veem as conversas que chegam nela.
+As equipes do atendimento são as **Filas** do próprio Salesforce. Os membros de uma fila veem as conversas que chegam nela, e as filas aparecem como opção ao abrir e ao transferir um atendimento. Para criar uma fila:
+
+**1. Abrir as Filas no Setup.** Em **Configuração** do Salesforce, digite **filas** na busca rápida e clique em **Filas**.
+
+![Busca de Filas no Setup do Salesforce](images/atendimento-fila-setup.png)
+
+**2. Criar uma fila nova.** Clique em **Criar**.
+
+![Lista de Filas com o botão Criar](images/atendimento-fila-criar.png)
+
+**3. Preencher a fila.**
+
+![Formulário Nova fila](images/atendimento-fila-nova.png)
+
+| Nº | Campo | O que fazer |
+| :---: | --- | --- |
+| 1 | **Rótulo** | O nome da equipe, como aparece no Nitzap (ex.: **Fila Suporte**). |
+| 2 | **Nome da fila** | O nome técnico. O Salesforce preenche a partir do rótulo. |
+| 3 | **Objetos selecionados** | Adicione **Tarefa**. Sem isso, a fila não pode ficar com o atendimento. |
+| 4 | **Membros selecionados** | Os usuários da equipe. Escolha em **Membros disponíveis** e clique em **Adicionar**. |
+| 5 | **Salvar** | Cria a fila. |
+
+Os demais campos são opcionais.
 
 ## Ativar os filtros de atendimento
 
@@ -105,19 +119,60 @@ Para receber alertas só das suas conversas, ligue também a preferência **Rece
 Há três jeitos:
 
 - **Automático:** com **Habilitar atendimento** ligado na conexão, basta enviar a primeira mensagem ao cliente.
-- **Pelo botão direito:** na lista de conversas, clique com o botão direito no cliente e escolha **Criar atendimento**. Na janela **Novo Atendimento**, escolha o **Proprietário** (um usuário ou uma fila), confira o **Assunto** e a **Data e Hora** e clique em **Abrir**. A opção só aparece quando o número está salvo no Salesforce, não há atendimento aberto e a conversa não é de grupo.
+- **Pelo botão direito:** abre o atendimento para você, para outro usuário ou direto na fila de uma equipe (veja abaixo).
 - **Pelo bot:** quando o bot ou agente transfere a conversa, ela entra na fila da equipe. Veja o guia do [Einstein Bot e Agentforce](../connect_einstein_bot.md).
 
 Se o cliente já tem um atendimento aberto naquela conexão, o Nitzap avisa **Atendimento já aberto** e mostra com quem está.
 
+### Criar o atendimento pelo botão direito
+
+Na lista de conversas, clique com o botão direito no cliente e escolha **Criar atendimento**. A opção só aparece quando o número está salvo no Salesforce, não há atendimento aberto e a conversa não é de grupo.
+
+![Opção Criar atendimento no botão direito](images/atendimento-criar-menu.png)
+
+Abre a janela **Novo Atendimento**. À esquerda, o atendimento para um usuário; à direita, para uma fila:
+
+![Janela Novo Atendimento para usuário e para fila](images/atendimento-novo.png)
+
+| Nº | Campo | O que fazer |
+| :---: | --- | --- |
+| 1 | **Tipo** | **Usuário** para entregar a uma pessoa, ou **Fila** para mandar à fila de uma equipe. |
+| 2 | **Proprietário** | Quem fica com o atendimento. Com **Usuário**, já vem preenchido com você; troque se for para outra pessoa. Com **Fila**, busque e escolha a fila. |
+| 3 | **Assunto** | Vem preenchido com o nome do cliente e *Novo Atendimento WhatsApp 📱*. Pode ser alterado. |
+| 4 | **Data e Hora do Atendimento** | Quando o atendimento começa. Vem com o momento atual. |
+| 5 | **Nome** | O cliente da conversa. Não pode ser alterado. |
+| 6 | **Tipo de Tarefa** | **SERVICE_DESK**, o código do tipo **Atendimento**. Não pode ser alterado. |
+| 7 | **Abrir** | Cria o atendimento. |
+
+Aberto para uma fila, o atendimento aparece como **Na fila (equipe)** e os membros da fila podem puxar.
+
 ## Puxar uma conversa da fila
 
-Quando uma conversa chega na fila de uma equipe sua, a lista destaca a conversa e toca um som (conforme a configuração do administrador). Para assumir:
+Quando uma conversa chega na fila de uma equipe sua, a lista destaca a conversa e toca um som (conforme a configuração do administrador).
 
-- clique em **Puxar**, ao lado de **Na fila (equipe)**, na lista de conversas; ou
-- clique com o botão direito na conversa e escolha **Puxar atendimento**.
+![Conversa na fila com o botão Puxar](images/atendimento-puxar.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Filtro **Fila**: as conversas na fila das suas equipes. O número é a quantidade. |
+| 2 | **Na fila (equipe)**: em qual fila a conversa está esperando. |
+| 3 | **Puxar**: assume o atendimento. |
+| 4 | Subfiltros **A responder** e **Respondido** (veja [Ativar os filtros de atendimento](#nitzap/atendimento/ativar-os-filtros-de-atendimento)). |
+
+Também dá para puxar pelo botão direito na conversa, em **Puxar atendimento**.
 
 O atendimento passa para você, aparece **Atendimento puxado: O atendimento agora é seu** e a lista muda para o filtro **Atendendo**. O som da fila para quando alguém puxa, transfere ou fecha o atendimento.
+
+Na conversa, as notas internas mostram o caminho do atendimento:
+
+![Notas de abertura na fila e de atendimento puxado](images/atendimento-puxado-notas.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Nota de abertura: quem abriu o atendimento, para qual fila, e o link da Tarefa. |
+| 2 | Nota de quando alguém puxou: aparece como transferência da fila para quem puxou. |
+
+O cliente não recebe essas notas.
 
 ## Durante o atendimento
 
@@ -181,7 +236,11 @@ Quem recebe é avisado: a conversa pisca com som no Omni, aparece a notificaçã
 
 ## Fechar um atendimento
 
-Clique em **Fechar** (nº 3 da barra) e confirme em **Tem certeza que deseja fechar o atendimento?**. Também dá para fechar pelo botão direito na lista, em **Fechar Atendimento**; nesse caso não há pergunta de confirmação.
+Clique em **Fechar** (nº 3 da barra) e confirme em **Tem certeza que deseja fechar o atendimento?**.
+
+Também dá para fechar pelo botão direito na lista, em **Fechar Atendimento**; nesse caso não há pergunta de confirmação.
+
+![Opção Fechar Atendimento no botão direito](images/atendimento-fechar-menu.png)
 
 Ao fechar:
 
@@ -209,9 +268,21 @@ Cada atendimento é uma Tarefa do tipo **Atendimento**. Abra pelo link da nota d
 | 5 | **Data Transferencia do atendimento** | Quando houve a última transferência. Vazio se não houve. |
 | 6 | **Nitzap: Data Inicio do Historico** | Quando o atendimento começou. |
 | 7 | **Nitzap: Tipo Contato** | Quem falou primeiro: **IN** se foi o cliente, **OUT** se foi a empresa, **NA** se ainda não houve mensagem. |
-| 8 | **Nitzap: Tipo Resposta** | Se o contato teve resposta (ex.: **IN C/ RESPOSTA**: o cliente escreveu e foi respondido). |
+| 8 | **Nitzap: Tipo Resposta** | Quem começou a conversa e se houve resposta (valores na tabela abaixo). |
 | 9 | **Nitzap: Hora Primeira Mensagem Recebida / Enviada** | O horário da primeira mensagem do cliente e da primeira resposta da empresa no atendimento. Servem para medir o tempo de resposta. |
 | 10 | **Nitzap Chat** | A conversa na própria página da Tarefa, com as notas de abertura e fechamento. |
+
+Os valores de **Nitzap: Tipo Resposta** (nº 8):
+
+| Valor | O que significa |
+| --- | --- |
+| **IN C/ RESPOSTA** | O cliente escreveu primeiro e a empresa respondeu. |
+| **IN S/ RESPOSTA** | O cliente escreveu primeiro e ainda não teve resposta. |
+| **OUT C/ RESPOSTA** | A empresa escreveu primeiro e o cliente respondeu. |
+| **OUT S/ RESPOSTA** | A empresa escreveu primeiro e o cliente ainda não respondeu. |
+| **NA** | Ainda não houve mensagem no atendimento. |
+
+Os campos **Tipo Contato** e **Tipo Resposta** são calculados a partir dos horários da primeira mensagem recebida e enviada (nº 9), então mudam sozinhos conforme a conversa acontece.
 
 ## Problemas comuns
 
@@ -221,5 +292,5 @@ Cada atendimento é uma Tarefa do tipo **Atendimento**. Abra pelo link da nota d
 | O atendimento não abre sozinho ao enviar mensagem. | Peça ao administrador para ligar **Habilitar atendimento** na conexão. |
 | Não aparece o botão **Fechar** na conversa. | Só quem está atendendo vê o **Fechar**. Puxe ou peça a transferência. Se nem o responsável vê, confira **Ocultar Fechar e Transferir no chat** na conexão. |
 | Não aparece o filtro **Atendimento** na lista. | Ligue **Habilitar filtros de atendimento** nas Preferências do Omni. |
-| A fila não aparece para transferir. | A fila precisa existir no Salesforce. Fale com o administrador do Salesforce. |
+| A fila não aparece para abrir ou transferir. | A fila precisa existir no Salesforce e ter **Tarefa** nos objetos suportados (veja [Equipes (filas)](#nitzap/atendimento/equipes-filas)). |
 | O som da fila não toca. | Confira se a **Duração do alerta de fila** não está em 0 e se o navegador permite som e notificações para o Salesforce. |
