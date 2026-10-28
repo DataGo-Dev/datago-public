@@ -101,7 +101,7 @@ Quando você participa de mais de uma conexão, o botão **Conexões** aparece n
 | Nº | Opção | O que mostra |
 | :---: | --- | --- |
 | 1 | **Todas as conexões** | Conversas de todos os números. |
-| 2 | **Interno** | Conversas com a equipe (chat interno entre colegas). |
+| 2 | **Interno** | Conversas com a equipe. Veja o guia do [Chat interno](chat-interno.md). |
 | 3 | **Uma conexão específica** | Só as conversas daquele número. Embaixo do nome aparecem o número e o tipo de conexão: **Nitzap** para conexões via QR Code, **Coex (Meta)** ou **Cloud API (Meta)** para as oficiais. |
 | 4 | **Bolinha colorida** | Não indica se a conexão está online: é só a cor que identifica a conexão. A mesma cor aparece na etiqueta da conexão em cada conversa da lista (nº 6 em [O que cada conversa mostra](#nitzap/omni/o-que-cada-conversa-mostra)). |
 
@@ -150,7 +150,7 @@ Clique em **Meus Contatos** (o **+**, nº 7 em [Botões do topo](#nitzap/omni/bo
 
 | Nº | O que é |
 | :---: | --- |
-| 1 | **Contatos** traz os clientes; **Internos** traz os colegas, para o chat interno. A aba **Internos** só aparece quando o chat interno está disponível. |
+| 1 | **Contatos** traz os clientes; **Internos** traz os colegas, para o [chat interno](chat-interno.md). A aba **Internos** só aparece quando o chat interno está disponível. |
 | 2 | **Conexão:** escolhe de qual número você quer ver os contatos e os grupos. Só aparece quando você participa de mais de uma conexão. |
 | 3 | **Busca:** digite o nome ou o número. |
 | 4 | **Exportar contatos:** baixa a lista de contatos da conexão escolhida em uma planilha (CSV). |
