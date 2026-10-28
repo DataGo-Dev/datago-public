@@ -9,8 +9,8 @@ O chat interno é uma conversa entre os usuários do Nitzap dentro do Salesforce
 
 - [Quem participa e as licenças](#nitzap/chat-interno/quem-participa-administrador)
 - [Ver as conversas internas no Omni](#nitzap/chat-interno/ver-as-conversas-internas-no-omni)
-- [Começar uma conversa com um colega](#nitzap/chat-interno/comecar-uma-conversa-com-um-colega)
-- [O que dá para fazer na conversa](#nitzap/chat-interno/dentro-da-conversa-interna)
+- [Conversar com um colega](#nitzap/chat-interno/conversar-com-um-colega)
+- [O que dá para fazer na conversa](#nitzap/chat-interno/o-que-da-para-fazer-na-conversa)
 - [Avisos de mensagem nova](#nitzap/chat-interno/avisos-de-mensagem-nova)
 - [Problemas comuns](#nitzap/chat-interno/problemas-comuns)
 
@@ -59,30 +59,37 @@ As conversas internas aparecem com os filtros **Todas** e **Não Lidas**. Com os
 
 Quem usa só o chat interno, sem nenhuma conexão de WhatsApp, vê no Omni apenas as conversas com a equipe.
 
-## Começar uma conversa com um colega
+## Conversar com um colega
 
-Clique em **Meus Contatos** (o **+** no topo da lista) e abra a aba **Internos**. Veja a imagem em [Iniciar uma conversa nova](#nitzap/omni/iniciar-uma-conversa-nova), no guia do Omni.
+Clique em **Meus Contatos** (o **+** no topo da lista do Omni) e abra a aba **Internos**. Escolha o colega, escreva e envie, como em uma conversa de WhatsApp.
 
-- A lista mostra os colegas que participam do chat interno, com quem está **online** primeiro (bolinha verde).
-- Use **Buscar colega...** para achar pelo nome.
-- Clique no colega para abrir a conversa.
+![Aba Internos e uma conversa interna aberta no Nitzap Web](images/chat-interno-conversa.png)
 
-O Nitzap lembra a última aba usada (**Contatos** ou **Internos**). Para quem não tem conexão de WhatsApp, a aba **Internos** já abre direto.
+| Nº | O que é |
+| :---: | --- |
+| 1 | Aba **Internos**: os colegas que participam do chat interno. A aba **Contatos** traz os clientes. |
+| 2 | **Buscar colega...:** encontra pelo nome. |
+| 3 | **online:** o colega está conectado agora (bolinha verde). Quem está online aparece primeiro. Clique no colega para abrir a conversa. |
+| 4 | Etiqueta **Chat interno:** confirma que a conversa é com a equipe, não com um cliente. |
+| 5 | Menu da conversa, com **Apagar conversa**. |
+| 6 | **Gerar com IA** e **Correção:** os mesmos recursos de IA das conversas com clientes. Veja [Recursos de IA](#nitzap/omni/recursos-de-ia), no guia do Omni. |
+| 7 | Caixa de mensagem: escreva e aperte **Enter** ou clique em enviar (nº 11). |
+| 8 | **Anexar arquivo:** imagem, vídeo ou documento. |
+| 9 | **Emoji.** |
+| 10 | **Gravar áudio.** |
+| 11 | **Enviar.** |
 
-## Dentro da conversa interna
+A mensagem chega na hora para o colega, que recebe o aviso de mensagem nova (veja abaixo). O Nitzap lembra a última aba usada (**Contatos** ou **Internos**); para quem não tem conexão de WhatsApp, a aba **Internos** já abre direto.
 
-O cabeçalho mostra o nome do colega, **online** quando ele está conectado e a etiqueta **Chat interno**. No menu ao lado dela fica **Apagar conversa**.
-
-O que dá para fazer:
+## O que dá para fazer na conversa
 
 | Recurso | Como funciona no chat interno |
 | --- | --- |
-| **Texto, arquivos, áudio e emoji** | Como em uma conversa de WhatsApp. |
 | **Responder** uma mensagem | Igual ao WhatsApp. |
 | **Reagir** | Nas mensagens recebidas do colega. |
 | **Editar** | Só as suas mensagens de texto, imagem, vídeo e documento, sem limite de tempo. |
 | **Apagar mensagem** | Só as suas; apaga para os dois, sem limite de tempo. |
-| **Apagar conversa** | Some só para você. O colega continua com as mensagens. |
+| **Apagar conversa** | Pelo menu (nº 5). Some só para você: o colega continua com as mensagens. |
 
 O que não aparece no chat interno, por não fazer sentido entre colegas: **modo sussurro**, **enviar contato**, **templates**, **encaminhar**, **resumir conversa** e a assinatura com o seu nome no início da mensagem. A conversa interna também **não abre atendimento**.
 

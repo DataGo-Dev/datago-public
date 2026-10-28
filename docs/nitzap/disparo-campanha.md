@@ -123,10 +123,16 @@ Cada destinatário conta em um contador só, o da etapa mais avançada em que es
 
 O botão **Ver resultado** abre a lista de destinatários do disparo, com **Nome**, **Telefone**, **Status**, **Data** e **Motivo**.
 
-- Os botões no topo filtram por status. **Todos** mostra o disparo inteiro.
-- A lista carrega 50 por vez. Use **Carregar mais** para ver o restante.
-- O botão de atualizar busca os status mais recentes.
-- **Exportar tudo (CSV)** baixa o disparo inteiro, mesmo com um filtro aplicado. A planilha traz Nome, Telefone, Status, Enviado em, Recebido em, Lido em, Falha em e Motivo.
+![Resultado do disparo](images/disparo-campanha-resultado.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Filtros por status:** **Todos**, **Enviado**, **Recebido**, **Lido**, **Erro** e **Não enviado**, com a quantidade de cada um. **Todos** mostra o disparo inteiro. |
+| 2 | **Atualizar:** busca os status mais recentes. |
+| 3 | **Exportar tudo (CSV):** baixa o disparo inteiro, mesmo com um filtro aplicado. A planilha traz Nome, Telefone, Status, Enviado em, Recebido em, Lido em, Falha em e Motivo. |
+| 4 | **Motivo:** por que a mensagem não saiu ou não foi entregue (veja a tabela abaixo). No exemplo, o contato está no [opt-out](#nitzap/disparo-campanha/opt-out-quem-nao-quer-receber). |
+
+A lista carrega 50 por vez. Use **Carregar mais** para ver o restante.
 
 A coluna **Motivo** explica os casos de **Não enviado** e **Erro**. Os mais comuns:
 
