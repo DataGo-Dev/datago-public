@@ -209,6 +209,8 @@ A coluna **Texto** mostra o começo da mensagem enviada.
 
 O log mostra o envio de cada mensagem. Para saber se ela foi recebida e lida, use **Ver resultado** no próprio disparo.
 
+As subabas **Envios por canal** e **Origem das mensagens**, na mesma aba **Logs**, são explicadas em [Acompanhar os envios nos Logs](#nitzap/conexao-whatsapp/5-acompanhar-os-envios-nos-logs-administrador).
+
 ## Problemas comuns
 
 **O botão Novo disparo está apagado.**

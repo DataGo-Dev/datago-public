@@ -345,6 +345,57 @@ No exemplo, a intercalação está em **2**: uma mensagem sai pela API oficial e
 
 Para o cliente, não muda nada: as duas mensagens chegam do mesmo número, na mesma conversa.
 
+### 5. Acompanhar os envios nos Logs (administrador)
+
+Em **Nitzap Config** > **Logs**, duas subabas mostram por onde as mensagens saíram.
+
+#### Envios por canal
+
+Soma, por dia e por conexão, quantas mensagens saíram por cada canal. É aqui que dá para conferir se a intercalação está funcionando como você configurou.
+
+![Logs: Envios por canal](images/logs-envios-por-canal.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Subaba **Envios por canal**. Ao abrir, já carrega os **últimos 30 dias**. |
+| 2 | **Data Inicial** e **Data Final** do período. |
+| 3 | **Buscar:** carrega o período escolhido. |
+| 4 | **Exportar:** baixa as linhas da tabela em CSV, com uma linha de **Total do período** no final. |
+| 5 | **Filtrar por conexão ou dia:** filtra as linhas já carregadas pelo nome ou número da conexão ou pela data (dd/mm/aaaa), sem buscar de novo. Ao lado aparece quantas linhas estão na tabela. |
+| 6 | **API oficial (Meta):** mensagens enviadas pela API oficial. |
+| 7 | **Api WEB (não oficial):** mensagens enviadas pelas conexões QR Code e pelo canal vinculado das conexões oficiais. |
+| 8 | **Fora do Nitzap:** mensagens enviadas direto do celular ou por outro app. |
+
+A coluna **Total** soma as três. No fim da tabela, a linha **Total do período** soma todas as linhas que estão aparecendo.
+
+Em uma conexão oficial com canal vinculado (como a **Ozzy**, no exemplo), a coluna **Api WEB** conta as mensagens que saíram pelo canal vinculado e a coluna **API oficial** as que saíram pela Meta.
+
+#### Origem das mensagens
+
+Mostra, conversa por conversa, **quem** enviou: um usuário pelo Nitzap, uma integração ou alguém direto pelo WhatsApp.
+
+![Logs: Origem das mensagens](images/logs-origem-mensagens.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Subaba **Origem das mensagens**. |
+| 2 | **Buscar por conexão ou contato:** número, nome da conexão ou nome do contato. |
+| 3 | **Origem da última mensagem:** mostra só as conversas cuja última mensagem enviada veio de uma origem (tabela abaixo). |
+| 4 | **Buscar.** |
+| 5 | Clique na conversa para abrir a contagem por origem. |
+| 6 | **Origem** da última mensagem enviada na conversa. |
+| 7 | Contagem da conversa: total de mensagens, quantas foram **enviadas** (por origem, com a porcentagem) e quantas foram **recebidas** do contato. |
+| 8 | Quando a origem é **Nitzap**, aparece o nome do usuário que enviou. |
+
+| Origem | Quem enviou |
+| --- | --- |
+| **Nitzap (Salesforce)** | Um usuário, pelo Nitzap dentro do Salesforce. |
+| **Integração (API)** | Um sistema, pela API do Nitzap (por exemplo, com um [usuário integrador](#nitzap/usuario-integrador-postman/1-criar-a-credencial)). |
+| **Externo (WhatsApp)** | Alguém direto no WhatsApp do celular ou em outro app, fora do Nitzap. |
+| **Sem origem** | O Nitzap não conseguiu identificar. |
+
+A lista mostra 20 conversas por página; use as setas abaixo da tabela para passar de página.
+
 ### Desvincular
 
 Clique em **Desvincular** no cartão e confirme. O canal vinculado é removido e **todas as mensagens do chat voltam a sair pela API oficial**. A conexão oficial e os membros continuam como estavam.
