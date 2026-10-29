@@ -2,7 +2,7 @@
 
 Com o conector MCP do Nitzap, o Claude passa a consultar e usar o WhatsApp da empresa: listar as conversas recentes, ler as mensagens de um cliente, ver o volume e o tempo de resposta de cada vendedor e, se você liberar, enviar mensagens. Você pergunta em linguagem normal (por exemplo, *"quais clientes ficaram sem resposta hoje?"*) e o Claude busca a informação no Nitzap.
 
-A configuração tem duas partes: gerar um **token** no Salesforce e **adicionar o conector** no Claude.
+A configuração tem duas partes: gerar um **token** no Salesforce e **adicionar o conector** no Claude. Depois, é só ativar o Nitzap na conversa.
 
 **Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela logo abaixo da imagem.
 
@@ -14,6 +14,7 @@ A configuração tem duas partes: gerar um **token** no Salesforce e **adicionar
 - [Adicionar o conector no Claude](#nitzap/mcp-claude/2-adicionar-o-conector-no-claude)
 - [Vincular com o token](#nitzap/mcp-claude/3-vincular-com-o-token)
 - [Escolher o que o Claude pode fazer sozinho](#nitzap/mcp-claude/4-escolher-o-que-o-claude-pode-fazer-sozinho)
+- [Ativar o Nitzap na conversa](#nitzap/mcp-claude/5-ativar-o-nitzap-na-conversa)
 - [Revogar o acesso](#nitzap/mcp-claude/revogar-o-acesso)
 - [Problemas comuns](#nitzap/mcp-claude/problemas-comuns)
 
@@ -154,6 +155,20 @@ Para consultas, **Sempre permitir** deixa o uso mais fluido. Para ferramentas qu
 
 O que o Claude consegue fazer depende também das **permissões do token** (passo 1): uma ferramenta de envio só funciona se o token tiver `send`, mesmo que esteja liberada aqui.
 
+## 5. Ativar o Nitzap na conversa
+
+Com o conector pronto, ligue o Nitzap na conversa em que você vai usá-lo. Sem isso, o Claude não consulta o Nitzap.
+
+![Ativar o conector Nitzap na conversa](images/mcp-claude-ativar-conversa.png)
+
+| Nº | O que fazer |
+| :---: | --- |
+| 1 | Na caixa de mensagem, clique no **+**. |
+| 2 | Abra **Conectores**. |
+| 3 | Ligue a chave do **Nitzap** (fica azul). |
+
+Agora é só perguntar, por exemplo: *"quais clientes ficaram sem resposta hoje no Nitzap?"*. Quando o Claude usar uma ferramenta com a regra **Requer aprovação** (passo 4), ele pede a sua confirmação antes.
+
 ## Revogar o acesso
 
 - **No Claude:** abra o conector Nitzap e clique em **Desvincular**.
@@ -165,6 +180,7 @@ Se alguém da equipe sair da empresa ou o token vazar, revogue no Salesforce.
 
 | Situação | O que fazer |
 | --- | --- |
+| O Claude não usa o Nitzap ou diz que não tem acesso a ele. | Confira se a chave do **Nitzap** está ligada na conversa (**+** > **Conectores**), como no passo 5. |
 | O Claude recusa a URL do conector. | Confira se colou o **Link MCP** inteiro, começando com `https://`. |
 | A página **Autorizar** não aceita o token. | O token pode ter sido revogado ou expirado, ou foi colado pela metade. Gere um novo no Salesforce. |
 | Perdi o token antes de colar. | Ele não aparece de novo. Revogue o antigo e gere outro. |
