@@ -2,7 +2,7 @@
 
 O template (na Meta, **modelo de mensagem**) é uma mensagem pronta que precisa ser aprovada pela Meta antes de ser usada. Nas conexões oficiais (**Coexistência** e **API Cloud**), ele é obrigatório para iniciar uma conversa, para retomar uma conversa em que o cliente não escreve há mais de 24 horas e para os [disparos de campanha](#nitzap/disparo-campanha).
 
-Este guia mostra como criar o template no Gerenciador do WhatsApp da Meta, acompanhar a aprovação e enviar o template pelo Nitzap Omni.
+Este guia mostra como criar o template pelo Salesforce ou pela Meta, acompanhar a aprovação e enviar o template pelo Nitzap Omni.
 
 **Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela logo abaixo da imagem.
 
@@ -10,11 +10,10 @@ Este guia mostra como criar o template no Gerenciador do WhatsApp da Meta, acomp
 **Neste artigo:**
 
 - [O que é preciso antes](#nitzap/templates/antes-de-comecar)
-- [Abrir o Gerenciador do WhatsApp](#nitzap/templates/1-abrir-o-gerenciador-do-whatsapp)
-- [Criar o modelo](#nitzap/templates/2-criar-o-modelo)
-- [Escolher a categoria](#nitzap/templates/3-escolher-a-categoria)
-- [Preencher o modelo](#nitzap/templates/4-preencher-o-modelo)
-- [Acompanhar a aprovação](#nitzap/templates/5-acompanhar-a-analise)
+- [Criar pelo Salesforce ou pela Meta?](#nitzap/templates/qual-caminho-usar)
+- [Criar o template pelo Salesforce](#nitzap/templates/criar-o-template-pelo-salesforce)
+- [Criar o template na Meta](#nitzap/templates/criar-o-template-na-meta)
+- [Acompanhar a aprovação na Meta](#nitzap/templates/5-acompanhar-a-analise)
 - [Limites de envio da Meta](#nitzap/templates/limites-de-envio-da-meta)
 - [Enviar o template pelo Omni](#nitzap/templates/enviar-o-template-pelo-omni)
 - [Problemas comuns](#nitzap/templates/problemas-comuns)
@@ -24,7 +23,80 @@ Este guia mostra como criar o template no Gerenciador do WhatsApp da Meta, acomp
 ## Antes de começar
 
 - **Conexão oficial.** Templates só existem nas conexões pela API oficial (Coexistência ou API Cloud). Nas conexões só QR Code, não há template da Meta. Veja [Conectar um número de WhatsApp](#nitzap/conexao-whatsapp).
-- **Acesso ao portfólio empresarial na Meta** (o antigo Business Manager) em que está a conta do WhatsApp da conexão.
+- **Para criar pelo Salesforce:** ser administrador do Nitzap, porque a criação fica em **Nitzap Config**.
+- **Para criar pela Meta:** acesso ao portfólio empresarial na Meta (o antigo Business Manager) em que está a conta do WhatsApp da conexão.
+
+## Qual caminho usar
+
+| | Pelo Salesforce (Nitzap Config) | Pela Meta (Gerenciador do WhatsApp) |
+| --- | --- | --- |
+| **Categorias** | Marketing e Utilidade. | Marketing, Utilidade e Autenticação. |
+| **Cabeçalho** | Nenhum, texto ou imagem. | Também vídeo, documento e outros tipos de mensagem (catálogo, flows...). |
+| **Botões** | Até 3, de resposta rápida. | Até 10, incluindo link e copiar código. |
+| **Quando usar** | Templates do dia a dia, sem sair do Salesforce. | Quando precisa de um recurso que o Nitzap não tem. |
+
+Os dois caminhos mandam o template para a mesma análise da Meta, e o resultado aparece nos dois lugares.
+
+## Criar o template pelo Salesforce
+
+### 1. Abrir a conexão
+
+Em **Nitzap Config** > **Conexões**, clique na engrenagem (⚙) da conexão oficial.
+
+![Lista de conexões no Nitzap Config](images/template-sf-conexoes.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Subaba **Conexões**. |
+| 2 | Selo **Coex (Meta)**: a conexão é oficial e tem templates. |
+| 3 | **Engrenagem:** abre **Gerenciar conexão**. |
+
+### 2. Preencher o template
+
+Abra a aba **Templates Meta**. Ela só aparece nas conexões oficiais e precisa da conexão online.
+
+![Novo template na aba Templates Meta](images/template-sf-novo.png)
+
+| Nº | Campo | O que fazer |
+| :---: | --- | --- |
+| 1 | Aba **Templates Meta** | Onde ficam os templates da conexão. |
+| 2 | **Nome** | Só letras minúsculas, números e `_`. Ao digitar, o Nitzap já troca maiúsculas por minúsculas e espaços e acentos por `_`. |
+| 3 | **Categoria** | **Marketing** ou **Utilidade** (veja [as categorias](#nitzap/templates/3-escolher-a-categoria)). |
+| 4 | **Idioma** | **Português (BR)**, **Inglês (US)**, **Inglês** ou **Espanhol**. |
+| 5 | **Cabeçalho** | **Nenhum**, **Texto** (abre o campo **Texto do cabeçalho**) ou **Imagem** (abre **Imagem do cabeçalho**, para enviar um PNG ou JPG). |
+| 6 | **Tipo de variável** | **Por nome** (`{{nome_cliente}}`) ou **Por número** (`{{1}}`, `{{2}}`). Não dá para misturar os dois no mesmo texto: se misturar, aparece um aviso e o botão **Criar template** fica desligado. |
+| 7 | Prévia | Como a mensagem vai chegar no WhatsApp. Atualiza enquanto você digita. |
+| 8 | **Corpo** | O texto da mensagem. Escreva as variáveis entre chaves duplas, como `{{nome_cliente}}`. |
+| 9 | **Inserir variável de atalho** | Só com **Por nome**. Insere uma das variáveis que o Nitzap preenche sozinho no envio (tabela abaixo). |
+| 10 | Aviso da variável de atalho | Explica como a variável vai ser preenchida. |
+| 11 | **Exemplos das variáveis** | Um exemplo para cada variável do corpo. É obrigatório e serve só para a análise da Meta. Não use dados reais de clientes. |
+| 12 | **Rodapé (opcional)** | Uma linha curta no fim da mensagem. |
+| 13 | **Adicionar botão** | Botões de resposta rápida, até 3. Digite o texto de cada um; a lixeira remove. |
+| 14 | **Criar template** | Envia para a Meta. Aparece **Template enviado para aprovação** e o formulário fica limpo para o próximo. |
+
+O botão **Criar template** só liga quando o nome, o corpo e todos os exemplos estão preenchidos (e a imagem foi enviada, se o cabeçalho for **Imagem**).
+
+| Variável de atalho | Como é preenchida no envio pelo Omni |
+| --- | --- |
+| `{{nome_cliente}}` | Primeiro nome do contato, quando a conversa tem um registro vinculado no Salesforce. |
+| `{{nome_usuario}}` | Primeiro nome do usuário que está enviando. |
+
+Elas funcionam também em templates criados direto na Meta, desde que a variável tenha exatamente esse nome.
+
+### 3. Acompanhar a aprovação
+
+Abaixo do formulário fica a lista **Templates da conexão**, com todos os templates da conta desse número, criados pelo Nitzap ou pela Meta.
+
+![Templates da conexão](images/template-sf-lista.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Clique no template para ver como ele é (só visualização). |
+| 2 | **Status:** **Aprovado**, **Pendente** (em análise na Meta) ou **Rejeitado**. |
+| 3 | **Lixeira:** apaga o template, depois de uma confirmação. Ele é apagado também na Meta, e não dá para desfazer. |
+| 4 | Quantos templates a conexão tem. |
+
+Abaixo do nome aparecem a categoria e o idioma. Quando o status mudar para **Aprovado**, o template já pode ser usado no Omni e nos disparos de campanha.
 
 ## Criar o template na Meta
 
@@ -143,8 +215,6 @@ A Meta limita quantos clientes **diferentes** cada número pode procurar por tem
 
 O limite conta só as conversas que a **empresa inicia**. Responder quem escreveu para você não entra na conta. Leve isso em conta antes de um [disparo de campanha](#nitzap/disparo-campanha) grande.
 
-<!-- Criar o template pelo Salesforce: aguardando os prints (aba Templates Meta em Gerenciar conexão). -->
-
 ## Enviar o template pelo Omni
 
 Quando a conversa está fechada (o cliente nunca escreveu ou não escreve há mais de 24 horas), a caixa de mensagem dá lugar a um aviso, e o único jeito de falar com o cliente é por template.
@@ -164,7 +234,7 @@ Quando a conversa está fechada (o cliente nunca escreveu ou não escreve há ma
 | Nº | O que é |
 | :---: | --- |
 | 1 | **Visualização do Template:** como a mensagem vai chegar. |
-| 2 | **Parâmetros do Template:** um campo para cada variável, com o nome usado na Meta (aqui, **nome_cliente**). Preencha todos. Se o template tiver mídia ou link dinâmico, os campos aparecem aqui também. Se não tiver variáveis, aparece **Este template não possui variáveis**. |
+| 2 | **Parâmetros do Template:** um campo para cada variável, com o nome usado na Meta (aqui, **nome_cliente**). Preencha todos. Se o template tiver mídia ou link dinâmico, os campos aparecem aqui também. Se não tiver variáveis, aparece **Este template não possui variáveis**. As variáveis `{{nome_cliente}}` e `{{nome_usuario}}` já vêm preenchidas (veja [as variáveis de atalho](#nitzap/templates/2-preencher-o-template)); confira antes de enviar. |
 | 3 | **Concluir:** envia o template na hora. O Nitzap mostra **Template enviado com sucesso** ou o erro devolvido pela Meta. |
 
 Com a conversa aberta, o botão de templates também fica na caixa de mensagem (nº 6 em [Caixa de mensagem](#nitzap/omni/caixa-de-mensagem)). Ali a aba **Meta** fica ao lado da aba **Nitzap**, que tem as mensagens prontas internas, sem aprovação da Meta.
@@ -177,6 +247,8 @@ O template enviado pelo Omni chega mesmo para quem está na lista de [opt-out](#
 | --- | --- |
 | O template não aparece no Nitzap. | Confira se o status na Meta é **Ativo** e se ele foi criado na mesma conta do número da conversa (nº 3 em [Criar o modelo](#nitzap/templates/2-criar-o-modelo)). |
 | Não aparece o botão **Template** nem a aba **Meta**. | A conexão não é oficial. Templates da Meta só existem em conexões Coexistência e API Cloud. |
+| Não aparece a aba **Templates Meta** na conexão. | A conexão não é oficial ou está offline. A aba só aparece nas conexões Coexistência e API Cloud conectadas. |
+| O botão **Criar template** não liga. | Falta o nome, o corpo ou algum exemplo de variável, ou o texto mistura variáveis por nome e por número. |
 | O template foi rejeitado. | Abra o template na Meta para ver o motivo. Os mais comuns são categoria errada, variável no começo ou no fim do texto e conteúdo pouco claro. Corrija e envie de novo, ou use **Copiar** para criar outro. |
 | Erro ao enviar pelo Omni. | O texto do erro é o motivo da Meta. Confira se todos os parâmetros foram preenchidos e se o template não foi pausado. |
 | A conversa continua fechada depois do envio. | É normal: ela reabre quando o cliente responder. |
