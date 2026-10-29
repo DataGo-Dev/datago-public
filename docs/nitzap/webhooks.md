@@ -623,7 +623,7 @@ Vale saber para não ficar esperando:
 | `isgroup` | `true` em conversa de grupo |
 | `chatid` | id da conversa: `<suaConexão>_<contatoOuGrupo>` |
 | `sessionid` | id da conexão que tratou a mensagem |
-| `mywhatsid` / `secondwhatsappid` | JID da sua conexão / do outro lado |
+| `mywhatsid` / `secondwhatsappid` | JID da sua conexão / do outro lado. Terminando em `@s.whatsapp.net`, é o telefone com DDI; em `@g.us`, é o grupo |
 | `datemsg` / `message_timestamp` | data ISO / epoch em ms |
 | `sequence` | ordem interna crescente — bom para ordenar |
 | `channel` | `NITZAP` (QR Code) ou `WABA_COEX` (API oficial da Meta) |

@@ -410,11 +410,15 @@ Colunas disponíveis para o filtro:
 |---|---|---|
 | `chat_id` | `<conexão>_<contato>` (só dígitos) | `chat_id = '5514981770936_5527997019622'` |
 | `mywhatsid` | conexão, com sufixo `@s.whatsapp.net` | `mywhatsid = '5514981770936@s.whatsapp.net'` |
-| `secondwhatsappid` | contato (`@s.whatsapp.net`) ou grupo (`@g.us`) | `secondwhatsappid LIKE '5527997019622@%'` |
+| `secondwhatsappid` | contato (`@s.whatsapp.net`, telefone com DDI) ou grupo (`@g.us`) — veja abaixo | `secondwhatsappid LIKE '5527997019622@%'` |
 | `isgroup`, `archived` | booleanos | `isgroup = false` |
 | `dt_lastmessage` | timestamp da última mensagem | `dt_lastmessage >= '2026-07-01 00:00:00+00'` |
 | `unread_messages` | não lidas | `unread_messages > 0` |
 | `last_salesforce_user` | último usuário SF que interagiu | `last_salesforce_user = '005...'` |
+
+**Como ler o `secondwhatsappid`:** terminando em `@s.whatsapp.net`, é o telefone do contato com DDI (`5527997019622@s.whatsapp.net`); terminando em `@g.us`, é o id do grupo. A exceção é o chat do site, cujo visitante tem um id de 13 dígitos começando com `0` (`0123456789012@s.whatsapp.net`), que não é telefone.
+
+Um número brasileiro pode estar gravado sem o nono dígito: veja a [seção 11](#apex_usage/11-utilitario-variacoes-brasileiras-de-numero-getpossiblebrazilianvariations).
 
 Campos do `ChatInfo` retornado:
 
