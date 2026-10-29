@@ -24,7 +24,7 @@ O disparo de campanha envia um template aprovado na Meta para todos os membros d
 Confira estes quatro pontos. Quase todo "não consigo disparar" é um deles.
 
 - **Conexão oficial (WABA).** O disparo sai só por número conectado no WhatsApp Business oficial. Conexões não oficiais não aparecem na lista.
-- **Template aprovado na Meta** nessa conexão. Template em análise ou recusado não aparece.
+- **Template aprovado na Meta** nessa conexão. Template em análise ou recusado não aparece. Para criar um, veja [Templates do WhatsApp](#nitzap/templates).
 - **Membros com WhatsApp.** Só recebe o membro (Lead ou Contato) com o campo **Nitzap WhatsApp Id** preenchido (em Conta Pessoal, vale o campo da Conta). O topo da aba mostra quantos membros da campanha têm WhatsApp.
 - **Aba na página da Campanha.** Se a aba **Disparos WhatsApp** não aparece, peça ao administrador do Salesforce para adicionar o componente **Nitzap: Campaign Template Manager Tabs** à página de registro de Campanha, no Criador de Aplicativo Lightning.
 

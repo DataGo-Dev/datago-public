@@ -161,7 +161,7 @@ Digite o número completo, só com dígitos: DDI + DDD + número (exemplo: `5511
 
 A conversa abre pela última conexão que você usou. Antes de escrever, confira no cabeçalho por qual número a mensagem vai sair e troque se precisar (nº 2 em [Cabeçalho](#nitzap/omni/cabecalho)).
 
-Nas conexões oficiais (Coex e Cloud API), uma conversa nova começa **fechada**: a Meta só permite iniciar o contato com um template aprovado. Veja [Templates](#nitzap/omni/templates). Quando o cliente responder, a conversa abre e você pode escrever livremente.
+Nas conexões oficiais (Coex e Cloud API), uma conversa nova começa **fechada**: a Meta só permite iniciar o contato com um template aprovado. Veja [Templates do WhatsApp](#nitzap/templates). Quando o cliente responder, a conversa abre e você pode escrever livremente.
 
 ## Dentro da conversa
 
@@ -245,7 +245,7 @@ Escreva a mensagem e tecle **Enter** para enviar. Para pular uma linha sem envia
 | 3 | **Enviar contato** | Envia um cartão de contato. Veja [Enviar contato](#nitzap/omni/enviar-contato). |
 | 4 | **Modo sussurro** | Escreve uma nota interna na conversa, que o cliente não recebe. Veja [Modo sussurro](#nitzap/omni/modo-sussurro). |
 | 5 | **Registrar histórico** | Cria uma Tarefa no Salesforce com um trecho da conversa. Veja [Registrar histórico](#nitzap/omni/registrar-historico). |
-| 6 | **Templates** | Veja [Templates](#nitzap/omni/templates). |
+| 6 | **Templates** | Veja [Enviar o template pelo Omni](#nitzap/templates/enviar-o-template-pelo-omni). |
 | 7 | **Agendar envio** | Veja [Agendar envio](#nitzap/omni/agendar-envio). |
 | 8 | **Microfone** | Grava um áudio. Antes de enviar, dá para ouvir e descartar. |
 | 9 | **Enviar** | Envia a mensagem (o mesmo que **Enter**). |
