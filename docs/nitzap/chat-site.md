@@ -54,7 +54,7 @@ Ao clicar em **Chat do site**, abre o formulário de cadastro.
 | 2 | **Cor da janelinha** | A cor do topo da janelinha, do botão e das mensagens do visitante. Use a cor da sua marca. |
 | 3 | **Botão no site** | O desenho do botão que fica no canto da página: **Balão de chat** ou **WhatsApp** (veja abaixo). |
 | 4 | **Mensagem de boas-vindas** | Texto que o visitante vê ao abrir o chat, antes de escrever. Ex.: **Olá! Em que podemos ajudar?** |
-| 5 | **Formulário antes do chat** | O que o visitante preenche antes de conversar. Para **Nome**, **E-mail** e **Telefone**, escolha **Não pedir**, **Opcional** ou **Obrigatório**. O **e-mail ou o telefone precisa ser obrigatório**: é o que identifica quem volta ao site. |
+| 5 | **Formulário antes do chat** | O que o visitante preenche antes de conversar. Para **Nome**, **E-mail** e **Telefone**, escolha **Não pedir**, **Opcional** ou **Obrigatório**. O **e-mail ou o telefone precisa ser obrigatório**: é por onde a equipe consegue retornar o contato. |
 | 6 | **Sites liberados** | Os endereços em que o chat pode funcionar, um por linha (ex.: `minhaempresa.com.br`). Um endereço libera também as variações dele: `minhaempresa.com.br` libera `www.minhaempresa.com.br`. Com a lista vazia, o chat funciona em qualquer site que tiver o código. |
 | 7 | **Criar chat do site** | Salva. O botão só funciona com o nome preenchido e com e-mail ou telefone como obrigatório. |
 
@@ -104,9 +104,9 @@ Depois do formulário, abre a conversa.
 | 3 | A mensagem de boas-vindas. |
 | 4 | A mensagem do visitante. |
 | 5 | **Anexar:** envia imagem, áudio, vídeo ou documento de até 10 MB. |
-| 6 | Onde o visitante escreve. **Enter** envia; **Shift + Enter** quebra a linha. |
+| 6 | Onde o visitante escreve, até 4096 caracteres por mensagem. **Enter** envia; **Shift + Enter** quebra a linha. |
 
-A conversa fica guardada no navegador do visitante: se ele fechar a página e voltar, ela continua de onde parou, sem preencher o formulário de novo.
+A conversa fica só na aba aberta: se o visitante recarregar a página ou navegar pelo site, ela continua de onde parou. Se fechar a aba ou abrir o site em outra aba, começa uma conversa nova, com o formulário.
 
 ## Atender pelo Omni
 
@@ -126,9 +126,9 @@ No chat do site **não há**: templates da Meta, cartão de contato, encaminhar,
 
 ## Quem volta ao site
 
-Quem volta com o **mesmo e-mail** cai na mesma conversa do Omni, e a equipe vê todo o histórico. Sem e-mail no formulário, vale o **mesmo telefone**; o Nitzap compara só os números, então `(27) 99999-1234` e `+55 27 9999-1234` são a mesma pessoa.
+**Cada visita é uma conversa nova**, mesmo com o mesmo e-mail ou telefone. No Omni ela aparece como outra pessoa, e nada liga uma visita à outra. O Nitzap não confirma que o e-mail ou o telefone é de quem preencheu; ligar as visitas por eles colocaria duas pessoas na mesma conversa.
 
-Por segurança, **o visitante vê só a conversa a partir daquele formulário**. O Nitzap não confirma que o e-mail ou o telefone é de quem preencheu; mostrar o histórico deixaria qualquer pessoa ler a conversa de outra só digitando o e-mail dela.
+Quando o atendimento é **fechado**, a janelinha limpa a conversa e volta ao formulário. Se o visitante quiser falar de novo, começa outra conversa.
 
 ## Problemas comuns
 
@@ -138,5 +138,5 @@ Por segurança, **o visitante vê só a conversa a partir daquele formulário**.
 | Não dá para salvar: **Deixe o e-mail ou o telefone como obrigatório**. | No **Formulário antes do chat**, deixe **E-mail** ou **Telefone** como **Obrigatório**. |
 | Aparece **Limite de conexões atingido** ao criar. | O chat do site conta como conexão. Remova uma conexão que não é mais usada ou fale com a DataGo para aumentar a licença. |
 | A conversa do site não aparece no Omni de um atendente. | O atendente precisa ser membro do chat do site (nº 4 em [Colocar o chat no site](#nitzap/chat-site/colocar-o-chat-no-site)). |
-| O visitante não viu a resposta. | Ele só vê com o site aberto. Quando voltar ao site no mesmo navegador, a resposta estará na conversa. O Nitzap não avisa por e-mail. |
+| O visitante não viu a resposta. | Ele só vê com a aba do site aberta. Se fechou a aba, a conversa não volta para ele, e o Nitzap não avisa por e-mail. |
 | Mudei a cor ou os textos e o site não mudou. | Recarregue a página do site. O código não precisa ser colado de novo. |
