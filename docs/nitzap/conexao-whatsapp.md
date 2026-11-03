@@ -229,9 +229,9 @@ Quando uma conexão fica inativa, ela aparece na lista marcada como **inativa** 
 ### Outros pontos da tela Gerenciar conexão
 
 - [Canal de envio vinculado (Api WEB Nitzap)](#nitzap/conexao-whatsapp/canal-de-envio-vinculado)
-- [Configurações](#nitzap/conexao-whatsapp/configuracoes-da-conexao)
+- [Configurações](#nitzap/nitzap-config/configuracoes-da-conexao)
 - [Etiquetas](etiquetas.md)
-- [Prompts IA](#nitzap/conexao-whatsapp/prompts-ia)
+- [Prompts IA](#nitzap/nitzap-config/prompts-ia-da-conexao)
 - [Templates Meta](#nitzap/templates/criar-o-template-pelo-salesforce)
 
 ## Canal de envio vinculado

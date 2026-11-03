@@ -107,6 +107,8 @@ Cada filtro precisa ter campo e valor; se ficar algum incompleto, o Nitzap avisa
 
 ## O que chega no WhatsApp
 
+![Mensagem de métrica recebida no WhatsApp, com a análise da IA](images/metricas-mensagem.png)
+
 A mensagem traz:
 
 - o **nome da métrica**;
