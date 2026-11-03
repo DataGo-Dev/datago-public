@@ -11,7 +11,7 @@ Se você só quer ler mensagens dentro do Salesforce, não precisa de webhook �
 - [Campos da configuração](#nitzap/webhooks/campo-a-campo)
 - [Formato do envio e novas tentativas](#nitzap/webhooks/o-envelope-o-que-chega-na-sua-url)
 - [Mensagens recebidas e enviadas](#nitzap/webhooks/on-message-exemplos-por-tipo-de-mensagem)
-- [Mensagens de grupo](#nitzap/webhooks/ongroupmessage-mensagem-de-grupo)
+- [Mensagens de grupo](#nitzap/webhooks/on-group-message-mensagem-de-grupo)
 - [Mensagem lida, editada ou apagada](#nitzap/webhooks/message-update-mensagem-que-mudou)
 - [Cliques em botões e respostas de Flow](#nitzap/webhooks/button-click-botao-e-flow-do-canal-oficial)
 - [Mensagem não entregue](#nitzap/webhooks/on-error-mensagem-nao-entregue)
