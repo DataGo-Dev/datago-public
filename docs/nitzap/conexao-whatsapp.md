@@ -2,6 +2,8 @@
 
 Cada número de WhatsApp usado no Nitzap é uma **conexão**. Você pode conectar um número de duas formas: lendo um **QR Code** com o celular (WhatsApp Web) ou pela **API oficial da Meta**, entrando com o Facebook. Este guia mostra as duas, de onde começar e o que fazer depois que o número aparece na lista.
 
+**Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela logo abaixo da imagem.
+
 <!-- sumario:inicio -->
 **Neste artigo:**
 
@@ -39,13 +41,30 @@ As duas formas de conexão abrem a mesma janela, **Adicionar conexão**. O ponto
 
    ![Menu do usuário com o link para o perfil](images/conexao-menu-perfil.png)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | Sua foto: abre o menu. |
+   | 2 | Seu nome: abre o perfil. |
+
 2. No perfil, abra a aba **Nitzap Config** e depois **Conexões**.
 
    ![Perfil do usuário com a aba Nitzap Config](images/conexao-perfil-nitzap-config.png)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | Aba **Nitzap Config**. |
+   | 2 | Menu **Conexões**. |
+   | 3 | Submenu **Conexões**: a lista de números. |
+   | 4 | **Adicionar conexão**. |
+
 3. Clique em **Adicionar conexão**. O contador ao lado mostra quantas conexões a organização já usa do limite contratado.
 
    ![Conexões WhatsApp e o botão Adicionar conexão](images/conexao-nitzap-config.png)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Adicionar conexão**: abre a janela de conexão. |
+   | 2 | Conexões em uso / limite contratado. |
 
 Uma conexão criada pelo Nitzap Config começa **sem membros**. Depois de conectar, adicione quem vai atender por ela (veja [Depois de conectar](#nitzap/conexao-whatsapp/depois-de-conectar-nome-e-membros)).
 
@@ -55,6 +74,10 @@ Uma conexão criada pelo Nitzap Config começa **sem membros**. Depois de conect
 2. No cartão **Nitzap Connect**, clique em **Conectar meu WhatsApp**.
 
    ![Cartão Nitzap Connect no perfil do usuário](images/conexao-nitzap-connect.png)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Conectar meu WhatsApp**. |
 
 Quando a conexão termina, **você entra automaticamente como membro** dela e o número passa a aparecer no cartão, em **Conexões que você participa**.
 
@@ -66,6 +89,11 @@ A janela **Adicionar conexão** pergunta como você quer conectar o número.
 
 ![Escolha entre WhatsApp (QR) e WhatsApp Business](images/conexao-tipo.png)
 
+| Nº | O que é |
+| :---: | --- |
+| 1 | **WhatsApp (QR)**: conexão pelo QR Code. |
+| 2 | **WhatsApp Business**: API oficial, pelo Facebook. |
+
 - **WhatsApp (QR):** siga a seção [Conectar via QR Code](#nitzap/conexao-whatsapp/conectar-via-qr-code).
 - **WhatsApp Business:** siga a seção [Conectar pela API oficial (Coexistência)](#nitzap/conexao-whatsapp/conectar-pela-api-oficial-coexistencia).
 
@@ -74,6 +102,11 @@ A janela **Adicionar conexão** pergunta como você quer conectar o número.
 1. Em **Escolha como conectar**, deixe **QR Code** selecionado e clique em **Gerar conexão**.
 
    ![Opção QR Code selecionada](images/conexao-qr-code.png)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **QR Code** selecionado. |
+   | 2 | **Gerar conexão**: mostra o QR Code. |
 
 2. O QR Code aparece na tela. No celular, abra o WhatsApp e vá em **Aparelhos conectados** > **Conectar aparelho**.
 3. Aponte a câmera do celular para o QR Code da tela.
@@ -91,6 +124,12 @@ Se não der para ler o QR Code, use um código de pareamento:
 
 ![Opção Código com o número com DDI](images/conexao-qr-codigo.png)
 
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Código** selecionado. |
+| 2 | **Número com DDI**: só dígitos. |
+| 3 | **Gerar conexão**: mostra o código. |
+
 O Nitzap espera a leitura por até 10 minutos. Se passar disso, aparece **"Tempo esgotado aguardando a conexão"**: clique em **Gerar conexão** de novo para gerar um novo QR Code ou código.
 
 ## Conectar pela API oficial (Coexistência)
@@ -106,13 +145,28 @@ Em **Como este número é usado hoje?**, deixe selecionado **API Coex (Coexistê
 
 ![Opção API Coex (Coexistência)](images/conexao-waba-coex.png)
 
+| Nº | O que é |
+| :---: | --- |
+| 1 | **API Coex (Coexistência)** selecionado. |
+| 2 | **Entrar com Facebook**. |
+
 Abre uma janela **Conectando ao WhatsApp Business**. Mantenha essa janela aberta: ela fecha sozinha no final.
 
 ![Janela Conectando ao WhatsApp Business](images/conexao-facebook-janela.png)
 
+| Nº | O que é |
+| :---: | --- |
+| 1 | Aviso para manter a janela aberta até ela fechar sozinha. |
+
 Se o navegador bloquear o pop-up do Facebook, libere pop-ups para o site (no Chrome, clique no ícone de pop-up bloqueado na barra de endereço e escolha **Sempre permitir**) e clique no link do facebook na parte superior.
 
 ![Aviso de pop-up bloqueado no navegador](images/conexao-facebook-popup-bloqueado.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Ícone de pop-up bloqueado, na barra de endereço. |
+| 2 | Link do Facebook: clique para abrir a janela. |
+| 3 | **Sempre permitir**: libera os pop-ups do site. |
 
 ### 2. Seguir os passos no Facebook
 
@@ -120,21 +174,45 @@ Se o navegador bloquear o pop-up do Facebook, libere pop-ups para o site (no Chr
 
    ![Início do cadastro no Facebook](images/conexao-facebook-inicio.png)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Continuar**. |
+
 2. Em **Adicione seu número de telefone do WhatsApp**, informe o número que está no app WhatsApp Business, escolha como receber a verificação (**SMS** ou **Ligação telefônica**) e clique em **Avançar**.
 
    ![Número de telefone do WhatsApp](images/conexao-facebook-numero.png)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | Número que está no app WhatsApp Business. |
+   | 2 | Como receber a verificação: **SMS** ou **Ligação telefônica**. |
+   | 3 | **Avançar**. |
 
 3. Em **Verifique os detalhes da sua conta**, confira o nome e a foto do perfil comercial e clique em **Avançar**. Se algo estiver errado, volte e corrija o número.
 
    ![Detalhes da conta do WhatsApp Business](images/conexao-facebook-detalhes.png)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | Nome e foto do perfil comercial. |
+   | 2 | **Avançar**. |
+
 4. Em **Portfólio empresarial**, escolha o portfólio (Business Manager) da empresa e clique em **Avançar**.
 
    ![Seleção do portfólio empresarial](images/conexao-facebook-portfolio.png)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | Portfólio empresarial (Business Manager) da empresa. |
+   | 2 | **Avançar**. |
+
 5. A tela **Importar contatos e histórico de conversas** mostra um QR Code para ler com o app WhatsApp Business. Deixe essa tela aberta e pegue o celular: o botão **Avançar** só é liberado depois que você confirmar no celular.
 
    ![QR Code do Facebook para ler com o app WhatsApp Business](images/conexao-facebook-qr-code.png)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | QR Code para ler com o app WhatsApp Business. O **Avançar** só é liberado depois da confirmação no celular. |
 
 ### 3. Confirmar no celular
 
@@ -144,9 +222,17 @@ Ao mesmo tempo em que o QR Code aparece no Facebook, o WhatsApp Business do celu
 
    ![Mensagem do Facebook Business no WhatsApp](images/conexao-celular-mensagem.jpeg)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Connect**, na mensagem mais recente. |
+
 2. Na tela **Conectar à Plataforma comercial**, toque em **Conectar à Plataforma comercial**.
 
    ![Tela Conectar à Plataforma comercial](images/conexao-celular-plataforma-comercial.jpeg)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Conectar à Plataforma comercial**. |
 
 3. Escolha se quer trazer o histórico e toque em **Confirmar**:
    - **Compartilhar todas as conversas:** traz até 6 meses de histórico das conversas individuais. Histórico de grupos não é compartilhado.
@@ -154,13 +240,27 @@ Ao mesmo tempo em que o QR Code aparece no Facebook, o WhatsApp Business do celu
 
    ![Escolha de compartilhar o histórico de conversas](images/conexao-celular-historico.jpeg)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Compartilhar todas as conversas**. |
+   | 2 | **Não compartilhar conversas**. |
+   | 3 | **Confirmar**. |
+
 4. Aguarde. A conexão pode levar até 45 segundos.
 
    ![Conectando a conta no celular](images/conexao-celular-conectando.jpeg)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | Conectando: pode levar até 45 segundos. |
+
 5. Quando aparecer **Sua conta está conectada à empresa Datago Tecnologia**, toque em **OK**.
 
    ![Conta conectada à Datago Tecnologia no celular](images/conexao-celular-conectado.jpeg)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **OK**. |
 
 Para manter a coexistência ativa, **abra o app WhatsApp Business no celular pelo menos uma vez a cada 14 dias**. A conexão pode ser gerenciada no app em **Configurações** > **Conta** > **Plataforma comercial**.
 
@@ -172,13 +272,27 @@ Volte para a janela do Facebook no computador e clique em **Avançar** na tela d
 
    ![Nome da conta do WhatsApp Business e fuso horário](images/conexao-facebook-conta-waba.png)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Nome da conta** do WhatsApp Business. |
+   | 2 | **Fuso horário**. |
+   | 3 | **Avançar**. |
+
 2. Em **Reveja o que você vai compartilhar com Datago API**, confira a empresa, a conta do WhatsApp e as permissões e clique em **Confirmar**.
 
    ![Permissões solicitadas pela Datago API](images/conexao-facebook-permissoes.png)
 
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Confirmar**. |
+
 3. Na tela **Sua conta está conectada a Datago Tecnologia**, clique em **Concluir**. A forma de pagamento da Meta pode ser cadastrada depois.
 
    ![Conta conectada à Datago Tecnologia no Facebook](images/conexao-facebook-concluido.png)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Concluir**. A forma de pagamento pode ser cadastrada depois. |
 
 Aguarde a janela do Facebook fechar e o número aparece na lista de conexões com a etiqueta **Coex (Meta)**.
 
@@ -188,18 +302,22 @@ O caminho é o mesmo: selecione **API Cloud (só API oficial)** e clique em **En
 
 ![Opção API Cloud (só API oficial)](images/conexao-waba-cloud.png)
 
+| Nº | O que é |
+| :---: | --- |
+| 1 | **API Cloud (só API oficial)** selecionado. |
+| 2 | **Entrar com Facebook**. |
+
 ## Depois de conectar: nome e membros
 
 A conexão nova aparece em **Nitzap Config** > **Conexões**, identificada pelo número.
 
 ![Lista de conexões com a conexão nova](images/conexao-lista.png)
 
-Cada conexão tem dois botões:
-
-| Botão | O que faz |
-| --- | --- |
-| **Engrenagem** (⚙) | Abre **Gerenciar conexão**, onde você dá nome à conexão e adiciona membros. |
-| **Lixeira** | Remove a conexão. O Nitzap pede confirmação antes. Ao confirmar, o WhatsApp é desconectado e **todos os membros saem da conexão**. Para usar o número de novo, será preciso conectá-lo do zero, com um novo QR Code ou um novo login no Facebook. |
+| Nº | O que é |
+| :---: | --- |
+| 1 | A conexão nova, com o número e o tipo (aqui, **Coex (Meta)**). |
+| 2 | **Engrenagem** (⚙): abre **Gerenciar conexão**, onde você dá nome à conexão e adiciona membros. |
+| 3 | **Lixeira**: remove a conexão. O Nitzap pede confirmação antes. Ao confirmar, o WhatsApp é desconectado e **todos os membros saem da conexão**. Para usar o número de novo, será preciso conectá-lo do zero, com um novo QR Code ou um novo login no Facebook. |
 
 Clique na engrenagem (⚙) para continuar.
 
@@ -216,9 +334,22 @@ Os membros são os usuários do Salesforce que atendem por essa conexão.
 
 ![Gerenciar conexão: nome e busca de usuário](images/conexao-gerenciar-membros.png)
 
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Nome da conexão**. |
+| 2 | **Salvar nome**. |
+| 3 | Aba **Membros**. |
+| 4 | **Adicionar usuário**: busque pelo nome. |
+| 5 | **Adicionar**. |
+| 6 | **Reconectar** (veja [Reconectar](#nitzap/conexao-whatsapp/reconectar)). |
+
 O usuário aparece na lista de membros. Repita para cada pessoa que vai usar o número.
 
 ![Membro adicionado à conexão](images/conexao-membro-adicionado.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Membro adicionado à conexão. |
 
 ### Reconectar
 
@@ -248,8 +379,6 @@ Uma conexão pela **API oficial com Coexistência** pode ter também um **canal 
 **Atenção:** o canal vinculado usa o WhatsApp por um caminho que não é o oficial da Meta. Esse uso é por conta e risco da empresa.
 
 O canal vinculado só aparece em conexões **Coexistência**. Não aparece nas conexões só QR Code nem nas **API Cloud (só API oficial)**, porque o número da API Cloud não existe mais no celular.
-
-**Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela logo abaixo da imagem.
 
 ### 1. Vincular o número pelo QR Code
 
