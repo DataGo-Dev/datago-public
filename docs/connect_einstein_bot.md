@@ -92,7 +92,7 @@ Clique na engrenagem da conexão e vá na aba **Configurações**. O bloco **Bot
 | **Resposta automática (bot/agente)** | Escolha `Agentforce (agente)` ou `Einstein Bot`. Só um por conexão |
 | **Agentforce: agente desta conexão** | Busque e selecione o agente do Salesforce. **Obrigatório**: com a resposta automática ligada e sem agente escolhido, aparece o aviso amarelo e nada é respondido |
 | **Ociosidade da sessão do bot (min)** | Tempo sem mensagem do cliente após o qual o agente esquece a conversa e começa uma sessão nova na próxima mensagem. Se houver mensagem por falta de resposta, ela é enviada neste momento. Vazio usa 30 minutos |
-| **Pausa após atendimento humano (min)** | Depois que alguém da equipe manda mensagem pelo Nitzap, o agente fica em silêncio por estes minutos, contados da última mensagem da equipe. Vale também quando é a equipe que inicia a conversa: o vendedor manda a saudação, o cliente responde e quem recebe é o vendedor, não o agente. Se houver mensagem por falta de resposta, ela é enviada quando este tempo vence sem o cliente responder. Enquanto o cliente espera na fila, depois que o agente transfere, este tempo não conta: o agente aguarda um atendente responder, por até 24 horas. Disparos em massa não pausam o agente. Vazio usa 8 horas |
+| **Pausa após atendimento humano (min)** | Depois que alguém da equipe manda mensagem pelo Nitzap, o agente fica em silêncio por estes minutos, contados da última mensagem da equipe. Vale também quando é a equipe que inicia a conversa: o vendedor manda a saudação, o cliente responde e quem recebe é o vendedor, não o agente. Se houver mensagem por falta de resposta, ela é enviada quando este tempo vence sem o cliente responder. Se o cliente responde enquanto este tempo corre, ele para de contar: o agente aguarda um vendedor responder, por até 24 horas. Enquanto o cliente espera na fila, depois que o agente transfere, este tempo também não conta: o agente aguarda um atendente responder, por até 24 horas. Disparos em massa não pausam o agente. Vazio usa 8 horas |
 | **Mensagem por falta de resposta** | Texto enviado quando o contato para de responder. Na conversa com o agente, sai ao fim da ociosidade da sessão. Depois que um vendedor responde, sai ao fim da pausa após atendimento humano, contada da última mensagem do vendedor. Enquanto o cliente espera na fila, sem resposta de um vendedor, nada é contado. Com qualquer um desses tempos em 24 horas ou mais, a mensagem não é enviada naquele caso. Vazio desliga |
 
 Pronto. A partir daí, mensagem recebida nesse número é respondida pelo agente.
@@ -218,12 +218,13 @@ Existe um teto de segurança de 24 horas. Se ninguém da equipe responder nem en
 
 ![Campo Pausa após atendimento humano](images/bot-pausa-atendimento-humano.png)
 
-É o tempo que o agente fica em silêncio depois que um vendedor fala, para não atrapalhar o atendimento humano. Ela começa na primeira mensagem do vendedor e recomeça a cada mensagem dele.
+É o prazo que o cliente tem para responder ao vendedor. Enquanto ela corre, o agente fica em silêncio, para não atrapalhar o atendimento humano. Ela começa na mensagem do vendedor e recomeça a cada mensagem dele. Quando quem falou por último é o cliente, não existe prazo: o agente espera um vendedor responder.
 
 | Momento | O que acontece |
 |---|---|
 | O agente transferiu e o cliente espera na fila | A pausa ainda não conta. O agente fica em silêncio até um atendente responder, por até 24 horas |
 | Um vendedor respondeu | A pausa conta a partir da última mensagem dele. Se o cliente não responder até o fim, a mensagem por falta de resposta é enviada e o atendimento é encerrado |
+| O cliente respondeu ao vendedor | A pausa para de contar. O agente fica em silêncio até um vendedor responder, por até 24 horas |
 | O atendimento foi encerrado | O agente volta a atender na próxima mensagem do cliente, sem esperar a pausa |
 
 ## Quando a mensagem por falta de resposta é enviada?
@@ -245,9 +246,18 @@ Foi removido. O tempo da mensagem passou a ser o da ociosidade e o da pausa. Em 
 
 ## Posso deixar a pausa bem curta para encerrar rápido quem não responde ao vendedor?
 
-Pode. A pausa só conta depois que um vendedor responde, então um valor curto, como 5 minutos, encerra rápido o cliente que parou de responder ao vendedor e não faz o agente reassumir quem ainda está esperando na fila.
+Pode. A pausa só conta enquanto o cliente deve uma resposta ao vendedor, então um valor curto, como 5 minutos, encerra rápido o cliente que parou de responder e não faz o agente reassumir quem está esperando um atendente, seja na fila, seja depois de responder ao vendedor.
 
 O que um valor curto muda é o outro lado: se o vendedor ficar esse tempo sem escrever e o cliente também não responder, o atendimento é encerrado. Escolha um tempo que dê folga para o vendedor trabalhar.
+
+## Transferi o atendimento para outro vendedor. O bot pode voltar?
+
+A transferência entre pessoas não muda a contagem: a pausa continua valendo a partir da última mensagem de quem transferiu. O que decide é quem falou por último.
+
+- **O cliente respondeu depois da última mensagem do vendedor:** o agente fica em silêncio esperando o novo responsável, por até 24 horas. Não há prazo para o vendedor.
+- **O cliente não respondeu:** quando a pausa vence, a mensagem por falta de resposta é enviada e o atendimento é encerrado, mesmo que o novo responsável ainda não tenha escrito.
+
+Por isso, quem recebe uma transferência deve escrever ao cliente ao assumir: a mensagem dele recomeça a pausa e deixa claro que a conversa tem dono.
 
 ## O bot se despediu sem transferir e parou de responder. Por quê?
 
