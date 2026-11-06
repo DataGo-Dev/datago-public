@@ -174,12 +174,30 @@ Se o áudio cair no meio da ligação, aparece **"O áudio caiu. Se não voltar 
 
 ## Receber uma ligação
 
-Quando um cliente liga para uma conexão com as chamadas ligadas:
+Quando um cliente liga para uma conexão com as chamadas ligadas, o Nitzap **toca** (com som), mesmo que você esteja em outra página do Salesforce.
 
-- o Nitzap **toca** e a aba **Nitzap** do rodapé pisca com o nome de quem liga (por exemplo, *📞 Larissa Datago ligando*);
-- o painel do Nitzap abre e mostra a ligação no topo, com os botões **Atender** e **Recusar**;
-- todos os membros da conexão recebem a ligação. Quem atender primeiro fica com ela, e para os outros aparece **Atendida por outra pessoa**;
-- nas conexões QR Code e Coexistência, o celular da conexão também toca. Se alguém atender pelo celular, o Nitzap mostra **Atendida em outro aparelho**.
+**1. A aba Nitzap do rodapé fica verde e pisca.** Ela pode mostrar também o nome de quem liga (por exemplo, *📞 Larissa Datago ligando*).
+
+![Aba Nitzap do rodapé piscando com uma ligação chegando](images/chamadas-aba-tocando.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Aba Nitzap** do rodapé, verde, avisando que tem uma ligação chegando. |
+
+**2. O painel do Nitzap abre sozinho** e mostra a ligação no topo, em verde, com **Tocando…** abaixo do nome:
+
+![Ligação chegando no Nitzap, com os botões Atender e Recusar](images/chamadas-recebendo.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Conexão** que está recebendo a ligação. O nome de quem liga aparece ao lado. |
+| 2 | **Atender** (verde): atende a ligação no Nitzap. |
+| 3 | **Recusar** (vermelho): recusa a ligação. |
+
+Quem pode atender:
+
+- **Todos os membros da conexão** recebem a ligação ao mesmo tempo. Quem atender primeiro fica com ela, e para os outros aparece **Atendida por outra pessoa**.
+- Nas conexões **QR Code** e **Coexistência**, o celular da conexão também toca. Se alguém atender pelo celular, o Nitzap mostra **Atendida em outro aparelho**.
 
 Cada conexão atende uma ligação por vez. Se chegar outra ligação enquanto a conexão já está em uma chamada, ou enquanto você já está em uma, ela aparece como **Tocando · conexão ocupada**, sem toque e só com o botão **Recusar**.
 
