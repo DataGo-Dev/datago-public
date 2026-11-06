@@ -8,6 +8,7 @@ O disparo de campanha envia um template aprovado na Meta para todos os membros d
 **Neste artigo:**
 
 - [O que é preciso antes de disparar](#nitzap/disparo-campanha/antes-de-comecar)
+- [Adicionar os membros da campanha](#nitzap/disparo-campanha/adicionar-os-membros-da-campanha)
 - [Criar um disparo passo a passo](#nitzap/disparo-campanha/1-abrir-a-aba-disparos-whatsapp)
 - [Acompanhar o resultado do disparo](#nitzap/disparo-campanha/5-acompanhar-o-disparo)
 - [Cancelar um disparo agendado](#nitzap/disparo-campanha/cancelar-um-disparo-agendado)
@@ -27,6 +28,31 @@ Confira estes quatro pontos. Quase todo "não consigo disparar" é um deles.
 - **Template aprovado na Meta** nessa conexão. Template em análise ou recusado não aparece. Para criar um, veja [Templates do WhatsApp](#nitzap/templates).
 - **Membros com WhatsApp.** Só recebe o membro (Lead ou Contato) com o campo **Nitzap WhatsApp Id** preenchido (em Conta Pessoal, vale o campo da Conta). O topo da aba mostra quantos membros da campanha têm WhatsApp.
 - **Aba na página da Campanha.** Se a aba **Disparos WhatsApp** não aparece, peça ao administrador do Salesforce para adicionar o componente **Nitzap: Campaign Template Manager Tabs** à página de registro de Campanha, no Criador de Aplicativo Lightning.
+
+## Adicionar os membros da campanha
+
+O disparo vai para os **membros** da Campanha. Antes de disparar, adicione os Leads e Contatos que devem receber a mensagem. Isso é feito na própria Campanha, com os recursos padrão do Salesforce:
+
+![Aba Membros da Campanha](images/campanha-membros.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Aba Membros:** a lista de membros da Campanha. O nome das abas pode mudar de uma empresa para outra. Na imagem, a aba do disparo se chama **Whatsapp Em Massa**. |
+| 2 | **Campaign Members (Membros da campanha):** quantas pessoas estão na campanha. |
+| 3 | **Add Leads (Adicionar leads):** busca e adiciona Leads. |
+| 4 | **Add Contacts (Adicionar contatos):** busca e adiciona Contatos. |
+| 5 | **Mais ações** da lista de membros. |
+| 6 | **View All (Ver todos):** abre a lista completa, para conferir ou remover membros. |
+
+Para adicionar:
+
+1. Na aba **Membros**, clique em **Add Leads** ou **Add Contacts**.
+2. Busque e marque as pessoas que devem receber a mensagem.
+3. Clique em **Next (Avançar)**, escolha o status do membro (por exemplo, **Sent**) e confirme.
+
+Também dá para adicionar várias pessoas de uma vez pela lista de Leads ou de Contatos: marque as linhas e use **Add to Campaign (Adicionar à campanha)**.
+
+Confira se cada membro tem WhatsApp: só recebe quem tem o campo **Nitzap WhatsApp Id** preenchido (veja [Antes de começar](#nitzap/disparo-campanha/antes-de-comecar)). O topo da aba de disparo mostra quantos membros têm WhatsApp. Se dois membros tiverem o mesmo número, veja [Números duplicados](#nitzap/disparo-campanha/numeros-duplicados).
 
 ## 1. Abrir a aba Disparos WhatsApp
 
