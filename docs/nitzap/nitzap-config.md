@@ -109,7 +109,7 @@ A tela de cada conexão tem o nome, o [canal de envio vinculado](#nitzap/conexao
 | Aba | O que tem | Onde está explicado |
 | --- | --- | --- |
 | **Membros** | Quem atende por este número. | [Adicionar membros](#nitzap/conexao-whatsapp/adicionar-membros) |
-| **Configurações** | Respostas automáticas de IA, bot ou agente, atendimento e regras de compartilhamento. | [Abaixo](#nitzap/nitzap-config/configuracoes-da-conexao) |
+| **Configurações** | Respostas automáticas de IA, bot ou agente, atendimento, regras de compartilhamento e chamadas de voz. | [Abaixo](#nitzap/nitzap-config/configuracoes-da-conexao) |
 | **Etiquetas** | Quais etiquetas valem neste número. | [Liberar etiquetas em uma conexão](#nitzap/etiquetas/liberar-etiquetas-em-uma-conexao) |
 | **Prompts IA** | Instruções extras para os resumos de IA deste número. | [Abaixo](#nitzap/nitzap-config/prompts-ia-da-conexao) |
 | **Templates Meta** | Criar e ver os templates da Meta (só conexões oficiais). | [Criar o template pelo Salesforce](#nitzap/templates/criar-o-template-pelo-salesforce) |
@@ -135,6 +135,8 @@ A tela de cada conexão tem o nome, o [canal de envio vinculado](#nitzap/conexao
 | 13 | **Usuários Prioritários** | Quem recebe as conversas de números não cadastrados ou de donos que não estão conectados. Vazio: todos os membros recebem. |
 
 Os tempos do bot (nº 7 a 9) e as dúvidas mais comuns sobre eles estão explicados em detalhe no [guia do Einstein Bot e Agentforce](#connect_einstein_bot/configurando-o-agente-bot).
+
+Nas versões mais novas do Nitzap, esta aba tem também o bloco **Chamadas de voz**, que libera as ligações pelo Nitzap nesta conexão. Veja [Chamadas de voz](#nitzap/chamadas-de-voz/habilitar-as-chamadas-na-conexao-administrador).
 
 #### Prompts IA da conexão
 

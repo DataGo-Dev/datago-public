@@ -76,6 +76,8 @@ Abra a aba **Templates Meta**. Ela só aparece nas conexões oficiais e precisa 
 
 O botão **Criar template** só liga quando o nome, o corpo e todos os exemplos estão preenchidos (e a imagem foi enviada, se o cabeçalho for **Imagem**).
 
+O formulário tem também a opção **Pedir permissão para ligar**. Ligada, ela troca os botões de resposta rápida pelo botão **Permitir ligações**, que o cliente usa para autorizar ligações do número. Ela serve para as [chamadas de voz na API Cloud](#nitzap/chamadas-de-voz/api-cloud-pedir-permissao-para-ligar).
+
 | Variável de atalho | Como é preenchida no envio pelo Omni |
 | --- | --- |
 | `{{nome_cliente}}` | Primeiro nome do contato, quando a conversa tem um registro vinculado no Salesforce. |
