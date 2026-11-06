@@ -1,5 +1,13 @@
 [
   {
+    "id": 435525526,
+    "tag_name": "v1.759.0",
+    "name": "1.759.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000sQOvIAM)\n\n## Chamadas de voz na conexão oficial\nAs chamadas de voz pelo WhatsApp, que chegaram na versão 1.758.0 para as conexões por QR Code, agora funcionam também na conexão oficial. O admin liga a opção **Habilitar chamadas de voz** nas configurações da conexão e o botão de ligar aparece nas conversas dela.\n\n- **Coexistência (oficial com o app WhatsApp Business):** a ligação sai pelo canal de envio vinculado (QR), que precisa estar conectado. O celular da conexão continua tocando junto.\n- **Número só na API (sem o app):** a ligação vai direto pela Meta, e os clientes passam a ver o botão de ligar quando conversam com o número. Para o Nitzap ligar para um cliente, ele precisa ter autorizado antes.\n- **Template que pede permissão para ligar:** na criação de template, a nova opção **Pedir permissão para ligar** coloca no template o botão da Meta \"Permitir ligações\". O cliente autoriza ligações deste número por 7 dias ou sem prazo. Esse template não leva botões de resposta rápida.\n\nAs chamadas na conexão oficial dependem da atualização do servidor do Nitzap.\n\n## Chamadas de voz no Experience Cloud\nA barra do Nitzap nos sites do Experience Cloud também faz e recebe chamadas. Quando alguém liga, o botão Nitzap pisca mostrando quem está ligando e o painel abre com a chamada.\n\n## Cliente que respondeu ao vendedor não volta para o bot\nQuando o cliente responde a um vendedor, o bot agora fica em silêncio até um vendedor responder de volta, por até 24 horas. Antes, se o vendedor demorasse mais que a **Pausa após atendimento humano** para responder, a próxima mensagem do cliente ia para o bot, que recomeçava a triagem com quem já estava sendo atendido. Isso vale também depois de uma transferência entre vendedores, enquanto o novo responsável não escreve.\n\nA pausa passa a ser só o prazo do cliente: conta da última mensagem do vendedor e, se o cliente não responder até o fim, a mensagem por falta de resposta é enviada e o atendimento é encerrado, como antes. O atendimento continua liberando o bot na hora em que é encerrado.\n\nEsta mudança é no servidor do Nitzap e não depende de atualizar o pacote.\n",
+    "published_at": "2026-11-06T14:34:28Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.759.0"
+  },
+  {
     "id": 425787734,
     "tag_name": "v1.758.0",
     "name": "1.758.0",
