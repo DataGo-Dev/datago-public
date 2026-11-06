@@ -43,10 +43,37 @@ Para saber o tipo de cada conexão, veja a etiqueta ao lado do nome em **Nitzap 
 
 ## Antes de começar
 
-- **O Nitzap precisa estar na barra de utilitários**, no rodapé do Salesforce. É ele que faz, toca e atende as ligações. O botão de ligar aparece também nas outras telas do Nitzap, como o Nitzap Web, mas a ligação acontece no painel do rodapé, que abre sozinho.
+### O Nitzap precisa estar no rodapé do Salesforce
+
+As ligações acontecem no **Nitzap do rodapé** do Salesforce, o item **Nitzap** no canto inferior esquerdo da tela (a barra de utilitários). É nele que a ligação toca, é atendida e fica aberta enquanto você fala.
+
+![Nitzap no rodapé do Salesforce](images/omni-compacto.png)
+
+Se o item **Nitzap** não aparece no rodapé, peça ao administrador para incluir no aplicativo do Salesforce. Sem ele, não dá para ligar nem atender.
+
+Você pode clicar em ligar em qualquer tela do Nitzap, como o **Nitzap Web**. A ligação abre sempre no Nitzap do rodapé, que aparece sozinho por cima da tela em que você está:
+
+![Ligação feita pelo Nitzap Web abrindo no Nitzap do rodapé](images/chamadas-nitzap-web.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Nitzap Web:** a tela em que você estava atendendo. |
+| 2 | **Botão de ligar** da conversa: foi clicado aqui. |
+| 3 | **Nitzap do rodapé:** abriu sozinho, por cima do Nitzap Web. |
+| 4 | **A ligação**, com os botões **Mudo** e **Desligar**. Ela fica aqui até terminar, mesmo se você mudar de página no Salesforce. Evite recarregar a página durante a ligação. |
+
+### Microfone e fone de ouvido
+
 - **Libere o microfone** quando o navegador pedir, na primeira ligação. Sem o microfone, o cliente não ouve você.
 - **Use fone de ouvido** com microfone, para o som do alto-falante não voltar para o cliente.
-- **API Cloud:** o áudio vai direto do navegador para a Meta. Algumas redes de empresa bloqueiam esse tipo de conexão. Se a ligação não completar, veja [Problemas comuns](#nitzap/chamadas-de-voz/problemas-comuns).
+
+### API Cloud: a rede da empresa precisa deixar a ligação passar
+
+Na conexão **API Cloud**, a voz vai pela internet do computador direto para o WhatsApp, sem passar pelo servidor do Nitzap. Algumas empresas têm firewall que bloqueia esse tipo de ligação. Quando isso acontece, a ligação não completa e aparece o aviso **"Não foi possível conectar o áudio ao WhatsApp. A rede pode estar bloqueando a ligação."**
+
+Nesse caso, teste em outra rede (por exemplo, o roteador do celular). Se funcionar, peça à equipe de TI para liberar as chamadas de voz do WhatsApp (WebRTC) na rede da empresa.
+
+Nas conexões **QR Code** e **Coexistência** esse bloqueio é raro, porque a voz passa pelo servidor do Nitzap.
 
 ## Habilitar as chamadas na conexão (administrador)
 
