@@ -264,13 +264,13 @@ Na caixa de mensagem da conversa, clique no botão de templates. A aba **Nitzap*
 
 | Nº | O que é |
 | :---: | --- |
-| 1 | Aba **Nitzap:** os templates do Nitzap. A aba **Meta** tem os templates aprovados pela Meta (veja [Enviar o template pelo Omni](#nitzap/templates/enviar-o-template-pelo-omni)). |
-| 2 | **Gerenciar:** abre a janela **Nitzap Templates**, para criar e editar. |
-| 3 | **Compartilhados comigo:** os templates que outros usuários compartilharam. |
-| 4 | **Pasta:** clique para abrir e ver os templates de dentro. |
-| 5 | **Template:** uma mensagem pronta. Use a busca acima para achar pelo nome. |
-| 6 | **Play:** aparece ao passar o mouse no template. Abre a prévia para enviar. |
-| 7 | **Botão de templates** da caixa de mensagem. |
+| 1 | **Botão de templates**, na caixa de mensagem da conversa. Abre a lista. |
+| 2 | Aba **Nitzap:** os templates do Nitzap. A aba **Meta** tem os templates aprovados pela Meta (veja [Enviar o template pelo Omni](#nitzap/templates/enviar-o-template-pelo-omni)). |
+| 3 | **Gerenciar:** abre a janela **Nitzap Templates**, para criar e editar. |
+| 4 | **Buscar template:** procura pelo nome. |
+| 5 | **Compartilhados comigo:** os templates que outros usuários compartilharam. |
+| 6 | **Pasta:** clique para abrir e ver os templates de dentro (aqui, **Abertura** e **Novembro**). |
+| 7 | **Template:** uma mensagem pronta. Ao passar o mouse, aparece o **play**, que abre a prévia para enviar. |
 
 O administrador também abre a mesma janela por **Nitzap Config** > **Templates** > **Gerenciar Templates**:
 
@@ -342,7 +342,7 @@ O template ou a pasta passa a aparecer para **todos os outros usuários** do Nit
 
 ### 5. Enviar pela conversa
 
-1. Na aba **Nitzap** do botão de templates, passe o mouse no template e clique no **play** (nº 6 da lista).
+1. Na aba **Nitzap** do botão de templates, passe o mouse no template e clique no **play** (nº 7 da lista).
 2. Confira a prévia e preencha as variáveis:
 
    ![Visualizar Template antes de enviar](images/nitzap-tpl-enviar.png)
