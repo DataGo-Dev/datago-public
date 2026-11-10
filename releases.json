@@ -1,5 +1,13 @@
 [
   {
+    "id": 439402278,
+    "tag_name": "v1.760.0",
+    "name": "1.760.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000ug2zIAA)\n\n## Fila para quem escreve sem atendimento\nNas configurações da conexão, com **Habilitar atendimento** ligado, aparece o campo **Fila para quem escrever sem atendimento**. Quando um contato salvo no CRM manda mensagem e não há atendimento aberto com ele naquela conexão, o atendimento abre sozinho nessa fila: os membros recebem o aviso de chegada na fila no Omni e puxam como de costume. O início do atendimento fica na hora em que o cliente escreveu, mesmo que ninguém estivesse com o Salesforce aberto naquele momento.\n\n- Contato que não está salvo no CRM continua só na lista de conversas.\n- Em conexão com bot ou agente, o bot atende primeiro e decide a transferência.\n- A fila precisa aceitar Tarefas (Configuração > Filas > Objetos com suporte).\n\nDepende da atualização do servidor do Nitzap.\n\n## Gravação de chamadas de voz\nNas configurações da conexão, com as chamadas de voz habilitadas, aparece a opção **Gravar chamadas**. Ligada, a gravação aparece na conversa logo depois que a ligação termina: o próprio balão da chamada ganha o player e o botão **Transcrever**. Na aba **Chamadas** do Omni, a linha da chamada gravada também traz o áudio, que só baixa quando você dá play.\n\n- Na conexão só pela API oficial, a Meta avisa os dois lados antes de gravar e fala a finalidade, definida no campo **Finalidade da gravação**. Em branco, vale \"melhorar a qualidade do atendimento\".\n- Nas demais conexões, o cliente não ouve aviso de gravação.\n\nDepende da atualização do servidor do Nitzap.\n\n## Correções\n- **Fluxo ao fechar atendimento volta a ser salvo:** nas configurações da conexão, o Flow escolhido em **Fluxo ao fechar atendimento** não era gravado, e ao recarregar a tela o campo voltava vazio. Agora a escolha fica salva e o Flow abre ao fechar o atendimento daquela conexão.\n- **Chat do registro só mostra conversas que você pode ver:** usuário sem conexão própria, ao abrir um contato, via a conversa de outra conexão da org, com o aviso \"A conexão deste número não está ativa no momento\". Agora o chat abre na conexão mais recente de um usuário que você enxerga pela hierarquia e, se não houver nenhuma, mostra que não há mensagens. **Mídias** e **Buscar** só aparecem quando há uma conexão selecionada.\n",
+    "published_at": "2026-11-10T12:35:26Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.760.0"
+  },
+  {
     "id": 435525526,
     "tag_name": "v1.759.0",
     "name": "1.759.0",
