@@ -216,6 +216,8 @@ Aqui ficam as **mensagens prontas internas** do Nitzap, que não passam pela Met
 
 As mensagens prontas aparecem para os usuários na aba **Nitzap** do botão de templates, na caixa de mensagem do Omni, e no [agendamento](#nitzap/omni/agendar-envio). Elas funcionam em qualquer conexão; nas conexões oficiais, só são entregues se o cliente escreveu nas últimas 24 horas.
 
+Como criar pastas, montar as mensagens, usar variáveis, compartilhar e enviar: veja [Templates do Nitzap (mensagens prontas)](#nitzap/templates/templates-do-nitzap-mensagens-prontas).
+
 ## Opt-out
 
 A lista de números que **não recebem template**, as palavras que tiram e colocam de volta na lista e as respostas automáticas de confirmação.

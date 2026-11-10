@@ -1,8 +1,8 @@
-# 10. Templates do WhatsApp (modelos da Meta)
+# 10. Templates do WhatsApp (Meta e Nitzap)
 
 O template (na Meta, **modelo de mensagem**) é uma mensagem pronta que precisa ser aprovada pela Meta antes de ser usada. Nas conexões oficiais (**Coexistência** e **API Cloud**), ele é obrigatório para iniciar uma conversa, para retomar uma conversa em que o cliente não escreve há mais de 24 horas e para os [disparos de campanha](#nitzap/disparo-campanha).
 
-Este guia mostra como criar o template pelo Salesforce ou pela Meta, acompanhar a aprovação e enviar o template pelo Nitzap Omni.
+Este guia mostra como criar o template pelo Salesforce ou pela Meta, acompanhar a aprovação e enviar o template pelo Nitzap Omni. No fim, explica os [templates do Nitzap](#nitzap/templates/templates-do-nitzap-mensagens-prontas): mensagens prontas internas, que não passam pela Meta e funcionam em qualquer conexão.
 
 **Como ler as imagens:** os círculos vermelhos numerados apontam para a parte da tela que está sendo explicada. O número no círculo é o mesmo da coluna **Nº** da tabela logo abaixo da imagem.
 
@@ -16,6 +16,7 @@ Este guia mostra como criar o template pelo Salesforce ou pela Meta, acompanhar 
 - [Acompanhar a aprovação na Meta](#nitzap/templates/5-acompanhar-a-analise)
 - [Limites de envio da Meta](#nitzap/templates/limites-de-envio-da-meta)
 - [Enviar o template pelo Omni](#nitzap/templates/enviar-o-template-pelo-omni)
+- [Templates do Nitzap (mensagens prontas)](#nitzap/templates/templates-do-nitzap-mensagens-prontas)
 - [Problemas comuns](#nitzap/templates/problemas-comuns)
 
 <!-- sumario:fim -->
@@ -239,9 +240,128 @@ Quando a conversa está fechada (o cliente nunca escreveu ou não escreve há ma
 | 2 | **Parâmetros do Template:** um campo para cada variável, com o nome usado na Meta (aqui, **nome_cliente**). Preencha todos. Se o template tiver mídia ou link dinâmico, os campos aparecem aqui também. Se não tiver variáveis, aparece **Este template não possui variáveis**. As variáveis `{{nome_cliente}}` e `{{nome_usuario}}` já vêm preenchidas (veja [as variáveis de atalho](#nitzap/templates/2-preencher-o-template)); confira antes de enviar. |
 | 3 | **Concluir:** envia o template na hora. O Nitzap mostra **Template enviado com sucesso** ou o erro devolvido pela Meta. |
 
-Com a conversa aberta, o botão de templates também fica na caixa de mensagem (nº 6 em [Caixa de mensagem](#nitzap/omni/caixa-de-mensagem)). Ali a aba **Meta** fica ao lado da aba **Nitzap**, que tem as mensagens prontas internas, sem aprovação da Meta.
+Com a conversa aberta, o botão de templates também fica na caixa de mensagem (nº 6 em [Caixa de mensagem](#nitzap/omni/caixa-de-mensagem)). Ali a aba **Meta** fica ao lado da aba **Nitzap**, que tem as mensagens prontas internas, sem aprovação da Meta (veja [Templates do Nitzap](#nitzap/templates/templates-do-nitzap-mensagens-prontas)).
 
 O template enviado pelo Omni chega mesmo para quem está na lista de [opt-out](#nitzap/disparo-campanha/opt-out-quem-nao-quer-receber): o bloqueio vale só para os disparos de campanha.
+
+## Templates do Nitzap (mensagens prontas)
+
+Os templates do Nitzap são **mensagens prontas internas**: textos, áudios, imagens e arquivos que você monta uma vez e envia com dois cliques. Eles **não passam pela Meta**, então não precisam de aprovação.
+
+| | **Templates do Nitzap** | **Templates da Meta** |
+| --- | --- | --- |
+| **Aprovação** | Não precisa. | Precisa ser aprovado pela Meta. |
+| **Conexões** | Todas (QR Code, Coexistência e API Cloud). | Só as oficiais (Coexistência e API Cloud). |
+| **Conteúdo** | Várias mensagens em sequência: texto, áudio, imagem, vídeo e arquivo. | Uma mensagem, no formato da Meta. |
+| **Conversa fechada (mais de 24 horas)** | Nas conexões oficiais, não é entregue. | É o único jeito de falar com o cliente. |
+| **Quem cria** | Cada usuário cria os seus, e pode compartilhar. | O administrador, pela conexão, ou quem tem acesso à Meta. |
+
+### 1. Abrir os templates do Nitzap
+
+Na caixa de mensagem da conversa, clique no botão de templates. A aba **Nitzap** mostra as suas pastas e mensagens prontas:
+
+![Lista de templates do Nitzap no Omni](images/nitzap-tpl-lista.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | Aba **Nitzap:** os templates do Nitzap. A aba **Meta** tem os templates aprovados pela Meta (veja [Enviar o template pelo Omni](#nitzap/templates/enviar-o-template-pelo-omni)). |
+| 2 | **Gerenciar:** abre a janela **Nitzap Templates**, para criar e editar. |
+| 3 | **Compartilhados comigo:** os templates que outros usuários compartilharam. |
+| 4 | **Pasta:** clique para abrir e ver os templates de dentro. |
+| 5 | **Template:** uma mensagem pronta. Use a busca acima para achar pelo nome. |
+| 6 | **Play:** aparece ao passar o mouse no template. Abre a prévia para enviar. |
+| 7 | **Botão de templates** da caixa de mensagem. |
+
+O administrador também abre a mesma janela por **Nitzap Config** > **Templates** > **Gerenciar Templates**:
+
+![Templates no Nitzap Config](images/config-templates.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Gerenciar Templates:** abre a janela **Nitzap Templates**. |
+
+### 2. Criar uma pasta e um template
+
+Todo template fica dentro de uma pasta.
+
+![Criar pasta e template](images/nitzap-tpl-novo.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Nova Pasta:** digite o nome da pasta e aperte **Enter**. |
+| 2 | **Menu da pasta (···):** aparece ao passar o mouse na pasta. Tem **Compartilhar com outros usuários**, **Renomear Pasta**, **Novo Template** e **Deletar Pasta**. Deletar a pasta apaga também todos os templates de dentro. |
+| 3 | **Nome do template:** depois de clicar em **Novo Template**, digite o nome e aperte **Enter**. |
+
+### 3. Montar as mensagens
+
+Clique no template para abrir. A janela **Nitzap Templates** fica assim:
+
+![Janela Nitzap Templates](images/nitzap-tpl-editor.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Nova Pasta** e a lista das suas pastas e templates. |
+| 2 | **Nome do template:** dá para trocar aqui. |
+| 3 | **Opções (⋮):** compartilhar o template com outros usuários (veja o passo 4). |
+| 4 | **Salvar.** |
+| 5 | **Excluir** o template. |
+| 6 | **Enviar agora:** só aparece quando a janela foi aberta pelo **Gerenciar** de uma conversa. Envia o template direto para essa conversa. Fica cinza quando o template tem variáveis; nesse caso, envie pelo play da lista (passo 5). |
+| 7 | **Caixa de texto:** escreva a mensagem e aperte **Enter** para adicioná-la ao template. **Shift + Enter** pula linha. |
+| 8 | **Anexar** imagem, vídeo ou arquivo. |
+| 9 | **Inserir variável de atalho:** coloca o nome do cliente ou do usuário no texto (veja abaixo). |
+| 10 | **Microfone:** grava um áudio para o template. |
+
+Cada mensagem adicionada entra no fim da lista e é salva na hora. Um template pode ter várias mensagens, que são enviadas na ordem em que aparecem:
+
+![Template com texto, áudio e imagem](images/nitzap-tpl-mensagens.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Aviso de variáveis:** aparece quando o template tem variável. No [agendamento](#nitzap/omni/agendar-envio), só `{{nome_cliente}}` e `{{nome_usuario}}` são preenchidas sozinhas. |
+| 2 | **Lixeira:** remove aquela mensagem do template. |
+| 3 | **Áudio** gravado pelo microfone. |
+| 4 | **Arrastar:** segure e arraste para mudar a ordem das mensagens. |
+| 5 | **Enviar agora**, cinza porque este template tem variável. |
+
+**Variáveis de atalho.** Clique em **Inserir variável de atalho** para colocar no texto:
+
+![Variáveis de atalho](images/nitzap-tpl-variaveis.png)
+
+- `{{nome_cliente}}`: o primeiro nome do contato, quando a conversa tem um registro do Salesforce vinculado.
+- `{{nome_usuario}}`: o seu primeiro nome.
+
+Você também pode escrever qualquer outra variável entre chaves duplas, como `{{pedido}}`. Na hora de enviar, o Nitzap pede o valor de cada uma.
+
+### 4. Compartilhar com outros usuários
+
+No **⋮** do template (nº 3 da janela), marque **Compartilhar com outros usuários**. Para compartilhar uma pasta inteira, use o mesmo campo no menu **···** da pasta.
+
+![Compartilhar o template](images/nitzap-tpl-compartilhar.png)
+
+O template ou a pasta passa a aparecer para **todos os outros usuários** do Nitzap em **Compartilhados comigo**. Eles podem usar, mas não podem editar nem excluir: só quem criou consegue mudar.
+
+### 5. Enviar pela conversa
+
+1. Na aba **Nitzap** do botão de templates, passe o mouse no template e clique no **play** (nº 6 da lista).
+2. Confira a prévia e preencha as variáveis:
+
+   ![Visualizar Template antes de enviar](images/nitzap-tpl-enviar.png)
+
+   | Nº | O que é |
+   | :---: | --- |
+   | 1 | **Variáveis:** um campo para cada variável do template. `{{nome_cliente}}` e `{{nome_usuario}}` já vêm preenchidas; confira antes de enviar. |
+   | 2 | **Prévia:** as mensagens na ordem em que vão ser enviadas. |
+   | 3 | **Enviar:** manda todas as mensagens para o cliente. |
+
+3. As mensagens chegam ao cliente em sequência, com as variáveis já trocadas:
+
+   ![Template enviado na conversa](images/nitzap-tpl-enviado.png)
+
+   O **#Thiago:** no começo das mensagens é a assinatura do usuário. Ela aparece quando a opção **Assinar mensagens com meu nome** está ligada nas [Preferências](#nitzap/omni/preferencias).
+
+Também dá para usar um template do Nitzap no [agendamento de envio](#nitzap/omni/agendar-envio).
+
+Nas conexões oficiais (Coexistência e API Cloud), o template do Nitzap só é entregue se o cliente escreveu nas **últimas 24 horas**. Com a conversa fechada, use um [template da Meta](#nitzap/templates/enviar-o-template-pelo-omni).
 
 ## Problemas comuns
 
