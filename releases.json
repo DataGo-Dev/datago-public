@@ -1,5 +1,13 @@
 [
   {
+    "id": 441828987,
+    "tag_name": "v1.763.0",
+    "name": "1.763.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000wATdIAM)\n\n## Correções\n**Registrar Histórico guarda a conexão.** A tarefa criada por **Registrar Histórico** no chat saía com o campo **Número da Conexão** vazio. Agora ela grava a conexão da conversa aberta, como já acontecia no agendamento e no atendimento.\n",
+    "published_at": "2026-11-11T15:00:58Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.763.0"
+  },
+  {
     "id": 441637698,
     "tag_name": "v1.762.0",
     "name": "1.762.0",
