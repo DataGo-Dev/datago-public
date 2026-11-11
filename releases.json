@@ -1,5 +1,13 @@
 [
   {
+    "id": 441637698,
+    "tag_name": "v1.762.0",
+    "name": "1.762.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000vua9IAA)\n\n## Licenças do chat interno\nO chat interno passa a ter a mesma quantidade de licenças contratadas para as conexões: se a empresa tem 500 licenças, até 500 pessoas podem estar em conexões e até 500 pessoas podem usar o chat interno. Todo mundo que usa o chat interno ocupa uma licença dele, inclusive quem entrou automaticamente por estar em uma conexão. O cartão **Chat interno**, na aba Conexões, agora mostra quantas dessas licenças estão em uso. Adicionar alguém só ao chat interno fica bloqueado quando a cota está cheia; colocar alguém em uma conexão nunca é bloqueado pelo chat interno. A regra nova vale depois que o servidor Nitzap da sua empresa for atualizado.\n\n## Chamadas de voz\n**Silenciar chamadas.** Em **Preferências** do Nitzap há a opção **Silenciar chamadas de voz**: a chamada recebida continua aparecendo e piscando no Nitzap, com Atender e Recusar, mas sem tocar o som.\n\n**Aviso de gravação.** Quando a conexão grava as chamadas, o cartão da chamada atendida mostra um pequeno **● Gravando**. O aviso aparece depois que o servidor Nitzap da sua empresa for atualizado.\n\n## Melhorias\n**Chat do site só recebe arquivos comuns.** O visitante do site pode enviar imagens, áudios, vídeos, PDF, textos e documentos do Office; outros tipos de arquivo são recusados com uma mensagem. Vale depois que o servidor Nitzap da sua empresa for atualizado.",
+    "published_at": "2026-11-11T12:55:34Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.762.0"
+  },
+  {
     "id": 440497335,
     "tag_name": "v1.761.0",
     "name": "1.761.0",
