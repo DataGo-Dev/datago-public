@@ -1,5 +1,13 @@
 [
   {
+    "id": 440497335,
+    "tag_name": "v1.761.0",
+    "name": "1.761.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000vq8LIAQ)\n\n## Melhorias\n**Fila de novos atendimentos com texto mais claro.** Nas configurações da conexão, o campo **Fila para quem escrever sem atendimento** passou a se chamar **Fila de novos atendimentos**, com uma explicação curta: cliente cadastrado no CRM que mandar mensagem sem estar em atendimento entra nessa fila.\n\n**Fechar atendimento conclui a tarefa.** Ao fechar um atendimento pelo chat ou pelo Omni, a tarefa do atendimento passa a ficar com o status concluído, como já acontecia no fechamento pela API Apex.\n",
+    "published_at": "2026-11-11T11:46:48Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.761.0"
+  },
+  {
     "id": 439402278,
     "tag_name": "v1.760.0",
     "name": "1.760.0",
