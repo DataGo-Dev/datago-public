@@ -1,5 +1,13 @@
 [
   {
+    "id": 442945480,
+    "tag_name": "v1.764.0",
+    "name": "1.764.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000xKQwIAM)\n\n## Chamadas de voz\n**Várias ligações ao mesmo tempo.** A chamada atendida por outra pessoa sai da barra. As que estão tocando formam uma fila: a mais antiga aparece inteira e as outras ficam no contador \"+N chamadas tocando\", que abre a lista. Durante uma ligação aparece só o contador, sem toque. Na conexão oficial, uma ligação em andamento não deixa a conexão ocupada, e o botão Recusar virou **Ignorar**: esconde a chamada só para quem clicou.\n\n## Melhorias\n**Métricas no WhatsApp só por administradores.** Criar, editar, excluir ou enviar agora uma métrica passou a ser exclusivo de administradores do Salesforce ou do Nitzap; os demais usuários continuam vendo as métricas. A consulta da métrica também passou a usar só objetos e campos que o usuário que roda o envio pode ler.\n\n**Transcrição e resumo de mídia mais protegidos.** A transcrição de áudio, o resumo de mídia e a sugestão de resposta com mídia só buscam arquivos no armazenamento do Nitzap.",
+    "published_at": "2026-11-12T16:23:24Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.764.0"
+  },
+  {
     "id": 441828987,
     "tag_name": "v1.763.0",
     "name": "1.763.0",
