@@ -1,5 +1,13 @@
 [
   {
+    "id": 443340893,
+    "tag_name": "v1.765.0",
+    "name": "1.765.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN5000000y3avIAA)\n\n## Correções\n**Conexão inativa não ocupa licença.** O limite de conexões passou a contar só as conexões ativas. Com todas as licenças em uso e uma conexão inativa (caída ou deslogada), já dá para conectar outro número. Para reativar a inativa é preciso ter uma licença livre. O botão Reconectar, dentro da engrenagem da conexão, também deixou de esbarrar no limite, e o contador da aba Conexões mostra só as ativas.\n\n\n**Cada arquivo enviado chega só a quem deveria.** Quando duas pessoas da mesma org enviavam um arquivo (áudio, imagem, vídeo ou documento) exatamente no mesmo instante, os dois envios podiam acabar usando o mesmo arquivo, e um dos clientes recebia a mídia do outro. Agora cada envio, pelo chat, por Fluxo ou pela API Apex, guarda o próprio arquivo. A gravação de áudio também ficou separada por conversa: gravar em um chat não interfere em outro aberto ao mesmo tempo.",
+    "published_at": "2026-11-13T13:39:20Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.765.0"
+  },
+  {
     "id": 442945480,
     "tag_name": "v1.764.0",
     "name": "1.764.0",
