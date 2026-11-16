@@ -65,7 +65,7 @@ Marque o que o seu servidor precisa receber. **Sem nenhum evento marcado, nada �
 | Quando Envia e Recebe mensagem em grupo | `ON_GROUP_MESSAGE` | Mesma coisa, só que em conversas de grupo. |
 | Quando há alteração na mensagem (leitura, edição, etc) | `MESSAGE_UPDATE` | Mensagem que já existe e mudou: lida, editada ou apagada. O campo `update_type` (ou `isedited`/`isdeleted`) diz qual foi. |
 | Quando uma mensagem falha ao ser entregue | `ON_ERROR` | Mensagem recusada ou não entregue no canal oficial (Meta). O motivo vem em `error`. |
-| Quando um botão de ação é clicado (Meta) | `BUTTON_CLICK` | Clique em botão de template ou resposta de Flow, no canal oficial. |
+| Quando um botão de ação é clicado (Meta) | `BUTTON_CLICK` | Clique em botão de template, escolha de opção enviada pela API ou resposta de Flow, no canal oficial. |
 | Quando há alteração na conexão | `CONNECTION_UPDATE` | Reservado para mudança de status da conexão (conectou, caiu). **Ainda não gera chamada** — marcar não quebra nada, só não chega nada por enquanto. |
 
 ### Usuários Rastreados
@@ -529,6 +529,34 @@ Vale só para o canal oficial (Meta). A resposta do contato chega como uma mensa
 - `text` é o rótulo do botão que a pessoa tocou.
 - `mentionedkeymessage` aponta para a mensagem/template que continha o botão.
 
+### Opção enviada pela API
+
+Quando a mensagem foi enviada com `interactive.options` no `send-message` (botões ou lista), o `id` da opção escolhida vem em `event_data.choice_id`:
+
+```json
+{
+  "username": "5527997419613",
+  "event_type": "BUTTON_CLICK",
+  "payload": {
+    "msgkey": "wamid.HBgMNTUyNzk5NzAxOTYyMhUCABIYFDNCN0I4...",
+    "sender": "5527997019622",
+    "reciver": "5527997419613",
+    "type": "text",
+    "text": "Nota fiscal",
+    "sub_event": "BUTTON_CLICK",
+    "event_data": { "choice_id": "nota" },
+    "mentionedkeymessage": "wamid.HBgMNTUyNzk5NzAxOTYyMhUCABEYFENFN0M2...",
+    "isent": false,
+    "chatid": "5527997419613_5527997019622",
+    "channel": "WABA_COEX"
+  }
+}
+```
+
+- `choice_id` é o `id` que o seu sistema deu à opção. Use ele para decidir o próximo passo, não o `text`, que pode ter sido cortado.
+- `mentionedkeymessage` é o `msgKey` devolvido pelo `send-message` que levou as opções.
+- Se o contato digitar em vez de tocar, chega um `ON_MESSAGE` comum, sem `choice_id`.
+
 ### Resposta de Flow (formulário)
 
 O conteúdo preenchido no Flow vem em `event_data`, com o JSON que a Meta devolve:
@@ -637,7 +665,7 @@ Vale saber para não ficar esperando:
 | `readdate` | epoch em ms da leitura |
 | `status` / `error` | falha de entrega e o motivo (código + texto da Meta) |
 | `sub_event` | `BUTTON_CLICK` em clique de botão/Flow |
-| `event_data` | dados do Flow respondido |
+| `event_data` | dados do Flow respondido, ou `{ "choice_id": "..." }` na escolha de opção enviada pela API |
 | `mentionedkeymessage` / `mentionedparticipant` / `mentionedmessage` | citação: id, autor e a mensagem citada inteira |
 
 > Campos ausentes simplesmente não vêm no JSON (ou vêm `null`, como `mimetype` e `url`). Não presuma que um campo sempre existe — leia com segurança. Payloads antigos traziam um bloco `send_message_request` vazio; ele não é mais enviado.

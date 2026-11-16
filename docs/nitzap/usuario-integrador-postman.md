@@ -245,6 +245,51 @@ Depois use **Send template**, com o `vFrom` na URL. **Troque o corpo do exemplo 
 
 Cada `{{1}}`, `{{2}}`… do template vira um item de `parameters`, na ordem. Botões, cabeçalho com imagem e demais componentes seguem a [documentação de templates da Meta](https://developers.facebook.com/docs/graph-api/reference/page/message_templates/).
 
+### Enviar opções para o contato tocar (só conexões WABA)
+
+No mesmo **Send message**, acrescente o objeto `interactive` com as opções. **Não precisa de template nem de aprovação da Meta**: as opções são montadas a cada envio. Vale a mesma janela de 24 horas da mensagem de texto.
+
+```json
+{
+  "vFrom": "5527988887777",
+  "to": "5527999998888",
+  "type": "text",
+  "message": "Com qual departamento deseja falar?",
+  "interactive": {
+    "options": [
+      { "id": "financeiro", "title": "Financeiro" },
+      { "id": "suporte", "title": "Suporte" },
+      { "id": "vendas", "title": "Vendas" }
+    ]
+  }
+}
+```
+
+| Opções | O contato vê |
+| --- | --- |
+| 1 a 3 | Um botão para cada opção, embaixo da mensagem. |
+| 4 a 10 | Um botão que abre a lista. `listButton` troca o texto dele (padrão "Ver opções") e cada opção pode ter `description`, uma linha menor embaixo do título. |
+
+- `type` precisa ser `"text"`, e `message` é obrigatório: é o texto acima das opções.
+- `title` vai até 20 caracteres no botão e 24 na lista; o que passar é cortado com "…".
+- `id` é o que volta para o seu sistema quando o contato escolhe. Vai até 200 caracteres; sem ele, vale a posição (`"1"`, `"2"`…).
+- Nem `id` nem `title` podem se repetir na mesma mensagem.
+- Na conversa fica o texto com as opções numeradas, para quem atende saber o que foi oferecido.
+- Em conexão por QR Code o WhatsApp não mostra botões: o contato recebe esse texto numerado e responde digitando.
+
+Quando o contato toca numa opção, o webhook recebe `BUTTON_CLICK` (assine o evento, na seção abaixo) com o `id` em `event_data.choice_id`. Trecho do `payload`:
+
+```json
+{
+  "text": "Suporte",
+  "sub_event": "BUTTON_CLICK",
+  "event_data": { "choice_id": "suporte" },
+  "mentionedkeymessage": "wamid.HBgNNTUyNzk5OTk5ODg4OBUCABEYEjU..."
+}
+```
+
+Decida pelo `choice_id`, não pelo `text`: o texto pode ter sido cortado. O `mentionedkeymessage` é o `msgKey` que o **Send message** devolveu, e mostra a qual pergunta o contato respondeu.
+
 ### Receber mensagens em tempo real (webhook)
 
 Para o seu sistema ser avisado de cada mensagem, cadastre um webhook. Pela tela, siga o guia [Webhooks do Nitzap](webhooks.md). Pela API, o usuário integrador também pode: **13 - Webhook (JWT) → Post webhook**, com este corpo:
@@ -260,7 +305,7 @@ Para o seu sistema ser avisado de cada mensagem, cadastre um webhook. Pela tela,
 }
 ```
 
-- `events` usa os nomes da lista **Allowed events** (`ON_MESSAGE`, `ON_ERROR`, `MESSAGE_UPDATE`…).
+- `events` usa os nomes da lista **Allowed events** (`ON_MESSAGE`, `ON_ERROR`, `MESSAGE_UPDATE`…). Se o seu sistema envia opções, acrescente `BUTTON_CLICK`.
 - `tracked_users` com `["ALL"]` recebe de todas as conexões. **Lista vazia não recebe nada.**
 - A `url` precisa ser `https`.
 
@@ -310,6 +355,8 @@ No mesmo painel ficam os tokens já gerados, com **Último uso** e o botão **Re
 | `vFrom é obrigatório` | O token alcança mais de um número | Mande o `vFrom`. |
 | `403 token delegado sem scope necessário` | O token não tem a permissão da rota | Gere outro token com a permissão certa. |
 | `canal não suportado` em `/waba` | A conexão não é da API oficial | Templates só funcionam em conexões WABA. |
+| `400` com `opções inválidas: ...` | O `interactive` está fora da regra (nenhuma opção, mais de 10, `title` repetido, `type` diferente de `text`) | A própria mensagem diz o que corrigir. |
+| `success: true` no envio, depois `ON_ERROR` com `131047` | Conexão WABA com a janela de 24 horas fechada | O contato precisa escrever antes; para iniciar a conversa, envie um template. |
 | `success: false` com `falha ao baixar a mídia` | O `media.url` pede login ou não existe | Use um link público ou o espaço S3 do Nitzap. |
 | `evento inválido` ao cadastrar webhook | Nome de evento fora da lista | Use os nomes de **Allowed events** (`ON_MESSAGE`…). |
 
