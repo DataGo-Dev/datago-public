@@ -277,29 +277,33 @@ Clique no ícone de carinha (indicado pela seta) e escolha o emoji. Use **Procur
 
 ### Figurinhas
 
-O Nitzap envia e recebe figurinhas do WhatsApp. As figurinhas que você usa ficam guardadas em uma biblioteca, com duas abas: as **suas** e as **da empresa**.
+O Nitzap envia e recebe figurinhas do WhatsApp. Quando o cliente manda uma figurinha que você quer usar depois, salve: ela vai para a sua biblioteca de figurinhas, e daí você envia com um clique.
 
-![Figurinhas na conversa](images/figurinhas-conversa.png)
+**1. Salvar a figurinha que chegou na conversa.** Passe o mouse na figurinha e clique na seta do canto do balão (as mesmas [Opções da mensagem](#nitzap/omni/opcoes-da-mensagem)):
+
+![Salvar figurinha pelo menu da mensagem](images/figurinhas-salvar.png)
 
 | Nº | O que é |
 | :---: | --- |
-| 1 | **Figurinhas:** o botão ao lado do emoji. Abre a biblioteca. |
-| 2 | Figurinha **enviada** por você. |
-| 3 | Figurinha **recebida** do cliente. |
+| 1 | **Seta** do balão: abre o menu da mensagem. |
+| 2 | **Salvar figurinha:** guarda na aba **Minhas** da biblioteca. |
+| 3 | **Empresa:** guarda na aba **Da empresa**, para todos os usuários. Só aparece para o administrador do Nitzap. |
 
-**Enviar uma figurinha.** Clique no botão **Figurinhas** e depois na figurinha. Ela é enviada na hora, sem texto junto.
+Enquanto salva, a figurinha mostra **Salvando…**, e no fim aparece **Figurinha salva**.
+
+**2. Encontrar e enviar a figurinha salva.** Clique no botão **Figurinhas**, ao lado do emoji. A figurinha salva já aparece na aba **Minhas** (ou em **Da empresa**, se o administrador salvou lá). Clique nela para enviar: ela vai na hora, sem texto junto.
 
 ![Biblioteca de figurinhas: abas Minhas e Da empresa](images/figurinhas-biblioteca.png)
 
 | Nº | O que é |
 | :---: | --- |
 | 1 | **Figurinhas:** abre e fecha a biblioteca. |
-| 2 | **Minhas:** as suas figurinhas. Só você vê. |
+| 2 | **Minhas:** as figurinhas que você salvou ou criou. Só você vê. |
 | 3 | **Da empresa:** figurinhas que todos os usuários veem. Só o administrador do Nitzap cria e remove figurinhas aqui. |
 | 4 | **+ Nova:** cria uma figurinha a partir de uma imagem ou GIF (veja abaixo). Ela entra na aba que está aberta. |
 | 5 | **×:** aparece ao passar o mouse na figurinha. Remove da biblioteca. As mensagens já enviadas continuam com a figurinha. |
 
-**Criar uma figurinha nova.** Clique em **+ Nova** e escolha a imagem no computador. Aceita **PNG, JPG, GIF e WEBP**. O Nitzap converte a imagem para o formato de figurinha do WhatsApp; enquanto isso, aparece **Criando figurinha…**.
+**3. Criar uma figurinha a partir de uma imagem.** Clique em **+ Nova** e escolha a imagem no computador. Aceita **PNG, JPG, GIF e WEBP**. O Nitzap converte a imagem para o formato de figurinha do WhatsApp; enquanto isso, aparece **Criando figurinha…**.
 
 ![Escolher a imagem da figurinha nova](images/figurinhas-nova.png)
 
@@ -307,18 +311,6 @@ O Nitzap envia e recebe figurinhas do WhatsApp. As figurinhas que você usa fica
 | :---: | --- |
 | 1 | A imagem que vai virar figurinha. |
 | 2 | **Abrir:** cria a figurinha e coloca na biblioteca. |
-
-**Salvar uma figurinha que chegou na conversa.** Passe o mouse na figurinha e clique na seta do canto do balão (as mesmas [Opções da mensagem](#nitzap/omni/opcoes-da-mensagem)):
-
-![Salvar figurinha pelo menu da mensagem](images/figurinhas-salvar.png)
-
-| Nº | O que é |
-| :---: | --- |
-| 1 | **Seta** do balão: abre o menu da mensagem. |
-| 2 | **Salvar figurinha:** guarda na aba **Minhas**. |
-| 3 | **Empresa:** guarda na aba **Da empresa**, para todos os usuários. Só aparece para o administrador do Nitzap. |
-
-Enquanto salva, a figurinha mostra **Salvando…**, e no fim aparece **Figurinha salva**.
 
 O botão **Figurinhas** não aparece no [modo sussurro](#nitzap/omni/modo-sussurro), porque a nota interna não vai para o cliente.
 
