@@ -1,5 +1,13 @@
 [
   {
+    "id": 451272678,
+    "tag_name": "v1.770.0",
+    "name": "1.770.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000012cTdIAI)\n\n## Melhorias\n**Salvar figurinha mostra que está salvando.** Enquanto o Nitzap converte e guarda a figurinha, ela ganha o selo \"Salvando…\" no balão, e um segundo clique nesse meio-tempo não salva de novo.\n",
+    "published_at": "2026-11-19T11:48:44Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.770.0"
+  },
+  {
     "id": 450466711,
     "tag_name": "v1.769.0",
     "name": "1.769.0",
