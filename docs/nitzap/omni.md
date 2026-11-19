@@ -12,7 +12,7 @@ O Nitzap Omni é onde você conversa com os clientes pelo WhatsApp sem sair do S
 - [Iniciar uma conversa nova](#nitzap/omni/iniciar-uma-conversa-nova)
 - [Opções da conversa e das mensagens](#nitzap/omni/dentro-da-conversa)
 - [Ver conversas de outros usuários](#nitzap/omni/ver-conversas-de-outros-usuarios)
-- [Enviar arquivos, contatos e registrar histórico](#nitzap/omni/caixa-de-mensagem)
+- [Enviar arquivos, figurinhas, contatos e registrar histórico](#nitzap/omni/caixa-de-mensagem)
 - [Agendar mensagens](#nitzap/omni/agendar-envio)
 - [Recursos de IA e transcrição de áudio](#nitzap/omni/recursos-de-ia)
 - [Preferências](#nitzap/omni/preferencias)
@@ -229,6 +229,7 @@ Passe o mouse sobre uma mensagem e clique na seta que aparece no canto do balão
 | **Copiar ID** | ✓ | ✓ | Copia o identificador da mensagem, útil para o suporte. |
 | **Editar** | | ✓ | Altera o texto da mensagem enviada. Até **10 minutos** depois do envio. |
 | **Apagar** | | ✓ | Apaga a mensagem para todos, depois de uma confirmação. Até **2 dias** depois do envio. |
+| **Salvar figurinha** | ✓ | ✓ | Só em figurinhas. Guarda a figurinha na sua biblioteca. Para o administrador, o botão **Empresa** na mesma linha guarda nas figurinhas da empresa. Veja [Figurinhas](#nitzap/omni/figurinhas). |
 
 **Editar** e **Apagar** não existem nas conexões oficiais (Coex e Cloud API), só nas conexões via QR Code. Em imagens também aparece a opção de **download**.
 
@@ -253,6 +254,8 @@ Escreva a mensagem e tecle **Enter** para enviar. Para pular uma linha sem envia
 | 11 | **Correção ortográfica** | Corrige o texto que você está escrevendo. Veja [Recursos de IA](#nitzap/omni/recursos-de-ia). |
 | 12 | **Resumir conversa** | Resume a conversa em um período. Veja [Recursos de IA](#nitzap/omni/recursos-de-ia). |
 
+Ao lado do **Emoji** fica também o botão **Figurinhas**. Veja [Figurinhas](#nitzap/omni/figurinhas).
+
 ### Enviar arquivos
 
 Clique no **+** (indicado pela seta embaixo). O botão vira um **×**, que fecha o menu.
@@ -271,6 +274,43 @@ O limite é de 100 MB por arquivo; vídeos aceitam até 40 MB, pelo limite do Wh
 Clique no ícone de carinha (indicado pela seta) e escolha o emoji. Use **Procurar** para buscar pelo nome.
 
 ![Seletor de emoji](images/omni-emoji.png)
+
+### Figurinhas
+
+O Nitzap envia e recebe figurinhas do WhatsApp. As figurinhas que você usa ficam guardadas em uma biblioteca, com duas abas: as **suas** e as **da empresa**.
+
+![Figurinhas na conversa](images/figurinhas-conversa.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Figurinhas:** o botão ao lado do emoji. Abre a biblioteca. |
+| 2 | Figurinha **enviada** por você. |
+| 3 | Figurinha **recebida** do cliente. |
+
+**Enviar uma figurinha.** Clique no botão **Figurinhas** e depois na figurinha. Ela é enviada na hora, sem texto junto.
+
+![Biblioteca de figurinhas: abas Minhas e Da empresa](images/figurinhas-biblioteca.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | **Figurinhas:** abre e fecha a biblioteca. |
+| 2 | **Minhas:** as suas figurinhas. Só você vê. |
+| 3 | **Da empresa:** figurinhas que todos os usuários veem. Só o administrador do Nitzap cria e remove figurinhas aqui. |
+| 4 | **+ Nova:** cria uma figurinha a partir de uma imagem ou GIF (veja abaixo). Ela entra na aba que está aberta. |
+| 5 | **×:** aparece ao passar o mouse na figurinha. Remove da biblioteca. As mensagens já enviadas continuam com a figurinha. |
+
+**Criar uma figurinha nova.** Clique em **+ Nova** e escolha a imagem no computador. Aceita **PNG, JPG, GIF e WEBP**. O Nitzap converte a imagem para o formato de figurinha do WhatsApp; enquanto isso, aparece **Criando figurinha…**.
+
+![Escolher a imagem da figurinha nova](images/figurinhas-nova.png)
+
+| Nº | O que é |
+| :---: | --- |
+| 1 | A imagem que vai virar figurinha. |
+| 2 | **Abrir:** cria a figurinha e coloca na biblioteca. |
+
+**Salvar uma figurinha que chegou na conversa.** Passe o mouse na figurinha, clique na seta do canto do balão ([Opções da mensagem](#nitzap/omni/opcoes-da-mensagem)) e clique em **Salvar figurinha**. Ela vai para a aba **Minhas**. O administrador vê também o botão **Empresa** na mesma linha, que salva na aba **Da empresa**. Enquanto salva, a figurinha mostra **Salvando…**, e no fim aparece **Figurinha salva**.
+
+O botão **Figurinhas** não aparece no [modo sussurro](#nitzap/omni/modo-sussurro), porque a nota interna não vai para o cliente.
 
 ### Enviar contato
 
