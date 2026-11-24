@@ -1,5 +1,13 @@
 [
   {
+    "id": 451652387,
+    "tag_name": "v1.771.0",
+    "name": "1.771.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000015q2DIAQ)\n\n## Trocar o servidor do Nitzap\nEm Configuração → Integração, mudar a URL Base para outro servidor agora mostra um aviso na hora e pede confirmação antes de salvar. Na troca, o Nitzap apaga as credenciais que pertenciam ao servidor anterior: a App Key, a credencial do sistema e o login de todos os usuários. Antes elas continuavam guardadas e impediam o uso do servidor novo.\n\nPara trocar, informe a App Key do servidor novo. Ao salvar, quem fez a troca é cadastrado como administrador do servidor novo (se ele ainda não tiver um) e a credencial do sistema é criada de novo. Os demais usuários voltam quando forem incluídos em Conexões → Membros. Se o servidor novo não responder, ou se o domínio dele ainda não estiver liberado em Sites remotos, nada é alterado. Só administradores do Salesforce podem trocar o servidor.\n\n## Correções\n**Mensagens não aparecem mais duas vezes depois de reconectar o mesmo número.** Quando um número já conectado era pareado de novo pelo QR Code, a conexão anterior continuava ativa junto com a nova, e cada mensagem enviada ou recebida aparecia duplicada no chat até recarregar a página (o bot e as mensagens automáticas também podiam responder em dobro). Agora o novo pareamento desconecta o aparelho anterior do mesmo número. Correção no servidor Nitzap.\n\n**Reação nos anúncios do Nitzap fica marcada.** No canal de anúncios, a reação que você dava era gravada, mas ao fechar e abrir o canal de novo ela aparecia desmarcada e com a contagem de antes, e um novo clique parecia somar outra vez. Agora a sua reação volta marcada ao reabrir e a contagem fica certa.\n\n## Melhorias\n**Chat do site em \"Adicionar conexão\".** O botão solto \"Chat do site\" saiu da tela de Conexões e virou um terceiro cartão no \"Adicionar conexão\", ao lado de WhatsApp (QR Code) e WhatsApp Business.\n\n**Cabeçalho do Omni mais limpo.** No topo da lista de conversas ficam à vista só Chamadas e Nova conversa (+). Abrir Nitzap Web, Preferências e Ajuda e Recursos foram para o menu ⋮ (Mais opções), e o botão de ampliar ou reduzir o painel foi para o canto direito. O painel agora abre compacto por padrão; quem preferir ampliado clica em Ampliar painel uma vez e a escolha fica guardada.\n",
+    "published_at": "2026-11-24T17:43:14Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.771.0"
+  },
+  {
     "id": 451272678,
     "tag_name": "v1.770.0",
     "name": "1.770.0",
