@@ -1,5 +1,13 @@
 [
   {
+    "id": 459460444,
+    "tag_name": "v1.772.0",
+    "name": "1.772.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000017dP3IAI)\n\n## Painel do gestor: conversa em tela cheia e sussurro em qualquer conversa\n\nAo acompanhar uma conversa pelo Painel do gestor, a conversa agora ocupa o painel lateral inteiro, do cabeçalho até o campo de sussurro, e fica visível enquanto você lê.\n\n- **Abas Conversa e Detalhes**: os dados do atendimento (situação, 1ª resposta, duração, não lidas), o registro com o atalho \"Abrir no CRM\", Transferir e Encerrar ficam na aba Detalhes, em blocos separados. Trocar de aba não recarrega a conversa nem apaga o que você digitou.\n- **Cabeçalho mais enxuto**: o aviso de modo acompanhamento virou o selo \"Só leitura\" (passe o mouse para ver a explicação) e a linha do tempo do atendimento virou uma faixa discreta de passos.\n- **Sussurro em uma linha**: Enter envia, Shift+Enter quebra a linha.\n- **Sussurrar sempre**: o administrador sussurra também em atendimento encerrado e em conversa sem atendimento. O sussurro fica como nota interna na conversa, visível no Omni para quem abrir, e o contato não recebe.\n\n## Correções\n**Seletor de conexão inteiro no Painel do gestor.** Na aba Chats, a lista do seletor de conexão aparecia cortada; agora abre com todas as conexões.\n**Campo de sussurro visível em janelas estreitas.** A conversa do painel lateral cobria o campo de sussurro em telas pequenas; agora cada um tem seu espaço.\n",
+    "published_at": "2026-11-26T13:51:24Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.772.0"
+  },
+  {
     "id": 451652387,
     "tag_name": "v1.771.0",
     "name": "1.771.0",
