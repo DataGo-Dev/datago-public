@@ -1,5 +1,13 @@
 [
   {
+    "id": 460890571,
+    "tag_name": "v1.773.0",
+    "name": "1.773.0",
+    "body": "📦 [Instalar Pacote](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tN50000018xITIAY)\n\n## Correções\n\n**Conta pessoal mostra a fila e o atendente da conversa.** Quando o bot passava a conversa para uma fila, ou um vendedor assumia o atendimento, o chat da Oportunidade mostrava a faixa com a fila (\"Aguardando Atendimento\") e o botão Transferir, mas o chat da Conta pessoal do mesmo cliente não mostrava nada. Agora a Conta pessoal também mostra a fila ou o atendente e o botão Transferir, igual à Oportunidade e ao Contato.",
+    "published_at": "2026-11-27T17:48:23Z",
+    "html_url": "https://github.com/DataGo-Dev/datago-public/releases/tag/v1.773.0"
+  },
+  {
     "id": 459460444,
     "tag_name": "v1.772.0",
     "name": "1.772.0",
